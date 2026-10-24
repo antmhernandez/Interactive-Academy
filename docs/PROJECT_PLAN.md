@@ -7,19 +7,23 @@ Create a coherent, mobile-first, topic-organized tutoring resource for Physics a
 **Observe → Understand → Explore → Follow a Worked Example → Try Independently → Review.**
 The model or diagram must teach something, not merely entertain. Build the concept before expecting the student to use formulas. Physics connects observation, units, physical systems, vectors and experimental evidence. Calculus connects symbolic, numerical, graphical and verbal representations.
 
-## First pilot (6 Physics + 3 Calculus)
+## First pilot — now nine linked demonstration lessons
 ### Physics: Motion and its representation
-1. Motion diagrams — complete in prototype.
-2. Position, displacement and coordinate systems — planned.
-3. Speed and velocity from tables/graphs — planned.
-4. Changing velocity and acceleration — complete in prototype.
-5. Position/velocity/acceleration graphs as a system — first interactive version completed.
-6. Motion measurement and graphical regression lab — planned.
+1. **Distance is not displacement** — number line and two-leg journey.
+2. **How can dots describe motion?** — constant speed, speeding up and slowing down.
+3. **Read velocity from a graph** — moving secant across a position-time curve.
+4. **When velocity changes** — change in velocity and signed acceleration.
+5. **Why does a falling object speed up?** — before-impact free-fall comparison under Earth and Moon gravity.
+6. **Three graphs tell one story** — synchronized position, velocity and acceleration.
 
 ### Calculus: Understanding change
-1. Average versus instantaneous rate; secants and tangents — prototype started.
-2. Derivative from first principles and graphical meaning — planned.
-3. Accumulation and Riemann sums — prototype started.
+1. **The derivative is a changing slope** — secant approaches tangent.
+2. **Area under velocity measures a journey** — signed accumulation introduced through a positive-velocity model.
+3. **How rectangles discover area** — Riemann sums and convergence.
+
+**Status:** source and preliminary interactives built; needs full independent browser/phone evaluation, subject-expert review and test users. These topics are a beginning, not a complete Physics or Calculus course. Printable examples include motion diagrams, linked motion graphs, two practical observation/data labs, and derivative/integral guided notes.
+
+**Next:** improve explanatory animation, add diagrams with measured uncertainty, develop the remaining Mechanics subjects, and pair student notes with tightly controlled teacher editions.
 
 ## Student deliverables
 Each lesson has a focused main question, brief essential explanation, original figure or simulation, one exemplary worked problem, independently checked practice, and printable student pages when useful. Teacher editions are separately approved, controlled and never published by accident.
@@ -37,7 +41,7 @@ Each lesson has a focused main question, brief essential explanation, original f
 
 ## Growth milestones
 **Stage 1:** Working static pilot; browser-only animations; no student data.
-**Stage 2:** Printable guided notes/labs and teacher review workflow.
+**Stage 2:** Develop the existing guided-note and laboratory samples into polished classroom packets with a teacher-review workflow.
 **Stage 3:** Complete Mechanics unit, then broader Physics and Calculus maps.
 **Stage 4:** After validating demand and permissions, trial a publisher or direct-sales partnership and suitable commercial hosting.
 **Stage 5:** Add secure student accounts, diagnostic progress, adaptive practice and optional image-analysis tutoring only after privacy and server-side authorization are properly designed.
