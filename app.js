@@ -2,6 +2,7 @@
 const main=document.querySelector("#main");
 const nav=document.querySelector("#nav");
 let lessons=[];
+let curriculum=null;
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -26,7 +27,11 @@ const visualKeys={
  "motion-graphs":[["teal","Position"],["amber","Velocity"],["violet","Acceleration"]],
  "tangent":[["teal","Curve"],["amber","Secant"],["green","Tangent"]],
  "velocity-area":[["teal","Displacement area"],["amber","Current time"]],
- "riemann":[["teal","Rectangles"],["amber","Original function"]]
+ "riemann":[["teal","Rectangles"],["amber","Original function"]],
+ "force-components":[["amber","Applied force"],["teal","Horizontal"],["green","Vertical"]],
+ "free-body":[["amber","Push"],["teal","Normal"],["violet","Weight"]],
+ "newton-two":[["teal","Cart"],["amber","Net force"]],
+ "limit-hole":[["teal","Curve / hole"],["amber","Nearby value"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -52,6 +57,10 @@ function home(){
 }
 function catalog(s){
  const items=courseList(s),completedTotal=completedCount(s);
+ const topicOwners=new Map(curriculum.subjects.flatMap(q=>q.units.flatMap(u=>u.topics.map(t=>[t.id,q.id]))));
+ const downloads=curriculum.assets.filter(a=>topicOwners.get(a.owner)===s);
+ const printableLinks=downloads.map(a=>'<a href="'+encodeURI(a.path)+'"'+(a.path.startsWith("lab/")?'':' target="_blank" rel="noopener"')+'>'+escapeHtml(a.label)+' ↗</a>').join("");
+ const futureCount=curriculum.subjects.find(x=>x.id===s).units.flatMap(u=>u.topics).filter(t=>t.status==="planned").length;
  const byUnit=[...new Set(items.map(x=>x.unit))];
  const render=arr=>byUnit.map(unit=>{
    const selected=arr.filter(l=>l.unit===unit);
@@ -63,12 +72,29 @@ function catalog(s){
  <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
- <section class="resources"><details><summary>Printables &amp; experiments</summary>${s==="physics"?`<div class="resource-links"><a href="lab/motion.html">Interactive motion data lab ↗</a><a href="materials/motion-guided-notes.html">Motion diagram notes ↗</a><a href="materials/motion-graphs-guided-notes.html">Position &amp; velocity guided notes ↗</a><a href="materials/motion-observation-lab.html">Motion observation lab ↗</a><a href="materials/motion-data-lab.html">Motion data lab worksheet ↗</a><a href="materials/motion-model-investigation.html">Regression investigation ↗</a></div>`:`<div class="resource-links"><a href="materials/calculus-graphical-meaning-guided-notes.html">Graphical derivative &amp; integral notes ↗</a></div>`}</details></section>`;
+ <div class="outline-link"><a href="#roadmap/${s}">View full course map <span>(${futureCount} planned topics)</span> →</a></div>
+ <section class="resources"><details><summary>Guided notes &amp; experiments</summary><div class="resource-links">${printableLinks}</div></details></section>`;
  document.querySelector("#search").addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase();
   const filtered=items.filter(l=>[l.title,l.subtitle,l.unit,l.idea].join(" ").toLowerCase().includes(q));
   document.querySelector("#topic-groups").innerHTML=filtered.length?render(filtered):'<p class="empty-state">No lesson found. Try another term.</p>';
  });
+}
+function roadmap(subjectId){
+ const info=curriculum.subjects.find(q=>q.id===subjectId);
+ const topics=info.units.flatMap(u=>u.topics),available=topics.filter(t=>t.status==="available").length;
+ const sections=info.units.map(u=>{
+  const ready=u.topics.filter(t=>t.status==="available").length;
+  const rows=u.topics.map(t=>`<div class="roadmap-topic ${t.status==="planned"?"planned":""}">
+    <span>${t.status==="available"?"✓":"○"}</span>
+    <span class="roadmap-topic-name">${t.status==="available"?`<a href="#lesson/${t.id}">${escapeHtml(t.title)}</a>`:escapeHtml(t.title)}<small>${escapeHtml(t.goal)}</small></span>
+    <span class="roadmap-status">${t.status==="available"?"Explore":"Planned"}</span></div>`).join("");
+  return `<details class="roadmap-unit" ${ready?"open":""}><summary><span>${escapeHtml(u.title)}</span><small>${ready} / ${u.topics.length} ready</small></summary><div>${rows}</div></details>`;
+ }).join("");
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#${subjectId}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${courseList(subjectId)[0].id}">First lesson →</a></nav>
+ <header class="catalog-head"><div class="eyebrow">Curriculum roadmap · ${escapeHtml(info.title)}</div><h1>Course Map</h1><p>Explore the lessons available now. Future topics are organized here but cannot yet be opened.</p><div class="mini-progress">${available} available · ${topics.length-available} planned</div></header>
+ <div class="roadmap-units">${sections}</div>
+ <p class="map-footnote">This outline is a development plan, not a promise of course completion or a textbook reproduction. Some topics may be revised as we test the teaching sequence.</p>`;
 }
 function about(){
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
@@ -147,6 +173,10 @@ function lesson(l){
  if(l.visual==="motion-graphs")linkedGraphs(el);
  if(l.visual==="tangent")tangent(el);
  if(l.visual==="riemann")riemann(el);
+ if(l.visual==="force-components")forceComponents(el);
+ if(l.visual==="free-body")freeBody(el);
+ if(l.visual==="newton-two")newtonTwo(el);
+ if(l.visual==="limit-hole")limitHole(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -209,6 +239,105 @@ function renderConceptCheck(lesson) {
  document.querySelector("#practice").before(section);
 }
 
+function forceComponents(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Resolve one force</strong><span class="pill">Vectors</span></div>
+ <svg viewBox="0 0 540 315" role="img" aria-label="An angled applied force and its horizontal and vertical vector components">
+ <defs><marker id="fc-a" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#c08039"/></marker><marker id="fc-x" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#14727a"/></marker><marker id="fc-y" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#32986f"/></marker></defs>
+ <rect width="540" height="315" fill="#f8fbf9" rx="12"/><g id="components-plot"></g></svg>
+ <div class="controls"><label>Force <strong id="f-read"></strong><input id="f-strength" type="range" min="5" max="28" step="1" value="20"></label><label>Angle above horizontal <strong id="angle-read"></strong><input id="f-angle" type="range" min="0" max="90" step="5" value="35"></label></div>
+ <div class="readout"><div class="metric"><small>Horizontal Fₓ</small><strong id="fx-read"></strong></div><div class="metric"><small>Vertical Fᵧ</small><strong id="fy-read"></strong></div></div>`;
+ const strength=el.querySelector("#f-strength"),angle=el.querySelector("#f-angle"),g=el.querySelector("#components-plot");
+ function draw(){
+  const F=+strength.value,theta=+angle.value,radians=theta*Math.PI/180,fx=F*Math.cos(radians),fy=F*Math.sin(radians);
+  const ox=112,oy=258,scale=6.9,X=ox+scale*fx,Y=oy-scale*fy;
+  const arc=theta?`<path d="M ${ox+43} ${oy} A 43 43 0 0 0 ${ox+43*Math.cos(radians)} ${oy-43*Math.sin(radians)}" stroke="#9cbdb1" fill="none" stroke-width="2"/>`:"";
+  g.innerHTML=`<path d="M65 ${oy}H515M${ox} 25V284" stroke="#b3c7bf" stroke-width="1.5"/><text x="499" y="${oy+20}" font-size="13" fill="#60736c">x</text><text x="${ox-19}" y="31" font-size="13" fill="#60736c">y</text>
+  <path d="M${ox} ${oy}H${X}" stroke="#14727a" stroke-width="4" marker-end="url(#fc-x)"/>
+  <path d="M${X} ${oy}V${Y}" stroke="#32986f" stroke-width="4" marker-end="url(#fc-y)"/>
+  <path d="M${ox} ${oy}L${X} ${Y}" stroke="#c08039" stroke-width="5" marker-end="url(#fc-a)"/>
+  <path d="M${X-12} ${oy}V${oy-12}H${X}" stroke="#779991" fill="none" stroke-width="1.4"/>
+  ${arc}<text x="${ox+49}" y="${oy-12}" fill="#446b64" font-size="13">θ = ${theta}°</text>
+  <text x="${(ox+X)/2}" y="${oy+22}" text-anchor="middle" font-size="14" fill="#14727a">Fₓ</text>
+  <text x="${X+14}" y="${(oy+Y)/2}" font-size="14" fill="#25835e">Fᵧ</text>
+  <text x="${(ox+X)/2-8}" y="${(oy+Y)/2-13}" font-size="14" fill="#a5672e">F</text>`;
+  el.querySelector("#f-read").textContent=f(F)+" N";el.querySelector("#angle-read").textContent=theta+"°";
+  el.querySelector("#fx-read").textContent=f(fx)+" N";el.querySelector("#fy-read").textContent=f(fy)+" N";
+ }
+ strength.oninput=angle.oninput=draw;draw();
+}
+function freeBody(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Isolate the box</strong><span class="pill">Free-body diagram</span></div>
+ <svg viewBox="0 0 540 315" role="img" aria-label="Box on a smooth horizontal floor and a free-body diagram showing applied push, normal force and weight">
+ <defs><marker id="fb-amber" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#c08039"/></marker><marker id="fb-teal" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#14727a"/></marker><marker id="fb-violet" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#6578a5"/></marker></defs>
+ <rect width="540" height="315" rx="12" fill="#f8fbf9"/><g id="fb-plot"></g></svg>
+ <div class="controls"><label>Mass <strong id="fb-mass-label"></strong><input id="fb-mass" type="range" min="1" max="6" step=".5" value="2"></label><label>Horizontal push <strong id="fb-push-label"></strong><input id="fb-push" type="range" min="0" max="20" step="1" value="8"></label></div>
+ <div class="readout"><div class="metric"><small>Normal force</small><strong id="fb-normal"></strong></div><div class="metric"><small>Weight</small><strong id="fb-weight"></strong></div><div class="metric"><small>Net horizontal</small><strong id="fb-net"></strong></div></div>
+ <p class="note">Level, frictionless floor. The push is horizontal; vertical acceleration is zero.</p>`;
+ const mass=el.querySelector("#fb-mass"),push=el.querySelector("#fb-push");
+ function draw(){
+  const m=+mass.value,p=+push.value,w=9.8*m,vert=24+w*1.25,horiz=20+p*3.1;
+  el.querySelector("#fb-plot").innerHTML=`<path d="M35 240H232" stroke="#8eaca3" stroke-width="3"/><rect x="88" y="185" width="70" height="55" rx="6" fill="#d9e9e2" stroke="#3b7772" stroke-width="2"/>
+  <path d="M159 212h47" stroke="#c08039" stroke-width="4" marker-end="url(#fb-amber)"/><text x="89" y="272" font-size="13" fill="#60736c">Physical box</text>
+  <path d="M265 40V281" stroke="#d3e2d9" stroke-dasharray="4 4"/><text x="335" y="40" font-size="15" fill="#315b57">Isolated object</text>
+  <circle cx="362" cy="166" r="8" fill="#304c48"/>
+  <path d="M362 166V${166-vert}" stroke="#14727a" stroke-width="4.5" marker-end="url(#fb-teal)"/>
+  <path d="M362 166V${166+vert}" stroke="#6578a5" stroke-width="4.5" marker-end="url(#fb-violet)"/>
+  ${p>0?`<path d="M362 166H${362+horiz}" stroke="#c08039" stroke-width="4.5" marker-end="url(#fb-amber)"/>`:""}
+  <text x="376" y="${Math.max(30,166-vert-8)}" font-size="14" fill="#14727a">N</text>
+  <text x="376" y="${Math.min(302,166+vert+16)}" font-size="14" fill="#6578a5">mg</text>
+  ${p>0?`<text x="${Math.min(494,362+horiz)}" y="145" text-anchor="end" font-size="13" fill="#a26b2c">Push</text>`:""}`;
+  el.querySelector("#fb-mass-label").textContent=f(m)+" kg";el.querySelector("#fb-push-label").textContent=f(p)+" N";el.querySelector("#fb-normal").textContent=f(w)+" N up";el.querySelector("#fb-weight").textContent=f(w)+" N down";el.querySelector("#fb-net").textContent=f(p)+" N right";
+ }
+ mass.oninput=push.oninput=draw;draw();
+}
+function newtonTwo(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Same net force. Different motion.</strong><span class="pill">F = ma</span></div>
+ <svg viewBox="0 0 540 288" role="img" aria-label="Cart position after two seconds from rest changes with net force and cart mass">
+ <defs><marker id="nt-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#c08039"/></marker></defs>
+ <rect width="540" height="288" rx="12" fill="#f8fbf9"/><g id="newton-plot"></g></svg>
+ <div class="controls"><label>Net force <strong id="nt-f-label"></strong><input type="range" id="nt-f" min="-16" max="16" value="8" step="1"></label><label>Mass <strong id="nt-m-label"></strong><input type="range" id="nt-m" min="1" max="8" value="4" step=".5"></label></div>
+ <div class="readout"><div class="metric"><small>Acceleration</small><strong id="nt-a"></strong></div><div class="metric"><small>Displacement after 2 s</small><strong id="nt-x"></strong></div></div>
+ <p class="note">Idealized horizontal motion from rest. The selected force is the net external force.</p>`;
+ const force=el.querySelector("#nt-f"),mass=el.querySelector("#nt-m");
+ function draw(){
+  const net=+force.value,m=+mass.value,a=net/m,dx=.5*a*4,center=270+dx*4.5;
+  const arrow=net===0?"":`<path d="M${center} 153H${center+Math.sign(net)*(28+Math.abs(net)*2)}" stroke="#c08039" stroke-width="4.5" marker-end="url(#nt-arrow)"/>`;
+  el.querySelector("#newton-plot").innerHTML=`<path d="M35 215H505" stroke="#94b5a9" stroke-width="3"/><path d="M270 67V233" stroke="#b8cfc6" stroke-dasharray="5 6" stroke-width="2"/>
+  <text x="270" y="255" text-anchor="middle" font-size="13" fill="#67827a">start</text>
+  <rect x="${center-35}" y="180" width="70" height="31" rx="5" fill="#d4e9e4" stroke="#14727a" stroke-width="2"/>
+  <circle cx="${center-20}" cy="217" r="7" fill="#315960"/><circle cx="${center+20}" cy="217" r="7" fill="#315960"/>
+  ${arrow}<text x="${center}" y="120" text-anchor="middle" font-size="13" fill="#a56e2b">${net>0?"Net right":net<0?"Net left":"Balanced"}</text>`;
+  el.querySelector("#nt-f-label").textContent=(net>0?"+":"")+f(net)+" N";
+  el.querySelector("#nt-m-label").textContent=f(m)+" kg";
+  el.querySelector("#nt-a").textContent=(a>0?"+":"")+f(a)+" m/s²";
+  el.querySelector("#nt-x").textContent=(dx>0?"+":"")+f(dx)+" m";
+ }
+ force.oninput=mass.oninput=draw;draw();
+}
+function limitHole(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Approach x = 1</strong><span class="pill calculus">Removable discontinuity</span></div>
+ <svg viewBox="0 0 540 307" role="img" aria-label="Graph of y equals x plus one with a missing point at x equals one, y equals two">
+ <rect width="540" height="307" fill="#f8fbf9" rx="12"/><g id="limit-plot"></g></svg>
+ <div class="controls"><label>Approach from either side: <strong id="lh-x-label"></strong><input type="range" id="lh-x" min="0" max="2" step=".05" value=".55"></label></div>
+ <div class="readout"><div class="metric"><small>Function output f(x)</small><strong id="lh-y"></strong></div><div class="metric"><small>Limit as x → 1</small><strong>2</strong></div></div>
+ <p class="note">The quotient (x² − 1)/(x − 1) is undefined at x = 1, even though its limit is 2.</p>`;
+ const input=el.querySelector("#lh-x");const graph=el.querySelector("#limit-plot");
+ const xp=x=>86+176*x,yp=y=>261-84*(y-.5);
+ function draw(){
+  const x=+input.value,undef=Math.abs(x-1)<1e-9,y=x+1;
+  graph.innerHTML=`<path d="M65 261H500M86 284V24" stroke="#98b5ad" stroke-width="1.5" fill="none"/>
+  <path d="M${xp(0)} ${yp(1)}L${xp(2)} ${yp(3)}" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M${xp(1)} 30V261" stroke="#c1d3c8" stroke-dasharray="5 5"/><path d="M86 ${yp(2)}H480" stroke="#d2e0d8" stroke-dasharray="5 6"/>
+  <circle cx="${xp(1)}" cy="${yp(2)}" r="8.4" fill="#f8fbf9" stroke="#14727a" stroke-width="4"/>
+  ${undef?"":`<circle cx="${xp(x)}" cy="${yp(y)}" r="7" fill="#c08039" stroke="white" stroke-width="2"/>`}
+  <text x="${xp(1)}" y="283" font-size="14" fill="#536e66" text-anchor="middle">1</text>
+  <text x="70" y="${yp(2)+5}" font-size="14" fill="#536e66" text-anchor="end">2</text>
+  <text x="472" y="284" font-size="14" fill="#536e66">x</text><text x="70" y="31" font-size="14" fill="#536e66">f(x)</text>`;
+  el.querySelector("#lh-x-label").textContent=f(x);
+  el.querySelector("#lh-y").textContent=undef?"undefined":f(y);
+ }
+ input.oninput=draw;draw();
+}
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
  const select=el.querySelector("#pattern"),dots=el.querySelector("#dots"),cart=el.querySelector("#cart");let frameId;
@@ -278,9 +407,11 @@ function riemann(el){
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-fetch("content/lessons.json").then(r=>{if(!r.ok)throw Error("Lesson library unavailable");return r.json()}).then(data=>{lessons=data;route()}).catch(e=>{main.innerHTML='<article class="about"><h1>Unable to open lessons</h1><p>Please use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
+Promise.all(["content/lessons.json","curriculum/catalog.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map])=>{lessons=data;curriculum=map;route();})
+ .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});

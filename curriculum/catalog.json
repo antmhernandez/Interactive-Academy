@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": 1,
+  "project": "Interactive Academy",
+  "scope": "Curriculum planning registry; not a transcript or copyrighted textbook contents",
+  "publicStatus": "available means implemented in the website, not publisher clearance",
+  "subjects": [
+    {
+      "id": "physics",
+      "title": "Physics",
+      "units": [
+        {
+          "id": "phy-foundations",
+          "title": "Measurement and Scientific Models",
+          "topics": [
+            {
+              "id": "si-units",
+              "title": "Units and Dimensional Thinking",
+              "status": "planned",
+              "owns": "phys.units",
+              "goal": "Explain how units constrain a physical model.",
+              "prerequisites": []
+            },
+            {
+              "id": "scientific-measurement",
+              "title": "Measurement and Uncertainty",
+              "status": "planned",
+              "owns": "phys.uncertainty",
+              "goal": "Report precision, uncertainty and significant figures.",
+              "prerequisites": [
+                "si-units"
+              ]
+            },
+            {
+              "id": "models-and-assumptions",
+              "title": "Models, Assumptions, and Limits",
+              "status": "planned",
+              "owns": "phys.model",
+              "goal": "Distinguish evidence, model predictions and assumptions.",
+              "prerequisites": [
+                "scientific-measurement"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-motion",
+          "title": "Motion and Kinematics",
+          "topics": [
+            {
+              "id": "position-displacement",
+              "title": "Distance and Displacement",
+              "status": "available",
+              "owns": "phys.position.displacement",
+              "goal": "Compare path length and signed change in position.",
+              "prerequisites": []
+            },
+            {
+              "id": "motion-diagrams",
+              "title": "Motion in Dots",
+              "status": "available",
+              "owns": "phys.motion.dot-diagram",
+              "goal": "Read motion from equal-time position snapshots.",
+              "prerequisites": [
+                "position-displacement"
+              ]
+            },
+            {
+              "id": "average-velocity",
+              "title": "Velocity from a Graph",
+              "status": "available",
+              "owns": "phys.motion.average-velocity",
+              "goal": "Find average velocity as the slope of a position–time secant.",
+              "prerequisites": [
+                "motion-diagrams"
+              ]
+            },
+            {
+              "id": "acceleration",
+              "title": "What Acceleration Means",
+              "status": "available",
+              "owns": "phys.motion.acceleration",
+              "goal": "Relate velocity change to acceleration with a sign convention.",
+              "prerequisites": [
+                "average-velocity"
+              ]
+            },
+            {
+              "id": "free-fall",
+              "title": "Falling under Gravity",
+              "status": "available",
+              "owns": "phys.motion.free-fall",
+              "goal": "Predict position and velocity under constant gravitational acceleration.",
+              "prerequisites": [
+                "acceleration"
+              ]
+            },
+            {
+              "id": "motion-graphs",
+              "title": "Three Graphs, One Motion",
+              "status": "available",
+              "owns": "phys.motion.graphs",
+              "goal": "Connect position, velocity and acceleration representations.",
+              "prerequisites": [
+                "free-fall"
+              ]
+            },
+            {
+              "id": "two-dimensional-motion",
+              "title": "Motion in Two Dimensions",
+              "status": "planned",
+              "owns": "phys.motion.two-dimensional",
+              "goal": "Resolve velocity into two axes.",
+              "prerequisites": [
+                "motion-graphs"
+              ]
+            },
+            {
+              "id": "projectile-motion",
+              "title": "Projectiles",
+              "status": "planned",
+              "owns": "phys.motion.projectiles",
+              "goal": "Analyze horizontal and vertical projectile motion.",
+              "prerequisites": [
+                "two-dimensional-motion"
+              ]
+            },
+            {
+              "id": "kinematics-model-choice",
+              "title": "Choose a Motion Model",
+              "status": "planned",
+              "owns": "phys.motion.model-choice",
+              "goal": "Select justified motion equations and test assumptions.",
+              "prerequisites": [
+                "projectile-motion"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-forces",
+          "title": "Forces and Newton's Laws",
+          "topics": [
+            {
+              "id": "force-components",
+              "title": "A Force in Two Directions",
+              "status": "available",
+              "owns": "phys.force.components",
+              "goal": "Resolve a force vector into horizontal and vertical components.",
+              "prerequisites": [
+                "motion-graphs"
+              ]
+            },
+            {
+              "id": "free-body-diagram",
+              "title": "Draw the Forces",
+              "status": "available",
+              "owns": "phys.force.diagram",
+              "goal": "Identify and draw external forces acting on one object.",
+              "prerequisites": [
+                "force-components"
+              ]
+            },
+            {
+              "id": "newtons-second-law",
+              "title": "Force Changes Motion",
+              "status": "available",
+              "owns": "phys.force.second-law",
+              "goal": "Use the net force and mass to predict acceleration.",
+              "prerequisites": [
+                "free-body-diagram"
+              ]
+            },
+            {
+              "id": "friction",
+              "title": "Friction and Contact Forces",
+              "status": "planned",
+              "owns": "phys.force.friction",
+              "goal": "Distinguish static and kinetic friction.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "inclined-planes",
+              "title": "Forces on Inclines",
+              "status": "planned",
+              "owns": "phys.force.inclines",
+              "goal": "Resolve forces parallel and perpendicular to a slope.",
+              "prerequisites": [
+                "friction"
+              ]
+            },
+            {
+              "id": "connected-objects",
+              "title": "Connected Systems",
+              "status": "planned",
+              "owns": "phys.force.connected",
+              "goal": "Apply Newton's laws to multiple connected bodies.",
+              "prerequisites": [
+                "inclined-planes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-energy",
+          "title": "Work and Energy",
+          "topics": [
+            {
+              "id": "work-energy",
+              "title": "Work and Mechanical Energy",
+              "status": "planned",
+              "owns": "phys.energy.work",
+              "goal": "Calculate work as energy transferred by a force.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "kinetic-energy",
+              "title": "Kinetic Energy",
+              "status": "planned",
+              "owns": "phys.energy.kinetic",
+              "goal": "Relate speed and mass to kinetic energy.",
+              "prerequisites": [
+                "work-energy"
+              ]
+            },
+            {
+              "id": "potential-energy",
+              "title": "Potential Energy",
+              "status": "planned",
+              "owns": "phys.energy.potential",
+              "goal": "Identify energy changes in gravitational and elastic systems.",
+              "prerequisites": [
+                "kinetic-energy"
+              ]
+            },
+            {
+              "id": "energy-conservation",
+              "title": "Conservation of Energy",
+              "status": "planned",
+              "owns": "phys.energy.conservation",
+              "goal": "Use energy conservation within defined systems.",
+              "prerequisites": [
+                "potential-energy"
+              ]
+            },
+            {
+              "id": "power-efficiency",
+              "title": "Power and Efficiency",
+              "status": "planned",
+              "owns": "phys.energy.power",
+              "goal": "Connect work, time, energy transfer and efficiency.",
+              "prerequisites": [
+                "energy-conservation"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-momentum",
+          "title": "Momentum and Collisions",
+          "topics": [
+            {
+              "id": "impulse",
+              "title": "Impulse and Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.impulse",
+              "goal": "Connect impulse to change in momentum.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "momentum-conservation",
+              "title": "Conservation of Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.conservation",
+              "goal": "Analyze momentum transfer in an isolated system.",
+              "prerequisites": [
+                "impulse"
+              ]
+            },
+            {
+              "id": "collisions",
+              "title": "Collisions",
+              "status": "planned",
+              "owns": "phys.momentum.collisions",
+              "goal": "Contrast elastic and inelastic collisions.",
+              "prerequisites": [
+                "momentum-conservation",
+                "energy-conservation"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-gravity",
+          "title": "Circular Motion and Gravitation",
+          "topics": [
+            {
+              "id": "circular-motion",
+              "title": "Circular Motion",
+              "status": "planned",
+              "owns": "phys.circular.acceleration",
+              "goal": "Explain inward acceleration in uniform circular motion.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "universal-gravitation",
+              "title": "Universal Gravitation",
+              "status": "planned",
+              "owns": "phys.gravity.inverse-square",
+              "goal": "Describe the inverse-square gravitational model.",
+              "prerequisites": [
+                "circular-motion"
+              ]
+            },
+            {
+              "id": "orbital-motion",
+              "title": "Orbits",
+              "status": "planned",
+              "owns": "phys.gravity.orbits",
+              "goal": "Connect centripetal acceleration to orbital speed.",
+              "prerequisites": [
+                "universal-gravitation"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-waves",
+          "title": "Oscillations and Waves",
+          "topics": [
+            {
+              "id": "oscillation",
+              "title": "Oscillatory Motion",
+              "status": "planned",
+              "owns": "phys.waves.oscillation",
+              "goal": "Read period and amplitude of periodic motion.",
+              "prerequisites": [
+                "motion-graphs"
+              ]
+            },
+            {
+              "id": "wave-properties",
+              "title": "Traveling Waves",
+              "status": "planned",
+              "owns": "phys.waves.speed",
+              "goal": "Relate wave speed, frequency and wavelength.",
+              "prerequisites": [
+                "oscillation"
+              ]
+            },
+            {
+              "id": "superposition",
+              "title": "Superposition and Interference",
+              "status": "planned",
+              "owns": "phys.waves.interference",
+              "goal": "Combine wave displacements and identify interference.",
+              "prerequisites": [
+                "wave-properties"
+              ]
+            },
+            {
+              "id": "sound",
+              "title": "Sound and Resonance",
+              "status": "planned",
+              "owns": "phys.waves.sound",
+              "goal": "Model resonance, pitch and standing waves.",
+              "prerequisites": [
+                "superposition"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-optics",
+          "title": "Light and Optics",
+          "topics": [
+            {
+              "id": "reflection",
+              "title": "Reflection and Mirrors",
+              "status": "planned",
+              "owns": "phys.optics.reflection",
+              "goal": "Use geometric reflection rules to trace rays.",
+              "prerequisites": [
+                "wave-properties"
+              ]
+            },
+            {
+              "id": "refraction",
+              "title": "Refraction",
+              "status": "planned",
+              "owns": "phys.optics.refraction",
+              "goal": "Predict ray direction across media.",
+              "prerequisites": [
+                "reflection"
+              ]
+            },
+            {
+              "id": "lenses",
+              "title": "Lenses and Images",
+              "status": "planned",
+              "owns": "phys.optics.lenses",
+              "goal": "Trace principal rays and interpret real or virtual images.",
+              "prerequisites": [
+                "refraction"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-electricity",
+          "title": "Electricity and Magnetism",
+          "topics": [
+            {
+              "id": "electric-charge",
+              "title": "Charge and Electric Force",
+              "status": "planned",
+              "owns": "phys.electricity.charge",
+              "goal": "Describe attraction, repulsion and charge conservation.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "electric-fields",
+              "title": "Electric Fields",
+              "status": "planned",
+              "owns": "phys.electricity.field",
+              "goal": "Connect field direction with force on a test charge.",
+              "prerequisites": [
+                "electric-charge"
+              ]
+            },
+            {
+              "id": "circuits",
+              "title": "Voltage, Current, and Resistance",
+              "status": "planned",
+              "owns": "phys.electricity.circuits",
+              "goal": "Relate basic circuit quantities with clear assumptions.",
+              "prerequisites": [
+                "electric-fields"
+              ]
+            },
+            {
+              "id": "circuit-networks",
+              "title": "Series and Parallel Circuits",
+              "status": "planned",
+              "owns": "phys.electricity.networks",
+              "goal": "Analyze current and voltage in resistor networks.",
+              "prerequisites": [
+                "circuits"
+              ]
+            },
+            {
+              "id": "magnetic-fields",
+              "title": "Magnetic Fields and Induction",
+              "status": "planned",
+              "owns": "phys.magnetism.fields",
+              "goal": "Describe magnetic forces and changing-flux effects.",
+              "prerequisites": [
+                "circuits"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-thermal",
+          "title": "Thermal Physics",
+          "topics": [
+            {
+              "id": "temperature",
+              "title": "Temperature and Internal Energy",
+              "status": "planned",
+              "owns": "phys.thermal.temperature",
+              "goal": "Differentiate thermal energy from temperature.",
+              "prerequisites": [
+                "energy-conservation"
+              ]
+            },
+            {
+              "id": "heat-transfer",
+              "title": "Heat Transfer",
+              "status": "planned",
+              "owns": "phys.thermal.heat",
+              "goal": "Compare conduction, convection and radiation.",
+              "prerequisites": [
+                "temperature"
+              ]
+            },
+            {
+              "id": "gas-laws",
+              "title": "Gases and Pressure",
+              "status": "planned",
+              "owns": "phys.thermal.gas-laws",
+              "goal": "Relate state variables for simple ideal gas systems.",
+              "prerequisites": [
+                "temperature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phy-modern",
+          "title": "Astronomy and Modern Physics",
+          "topics": [
+            {
+              "id": "atomic-models",
+              "title": "Atoms and Spectra",
+              "status": "planned",
+              "owns": "phys.modern.atoms",
+              "goal": "Connect evidence to atomic models and spectra.",
+              "prerequisites": [
+                "wave-properties"
+              ]
+            },
+            {
+              "id": "nuclear-physics",
+              "title": "Nuclei and Radioactivity",
+              "status": "planned",
+              "owns": "phys.modern.nuclear",
+              "goal": "Describe elementary nuclear processes and radiation.",
+              "prerequisites": [
+                "atomic-models"
+              ]
+            },
+            {
+              "id": "cosmic-models",
+              "title": "Gravity, Light, and the Cosmos",
+              "status": "planned",
+              "owns": "phys.modern.cosmos",
+              "goal": "Connect astronomical observations to evolving physical models.",
+              "prerequisites": [
+                "universal-gravitation",
+                "atomic-models"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "title": "Calculus",
+      "units": [
+        {
+          "id": "cal-functions",
+          "title": "Precalculus Bridge",
+          "topics": [
+            {
+              "id": "function-representations",
+              "title": "Functions and Their Graphs",
+              "status": "planned",
+              "owns": "calc.functions.representation",
+              "goal": "Connect formulas, tables and graphs.",
+              "prerequisites": []
+            },
+            {
+              "id": "trig-reference",
+              "title": "Unit Circle and Trigonometric Graphs",
+              "status": "planned",
+              "owns": "calc.functions.trig",
+              "goal": "Relate the unit circle to sine and cosine graphs.",
+              "prerequisites": [
+                "function-representations"
+              ]
+            },
+            {
+              "id": "exponential-logarithmic",
+              "title": "Exponentials and Logarithms",
+              "status": "planned",
+              "owns": "calc.functions.exp-log",
+              "goal": "Compare exponential growth and inverse logarithms.",
+              "prerequisites": [
+                "function-representations"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-limits",
+          "title": "Limits and Continuity",
+          "topics": [
+            {
+              "id": "limits-near-a-point",
+              "title": "Approaching a Limit",
+              "status": "available",
+              "owns": "calc.limit.near-point",
+              "goal": "Distinguish the limit at a point from the function value there.",
+              "prerequisites": []
+            },
+            {
+              "id": "one-sided-limits",
+              "title": "One-Sided Limits",
+              "status": "planned",
+              "owns": "calc.limit.one-sided",
+              "goal": "Compare approaches from left and right.",
+              "prerequisites": [
+                "limits-near-a-point"
+              ]
+            },
+            {
+              "id": "continuity",
+              "title": "Continuity",
+              "status": "planned",
+              "owns": "calc.limit.continuity",
+              "goal": "Test continuity using a function's limit and value.",
+              "prerequisites": [
+                "one-sided-limits"
+              ]
+            },
+            {
+              "id": "limits-infinity",
+              "title": "Limits at Infinity",
+              "status": "planned",
+              "owns": "calc.limit.infinity",
+              "goal": "Describe end behavior and horizontal asymptotes.",
+              "prerequisites": [
+                "one-sided-limits"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-derivatives",
+          "title": "Derivatives",
+          "topics": [
+            {
+              "id": "tangent-line",
+              "title": "The Tangent and the Derivative",
+              "status": "available",
+              "owns": "calc.derivative.definition",
+              "goal": "Interpret derivative as instantaneous rate and tangent slope.",
+              "prerequisites": [
+                "limits-near-a-point"
+              ]
+            },
+            {
+              "id": "power-rule",
+              "title": "The Power Rule",
+              "status": "planned",
+              "owns": "calc.derivative.power",
+              "goal": "Differentiate basic power functions.",
+              "prerequisites": [
+                "tangent-line"
+              ]
+            },
+            {
+              "id": "product-quotient",
+              "title": "Product and Quotient Rules",
+              "status": "planned",
+              "owns": "calc.derivative.product-quotient",
+              "goal": "Differentiate products and quotients.",
+              "prerequisites": [
+                "power-rule"
+              ]
+            },
+            {
+              "id": "chain-rule",
+              "title": "The Chain Rule",
+              "status": "planned",
+              "owns": "calc.derivative.chain",
+              "goal": "Differentiate compositions.",
+              "prerequisites": [
+                "product-quotient"
+              ]
+            },
+            {
+              "id": "implicit-differentiation",
+              "title": "Implicit Differentiation",
+              "status": "planned",
+              "owns": "calc.derivative.implicit",
+              "goal": "Differentiate relationships not solved for y.",
+              "prerequisites": [
+                "chain-rule"
+              ]
+            },
+            {
+              "id": "related-rates",
+              "title": "Related Rates",
+              "status": "planned",
+              "owns": "calc.derivative.related-rates",
+              "goal": "Model time-dependent related quantities.",
+              "prerequisites": [
+                "implicit-differentiation"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-applications",
+          "title": "Applications of Derivatives",
+          "topics": [
+            {
+              "id": "critical-points",
+              "title": "Increasing, Decreasing, and Critical Points",
+              "status": "planned",
+              "owns": "calc.app.critical",
+              "goal": "Analyze signs of a derivative.",
+              "prerequisites": [
+                "power-rule"
+              ]
+            },
+            {
+              "id": "concavity",
+              "title": "Concavity and Inflection",
+              "status": "planned",
+              "owns": "calc.app.concavity",
+              "goal": "Interpret the second derivative.",
+              "prerequisites": [
+                "critical-points"
+              ]
+            },
+            {
+              "id": "optimization",
+              "title": "Optimization",
+              "status": "planned",
+              "owns": "calc.app.optimization",
+              "goal": "Build and solve constrained optimization models.",
+              "prerequisites": [
+                "critical-points"
+              ]
+            },
+            {
+              "id": "motion-derivatives",
+              "title": "Position, Velocity, and Acceleration",
+              "status": "planned",
+              "owns": "calc.app.motion",
+              "goal": "Connect successive derivatives with physical motion.",
+              "prerequisites": [
+                "chain-rule",
+                "motion-graphs"
+              ]
+            },
+            {
+              "id": "linearization",
+              "title": "Local Linearization",
+              "status": "planned",
+              "owns": "calc.app.linearization",
+              "goal": "Approximate a function with its tangent line.",
+              "prerequisites": [
+                "tangent-line"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-integrals",
+          "title": "Integrals and Accumulation",
+          "topics": [
+            {
+              "id": "velocity-accumulation",
+              "title": "Area Becomes Displacement",
+              "status": "available",
+              "owns": "calc.integral.displacement",
+              "goal": "Interpret a signed integral as accumulated change.",
+              "prerequisites": [
+                "tangent-line"
+              ]
+            },
+            {
+              "id": "riemann-sums",
+              "title": "Discovering Area with Rectangles",
+              "status": "available",
+              "owns": "calc.integral.riemann",
+              "goal": "Understand integrals as limits of sums.",
+              "prerequisites": [
+                "velocity-accumulation"
+              ]
+            },
+            {
+              "id": "fundamental-theorem",
+              "title": "Fundamental Theorem of Calculus",
+              "status": "planned",
+              "owns": "calc.integral.ftc",
+              "goal": "Connect accumulation, derivatives and antiderivatives.",
+              "prerequisites": [
+                "riemann-sums"
+              ]
+            },
+            {
+              "id": "substitution",
+              "title": "Substitution",
+              "status": "planned",
+              "owns": "calc.integral.substitution",
+              "goal": "Reverse a chain rule in an integral.",
+              "prerequisites": [
+                "fundamental-theorem",
+                "chain-rule"
+              ]
+            },
+            {
+              "id": "area-between-curves",
+              "title": "Area Between Curves",
+              "status": "planned",
+              "owns": "calc.integral.between",
+              "goal": "Interpret accumulated differences geometrically.",
+              "prerequisites": [
+                "fundamental-theorem"
+              ]
+            },
+            {
+              "id": "average-value",
+              "title": "Average Value of a Function",
+              "status": "planned",
+              "owns": "calc.integral.average",
+              "goal": "Interpret average function value over an interval.",
+              "prerequisites": [
+                "fundamental-theorem"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-differential",
+          "title": "Differential Equations and Models",
+          "topics": [
+            {
+              "id": "slope-fields",
+              "title": "Slope Fields",
+              "status": "planned",
+              "owns": "calc.de.slope-fields",
+              "goal": "Read a family of solution curves from slopes.",
+              "prerequisites": [
+                "tangent-line"
+              ]
+            },
+            {
+              "id": "separable-equations",
+              "title": "Separable Equations",
+              "status": "planned",
+              "owns": "calc.de.separable",
+              "goal": "Solve basic separable equations.",
+              "prerequisites": [
+                "substitution",
+                "slope-fields"
+              ]
+            },
+            {
+              "id": "exponential-models",
+              "title": "Exponential Growth Models",
+              "status": "planned",
+              "owns": "calc.de.exponential",
+              "goal": "Solve growth and decay models with initial conditions.",
+              "prerequisites": [
+                "separable-equations",
+                "exponential-logarithmic"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cal-bc",
+          "title": "Calculus BC Extensions",
+          "topics": [
+            {
+              "id": "parametric-curves",
+              "title": "Parametric Motion",
+              "status": "planned",
+              "owns": "calc.bc.parametric",
+              "goal": "Differentiate and integrate parametric trajectories.",
+              "prerequisites": [
+                "chain-rule"
+              ]
+            },
+            {
+              "id": "polar-curves",
+              "title": "Polar Coordinates",
+              "status": "planned",
+              "owns": "calc.bc.polar",
+              "goal": "Explore polar area and slope.",
+              "prerequisites": [
+                "parametric-curves"
+              ]
+            },
+            {
+              "id": "integration-by-parts",
+              "title": "Integration by Parts",
+              "status": "planned",
+              "owns": "calc.bc.parts",
+              "goal": "Apply a product rule in reverse.",
+              "prerequisites": [
+                "product-quotient",
+                "fundamental-theorem"
+              ]
+            },
+            {
+              "id": "improper-integrals",
+              "title": "Improper Integrals",
+              "status": "planned",
+              "owns": "calc.bc.improper",
+              "goal": "Analyze unbounded intervals and singularities.",
+              "prerequisites": [
+                "limits-infinity",
+                "fundamental-theorem"
+              ]
+            },
+            {
+              "id": "taylor-series",
+              "title": "Taylor Series",
+              "status": "planned",
+              "owns": "calc.bc.taylor",
+              "goal": "Approximate functions with polynomial series.",
+              "prerequisites": [
+                "power-rule",
+                "limits-near-a-point"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "motion-diagram-notes",
+      "path": "materials/motion-guided-notes.html",
+      "owner": "motion-diagrams",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Motion diagram guided notes",
+      "kind": "student-notes"
+    },
+    {
+      "id": "motion-observation-lab",
+      "path": "materials/motion-observation-lab.html",
+      "owner": "motion-diagrams",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Motion observation lab",
+      "kind": "student-lab"
+    },
+    {
+      "id": "linked-motion-notes",
+      "path": "materials/motion-graphs-guided-notes.html",
+      "owner": "motion-graphs",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Position and velocity guided notes",
+      "kind": "student-notes"
+    },
+    {
+      "id": "motion-data-worksheet",
+      "path": "materials/motion-data-lab.html",
+      "owner": "average-velocity",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Motion data worksheet",
+      "kind": "student-lab"
+    },
+    {
+      "id": "motion-regression-investigation",
+      "path": "materials/motion-model-investigation.html",
+      "owner": "motion-graphs",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Regression investigation",
+      "kind": "student-lab"
+    },
+    {
+      "id": "calculus-graphical-notes",
+      "path": "materials/calculus-graphical-meaning-guided-notes.html",
+      "owner": "tangent-line",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Derivative and integral notes",
+      "kind": "student-notes"
+    },
+    {
+      "id": "interactive-motion-lab",
+      "path": "lab/motion.html",
+      "owner": "motion-graphs",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Interactive motion data lab",
+      "kind": "interactive-lab"
+    },
+    {
+      "id": "forces-notes",
+      "path": "materials/forces-guided-notes.html",
+      "owner": "free-body-diagram",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Forces guided notes",
+      "kind": "student-notes"
+    },
+    {
+      "id": "limits-notes",
+      "path": "materials/limits-guided-notes.html",
+      "owner": "limits-near-a-point",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "label": "Limits guided notes",
+      "kind": "student-notes"
+    }
+  ],
+  "connections": [
+    {
+      "from": "average-velocity",
+      "to": "tangent-line",
+      "reason": "A secant slope in Physics prepares students to recognize an instantaneous derivative in Calculus."
+    },
+    {
+      "from": "motion-graphs",
+      "to": "velocity-accumulation",
+      "reason": "The velocity–time graph becomes a signed-area model for displacement."
+    },
+    {
+      "from": "force-components",
+      "to": "trig-reference",
+      "reason": "Trigonometric ratios explain how vector components depend on angle."
+    },
+    {
+      "from": "newtons-second-law",
+      "to": "work-energy",
+      "reason": "Net force leads naturally to work and mechanical energy."
+    },
+    {
+      "from": "limits-near-a-point",
+      "to": "tangent-line",
+      "reason": "The definition of a derivative relies on the idea of a limit."
+    }
+  ],
+  "nextBuild": [
+    "friction",
+    "one-sided-limits",
+    "power-rule",
+    "work-energy"
+  ],
+  "contentKinds": {
+    "interactive-lesson": "One canonical concept, visual, explanatory tabs, worked example, practice and conceptual check. Only reviewed originals reach content/lessons.json.",
+    "student-guided-notes": "Blank prompts or diagrams accompanying an existing concept; reusable links registered once in assets.",
+    "student-lab": "Experiment, actual observations or clearly labeled simulation data, uncertainty and interpretation.",
+    "formative-quiz": "Short practice questions with full reasoning, concept ownership and verified solutions.",
+    "summative-assessment": "Secure teacher-reviewed test; do not publish protected questions, answers or keys in GitHub Pages.",
+    "teacher-edition": "Answer keys, teaching notes, licensing review; keep outside the public static deployment."
+  }
+}

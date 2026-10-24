@@ -55,3 +55,9 @@ The project must remain useful without AI runtime calls. Do not automatically pu
 All lesson pages now begin with consistent Back / Home / Next controls, a large title and brief subtitle, one dominant interactive figure, a small diagram color key, and a precise “Notice” cue. The idea, example, conceptual check and independent practice are separate tab panels rather than a vertical sequence of crowded boxes. The Motion Data Laboratory places its graph and physical coefficient interpretation first, with data entry and fit diagnostics expandable below. The design standard is `docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md`.
 
 **Review boundary:** Automated source tests are necessary but not a substitute for visual checks on desktop and mobile or a subject expert proofreading the mathematics and labeling.
+
+## Additional implementation (2026-10-24)
+
+Beyond the nine original demonstration lessons, the site now includes three concept-distinct force lessons (vector components, external forces/free-body diagrams, and net force/mass/acceleration) and a visual limit lesson. The available preview totals 13 interactive lessons, with eight registered printable student resources and one interactive motion lab. A canonical curriculum registry reserves 79 topics across Physics and Calculus, showing planned topics separately from live lessons. Unique primary concept ownership, prerequisite validation, resource ownership and unit consistency prevent drift and duplicative development. The governing rules are `docs/10_CURRICULUM_ARCHITECTURE_AND_OWNERSHIP.md`.
+
+**Scope note:** Reserved catalog entries are not completed courses or commitments to cover every textbook chapter. All existing previews require teaching/editorial and mobile QA before use in high-stakes instruction.

@@ -2,7 +2,7 @@
 
 ## Canonical lesson structure
 Store independent original lessons in `content/lessons.json`. Each entry contains:
-`id, subject, unit, title, subtitle, duration, observe, idea, visualLead, visual, example, practice, checkpoint, next`.
+`id, subject, unitId, unit, title, subtitle, duration, observe, idea, visualLead, visual, example, practice, checkpoint, next, focus`.
 - `example.question` is a short problem prompt; `example.steps` is an ordered array of explanations, not just equations.
 - `practice.prompt`, `practice.answer`, `practice.tolerance`, `practice.unit`, and `practice.hints` support a numerical browser-only check.
 - `visual` selects a rigorously defined original simulator in `app.js`.
@@ -23,7 +23,7 @@ Start by asking one clear, meaningful question. Introduce the phenomenon, then a
 - Provenance: document original authorship, sources of numerical data and any borrowed materials privately.
 
 ## Current sample lessons
-Nine interactive samples are now present: `position-displacement`, `motion-diagrams`, `average-velocity`, `acceleration`, `free-fall`, `motion-graphs`, `tangent-line`, `velocity-accumulation`, and `riemann-sums`. All are newly composed demonstrations rather than HLS assessment reproductions. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
+Thirteen interactive samples are now present. The initial motion/derivative/integral collection included: `position-displacement`, `motion-diagrams`, `average-velocity`, `acceleration`, `free-fall`, `motion-graphs`, `tangent-line`, `velocity-accumulation`, and `riemann-sums`. All are newly composed demonstrations rather than HLS assessment reproductions. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
 
 ## Future guided-note bundles
 Use canonical lesson concepts to produce synchronized blank/student and teacher editions and short observation labs. Test against the actual assessments. Release dates, license rights, institutional pricing and teacher-only access are future decisions, not current site features.
@@ -36,3 +36,9 @@ Include at least two plausible wrong answers grounded in common student misunder
 
 ## Experimental data tools
 The new `lab/motion.html` page and `lab/regression.mjs` separate interactive data entry from tested numerical fitting. Follow `docs/08_MOTION_LAB_TEACHING_AND_QA.md` before adding statistical claims or physical models. Differentiate measured observations from model predictions and avoid automatically treating a high R² as proof of constant acceleration.
+
+## Canonical curriculum registry
+Before authoring, check `curriculum/catalog.json` for the existing concept owner, prerequisite topics, and unit. Every available lesson's `id`, `unitId`, `unit` and title must match its registered topic. The catalog is also the single source of resource links; put supporting student printables in its `assets` list with one canonical owner. Planned topics never appear as broken lesson links. See `docs/10_CURRICULUM_ARCHITECTURE_AND_OWNERSHIP.md`.
+
+## Expanded lessons
+The new pilot builds force components, free-body diagrams and Newton's second law as distinct successive Physics concepts, plus a Calculus limit applet with an omitted point. Each receives an original visualization, example, practice and reasoning check. Do not duplicate the core applet in later lessons—link to it and apply the knowledge in new contexts.

@@ -196,3 +196,26 @@ p{margin:0 0 14px}
  .topic-state{max-width:60px;white-space:normal}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Curriculum roadmap: planning pages stay separate from the focused lessons. */
+.outline-link{margin:20px 0 2px}
+.outline-link a{display:inline-flex;gap:6px;align-items:center;text-decoration:none;font-size:.92rem;font-weight:750;color:var(--teal)}
+.outline-link a span{font-size:.79rem;font-weight:500;color:var(--muted)}
+.roadmap-units{display:grid;gap:11px;margin:25px 0 25px}
+.roadmap-unit{border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden}
+.roadmap-unit>summary{display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;padding:18px 20px;font-weight:780;list-style:none;color:var(--ink)}
+.roadmap-unit>summary::-webkit-details-marker{display:none}
+.roadmap-unit[open]>summary{background:#f0f7f5;border-bottom:1px solid var(--line)}
+.roadmap-unit>summary small{font-size:.79rem;color:var(--muted);font-weight:600;white-space:nowrap}
+.roadmap-topic{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid #edf1ee}
+.roadmap-topic:last-child{border-bottom:0}
+.roadmap-topic>span:first-child{color:var(--teal);font-size:1.05rem;font-weight:700;width:20px;flex:none}
+.roadmap-topic.planned>span:first-child{color:#a2b3aa}
+.roadmap-topic-name{flex:1;min-width:0;font-weight:720;line-height:1.32}
+.roadmap-topic-name a{text-decoration:none;color:var(--teal)}
+.roadmap-topic-name a:hover{text-decoration:underline}
+.roadmap-topic-name small{display:block;margin-top:3px;font-weight:400;font-size:.81rem;line-height:1.45;color:var(--muted)}
+.roadmap-status{font-size:.73rem;font-weight:780;color:var(--teal)}
+.roadmap-topic.planned .roadmap-status{color:#829189}
+.map-footnote{font-size:.83rem;color:var(--muted);max-width:780px;margin:8px 0 48px}
+@media(max-width:760px){.roadmap-unit>summary{padding:14px}.roadmap-topic{padding:12px;gap:9px}.roadmap-topic-name small{font-size:.76rem}.outline-link a{flex-wrap:wrap}}
