@@ -263,7 +263,7 @@
         "Compute 2(2) + ½(1)(2²)."
       ]
     },
-    "next": null,
+    "next": "force-components",
     "checkpoint": {
       "prompt": "For motion with a constant nonzero acceleration, which pair of graph shapes is typical?",
       "choices": [
@@ -280,6 +280,194 @@
       "explanation": "With constant a ≠ 0, v(t)=v₀+at is linear, and x(t)=x₀+v₀t+½at² is quadratic."
     },
     "focus": "The slope of position is velocity. The slope of velocity is acceleration."
+  },
+  {
+    "id": "force-components",
+    "subject": "physics",
+    "unit": "Forces and Newton's Laws",
+    "title": "A Force in Two Directions",
+    "subtitle": "One diagonal force has horizontal and vertical parts.",
+    "duration": "8 min",
+    "observe": "How much of a diagonal push acts horizontally?",
+    "idea": "A force is a vector. For a force F at angle θ above the positive x-axis, its perpendicular components are Fₓ = F cos θ and Fᵧ = F sin θ. The components together produce the original force.",
+    "visualLead": "Change the force and its angle. Watch the colored components.",
+    "visual": "force-components",
+    "focus": "The amber arrow is the force. Teal shows Fₓ; green shows Fᵧ. Their tips meet at the force's tip.",
+    "example": {
+      "question": "A 12 N force points 60° above the horizontal. Find its horizontal component.",
+      "steps": [
+        "The horizontal component is adjacent to the angle, so use cosine: Fₓ = F cos θ.",
+        "Fₓ = (12 N) cos 60° = (12 N)(0.5).",
+        "Fₓ = 6 N to the right. The vertical component would be 12 sin 60° ≈ 10.39 N upward."
+      ]
+    },
+    "practice": {
+      "prompt": "A 20 N force acts 60° above the positive horizontal axis. What is the horizontal component (in newtons)?",
+      "answer": 10,
+      "tolerance": 0.02,
+      "unit": "N",
+      "hints": [
+        "The horizontal component uses cosine: Fₓ = F cos θ.",
+        "Compute 20 cos 60° = 20(0.5)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A 10 N force points exactly upward. How much horizontal force does it produce?",
+      "choices": [
+        "10 N, because force magnitude is unchanged.",
+        "0 N, because the force is perpendicular to the horizontal axis.",
+        "5 N, because the force splits equally between axes."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Magnitude is 10 N, but the horizontal component is only the horizontal part.",
+        "Correct. At 90°, cos 90° = 0, so Fₓ = 0.",
+        "Equal components occur at a 45° angle, not for a vertical force."
+      ],
+      "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
+    },
+    "next": "free-body-diagram"
+  },
+  {
+    "id": "free-body-diagram",
+    "subject": "physics",
+    "unit": "Forces and Newton's Laws",
+    "title": "Draw the Forces",
+    "subtitle": "A free-body diagram shows every external force.",
+    "duration": "8 min",
+    "observe": "If a box is pushed on a smooth floor, what forces act on it?",
+    "idea": "A free-body diagram isolates one object and represents the external forces on it with arrows. On a level frictionless floor with a horizontal push, weight mg acts down, the normal force acts up, and the push acts horizontally. The vertical forces balance.",
+    "visualLead": "Change the box's mass and the horizontal push.",
+    "visual": "free-body",
+    "focus": "The normal force balances weight vertically. The horizontal push is unbalanced when friction is absent.",
+    "example": {
+      "question": "A 2 kg box is pushed to the right with 6 N on a frictionless level floor. Find the normal force.",
+      "steps": [
+        "Weight acts downward with magnitude mg, where g ≈ 9.8 m/s².",
+        "Because the box has no vertical acceleration, the floor's normal force equals the weight.",
+        "N = mg = (2 kg)(9.8 m/s²) = 19.6 N upward. The separate 6 N push acts horizontally."
+      ]
+    },
+    "practice": {
+      "prompt": "A 3 kg block rests on a level floor and is pushed only horizontally. What is the normal force (in newtons)? Use g = 9.8 m/s².",
+      "answer": 29.4,
+      "tolerance": 0.02,
+      "unit": "N",
+      "hints": [
+        "The horizontal push has no vertical component, and vertical acceleration is zero.",
+        "The normal force equals mg = 3 × 9.8."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A box accelerates to the right on a frictionless level floor. Which forces balance?",
+      "choices": [
+        "Its rightward push is balanced by an equal leftward force.",
+        "The upward normal force balances the downward weight.",
+        "The normal force is absent because the box is moving."
+      ],
+      "correct": 1,
+      "feedback": [
+        "If the horizontal push were balanced, the net horizontal force would be zero.",
+        "Correct. Vertical forces balance even while the box accelerates horizontally.",
+        "The floor still supports the box while it moves; the normal force does not disappear."
+      ],
+      "explanation": "Analyze each axis separately: vertical acceleration is zero, so N = mg; horizontal acceleration depends on the net horizontal force."
+    },
+    "next": "newtons-second-law"
+  },
+  {
+    "id": "newtons-second-law",
+    "subject": "physics",
+    "unit": "Forces and Newton's Laws",
+    "title": "Force Changes Motion",
+    "subtitle": "Net force and mass determine acceleration.",
+    "duration": "8 min",
+    "observe": "Would the same net force change a light cart's motion more than a heavy cart's?",
+    "idea": "Newton's second law connects net external force to acceleration: ΣF = ma. For a fixed net force, increasing mass reduces acceleration. Acceleration points in the direction of the net force.",
+    "visualLead": "Change the cart's mass and net horizontal force.",
+    "visual": "newton-two",
+    "focus": "Compare carts with different masses under the same net force. More mass means less acceleration.",
+    "example": {
+      "question": "A 3 kg cart experiences a net horizontal force of 12 N to the right. Find its acceleration.",
+      "steps": [
+        "Newton's second law is ΣF = ma. Solve for a: a = ΣF/m.",
+        "Substitute the net force and mass: a = (12 N)/(3 kg).",
+        "a = +4 m/s². The positive sign means acceleration is to the right."
+      ]
+    },
+    "practice": {
+      "prompt": "A 4 kg cart experiences a net force of 20 N to the right. What is its acceleration in m/s²?",
+      "answer": 5,
+      "tolerance": 0.02,
+      "unit": "m/s²",
+      "hints": [
+        "Acceleration equals net force divided by mass.",
+        "Divide 20 N by 4 kg."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Two carts experience the same nonzero net force. Cart A has twice the mass of cart B. Which statement is true?",
+      "choices": [
+        "Cart A has twice the acceleration of cart B.",
+        "Both carts accelerate equally because their forces are equal.",
+        "Cart A has half the acceleration of cart B."
+      ],
+      "correct": 2,
+      "feedback": [
+        "A larger mass resists acceleration more when the force is fixed.",
+        "Equal force does not imply equal acceleration if the masses are different.",
+        "Correct. Because a = Fnet/m, doubling mass halves acceleration."
+      ],
+      "explanation": "The inverse proportionality between mass and acceleration applies when the net external force is held constant."
+    },
+    "next": null
+  },
+  {
+    "id": "limits-near-a-point",
+    "subject": "calculus",
+    "unit": "Limits",
+    "title": "Approaching a Limit",
+    "subtitle": "A function can approach a value it never reaches.",
+    "duration": "8 min",
+    "observe": "Can the graph approach a height even when the function is undefined at that exact input?",
+    "idea": "A limit describes the value f(x) approaches as x gets near a, not necessarily f(a). For f(x) = (x² − 1)/(x − 1) when x ≠ 1, the nearby outputs equal x + 1 and approach 2 as x → 1. The function itself is undefined at x = 1.",
+    "visualLead": "Slide x toward 1 from either side and watch the open circle.",
+    "visual": "limit-hole",
+    "focus": "The open circle marks a missing function value. Both sides approach the same height: 2.",
+    "example": {
+      "question": "Find limₓ→₂ (x² − 4)/(x − 2).",
+      "steps": [
+        "At x = 2, direct substitution gives 0/0. That is an indeterminate form, not the limit.",
+        "For x ≠ 2, factor and cancel: (x² − 4)/(x − 2) = (x − 2)(x + 2)/(x − 2) = x + 2.",
+        "As x approaches 2, x + 2 approaches 4. Therefore the limit is 4, even though the original quotient is undefined at 2."
+      ]
+    },
+    "practice": {
+      "prompt": "Find the limit as x approaches 3 of (x² − 9)/(x − 3). Enter the number.",
+      "answer": 6,
+      "tolerance": 0.001,
+      "unit": "limit",
+      "hints": [
+        "Factor the numerator as (x − 3)(x + 3).",
+        "Cancel the nonzero common factor for x ≠ 3, then let x approach 3."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A graph has an open circle at (1,2), and the curve approaches that point from both sides. What does this show?",
+      "choices": [
+        "The limit at x = 1 can be 2 even if f(1) is undefined.",
+        "The limit does not exist because an open circle appears.",
+        "The function must equal 0 at x = 1."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. Limits describe nearby behavior, not whether the value at the point is defined.",
+        "A hole alone does not prevent a limit when both one-sided approaches agree.",
+        "An open circle indicates an omitted point, not a required zero value."
+      ],
+      "explanation": "The two-sided limit exists when the function values approach the same number from the left and right, whether or not the function is defined at the target input."
+    },
+    "next": "tangent-line"
   },
   {
     "id": "tangent-line",
