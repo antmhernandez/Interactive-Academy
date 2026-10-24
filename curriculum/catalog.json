@@ -920,7 +920,7 @@
     {
       "id": "motion-diagram-notes",
       "path": "materials/motion-guided-notes.html",
-      "owner": "position-displacement",
+      "owner": "motion-diagrams",
       "visibility": "public-student",
       "origin": "new-original",
       "review": "teacher-review-required",
