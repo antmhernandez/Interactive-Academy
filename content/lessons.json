@@ -28,7 +28,22 @@
         "Add |9 − 2| and |5 − 9|."
       ]
     },
-    "next": "motion-diagrams"
+    "next": "motion-diagrams",
+    "checkpoint": {
+      "prompt": "A runner travels 100 m east and then returns 100 m west to the starting point. Which statement is correct?",
+      "choices": [
+        "Displacement is 200 m east, distance is 0 m.",
+        "Displacement is 0 m, distance is 200 m.",
+        "Displacement and distance are both 0 m."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Displacement depends on the final position relative to the initial position, not the whole route.",
+        "Exactly. Position returns to its starting value, even though 200 m of path was traveled.",
+        "Returning to the start does not erase the distance actually traveled."
+      ],
+      "explanation": "Distance adds the lengths of the outward and return paths. Displacement uses only final minus initial position."
+    }
   },
   {
     "id": "motion-diagrams",
@@ -59,7 +74,22 @@
         "Divide 18 by 6."
       ]
     },
-    "next": "average-velocity"
+    "next": "average-velocity",
+    "checkpoint": {
+      "prompt": "A cart travels to the right. Dots mark its position every half second and are equally spaced. What does the pattern show?",
+      "choices": [
+        "The cart's speed is constant during these intervals.",
+        "The cart's acceleration is increasing.",
+        "The cart moves the same distance in each minute, not each half second."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct: equal distances in equal times imply constant speed across the intervals.",
+        "If speed increased, the gaps between dots would grow.",
+        "Each dot is separated by half a second, so read the intervals the observations actually represent."
+      ],
+      "explanation": "The equal-time spacing is essential. Equal position differences per interval produce a constant average velocity across those intervals."
+    }
   },
   {
     "id": "average-velocity",
@@ -90,7 +120,22 @@
         "Compute (15 − 3)/(5 − 1)."
       ]
     },
-    "next": "acceleration"
+    "next": "acceleration",
+    "checkpoint": {
+      "prompt": "What does the slope of a secant line joining two points on a position–time graph measure?",
+      "choices": [
+        "Instantaneous acceleration at the midpoint.",
+        "Total distance traveled, regardless of direction.",
+        "Average velocity over the selected interval."
+      ],
+      "correct": 2,
+      "feedback": [
+        "Acceleration concerns the change of velocity; a position–time secant gives average velocity.",
+        "Distance is not generally given by the slope; slope includes the sign of position change.",
+        "Correct. The slope is Δx/Δt, exactly the definition of average velocity."
+      ],
+      "explanation": "Both numerator and denominator come directly from the two chosen graph points: displacement divided by elapsed time."
+    }
   },
   {
     "id": "acceleration",
@@ -121,7 +166,22 @@
         "Compute 5 + (−1)(3)."
       ]
     },
-    "next": "free-fall"
+    "next": "free-fall",
+    "checkpoint": {
+      "prompt": "An object moves left (negative velocity) while acceleration also points left (negative acceleration). What happens to its speed?",
+      "choices": [
+        "Its speed increases.",
+        "It necessarily comes to rest.",
+        "Its speed decreases because acceleration is negative."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. The velocity becomes more negative, so its magnitude (speed) grows.",
+        "The velocity changes further in the negative direction and does not have to pass through zero.",
+        "Negative acceleration means acceleration points along the negative axis, not automatically that speed decreases."
+      ],
+      "explanation": "Speed is the magnitude of velocity. When velocity and acceleration have the same sign, the object's speed increases."
+    }
   },
   {
     "id": "free-fall",
@@ -152,7 +212,22 @@
         "Compute t = √(2 × 44.1 / 9.8)."
       ]
     },
-    "next": "motion-graphs"
+    "next": "motion-graphs",
+    "checkpoint": {
+      "prompt": "Ignoring air resistance, two balls of different masses are dropped together from the same height. Which prediction fits the ideal model?",
+      "choices": [
+        "The heavier ball has the greater downward acceleration.",
+        "Both balls accelerate downward at approximately the same rate.",
+        "The lighter ball has no acceleration after release."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Gravitational force is greater on a heavier object, but so is inertia; the acceleration is the same in this ideal model.",
+        "Correct. The model gives approximately 9.8 m/s² downward near Earth's surface for both.",
+        "Both objects have gravitational acceleration throughout the fall."
+      ],
+      "explanation": "Without significant air resistance, gravitational acceleration near Earth's surface is approximately independent of an object's mass."
+    }
   },
   {
     "id": "motion-graphs",
@@ -183,7 +258,22 @@
         "Compute 2(2) + ½(1)(2²)."
       ]
     },
-    "next": null
+    "next": null,
+    "checkpoint": {
+      "prompt": "For motion with a constant nonzero acceleration, which pair of graph shapes is typical?",
+      "choices": [
+        "Position is linear; velocity is constant.",
+        "Position is quadratic; velocity is linear.",
+        "Position and velocity are always horizontal lines."
+      ],
+      "correct": 1,
+      "feedback": [
+        "A linear position graph describes constant velocity, which corresponds to zero acceleration.",
+        "Correct. Velocity changes linearly with time, and integrating it gives a quadratic position function.",
+        "Nonzero acceleration changes velocity, so a horizontal velocity graph cannot describe it."
+      ],
+      "explanation": "With constant a ≠ 0, v(t)=v₀+at is linear, and x(t)=x₀+v₀t+½at² is quadratic."
+    }
   },
   {
     "id": "tangent-line",
@@ -214,7 +304,22 @@
         "Substitute x = −2 into 2x."
       ]
     },
-    "next": "velocity-accumulation"
+    "next": "velocity-accumulation",
+    "checkpoint": {
+      "prompt": "When finding the derivative at a point from secant lines, what approaches zero?",
+      "choices": [
+        "The horizontal separation between two graph points.",
+        "The function's value everywhere.",
+        "The tangent's slope regardless of the curve."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. The horizontal separation h tends toward zero while the secant slopes approach the derivative, when it exists.",
+        "A function can be far from zero at the point being studied.",
+        "The tangent slope approaches a particular value, which need not be zero."
+      ],
+      "explanation": "The derivative is a limit of difference quotients as h approaches zero—not an assumption that the graph's height or slope vanishes."
+    }
   },
   {
     "id": "velocity-accumulation",
@@ -245,7 +350,22 @@
         "Compute ∫₀⁴(2+t)dt = [2t + t²/2]₀⁴."
       ]
     },
-    "next": "riemann-sums"
+    "next": "riemann-sums",
+    "checkpoint": {
+      "prompt": "A cart has a constant velocity of −3 m/s for 2 seconds. What does the integral of velocity give?",
+      "choices": [
+        "+6 meters of net displacement.",
+        "−6 meters of net displacement.",
+        "0 meters because negative areas cannot be measured."
+      ],
+      "correct": 1,
+      "feedback": [
+        "That is the total distance traveled, not signed displacement.",
+        "Correct. Velocity is negative throughout, so Δx = (−3)(2) = −6 m.",
+        "Signed accumulation is meaningful: negative velocity yields negative displacement relative to the chosen positive direction."
+      ],
+      "explanation": "The integral measures net change in position. Distance traveled would be 6 m, but the displacement is −6 m."
+    }
   },
   {
     "id": "riemann-sums",
@@ -276,6 +396,21 @@
         "Use area = ½ × 6 × 6."
       ]
     },
-    "next": null
+    "next": null,
+    "checkpoint": {
+      "prompt": "For the increasing function f(x)=x on [0,4], what happens to a right-endpoint Riemann sum when you use more equal rectangles?",
+      "choices": [
+        "It starts below the exact integral and grows without limit.",
+        "It always equals the integral for every rectangle count.",
+        "It overestimates the integral and approaches the exact value from above."
+      ],
+      "correct": 2,
+      "feedback": [
+        "Each right-endpoint height is at least as tall as the function on that subinterval, producing an overestimate.",
+        "The rectangles overestimate except in special degenerate cases; increasing n reduces the extra area.",
+        "Correct. Finer partitions reduce the positive error of the right-endpoint sum."
+      ],
+      "explanation": "Because f is increasing, each rectangle based on the right endpoint is above the graph across its subinterval. As Δx shrinks, the excess area tends to zero."
+    }
   }
 ]

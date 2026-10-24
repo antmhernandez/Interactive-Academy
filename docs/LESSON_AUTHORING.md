@@ -2,10 +2,11 @@
 
 ## Canonical lesson structure
 Store independent original lessons in `content/lessons.json`. Each entry contains:
-`id, subject, unit, title, subtitle, duration, observe, idea, visualLead, visual, example, practice, next`.
+`id, subject, unit, title, subtitle, duration, observe, idea, visualLead, visual, example, practice, checkpoint, next`.
 - `example.question` is a short problem prompt; `example.steps` is an ordered array of explanations, not just equations.
 - `practice.prompt`, `practice.answer`, `practice.tolerance`, `practice.unit`, and `practice.hints` support a numerical browser-only check.
 - `visual` selects a rigorously defined original simulator in `app.js`.
+- `checkpoint` is one independently written conceptual question with `choices`, a zero-based `correct` index, feedback matching each choice, and a careful explanation. The check is meant to reveal understanding rather than test a routine numerical calculation.
 - `next` is the next concept's identifier for linked course navigation, or `null` for the final lesson in the subject path.
 
 This format is a small proof of concept. The mature system should separate prose, mathematical expressions, independently verifiable solution data, downloadable materials, and visual model parameters.
@@ -29,3 +30,9 @@ Use canonical lesson concepts to produce synchronized blank/student and teacher 
 
 ## Learner progress
 The prototype records only a set of completed lesson identifiers in browser local storage (`learning-atlas-completed-v1`). It does not synchronize across devices, identify students or send progress to a remote server. This does not constitute a parent/teacher gradebook. The progress feature should be reevaluated before collecting any student information or adding authenticated accounts.
+
+## Concept check standards
+Include at least two plausible wrong answers grounded in common student misunderstandings, not frivolous distractors. Do not reveal the correct choice on first load. Feedback should identify the misunderstanding, not merely announce right/wrong. Only show the full explanation after the student answers correctly. Never require a login for the free conceptual preview.
+
+## Experimental data tools
+The new `lab/motion.html` page and `lab/regression.mjs` separate interactive data entry from tested numerical fitting. Follow `docs/08_MOTION_LAB_TEACHING_AND_QA.md` before adding statistical claims or physical models. Differentiate measured observations from model predictions and avoid automatically treating a high R² as proof of constant acceleration.
