@@ -23,7 +23,10 @@ The model or diagram must teach something, not merely entertain. Build the conce
 
 **Status:** source and preliminary interactives built; needs full independent browser/phone evaluation, subject-expert review and test users. These topics are a beginning, not a complete Physics or Calculus course. Printable examples include motion diagrams, linked motion graphs, two practical observation/data labs, and derivative/integral guided notes.
 
-**Next:** improve explanatory animation, add diagrams with measured uncertainty, develop the remaining Mechanics subjects, and pair student notes with tightly controlled teacher editions.
+**Next:** improve explanatory animation, add diagrams with properly estimated measurement uncertainty, develop the remaining Mechanics subjects, and pair student notes with tightly controlled teacher editions.
+
+### Motion Data Laboratory — new pilot
+A standalone, mobile-responsive scientific laboratory now allows students to type or paste position-time observations, choose linear or quadratic models, inspect position and residual graphs, interpret physical coefficients, print a report and download CSV data. Each topic has an original conceptual reasoning check with misconception-specific feedback. Regression calculations use a standalone tested module. The laboratory does not claim to infer the physical model merely from a high R².
 
 ## Student deliverables
 Each lesson has a focused main question, brief essential explanation, original figure or simulation, one exemplary worked problem, independently checked practice, and printable student pages when useful. Teacher editions are separately approved, controlled and never published by accident.
@@ -41,7 +44,7 @@ Each lesson has a focused main question, brief essential explanation, original f
 
 ## Growth milestones
 **Stage 1:** Working static pilot; browser-only animations; no student data.
-**Stage 2:** Develop the existing guided-note and laboratory samples into polished classroom packets with a teacher-review workflow.
+**Stage 2:** Develop guided notes and laboratory samples into polished classroom packets, beginning with the new motion model investigation report; establish a teacher-review workflow.
 **Stage 3:** Complete Mechanics unit, then broader Physics and Calculus maps.
 **Stage 4:** After validating demand and permissions, trial a publisher or direct-sales partnership and suitable commercial hosting.
 **Stage 5:** Add secure student accounts, diagnostic progress, adaptive practice and optional image-analysis tutoring only after privacy and server-side authorization are properly designed.
