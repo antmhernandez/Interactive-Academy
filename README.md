@@ -6,7 +6,7 @@
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
 ## Current teaching preview
-Nine short demonstration lessons (six Physics, three Calculus), nine misconception-aware concept checks, five original Physics printables, one Calculus printable, and ordered course navigation. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Nine original demonstration lessons (six Physics, three Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Nine misconception-aware checks and six printable student resources remain available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Start
 Open `index.html` through a local static server, such as `python -m http.server 8000`. In GitHub Pages, publish `main` from `/(root)` once the account is eligible.
@@ -46,6 +46,6 @@ The initial site is static, does not require a database or login, does not colle
 - Improve exercise verification beyond initial single-number answers; add worked solution and misconception checks.
 - Test with students, parents and teachers, then assess curriculum licensing or publisher distribution.
 
-See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, `docs/HOSTING.md`, and `docs/08_MOTION_LAB_TEACHING_AND_QA.md`.
+See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, `docs/HOSTING.md`, `docs/08_MOTION_LAB_TEACHING_AND_QA.md`, and `docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md`.
 
 © Original website prose and software are project development work; formal licensing and author ownership must be settled before commercial release.
