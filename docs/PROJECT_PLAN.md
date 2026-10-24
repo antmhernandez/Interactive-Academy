@@ -13,7 +13,7 @@ The model or diagram must teach something, not merely entertain. Build the conce
 2. Position, displacement and coordinate systems — planned.
 3. Speed and velocity from tables/graphs — planned.
 4. Changing velocity and acceleration — complete in prototype.
-5. Position/velocity/acceleration graphs as a system — planned.
+5. Position/velocity/acceleration graphs as a system — first interactive version completed.
 6. Motion measurement and graphical regression lab — planned.
 
 ### Calculus: Understanding change
