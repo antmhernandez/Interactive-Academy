@@ -22,6 +22,8 @@ for (const lesson of lessons) {
  assert.ok(lesson.example.steps.length >= 2, "Example missing steps: "+lesson.id);
  assert.ok(Number.isFinite(lesson.practice.answer) && lesson.practice.tolerance >= 0, "Invalid numerical answer: "+lesson.id);
  assert.ok(lesson.practice.hints.length >= 2, "Insufficient graduated hints: "+lesson.id);
+ assert.ok(typeof lesson.focus === "string" && lesson.focus.length >= 30 && lesson.focus.length <= 160, "Missing/overlong visual focus cue: "+lesson.id);
+ assert.ok(lesson.visualLead.length <= 110 && lesson.subtitle.length <= 120, "Visual direction or subtitle too long: "+lesson.id);
  const c = lesson.checkpoint;
  assert.ok(c && typeof c.prompt === "string" && c.prompt.length >= 30, "Concept check required: "+lesson.id);
  assert.ok(Array.isArray(c.choices) && c.choices.length >= 3 && c.choices.every(x=>x.length > 12), "Incomplete choices: "+lesson.id);
@@ -44,8 +46,12 @@ for (const fn of ["displacement","averageVelocity","freeFall","velocityArea","mo
 }
 assert.ok(js.includes("learning-atlas-completed-v1"),"Local-only progress store missing");
 assert.ok(js.includes("function renderConceptCheck("),"Concept check rendering missing");
+assert.ok(js.includes('role="tablist"') && js.includes("data-view="),"Single-activity learning tabs missing");
+assert.ok(js.includes('class="route-nav"'),"Consistent Back/Home/Next navigation missing");
+assert.ok(js.includes("visualLegend("),"Diagram color keys missing");
+assert.ok(css.includes(".visual-stage") && css.includes(".focus-head"),"Focused visual layout missing");
 assert.ok(site.includes("lab/motion.html") && js.includes("lab/motion.html"),"Motion lab navigation missing");
-for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
+for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs","docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
 // Sanity checks for the numerical practice keys in newly added topics.
 for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16]]) {
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
