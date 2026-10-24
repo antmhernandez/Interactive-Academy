@@ -1,5 +1,36 @@
 [
   {
+    "id": "position-displacement",
+    "subject": "physics",
+    "unit": "Representing Motion",
+    "title": "Distance is not displacement",
+    "subtitle": "Use a number line to distinguish where you finish from how far you traveled.",
+    "duration": "8 min",
+    "observe": "A student walks across a room, turns around, and ends near the starting point. Can the distance traveled be large while the displacement is small?",
+    "idea": "Position identifies an object's location relative to an origin. Displacement is final position minus initial position: Δx = xᶠ − xᶦ. Distance traveled counts the total length of the path and cannot be negative.",
+    "visualLead": "Change where the cart turns and where it stops. Compare displacement, which includes direction, with total distance traveled.",
+    "visual": "displacement",
+    "example": {
+      "question": "A student starts at x = 1 m, walks to x = 7 m, then returns to x = 3 m. Find displacement and total distance.",
+      "steps": [
+        "Displacement uses only the starting and ending positions: Δx = 3 − 1 = +2 m.",
+        "Distance traveled includes both segments: |7 − 1| + |3 − 7|.",
+        "Distance = 6 + 4 = 10 m. The student is only 2 m to the right of the starting point."
+      ]
+    },
+    "practice": {
+      "prompt": "A cart starts at 2 m, moves to 9 m, then ends at 5 m. What is the total distance traveled (in meters)?",
+      "answer": 11,
+      "tolerance": 0.001,
+      "unit": "m",
+      "hints": [
+        "Count the distance along both legs of the journey, not just the displacement.",
+        "Add |9 − 2| and |5 − 9|."
+      ]
+    },
+    "next": "motion-diagrams"
+  },
+  {
     "id": "motion-diagrams",
     "subject": "physics",
     "unit": "Representing Motion",
@@ -26,6 +57,37 @@
       "hints": [
         "Average speed compares distance with elapsed time.",
         "Divide 18 by 6."
+      ]
+    },
+    "next": "average-velocity"
+  },
+  {
+    "id": "average-velocity",
+    "subject": "physics",
+    "unit": "Representing Motion",
+    "title": "Read velocity from a graph",
+    "subtitle": "Use rise over run to connect a position–time graph with average velocity.",
+    "duration": "9 min",
+    "observe": "Suppose two moving objects finish at the same position. Could one have a greater average velocity over a shorter interval?",
+    "idea": "Average velocity over a time interval is displacement divided by elapsed time: v̄ = [x(t₂) − x(t₁)]/(t₂ − t₁). On a position–time graph, this is the slope of the secant line between the selected points.",
+    "visualLead": "Drag the endpoints of a time interval across a curved position graph. Watch its average slope change.",
+    "visual": "average-velocity",
+    "example": {
+      "question": "An object has position x(t) = 1 + 2t + ¼t² meters. Find its average velocity from t = 0 to t = 4 seconds.",
+      "steps": [
+        "Find the positions: x(0) = 1 m and x(4) = 1 + 8 + 4 = 13 m.",
+        "Displacement over the interval is 13 − 1 = 12 m. Elapsed time is 4 s.",
+        "Average velocity is 12/4 = 3 m/s. It is the slope of the line joining the two graph points."
+      ]
+    },
+    "practice": {
+      "prompt": "An object moves from x = 3 m at t = 1 s to x = 15 m at t = 5 s. What is its average velocity?",
+      "answer": 3,
+      "tolerance": 0.001,
+      "unit": "m/s",
+      "hints": [
+        "Divide the change in position by the change in time.",
+        "Compute (15 − 3)/(5 − 1)."
       ]
     },
     "next": "acceleration"
@@ -59,6 +121,37 @@
         "Compute 5 + (−1)(3)."
       ]
     },
+    "next": "free-fall"
+  },
+  {
+    "id": "free-fall",
+    "subject": "physics",
+    "unit": "Accelerated Motion",
+    "title": "Why does a falling object speed up?",
+    "subtitle": "Predict the motion of an object released from rest under constant gravity.",
+    "duration": "9 min",
+    "observe": "If an object is released from rest, does it fall the same distance during each successive second? Why not?",
+    "idea": "When air resistance is negligible, the downward acceleration of a freely falling object is approximately constant near Earth's surface. Choosing up as positive gives y(t) = h − ½gt² and v(t) = −gt before impact.",
+    "visualLead": "Move forward in time and compare a fall under Earth's gravity with one under the Moon's gravity. The model stops at impact.",
+    "visual": "free-fall",
+    "example": {
+      "question": "A ball is dropped from rest 19.6 m above the ground. Ignoring air resistance, how long until it reaches the ground on Earth?",
+      "steps": [
+        "Set vertical position to zero at impact: 0 = h − ½gt².",
+        "Use h = 19.6 m and g = 9.8 m/s²: 0 = 19.6 − 4.9t², so t² = 4.",
+        "The ball reaches the ground after t = 2 s. Its velocity immediately before impact is −19.6 m/s (up positive)."
+      ]
+    },
+    "practice": {
+      "prompt": "An object is dropped from rest 44.1 m above the ground. Ignoring air resistance and using g = 9.8 m/s², how many seconds until impact?",
+      "answer": 3,
+      "tolerance": 0.01,
+      "unit": "s",
+      "hints": [
+        "Use h = ½gt² for a drop from rest.",
+        "Compute t = √(2 × 44.1 / 9.8)."
+      ]
+    },
     "next": "motion-graphs"
   },
   {
@@ -90,7 +183,7 @@
         "Compute 2(2) + ½(1)(2²)."
       ]
     },
-    "next": "tangent-line"
+    "next": null
   },
   {
     "id": "tangent-line",
@@ -119,6 +212,37 @@
       "hints": [
         "The derivative of x² at x is 2x.",
         "Substitute x = −2 into 2x."
+      ]
+    },
+    "next": "velocity-accumulation"
+  },
+  {
+    "id": "velocity-accumulation",
+    "subject": "calculus",
+    "unit": "Integrals",
+    "title": "Area under velocity measures a journey",
+    "subtitle": "Connect an integral to accumulated displacement and a changing physical quantity.",
+    "duration": "9 min",
+    "observe": "If a graph tells you how fast an object is moving at each instant, how could you discover its overall change in position?",
+    "idea": "Displacement is accumulated velocity. The definite integral ∫ₐᵇ v(t)dt gives net change in position, including the sign of velocity. When velocity stays positive, that integral also equals distance traveled.",
+    "visualLead": "Extend the time interval under a changing velocity graph. See the shaded region and its accumulated displacement.",
+    "visual": "velocity-area",
+    "example": {
+      "question": "An object's velocity is v(t) = 3 + t meters per second. Find its displacement from t = 0 to t = 2 seconds.",
+      "steps": [
+        "Displacement is the definite integral of velocity: Δx = ∫₀² (3+t) dt.",
+        "An antiderivative is 3t + ½t². Evaluate it from 0 to 2.",
+        "Δx = [6 + 2] − 0 = 8 m. The units are meters because (m/s)·s = m."
+      ]
+    },
+    "practice": {
+      "prompt": "For v(t) = 2 + t m/s, what is the displacement from t = 0 to t = 4 seconds?",
+      "answer": 16,
+      "tolerance": 0.001,
+      "unit": "m",
+      "hints": [
+        "Find the area under a line with initial height 2 and final height 6.",
+        "Compute ∫₀⁴(2+t)dt = [2t + t²/2]₀⁴."
       ]
     },
     "next": "riemann-sums"
@@ -152,6 +276,6 @@
         "Use area = ½ × 6 × 6."
       ]
     },
-    "next": "motion-diagrams"
+    "next": null
   }
 ]

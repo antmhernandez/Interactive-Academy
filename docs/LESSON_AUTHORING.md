@@ -6,7 +6,7 @@ Store independent original lessons in `content/lessons.json`. Each entry contain
 - `example.question` is a short problem prompt; `example.steps` is an ordered array of explanations, not just equations.
 - `practice.prompt`, `practice.answer`, `practice.tolerance`, `practice.unit`, and `practice.hints` support a numerical browser-only check.
 - `visual` selects a rigorously defined original simulator in `app.js`.
-- `next` is the next concept's identifier for linked course navigation.
+- `next` is the next concept's identifier for linked course navigation, or `null` for the final lesson in the subject path.
 
 This format is a small proof of concept. The mature system should separate prose, mathematical expressions, independently verifiable solution data, downloadable materials, and visual model parameters.
 
@@ -22,7 +22,10 @@ Start by asking one clear, meaningful question. Introduce the phenomenon, then a
 - Provenance: document original authorship, sources of numerical data and any borrowed materials privately.
 
 ## Current sample lessons
-`motion-diagrams`, `acceleration`, `motion-graphs`, `tangent-line`, and `riemann-sums` were newly composed for the prototype. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
+Nine interactive samples are now present: `position-displacement`, `motion-diagrams`, `average-velocity`, `acceleration`, `free-fall`, `motion-graphs`, `tangent-line`, `velocity-accumulation`, and `riemann-sums`. All are newly composed demonstrations rather than HLS assessment reproductions. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
 
 ## Future guided-note bundles
 Use canonical lesson concepts to produce synchronized blank/student and teacher editions and short observation labs. Test against the actual assessments. Release dates, license rights, institutional pricing and teacher-only access are future decisions, not current site features.
+
+## Learner progress
+The prototype records only a set of completed lesson identifiers in browser local storage (`learning-atlas-completed-v1`). It does not synchronize across devices, identify students or send progress to a remote server. This does not constitute a parent/teacher gradebook. The progress feature should be reevaluated before collecting any student information or adding authenticated accounts.

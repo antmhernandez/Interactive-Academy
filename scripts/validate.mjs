@@ -8,22 +8,41 @@ const lessons = JSON.parse(read("content/lessons.json"));
 assert.match(site, /id="main"/);
 for (const file of ["styles.css","app.js"]) assert.ok(site.includes(file), "Page missing dependency "+file);
 assert.ok(css.includes("@media(max-width:760px)"), "Mobile layout missing");
-assert.ok(Array.isArray(lessons) && lessons.length >= 5);
+assert.ok(Array.isArray(lessons) && lessons.length >= 9);
 const ids = new Set(lessons.map(x => x.id));
 assert.equal(ids.size, lessons.length, "Duplicate lesson IDs");
-const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann"]);
+const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann","displacement","average-velocity","free-fall","velocity-area"]);
 for (const lesson of lessons) {
  assert.ok(/^[a-z0-9-]+$/.test(lesson.id), "Invalid ID");
  assert.ok(["physics","calculus"].includes(lesson.subject), "Invalid subject");
  for (const field of ["title","subtitle","observe","idea","visualLead"]) assert.ok(lesson[field].length >= 15, "Too little text: "+field+" in "+lesson.id);
  assert.ok(visuals.has(lesson.visual), "Missing visual: "+lesson.id);
- assert.ok(ids.has(lesson.next), "Broken next lesson link: "+lesson.id);
+ assert.ok(lesson.next === null || ids.has(lesson.next), "Broken next lesson link: "+lesson.id);
+ if (lesson.next !== null) assert.equal(lessons.find(x=>x.id===lesson.next).subject,lesson.subject,"Lesson chain crosses subjects");
  assert.ok(lesson.example.steps.length >= 2, "Example missing steps: "+lesson.id);
  assert.ok(Number.isFinite(lesson.practice.answer) && lesson.practice.tolerance >= 0, "Invalid numerical answer: "+lesson.id);
  assert.ok(lesson.practice.hints.length >= 2, "Insufficient graduated hints: "+lesson.id);
 }
+
+// Courses are finite, ordered learning paths, not loops.
+for (const [course, expected] of [["physics",6],["calculus",3]]) {
+ const group=lessons.filter(l=>l.subject===course);
+ assert.equal(group.length,expected,"Unexpected number of "+course+" lessons");
+ for(let i=0;i<group.length;i++) {
+  assert.equal(group[i].next,group[i+1]?.id ?? null,"Incorrect next step in "+course+" path");
+ }
+}
+// A simulator must exist for each named diagram.
+for (const fn of ["displacement","averageVelocity","freeFall","velocityArea","motion","acceleration","linkedGraphs","tangent","riemann"]) {
+ assert.ok(js.includes("function "+fn+"("),"Missing simulator "+fn);
+}
+assert.ok(js.includes("learning-atlas-completed-v1"),"Local-only progress store missing");
+// Sanity checks for the numerical practice keys in newly added topics.
+for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16]]) {
+ assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
+}
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));
-for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html"]) assert.ok(fs.existsSync(new URL(path,root)));
+for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html","materials/motion-graphs-guided-notes.html","materials/motion-data-lab.html","materials/calculus-graphical-meaning-guided-notes.html"]) assert.ok(fs.existsSync(new URL(path,root)));
 for (const suspect of ["sk-","ghp_","-----BEGIN PRIVATE KEY-----"]) {
  assert.ok(!site.includes(suspect) && !js.includes(suspect) && !css.includes(suspect), "Potential secret marker");
 }

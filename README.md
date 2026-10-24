@@ -3,7 +3,10 @@
 **Working title:** Interactive Academy  
 **Status:** Early educational prototype; not a complete course and not yet a commercial product.
 
-A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, graded practice and future printable guided notes and laboratories.
+A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
+
+## Current teaching preview
+Nine short demonstration lessons (six Physics, three Calculus), four original Physics printables, one Calculus printable, and ordered course navigation. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. These are not yet an entire graded course.
 
 ## Start
 Open `index.html` through a local static server, such as `python -m http.server 8000`. In GitHub Pages, publish `main` from `/(root)` once the account is eligible.
@@ -22,7 +25,7 @@ The separate private repository `antmhernandez/HLS-Teaching` remains the working
 The public prototype is independently developed and is not affiliated with or endorsed by HLS, Memoria Press, Novare, College Board or Texas Instruments.
 
 ## Operating boundaries
-The initial site is static, does not require a database or login, does not collect student information, and makes no paid API calls. Public Pages sites must not be used as the primary checkout or paid SaaS application; migrate commercial services to an appropriate platform when needed.
+The initial site is static, does not require a database or login, does not collect personally identifying student information, and makes no paid API calls. A simple completed-lesson list is saved only in the visitor’s browser, never sent to a server. Public Pages sites must not be used as the primary checkout or paid SaaS application; migrate commercial services to an appropriate platform when needed.
 
 ## Architecture
 - `index.html` — accessible single-page entry
@@ -34,9 +37,10 @@ The initial site is static, does not require a database or login, does not colle
 
 ## Next milestones
 - Confirm repository rights and provenance before any import from HLS-Teaching.
-- Complete a six-lesson Mechanics & Motion pilot and three Calculus lessons.
-- Add synchronized position–velocity–acceleration plots and robust, independent answer checks.
-- Create accessible original diagrams, student/teacher publishing modes, and downloadable samples.
+- Review and refine the **nine-topic pilot** (six Physics, three Calculus) for mathematical accuracy, accessibility and mobile interaction.
+- Extend the coordinated motion illustrations into a fuller mechanics unit with separate independent labs.
+- Continue adding original student printables and independently controlled private teacher solutions.
+- Improve exercise verification beyond initial single-number answers; add worked solution and misconception checks.
 - Test with students, parents and teachers, then assess curriculum licensing or publisher distribution.
 
 See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, and `docs/HOSTING.md`.
