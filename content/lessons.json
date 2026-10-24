@@ -59,6 +59,37 @@
         "Compute 5 + (−1)(3)."
       ]
     },
+    "next": "motion-graphs"
+  },
+  {
+    "id": "motion-graphs",
+    "subject": "physics",
+    "unit": "Representing Motion",
+    "title": "Three graphs tell one story",
+    "subtitle": "See position, velocity and acceleration describe the same moving object.",
+    "duration": "9 min",
+    "observe": "Could three different-looking graphs all describe one simple motion? What does the slope of each graph tell us?",
+    "idea": "Position tells where an object is, velocity measures its rate of change of position, and acceleration measures its rate of change of velocity. For constant acceleration, x(t) = x₀ + v₀t + ½at² and v(t) = v₀ + at.",
+    "visualLead": "Change the constant acceleration and choose a time. All three graphs describe the same motion. Notice how the slope of the position graph agrees with the velocity.",
+    "visual": "motion-graphs",
+    "example": {
+      "question": "A cart starts at x₀ = 0 m with velocity 2 m/s, accelerating at 0.5 m/s². Where is it after 4 seconds?",
+      "steps": [
+        "For constant acceleration, position is x = x₀ + v₀t + ½at².",
+        "Substitute the values: x = 0 + 2(4) + ½(0.5)(4²).",
+        "The result is x = 8 + 4 = 12 m. Its final velocity is 2 + 0.5(4) = 4 m/s."
+      ]
+    },
+    "practice": {
+      "prompt": "A cart begins at position 0 m with velocity 2 m/s and acceleration 1 m/s². What is its position after 2 seconds?",
+      "answer": 6,
+      "tolerance": 0.001,
+      "unit": "m",
+      "hints": [
+        "Use x = x₀ + v₀t + ½at².",
+        "Compute 2(2) + ½(1)(2²)."
+      ]
+    },
     "next": "tangent-line"
   },
   {
