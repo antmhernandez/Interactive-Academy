@@ -22,7 +22,7 @@ Start by asking one clear, meaningful question. Introduce the phenomenon, then a
 - Provenance: document original authorship, sources of numerical data and any borrowed materials privately.
 
 ## Current sample lessons
-`motion-diagrams`, `acceleration`, `tangent-line`, and `riemann-sums` were newly composed for the prototype. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
+`motion-diagrams`, `acceleration`, `motion-graphs`, `tangent-line`, and `riemann-sums` were newly composed for the prototype. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
 
 ## Future guided-note bundles
 Use canonical lesson concepts to produce synchronized blank/student and teacher editions and short observation labs. Test against the actual assessments. Release dates, license rights, institutional pricing and teacher-only access are future decisions, not current site features.
