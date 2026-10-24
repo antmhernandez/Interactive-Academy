@@ -1,0 +1,126 @@
+[
+  {
+    "id": "motion-diagrams",
+    "subject": "physics",
+    "unit": "Representing Motion",
+    "title": "How can dots describe motion?",
+    "subtitle": "Discover how equally spaced moments reveal speed and changes in speed.",
+    "duration": "6 min",
+    "observe": "Suppose you saw only seven photographs of a moving cart, each taken at the same time interval. Could you tell whether it was speeding up?",
+    "idea": "A motion diagram marks a body's position at equally spaced times. Equal distances between marks indicate constant speed; increasing distances indicate speeding up.",
+    "visualLead": "Choose a pattern and replay the cart's motion. Notice the spacing between the dots.",
+    "visual": "motion",
+    "example": {
+      "question": "A cart moves 12 meters over four equal one-second intervals, covering 3 meters in each. What is its average speed?",
+      "steps": [
+        "Speed is the distance traveled divided by the elapsed time.",
+        "The cart travels 12 m in 4 s.",
+        "Average speed = 12 m / 4 s = 3 m/s. Equal intervals also show constant speed here."
+      ]
+    },
+    "practice": {
+      "prompt": "A cart travels 18 meters in 6 seconds. What is its average speed?",
+      "answer": 3,
+      "tolerance": 0.001,
+      "unit": "m/s",
+      "hints": [
+        "Average speed compares distance with elapsed time.",
+        "Divide 18 by 6."
+      ]
+    },
+    "next": "acceleration"
+  },
+  {
+    "id": "acceleration",
+    "subject": "physics",
+    "unit": "Representing Motion",
+    "title": "When velocity changes",
+    "subtitle": "Connect acceleration to the slope of a velocity–time graph.",
+    "duration": "7 min",
+    "observe": "Can an object still move forward while accelerating backward? What would its velocity graph look like?",
+    "idea": "Acceleration is the rate at which velocity changes: a = Δv/Δt. A negative acceleration describes a change toward the negative direction, not necessarily a slowing object.",
+    "visualLead": "Adjust the acceleration. Watch the velocity–time graph and the prediction at t = 4 seconds.",
+    "visual": "acceleration",
+    "example": {
+      "question": "A cart begins at 2 m/s and accelerates at 1.5 m/s² for 4 s. Find its final velocity.",
+      "steps": [
+        "For constant acceleration, final velocity is initial velocity plus acceleration times time: v = v₀ + at.",
+        "Substitute v₀ = 2 m/s, a = 1.5 m/s², t = 4 s.",
+        "v = 2 + 1.5(4) = 8 m/s. Each second the velocity gains 1.5 m/s."
+      ]
+    },
+    "practice": {
+      "prompt": "A cart begins at 5 m/s and accelerates at −1 m/s² for 3 seconds. What is its final velocity?",
+      "answer": 2,
+      "tolerance": 0.001,
+      "unit": "m/s",
+      "hints": [
+        "Use v = v₀ + at, keeping the negative acceleration.",
+        "Compute 5 + (−1)(3)."
+      ]
+    },
+    "next": "tangent-line"
+  },
+  {
+    "id": "tangent-line",
+    "subject": "calculus",
+    "unit": "Derivatives",
+    "title": "The derivative is a changing slope",
+    "subtitle": "See how a secant line approaches a tangent line.",
+    "duration": "8 min",
+    "observe": "When a curve does not have a single constant slope, how can we determine how steep it is at one exact point?",
+    "idea": "The derivative at x = a is the limit of nearby secant slopes. For f(x) = x², the average slope from a to a + h is 2a + h, approaching 2a as h approaches zero.",
+    "visualLead": "Choose a point a, then decrease the distance h. Compare the secant slope with the tangent slope.",
+    "visual": "tangent",
+    "example": {
+      "question": "Find the slope of y = x² at x = 3 using the difference quotient.",
+      "steps": [
+        "Start with [f(3+h) − f(3)] / h.",
+        "Expand: [(3+h)² − 9] / h = (6h + h²) / h.",
+        "For h ≠ 0 the expression is 6 + h. Its limit as h → 0 is 6."
+      ]
+    },
+    "practice": {
+      "prompt": "For f(x) = x², what is the derivative at x = −2?",
+      "answer": -4,
+      "tolerance": 0.001,
+      "unit": "slope",
+      "hints": [
+        "The derivative of x² at x is 2x.",
+        "Substitute x = −2 into 2x."
+      ]
+    },
+    "next": "riemann-sums"
+  },
+  {
+    "id": "riemann-sums",
+    "subject": "calculus",
+    "unit": "Integrals",
+    "title": "How rectangles discover area",
+    "subtitle": "Understand a definite integral as the limit of sums.",
+    "duration": "8 min",
+    "observe": "How could we estimate the area below a sloping line using only rectangles?",
+    "idea": "A Riemann sum approximates an accumulated quantity by adding many small rectangular contributions. Refining the rectangles can make the approximation approach the exact definite integral.",
+    "visualLead": "Increase the number of right-endpoint rectangles under y = x on [0,4]. Watch the excess area shrink.",
+    "visual": "riemann",
+    "example": {
+      "question": "Find the exact area under y = x from x = 0 to x = 4.",
+      "steps": [
+        "A right-endpoint sum with n rectangles has Δx = 4/n.",
+        "Its sum is (4/n)²(1 + 2 + … + n) = 8(n+1)/n.",
+        "As n increases without bound, the sum tends to 8 square units."
+      ]
+    },
+    "practice": {
+      "prompt": "What is the exact area under y = x from x = 0 to x = 6?",
+      "answer": 18,
+      "tolerance": 0.001,
+      "unit": "square units",
+      "hints": [
+        "For this straight line, the region is a triangle.",
+        "Use area = ½ × 6 × 6."
+      ]
+    },
+    "next": "motion-diagrams"
+  }
+]
