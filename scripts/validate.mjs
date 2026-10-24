@@ -15,7 +15,8 @@ const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riem
 for (const lesson of lessons) {
  assert.ok(/^[a-z0-9-]+$/.test(lesson.id), "Invalid ID");
  assert.ok(["physics","calculus"].includes(lesson.subject), "Invalid subject");
- for (const field of ["title","subtitle","observe","idea","visualLead"]) assert.ok(lesson[field].length >= 15, "Too little text: "+field+" in "+lesson.id);
+ assert.ok(lesson.title.length >= 6 && lesson.title.length <= 72, "Lesson title must be concise and meaningful: "+lesson.id);
+ for (const field of ["subtitle","observe","idea","visualLead"]) assert.ok(lesson[field].length >= 15, "Too little text: "+field+" in "+lesson.id);
  assert.ok(visuals.has(lesson.visual), "Missing visual: "+lesson.id);
  assert.ok(lesson.next === null || ids.has(lesson.next), "Broken next lesson link: "+lesson.id);
  if (lesson.next !== null) assert.equal(lessons.find(x=>x.id===lesson.next).subject,lesson.subject,"Lesson chain crosses subjects");
