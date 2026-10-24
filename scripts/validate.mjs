@@ -22,6 +22,12 @@ for (const lesson of lessons) {
  assert.ok(lesson.example.steps.length >= 2, "Example missing steps: "+lesson.id);
  assert.ok(Number.isFinite(lesson.practice.answer) && lesson.practice.tolerance >= 0, "Invalid numerical answer: "+lesson.id);
  assert.ok(lesson.practice.hints.length >= 2, "Insufficient graduated hints: "+lesson.id);
+ const c = lesson.checkpoint;
+ assert.ok(c && typeof c.prompt === "string" && c.prompt.length >= 30, "Concept check required: "+lesson.id);
+ assert.ok(Array.isArray(c.choices) && c.choices.length >= 3 && c.choices.every(x=>x.length > 12), "Incomplete choices: "+lesson.id);
+ assert.ok(Number.isInteger(c.correct) && c.correct >= 0 && c.correct < c.choices.length, "Bad concept check answer: "+lesson.id);
+ assert.ok(Array.isArray(c.feedback) && c.feedback.length === c.choices.length && c.feedback.every(x=>x.length >= 20), "Incomplete misconception feedback: "+lesson.id);
+ assert.ok(c.explanation.length > 30, "Concept explanation missing: "+lesson.id);
 }
 
 // Courses are finite, ordered learning paths, not loops.
@@ -37,12 +43,15 @@ for (const fn of ["displacement","averageVelocity","freeFall","velocityArea","mo
  assert.ok(js.includes("function "+fn+"("),"Missing simulator "+fn);
 }
 assert.ok(js.includes("learning-atlas-completed-v1"),"Local-only progress store missing");
+assert.ok(js.includes("function renderConceptCheck("),"Concept check rendering missing");
+assert.ok(site.includes("lab/motion.html") && js.includes("lab/motion.html"),"Motion lab navigation missing");
+for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
 // Sanity checks for the numerical practice keys in newly added topics.
 for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16]]) {
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
 }
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));
-for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html","materials/motion-graphs-guided-notes.html","materials/motion-data-lab.html","materials/calculus-graphical-meaning-guided-notes.html"]) assert.ok(fs.existsSync(new URL(path,root)));
+for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html","materials/motion-graphs-guided-notes.html","materials/motion-data-lab.html","materials/calculus-graphical-meaning-guided-notes.html","materials/motion-model-investigation.html"]) assert.ok(fs.existsSync(new URL(path,root)));
 for (const suspect of ["sk-","ghp_","-----BEGIN PRIVATE KEY-----"]) {
  assert.ok(!site.includes(suspect) && !js.includes(suspect) && !css.includes(suspect), "Potential secret marker");
 }
