@@ -42,7 +42,7 @@ for (const [id,expected] of [["position-displacement",11],["average-velocity",3]
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
 }
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));
-for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html"]) assert.ok(fs.existsSync(new URL(path,root)));
+for (const path of ["materials/motion-guided-notes.html","materials/motion-observation-lab.html","materials/motion-graphs-guided-notes.html","materials/motion-data-lab.html","materials/calculus-graphical-meaning-guided-notes.html"]) assert.ok(fs.existsSync(new URL(path,root)));
 for (const suspect of ["sk-","ghp_","-----BEGIN PRIVATE KEY-----"]) {
  assert.ok(!site.includes(suspect) && !js.includes(suspect) && !css.includes(suspect), "Potential secret marker");
 }
