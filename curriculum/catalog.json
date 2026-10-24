@@ -923,7 +923,9 @@
       "owner": "position-displacement",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Motion diagram guided notes",
+      "kind": "student-notes"
     },
     {
       "id": "motion-observation-lab",
@@ -931,7 +933,9 @@
       "owner": "motion-diagrams",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Motion observation lab",
+      "kind": "student-lab"
     },
     {
       "id": "linked-motion-notes",
@@ -939,7 +943,9 @@
       "owner": "motion-graphs",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Position and velocity guided notes",
+      "kind": "student-notes"
     },
     {
       "id": "motion-data-worksheet",
@@ -947,7 +953,9 @@
       "owner": "average-velocity",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Motion data worksheet",
+      "kind": "student-lab"
     },
     {
       "id": "motion-regression-investigation",
@@ -955,7 +963,9 @@
       "owner": "motion-graphs",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Regression investigation",
+      "kind": "student-lab"
     },
     {
       "id": "calculus-graphical-notes",
@@ -963,7 +973,9 @@
       "owner": "tangent-line",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Derivative and integral notes",
+      "kind": "student-notes"
     },
     {
       "id": "interactive-motion-lab",
@@ -971,7 +983,9 @@
       "owner": "motion-graphs",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Interactive motion data lab",
+      "kind": "interactive-lab"
     },
     {
       "id": "forces-notes",
@@ -979,7 +993,9 @@
       "owner": "free-body-diagram",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Forces guided notes",
+      "kind": "student-notes"
     },
     {
       "id": "limits-notes",
@@ -987,7 +1003,50 @@
       "owner": "limits-near-a-point",
       "visibility": "public-student",
       "origin": "new-original",
-      "review": "teacher-review-required"
+      "review": "teacher-review-required",
+      "label": "Limits guided notes",
+      "kind": "student-notes"
     }
-  ]
+  ],
+  "connections": [
+    {
+      "from": "average-velocity",
+      "to": "tangent-line",
+      "reason": "A secant slope in Physics prepares students to recognize an instantaneous derivative in Calculus."
+    },
+    {
+      "from": "motion-graphs",
+      "to": "velocity-accumulation",
+      "reason": "The velocity–time graph becomes a signed-area model for displacement."
+    },
+    {
+      "from": "force-components",
+      "to": "trig-reference",
+      "reason": "Trigonometric ratios explain how vector components depend on angle."
+    },
+    {
+      "from": "newtons-second-law",
+      "to": "work-energy",
+      "reason": "Net force leads naturally to work and mechanical energy."
+    },
+    {
+      "from": "limits-near-a-point",
+      "to": "tangent-line",
+      "reason": "The definition of a derivative relies on the idea of a limit."
+    }
+  ],
+  "nextBuild": [
+    "friction",
+    "one-sided-limits",
+    "power-rule",
+    "work-energy"
+  ],
+  "contentKinds": {
+    "interactive-lesson": "One canonical concept, visual, explanatory tabs, worked example, practice and conceptual check. Only reviewed originals reach content/lessons.json.",
+    "student-guided-notes": "Blank prompts or diagrams accompanying an existing concept; reusable links registered once in assets.",
+    "student-lab": "Experiment, actual observations or clearly labeled simulation data, uncertainty and interpretation.",
+    "formative-quiz": "Short practice questions with full reasoning, concept ownership and verified solutions.",
+    "summative-assessment": "Secure teacher-reviewed test; do not publish protected questions, answers or keys in GitHub Pages.",
+    "teacher-edition": "Answer keys, teaching notes, licensing review; keep outside the public static deployment."
+  }
 }
