@@ -2,7 +2,7 @@
   {
     "id": "position-displacement",
     "subject": "physics",
-    "unit": "Representing Motion",
+    "unit": "Motion and Kinematics",
     "title": "Distance and Displacement",
     "subtitle": "Same journey. Two different measurements.",
     "duration": "8 min",
@@ -44,12 +44,13 @@
       ],
       "explanation": "Distance adds the lengths of the outward and return paths. Displacement uses only final minus initial position."
     },
-    "focus": "The blue final point determines displacement; the complete path determines distance."
+    "focus": "The blue final point determines displacement; the complete path determines distance.",
+    "unitId": "phy-motion"
   },
   {
     "id": "motion-diagrams",
     "subject": "physics",
-    "unit": "Representing Motion",
+    "unit": "Motion and Kinematics",
     "title": "Motion in Dots",
     "subtitle": "A few dots reveal how speed changes.",
     "duration": "6 min",
@@ -91,12 +92,13 @@
       ],
       "explanation": "The equal-time spacing is essential. Equal position differences per interval produce a constant average velocity across those intervals."
     },
-    "focus": "Equal gaps mean equal distances in equal times. Widening gaps show greater speed."
+    "focus": "Equal gaps mean equal distances in equal times. Widening gaps show greater speed.",
+    "unitId": "phy-motion"
   },
   {
     "id": "average-velocity",
     "subject": "physics",
-    "unit": "Representing Motion",
+    "unit": "Motion and Kinematics",
     "title": "Velocity from a Graph",
     "subtitle": "A secant line tells a story about motion.",
     "duration": "9 min",
@@ -138,12 +140,13 @@
       ],
       "explanation": "Both numerator and denominator come directly from the two chosen graph points: displacement divided by elapsed time."
     },
-    "focus": "The orange line's slope equals displacement divided by elapsed time."
+    "focus": "The orange line's slope equals displacement divided by elapsed time.",
+    "unitId": "phy-motion"
   },
   {
     "id": "acceleration",
     "subject": "physics",
-    "unit": "Representing Motion",
+    "unit": "Motion and Kinematics",
     "title": "What Acceleration Means",
     "subtitle": "A changing velocity makes a sloping graph.",
     "duration": "7 min",
@@ -185,12 +188,13 @@
       ],
       "explanation": "Speed is the magnitude of velocity. When velocity and acceleration have the same sign, the object's speed increases."
     },
-    "focus": "The graph's slope is acceleration, not speed. A downward-sloping line means negative acceleration."
+    "focus": "The graph's slope is acceleration, not speed. A downward-sloping line means negative acceleration.",
+    "unitId": "phy-motion"
   },
   {
     "id": "free-fall",
     "subject": "physics",
-    "unit": "Accelerated Motion",
+    "unit": "Motion and Kinematics",
     "title": "Falling under Gravity",
     "subtitle": "Predict how a falling object moves.",
     "duration": "9 min",
@@ -232,12 +236,13 @@
       ],
       "explanation": "Without significant air resistance, gravitational acceleration near Earth's surface is approximately independent of an object's mass."
     },
-    "focus": "Without air resistance, constant gravity changes velocity every second; the object falls farther during later seconds."
+    "focus": "Without air resistance, constant gravity changes velocity every second; the object falls farther during later seconds.",
+    "unitId": "phy-motion"
   },
   {
     "id": "motion-graphs",
     "subject": "physics",
-    "unit": "Representing Motion",
+    "unit": "Motion and Kinematics",
     "title": "Three Graphs, One Motion",
     "subtitle": "Position, velocity, and acceleration belong together.",
     "duration": "9 min",
@@ -279,7 +284,8 @@
       ],
       "explanation": "With constant a ≠ 0, v(t)=v₀+at is linear, and x(t)=x₀+v₀t+½at² is quadratic."
     },
-    "focus": "The slope of position is velocity. The slope of velocity is acceleration."
+    "focus": "The slope of position is velocity. The slope of velocity is acceleration.",
+    "unitId": "phy-motion"
   },
   {
     "id": "force-components",
@@ -326,7 +332,8 @@
       ],
       "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
     },
-    "next": "free-body-diagram"
+    "next": "free-body-diagram",
+    "unitId": "phy-forces"
   },
   {
     "id": "free-body-diagram",
@@ -373,7 +380,8 @@
       ],
       "explanation": "Analyze each axis separately: vertical acceleration is zero, so N = mg; horizontal acceleration depends on the net horizontal force."
     },
-    "next": "newtons-second-law"
+    "next": "newtons-second-law",
+    "unitId": "phy-forces"
   },
   {
     "id": "newtons-second-law",
@@ -420,12 +428,13 @@
       ],
       "explanation": "The inverse proportionality between mass and acceleration applies when the net external force is held constant."
     },
-    "next": null
+    "next": null,
+    "unitId": "phy-forces"
   },
   {
     "id": "limits-near-a-point",
     "subject": "calculus",
-    "unit": "Limits",
+    "unit": "Limits and Continuity",
     "title": "Approaching a Limit",
     "subtitle": "A function can approach a value it never reaches.",
     "duration": "8 min",
@@ -467,7 +476,8 @@
       ],
       "explanation": "The two-sided limit exists when the function values approach the same number from the left and right, whether or not the function is defined at the target input."
     },
-    "next": "tangent-line"
+    "next": "tangent-line",
+    "unitId": "cal-limits"
   },
   {
     "id": "tangent-line",
@@ -514,12 +524,13 @@
       ],
       "explanation": "The derivative is a limit of difference quotients as h approaches zero—not an assumption that the graph's height or slope vanishes."
     },
-    "focus": "As the two points meet, the amber secant approaches the green tangent. Its slope approaches the derivative."
+    "focus": "As the two points meet, the amber secant approaches the green tangent. Its slope approaches the derivative.",
+    "unitId": "cal-derivatives"
   },
   {
     "id": "velocity-accumulation",
     "subject": "calculus",
-    "unit": "Integrals",
+    "unit": "Integrals and Accumulation",
     "title": "Area Becomes Displacement",
     "subtitle": "A graph can tell us how far an object moves.",
     "duration": "9 min",
@@ -561,12 +572,13 @@
       ],
       "explanation": "The integral measures net change in position. Distance traveled would be 6 m, but the displacement is −6 m."
     },
-    "focus": "The teal area beneath velocity shows accumulated displacement; negative velocities would contribute negative signed area."
+    "focus": "The teal area beneath velocity shows accumulated displacement; negative velocities would contribute negative signed area.",
+    "unitId": "cal-integrals"
   },
   {
     "id": "riemann-sums",
     "subject": "calculus",
-    "unit": "Integrals",
+    "unit": "Integrals and Accumulation",
     "title": "Discovering Area with Rectangles",
     "subtitle": "A better approximation, one rectangle at a time.",
     "duration": "8 min",
@@ -608,6 +620,7 @@
       ],
       "explanation": "Because f is increasing, each rectangle based on the right endpoint is above the graph across its subinterval. As Δx shrinks, the excess area tends to zero."
     },
-    "focus": "For an increasing function, right-endpoint rectangles overestimate area. Narrower rectangles reduce the error."
+    "focus": "For an increasing function, right-endpoint rectangles overestimate area. Narrower rectangles reduce the error.",
+    "unitId": "cal-integrals"
   }
 ]
