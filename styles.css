@@ -10,3 +10,17 @@
 .card .meta:last-child{margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
 .controls input[type=range]{min-height:30px;touch-action:pan-y}
 @media(max-width:760px){.path-banner{padding:16px;align-items:stretch}.path-banner .btn{width:100%}.finish-lesson button{width:100%}.lesson-block .actions button{min-height:43px}}
+
+/* Concept checks and experimental laboratory discovery */
+.choice-group{border:0;padding:0;margin:13px 0 16px;min-width:0}
+.choice-group legend{font-size:.91rem;color:var(--muted);font-weight:650;padding-bottom:6px}
+.concept-choice{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:11px;background:#fbfdfb;padding:12px 14px;margin:8px 0;cursor:pointer;font-size:.94rem}
+.concept-choice:has(input:checked){border-color:var(--teal);background:#eef5f1}
+.concept-choice input{accent-color:var(--teal);width:18px;height:18px;margin-top:2px;flex:none}
+.concept-feedback{min-height:25px;margin:12px 0 0;font-size:.93rem}
+.concept-feedback.good{color:#176c4d;border-left:3px solid #43a578;padding:8px 12px;background:#eff7f1}
+.concept-feedback.try{color:#874926;border-left:3px solid #bb854a;padding:8px 12px;background:#fdf6ed}
+.lab-feature{margin:27px 0 0;border:1px solid #cee0d4;background:#edf5f0;border-radius:16px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:21px}
+.lab-feature h2{font-size:1.65rem;margin:6px 0 8px}.lab-feature p{margin:0;color:var(--muted);max-width:620px}
+.lab-feature .btn{white-space:nowrap}
+@media(max-width:760px){.lab-feature{padding:17px;flex-direction:column;align-items:stretch}.lab-feature .btn{width:100%}}
