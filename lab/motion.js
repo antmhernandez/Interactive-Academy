@@ -8,6 +8,7 @@ const positionChart = document.querySelector("#position-chart");
 const residualChart = document.querySelector("#residual-chart");
 const equation = document.querySelector("#equation");
 const metrics = document.querySelector("#metrics");
+const moreMetrics = document.querySelector("#more-metrics");
 const interpretation = document.querySelector("#interpretation");
 const csvButton = document.querySelector("#download-csv");
 const printButton = document.querySelector("#print-report");
@@ -170,11 +171,9 @@ function showFit(fit) {
     metric("Initial position, A", format(A) + " m"),
     metric("Velocity coefficient, B", format(B) + " m/s"),
     metric(fit.degree === 2 ? "Acceleration, 2C" : "Acceleration in model", fit.degree === 2
-      ? format(fit.acceleration) + " m/s²" : "0 m/s² (assumed)"),
-    metric("R² (model fit)", fit.r2 === null ? "not defined" : format(fit.r2, 5)),
-    metric("RMS residual", format(fit.rmsResidual, 4) + " m"),
-    metric("Observations", String(fit.sampleSize))
+      ? format(fit.acceleration) + " m/s²" : "0 m/s² (assumed)")
   );
+  moreMetrics.replaceChildren(metric("R² (model fit)", fit.r2 === null ? "not defined" : format(fit.r2, 5)), metric("RMS residual", format(fit.rmsResidual, 4) + " m"), metric("Observations", String(fit.sampleSize)));
   interpretation.replaceChildren();
   const p1 = document.createElement("p");
   p1.textContent = fit.degree === 1
@@ -197,6 +196,7 @@ function error(message) {
   residualChart.replaceChildren();
   equation.textContent = "Complete valid observations to calculate a model.";
   metrics.replaceChildren();
+  moreMetrics.replaceChildren();
   interpretation.replaceChildren();
   csvButton.disabled = true;
   printButton.disabled = true;
@@ -223,7 +223,7 @@ function loadSample(which) {
   modelSelect.value = which === "constant" ? "1" : "2";
   setRows(samples[which]);
 }
-dataSelect.addEventListener("change", () => loadSample(dataSelect.value));
+dataSelect.addEventListener("change", () => { if(dataSelect.value === "custom") document.querySelector("#measurements-panel").open = true; else loadSample(dataSelect.value); });
 modelSelect.addEventListener("change", recalculate);
 document.querySelector("#reset").addEventListener("click", () => {
   const selected = dataSelect.value === "custom" ? "accelerated" : dataSelect.value;
@@ -255,7 +255,7 @@ document.querySelector("#use-paste").addEventListener("click", () => {
   if (parsed.length < 2 || parsed.length > 100) return error("Please provide 2–100 numerical observations.");
   dataSelect.value = "custom";
   setRows(parsed);
-  document.querySelector("details").open = false;
+  document.querySelector(".paste-data details").open = false;
 });
 csvButton.addEventListener("click", () => {
   if (!result) return;
