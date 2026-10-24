@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: '22'
       - name: Validate JavaScript syntax
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check lab/motion.js
+          node --check lab/regression.mjs
       - name: Validate lesson data, navigation and printables
-        run: node scripts/validate.mjs
+        run: |
+          node scripts/validate.mjs
+          node scripts/test-regression.mjs
