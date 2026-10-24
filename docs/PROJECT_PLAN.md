@@ -50,3 +50,8 @@ Each lesson has a focused main question, brief essential explanation, original f
 **Stage 5:** Add secure student accounts, diagnostic progress, adaptive practice and optional image-analysis tutoring only after privacy and server-side authorization are properly designed.
 
 The project must remain useful without AI runtime calls. Do not automatically publish model-generated lessons, scrape textbook contents, or put private student work in the repo.
+
+## Visual clarity pass (2026-10-24)
+All lesson pages now begin with consistent Back / Home / Next controls, a large title and brief subtitle, one dominant interactive figure, a small diagram color key, and a precise “Notice” cue. The idea, example, conceptual check and independent practice are separate tab panels rather than a vertical sequence of crowded boxes. The Motion Data Laboratory places its graph and physical coefficient interpretation first, with data entry and fit diagnostics expandable below. The design standard is `docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md`.
+
+**Review boundary:** Automated source tests are necessary but not a substitute for visual checks on desktop and mobile or a subject expert proofreading the mathematics and labeling.

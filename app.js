@@ -16,50 +16,151 @@ const courseList=s=>lessons.filter(l=>l.subject===s);
 const courseOrder=l=>courseList(l.subject).findIndex(item=>item.id===l.id)+1;
 
 const card=l=>`<a class="card" href="#lesson/${encodeURIComponent(l.id)}"><div class="meta"><span class="pill ${l.subject==='calculus'?'calculus':''}">${subject(l.subject)}</span><span>${escapeHtml(l.duration)}</span></div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.subtitle)}</p><div class="meta"><span>Lesson ${courseOrder(l)} of ${courseList(l.subject).length}</span><span class="open">${completed.has(l.id)?"✓ Completed":"Explore lesson →"}</span></div></a>`;
+
+const visualKeys={
+ "displacement":[["teal","Start"],["amber","Turn"],["navy","Finish"]],
+ "motion":[["teal","Earlier positions"],["amber","Final position"]],
+ "average-velocity":[["teal","Position"],["amber","Average slope"]],
+ "acceleration":[["teal","Velocity"],["amber","Selected time"]],
+ "free-fall":[["amber","Falling object"],["teal","Height over time"]],
+ "motion-graphs":[["teal","Position"],["amber","Velocity"],["violet","Acceleration"]],
+ "tangent":[["teal","Curve"],["amber","Secant"],["green","Tangent"]],
+ "velocity-area":[["teal","Displacement area"],["amber","Current time"]],
+ "riemann":[["teal","Rectangles"],["amber","Original function"]]
+};
+function visualLegend(name){
+ const keys=visualKeys[name]||[];
+ return '<div class="visual-key" aria-label="Diagram color key">'+keys.map(([color,label])=>
+ '<span><i class="key-dot '+color+'" aria-hidden="true"></i>'+escapeHtml(label)+'</span>').join('')+'</div>';
+}
 function heroArt(){return `<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 320"><defs><pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#b5c8bd" stroke-width=".8" opacity=".5" fill="none"/></pattern></defs><rect width="500" height="320" fill="#edf3ee"/><rect width="500" height="320" fill="url(#hero-grid)"/><path d="M52 262H466M78 290V30" stroke="#97b6af" stroke-width="1.5"/><path d="M77 244 Q170 282 265 134 T443 45" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M130 239L367 78" stroke="#ca8a46" stroke-width="3.4"/><circle cx="258" cy="145" r="8" fill="#d89e53" stroke="white" stroke-width="4"/><path d="M258 145V262" stroke="#a2b9b2" stroke-width="1.5" stroke-dasharray="5 5"/><text x="349" y="117" fill="#16666d" font-size="22" font-family="Georgia" font-style="italic">f(x)</text><text x="294" y="202" fill="#ad733b" font-size="17" font-family="Georgia">tangent</text></svg></div>`;}
 function home(){
- main.innerHTML=`<section class="hero"><div><div class="eyebrow">A clearer way to learn</div><h1>See the idea.<br><em>Understand the why.</em></h1><p>Short, clear explanations. Carefully constructed interactive diagrams. Worked examples that reveal the reasoning one step at a time.</p><div class="actions"><a class="btn primary" href="#physics">Explore Physics →</a><a class="btn" href="#calculus">Explore Calculus →</a></div><div class="note">Free educational preview · ${lessons.length} original lessons · No account needed</div></div>${heroArt()}</section><section class="section"><div class="eyebrow">Choose a subject</div><h2>One good explanation can change everything.</h2><div class="subjects"><a href="#physics" class="subject"><span class="symbol">⚙</span><span><h3>Physics</h3><p>See motion, measure change, explore forces and understand physical models.</p><span class="open">Browse physics →</span></span></a><a href="#calculus" class="subject"><span class="symbol">∫</span><span><h3>Calculus</h3><p>See how limits, derivatives and accumulated change connect.</p><span class="open">Browse calculus →</span></span></a></div></section><section class="section"><div class="eyebrow">Begin here</div><h2>Interactive sample lessons</h2><div class="cards">${lessons.map(card).join("")}</div><div class="lab-feature"><div><span class="eyebrow">Explore by measuring</span><h2>Motion Data Laboratory</h2><p>Turn observations into graphs, fit an equation, and discover what the coefficients mean.</p></div><a class="btn primary" href="lab/motion.html">Try the laboratory →</a></div></section>`;
+ const physics=lessons.filter(l=>l.subject==="physics"),calculus=lessons.filter(l=>l.subject==="calculus");
+ main.innerHTML=`
+ <div class="route-nav"><span class="route-current">The Learning Atlas</span><a href="#physics">Physics</a><a href="#calculus">Calculus</a></div>
+ <section class="home-hero">
+   <div class="eyebrow">Physics &amp; Calculus, made visible</div>
+   <h1>See it. Understand it.</h1>
+   <p>One clear idea at a time. Explore a diagram, follow an example, then try it yourself.</p>
+   <div class="home-choices">
+     <a class="subject-tile" href="#physics"><span class="subject-glyph">↗</span><span><strong>Physics</strong><small>${physics.length} interactive topics</small></span><span aria-hidden="true">→</span></a>
+     <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} interactive topics</small></span><span aria-hidden="true">→</span></a>
+   </div>
+ </section>
+ <section class="home-feature"><div class="home-feature-art">${heroArt()}</div><div class="home-feature-copy"><div class="eyebrow">Start with a picture</div><h2>What does motion look like?</h2><p>Move the dots. See how speed changes.</p><a class="btn primary" href="#lesson/motion-diagrams">Explore motion →</a></div></section>
+ <div class="lab-strip"><div><strong>Have experimental data?</strong><span>Graph motion and find a mathematical model.</span></div><a href="lab/motion.html">Open Motion Lab →</a></div>`;
 }
 function catalog(s){
- const items=lessons.filter(l=>l.subject===s);
- main.innerHTML=`<header class="catalog-hero"><div class="eyebrow">Explore by subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"Begin with an observable phenomenon, then discover the mathematical model that explains it.":"Explore the graphs, see the significance of the symbols and follow the reasoning carefully."}</p></header><label class="search">⌕ <input id="search" type="search" aria-label="Search concepts" autocomplete="off" placeholder="Search topics, concepts and lessons…"></label><div class="path-banner"><div><strong>Follow the course in order</strong><span> Your progress stays on this device: ${completedCount(s)} of ${items.length} lessons marked complete.</span></div><a class="btn primary" href="#lesson/${items[0].id}">Begin with lesson 1 →</a></div><div class="section-heading"><h2>Lessons available now</h2><span id="count" class="note">${items.length} lessons</span></div><div id="cards" class="cards">${items.map(card).join("")}</div><p class="note">These are original demonstration lessons, not a completed Physics or Calculus course. Teacher-only assessments and solutions are not published.</p>${s==="physics"?`<div class="section"><div class="lab-feature"><div><span class="eyebrow">Interactive experiment</span><h2>Motion Data Laboratory</h2><p>Enter position measurements, compare fitted models, and discover how velocity and acceleration appear in real data.</p></div><a class="btn primary" href="lab/motion.html">Open the laboratory →</a></div></div><div class="section"><h2>Printable Physics resources</h2><p>Original student guided notes and observation activities, intended to accompany the interactive lessons.</p><div class="actions"><a href="materials/motion-guided-notes.html" target="_blank" rel="noopener" class="btn">Motion diagrams notes ↗</a><a href="materials/motion-graphs-guided-notes.html" target="_blank" rel="noopener" class="btn">Position, velocity &amp; acceleration notes ↗</a><a href="materials/motion-observation-lab.html" target="_blank" rel="noopener" class="btn">Motion observation lab ↗</a><a href="materials/motion-data-lab.html" target="_blank" rel="noopener" class="btn">Motion observation lab ↗</a><a href="materials/motion-model-investigation.html" target="_blank" rel="noopener" class="btn">Regression investigation report ↗</a></div></div>`:`<div class="section"><h2>Printable Calculus resources</h2><p>A short student guide linking graphical slope, instantaneous rate and accumulated change.</p><div class="actions"><a href="materials/calculus-graphical-meaning-guided-notes.html" target="_blank" rel="noopener" class="btn">Derivative &amp; integral guided notes ↗</a></div></div>`}`;
- document.querySelector("#search").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase();const filtered=items.filter(l=>[l.title,l.subtitle,l.unit,l.idea].join(" ").toLowerCase().includes(q));document.querySelector("#cards").innerHTML=filtered.length?filtered.map(card).join(""):'<p>No matching lessons yet.</p>';document.querySelector("#count").textContent=filtered.length+" lessons";});
+ const items=courseList(s),completedTotal=completedCount(s);
+ const byUnit=[...new Set(items.map(x=>x.unit))];
+ const render=arr=>byUnit.map(unit=>{
+   const selected=arr.filter(l=>l.unit===unit);
+   if(!selected.length)return "";
+   return `<section class="topic-group"><h2>${escapeHtml(unit)}</h2><div class="topic-list">${selected.map(l=>`<a class="topic-row" href="#lesson/${encodeURIComponent(l.id)}"><span class="topic-num">${String(courseOrder(l)).padStart(2,"0")}</span><span class="topic-body"><strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(l.subtitle)}</small></span><span class="topic-state">${completed.has(l.id)?"✓ Done":"Explore →"}</span></a>`).join("")}</div></section>`;
+ }).join("");
+ main.innerHTML=`
+ <nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${items[0].id}">First lesson →</a></nav>
+ <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
+ <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
+ <div id="topic-groups">${render(items)}</div>
+ <section class="resources"><details><summary>Printables &amp; experiments</summary>${s==="physics"?`<div class="resource-links"><a href="lab/motion.html">Interactive motion data lab ↗</a><a href="materials/motion-guided-notes.html">Motion diagram notes ↗</a><a href="materials/motion-graphs-guided-notes.html">Position &amp; velocity guided notes ↗</a><a href="materials/motion-observation-lab.html">Motion observation lab ↗</a><a href="materials/motion-data-lab.html">Motion data lab worksheet ↗</a><a href="materials/motion-model-investigation.html">Regression investigation ↗</a></div>`:`<div class="resource-links"><a href="materials/calculus-graphical-meaning-guided-notes.html">Graphical derivative &amp; integral notes ↗</a></div>`}</details></section>`;
+ document.querySelector("#search").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();
+  const filtered=items.filter(l=>[l.title,l.subtitle,l.unit,l.idea].join(" ").toLowerCase().includes(q));
+  document.querySelector("#topic-groups").innerHTML=filtered.length?render(filtered):'<p class="empty-state">No lesson found. Try another term.</p>';
+ });
 }
 function about(){
- main.innerHTML=`<article class="about"><div class="eyebrow">About the project</div><h1>Understand the world. See the mathematics.</h1><p>The Learning Atlas is an independent educational demonstration. We are developing a mobile-friendly resource that connects careful observation, precise language, visual mathematical models and guided independent practice.</p><p>We believe students learn best when they understand <em>why</em> a relationship is true before memorizing how to apply it. New lessons are researched, mathematically checked and independently edited before release.</p><p>This pilot has no accounts, analytics, uploads, payments or AI calls. It is not an official Highlands Latin School, Memoria Press, Novare, College Board or Texas Instruments product.</p><div class="actions"><a href="#physics" class="btn primary">Explore Physics</a><a href="#calculus" class="btn">Explore Calculus</a></div></article>`;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
 }
 function lesson(l){
- const next=get(l.next);const st=l.example.steps;const idx=courseOrder(l);const total=courseList(l.subject).length;const previous=courseList(l.subject)[idx-2];
- main.innerHTML=`<div class="breadcrumb"><a href="#home">Home</a> › <a href="#${l.subject}">${subject(l.subject)}</a> › ${escapeHtml(l.unit)}</div><header class="lesson-title"><div class="eyebrow">${subject(l.subject)} · ${escapeHtml(l.unit)} · Lesson ${idx} of ${total} · ${escapeHtml(l.duration)}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header><div class="lesson-layout"><aside class="sidebar" aria-label="Lesson sections"><h3>In this lesson</h3><a href="#observe" data-section="observe">Observe</a><a href="#understand" data-section="understand">Understand</a><a href="#explore" data-section="explore">Explore</a><a href="#example" data-section="example">Follow an example</a><a href="#practice" data-section="practice">Try it yourself</a></aside><article class="lesson"><section class="lesson-block" id="observe"><div class="eyebrow">01 · Observe</div><h2>Begin with a question</h2><p>${escapeHtml(l.observe)}</p></section><section class="lesson-block" id="understand"><div class="eyebrow">02 · Understand</div><h2>The essential idea</h2><div class="essential">${escapeHtml(l.idea)}</div></section><section class="lesson-block" id="explore"><div class="eyebrow">03 · Explore</div><h2>See what changes</h2><p>${escapeHtml(l.visualLead)}</p><div class="interactive" id="visual"></div></section><section class="lesson-block" id="example"><div class="eyebrow">04 · Follow an example</div><h2>Watch the reasoning unfold</h2><p>${escapeHtml(l.example.question)}</p><div class="example"><div id="stepcount" class="step-counter"></div><div class="step" id="steptext"></div><div class="actions"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Next step →</button><button id="restart" type="button">Start over</button></div></div></section><section class="lesson-block" id="practice"><div class="eyebrow">06 · Try it yourself</div><h2>Can you use the idea?</h2><div class="practice"><strong>${escapeHtml(l.practice.prompt)}</strong><form id="answerform"><label for="answer">Numerical answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required placeholder="Enter a number"><button class="primary" type="submit">Check answer</button></div></form><div id="feedback" class="feedback" role="status" aria-live="polite"></div><button type="button" id="hintbtn">Show a hint</button><div id="hinttext" class="hint" hidden></div></div></section><div class="finish-lesson"><div><strong>Finished studying this lesson?</strong><p class="note">You can mark this lesson complete on this device. Try the question independently first.</p></div><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}" class="${completed.has(l.id)?"":"primary"}">${completed.has(l.id)?"✓ Completed — undo":"Mark lesson complete ✓"}</button></div><div class="actions"><a href="#${l.subject}" class="btn">All ${subject(l.subject)} lessons</a>${previous?`<a href="#lesson/${previous.id}" class="btn">← Previous lesson</a>`:""}${next?`<a href="#lesson/${next.id}" class="btn primary">Next: ${escapeHtml(next.title)} →</a>`:""}</div></article></div>`;
+ const group=courseList(l.subject),idx=courseOrder(l),previous=group[idx-2],next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
+ main.innerHTML=`
+ <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">← Back</a><a href="#home">⌂ Home</a><a href="${end}">Next →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
+ <article class="focus-lesson">
+ <section class="visual-stage" aria-label="Interactive demonstration">
+ <div class="visual-intro"><span class="visual-label">EXPLORE</span><p>${escapeHtml(l.visualLead)}</p></div>
+ <div class="interactive" id="visual"></div>
+ ${visualLegend(l.visual)}
+ <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
+ </section>
+ <section class="learn-area" aria-label="Learn and practice">
+ <div class="lesson-tabs" role="tablist" aria-label="Learning activities">
+ <button id="tab-understand" role="tab" type="button" data-view="understand" aria-controls="understand">The idea</button>
+ <button id="tab-example" role="tab" type="button" data-view="example" aria-controls="example">Example</button>
+ <button id="tab-concept-check" role="tab" type="button" data-view="concept-check" aria-controls="concept-check">Think</button>
+ <button id="tab-practice" role="tab" type="button" data-view="practice" aria-controls="practice">Try it</button>
+ </div>
+ <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text">${escapeHtml(l.idea)}</p></section>
+ <section class="lesson-panel" role="tabpanel" id="example" aria-labelledby="tab-example">
+ <div class="eyebrow">Worked example</div><h2>Follow the steps</h2><p>${escapeHtml(l.example.question)}</p>
+ <div class="example"><div class="step-counter" id="stepcount"></div><div class="step" id="steptext"></div><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Next step →</button><button id="restart" type="button">Start over</button></div></div></section>
+ <section class="lesson-panel" role="tabpanel" id="practice" aria-labelledby="tab-practice">
+ <div class="eyebrow">Independent practice</div><h2>Your turn</h2><p>${escapeHtml(l.practice.prompt)}</p>
+ <form id="answerform"><label for="answer">Answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required inputmode="decimal" placeholder="Enter your answer"><button class="primary" type="submit">Check</button></div></form><p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+ <button class="hint-button" id="hintbtn" type="button">Need a hint?</button><p id="hinttext" class="hint" hidden></p></section>
+ </section>
+ <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${next?"Next concept →":"All "+subject(l.subject)+" lessons →"}</a></div>
+ </article>`;
+ // Add the check panel before tab handling. The visual remains visible throughout.
  renderConceptCheck(l);
- document.querySelectorAll("[data-section]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.getElementById(a.dataset.section).scrollIntoView({behavior:"smooth",block:"start"});}));
- if(l.subject==="physics"){
-   const link=document.createElement("a");
-   link.href="lab/motion.html";
-   link.className="btn";
-   link.textContent="Analyze motion measurements in the lab →";
-   document.querySelector(".lesson .actions:last-child").append(link);
+ const tabs=[...document.querySelectorAll(".lesson-tabs [role=tab]")];
+ function showTab(id,focus=false){
+  tabs.forEach(t=>{const selected=t.dataset.view===id;t.setAttribute("aria-selected",String(selected));t.tabIndex=selected?0:-1;if(selected&&focus)t.focus();});
+  document.querySelectorAll(".learn-area .lesson-panel").forEach(p=>{p.hidden=p.id!==id;});
  }
+ for(let i=0;i<tabs.length;i++){
+  const tab=tabs[i];
+  tab.addEventListener("click",()=>showTab(tab.dataset.view));
+  tab.addEventListener("keydown",e=>{
+   if(!["ArrowRight","ArrowLeft","Home","End"].includes(e.key))return;
+   e.preventDefault();
+   const j=e.key==="Home"?0:e.key==="End"?tabs.length-1:(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;
+   showTab(tabs[j].dataset.view,true);
+  });
+ }
+ showTab("understand");
+ const st=l.example.steps;let step=0;
+ function paintStep(){document.querySelector("#stepcount").textContent=`Step ${step+1} of ${st.length}`;document.querySelector("#steptext").textContent=st[step];document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
+ document.querySelector("#prev").onclick=()=>{step=Math.max(0,step-1);paintStep();};
+ document.querySelector("#next").onclick=()=>{step=Math.min(st.length-1,step+1);paintStep();};
+ document.querySelector("#restart").onclick=()=>{step=0;paintStep();};paintStep();
+ document.querySelector("#answerform").onsubmit=e=>{
+  e.preventDefault();const input=document.querySelector("#answer").value, value=Number(input);
+  const good=input.trim()!==""&&Number.isFinite(value)&&Math.abs(value-l.practice.answer)<=l.practice.tolerance;
+  const out=document.querySelector("#feedback");out.className="feedback "+(good?"good":"try");
+  out.textContent=good?"Correct. Explain what the result means.":"Check the idea, the sign, and the units. Try a hint.";
+ };
+ let hint=0;document.querySelector("#hintbtn").onclick=()=>{
+   const h=l.practice.hints;const out=document.querySelector("#hinttext");out.hidden=false;out.textContent=h[Math.min(hint,h.length-1)];hint++;document.querySelector("#hintbtn").textContent=hint<h.length?"Another hint":"Review hint";
+ };
  const mark=document.querySelector("#markdone");
- mark.onclick=()=>{if(completed.has(l.id))completed.delete(l.id);else completed.add(l.id);saveCompleted();mark.textContent=completed.has(l.id)?"✓ Completed — undo":"Mark lesson complete ✓";mark.setAttribute("aria-pressed",String(completed.has(l.id)));mark.classList.toggle("primary",!completed.has(l.id));};
-
- let step=0;function paintStep(){document.querySelector("#stepcount").textContent="Step "+(step+1)+" of "+st.length;document.querySelector("#steptext").textContent=st[step];document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
- document.querySelector("#prev").onclick=()=>{step=Math.max(0,step-1);paintStep();};document.querySelector("#next").onclick=()=>{step=Math.min(st.length-1,step+1);paintStep();};document.querySelector("#restart").onclick=()=>{step=0;paintStep();};paintStep();
- document.querySelector("#answerform").onsubmit=e=>{e.preventDefault();const value=Number(document.querySelector("#answer").value),good=Number.isFinite(value)&&Math.abs(value-l.practice.answer)<=l.practice.tolerance;const out=document.querySelector("#feedback");out.className="feedback "+(good?"good":"try");out.textContent=good?"Correct. Now see if you can explain why the result makes sense.":"Not quite. Check your formula, sign or units. Try a hint if you need one.";};
- let hint=0;document.querySelector("#hintbtn").onclick=()=>{const h=l.practice.hints;document.querySelector("#hinttext").hidden=false;document.querySelector("#hinttext").textContent=h[Math.min(hint,h.length-1)];hint++;document.querySelector("#hintbtn").textContent=hint<h.length?"Another hint":"Review hint";};
- const el=document.querySelector("#visual");if(l.visual==="displacement")displacement(el);if(l.visual==="average-velocity")averageVelocity(el);if(l.visual==="free-fall")freeFall(el);if(l.visual==="velocity-area")velocityArea(el);if(l.visual==="motion")motion(el);if(l.visual==="acceleration")acceleration(el);if(l.visual==="motion-graphs")linkedGraphs(el);if(l.visual==="tangent")tangent(el);if(l.visual==="riemann")riemann(el);
+ mark.onclick=()=>{if(completed.has(l.id))completed.delete(l.id);else completed.add(l.id);saveCompleted();mark.textContent=completed.has(l.id)?"✓ Marked complete":"○ Mark complete";mark.setAttribute("aria-pressed",String(completed.has(l.id)));};
+ const el=document.querySelector("#visual");
+ if(l.visual==="displacement")displacement(el);
+ if(l.visual==="average-velocity")averageVelocity(el);
+ if(l.visual==="free-fall")freeFall(el);
+ if(l.visual==="velocity-area")velocityArea(el);
+ if(l.visual==="motion")motion(el);
+ if(l.visual==="acceleration")acceleration(el);
+ if(l.visual==="motion-graphs")linkedGraphs(el);
+ if(l.visual==="tangent")tangent(el);
+ if(l.visual==="riemann")riemann(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
  if(!c) return;
  const section=document.createElement("section");
- section.className="lesson-block conceptual-check";
+ section.className="lesson-panel conceptual-check";
+ section.setAttribute("role","tabpanel");
+ section.setAttribute("aria-labelledby","tab-concept-check");;
  section.id="concept-check";
  const eyebrow=document.createElement("div");
  eyebrow.className="eyebrow";
- eyebrow.textContent="05 · Check your reasoning";
+ eyebrow.textContent="Check your understanding";
  const heading=document.createElement("h2");
- heading.textContent="Do you understand the idea?";
+ heading.textContent="Think before answering";
  const prompt=document.createElement("p");
  prompt.textContent=c.prompt;
  const fieldset=document.createElement("fieldset");
@@ -106,12 +207,6 @@ function renderConceptCheck(lesson) {
  });
  section.append(eyebrow,heading,prompt,fieldset,check,feedback);
  document.querySelector("#practice").before(section);
- const sidebar=document.querySelector(".sidebar");
- const link=document.createElement("a");
- link.href="#concept-check";
- link.dataset.section="concept-check";
- link.textContent="Check your reasoning";
- sidebar.querySelector('[data-section="practice"]').before(link);
 }
 
 function motion(el){
