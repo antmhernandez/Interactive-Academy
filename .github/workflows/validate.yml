@@ -24,3 +24,5 @@ jobs:
         run: |
           node scripts/validate.mjs
           node scripts/test-regression.mjs
+          node scripts/validate-curriculum.mjs
+          node scripts/test-interactives.mjs
