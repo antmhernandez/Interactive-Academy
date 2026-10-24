@@ -16,6 +16,23 @@ const courseList=s=>lessons.filter(l=>l.subject===s);
 const courseOrder=l=>courseList(l.subject).findIndex(item=>item.id===l.id)+1;
 
 const card=l=>`<a class="card" href="#lesson/${encodeURIComponent(l.id)}"><div class="meta"><span class="pill ${l.subject==='calculus'?'calculus':''}">${subject(l.subject)}</span><span>${escapeHtml(l.duration)}</span></div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.subtitle)}</p><div class="meta"><span>Lesson ${courseOrder(l)} of ${courseList(l.subject).length}</span><span class="open">${completed.has(l.id)?"✓ Completed":"Explore lesson →"}</span></div></a>`;
+
+const visualKeys={
+ "displacement":[["teal","Start"],["amber","Turn"],["navy","Finish"]],
+ "motion":[["teal","Earlier positions"],["amber","Final position"]],
+ "average-velocity":[["teal","Position"],["amber","Average slope"]],
+ "acceleration":[["teal","Velocity"],["amber","Selected time"]],
+ "free-fall":[["amber","Falling object"],["teal","Height over time"]],
+ "motion-graphs":[["teal","Position"],["amber","Velocity"],["violet","Acceleration"]],
+ "tangent":[["teal","Curve"],["amber","Secant"],["green","Tangent"]],
+ "velocity-area":[["teal","Displacement area"],["amber","Current time"]],
+ "riemann":[["teal","Rectangles"],["amber","Original function"]]
+};
+function visualLegend(name){
+ const keys=visualKeys[name]||[];
+ return '<div class="visual-key" aria-label="Diagram color key">'+keys.map(([color,label])=>
+ '<span><i class="key-dot '+color+'" aria-hidden="true"></i>'+escapeHtml(label)+'</span>').join('')+'</div>';
+}
 function heroArt(){return `<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 320"><defs><pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#b5c8bd" stroke-width=".8" opacity=".5" fill="none"/></pattern></defs><rect width="500" height="320" fill="#edf3ee"/><rect width="500" height="320" fill="url(#hero-grid)"/><path d="M52 262H466M78 290V30" stroke="#97b6af" stroke-width="1.5"/><path d="M77 244 Q170 282 265 134 T443 45" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M130 239L367 78" stroke="#ca8a46" stroke-width="3.4"/><circle cx="258" cy="145" r="8" fill="#d89e53" stroke="white" stroke-width="4"/><path d="M258 145V262" stroke="#a2b9b2" stroke-width="1.5" stroke-dasharray="5 5"/><text x="349" y="117" fill="#16666d" font-size="22" font-family="Georgia" font-style="italic">f(x)</text><text x="294" y="202" fill="#ad733b" font-size="17" font-family="Georgia">tangent</text></svg></div>`;}
 function home(){
  const physics=lessons.filter(l=>l.subject==="physics"),calculus=lessons.filter(l=>l.subject==="calculus");
@@ -65,6 +82,7 @@ function lesson(l){
  <section class="visual-stage" aria-label="Interactive demonstration">
  <div class="visual-intro"><span class="visual-label">EXPLORE</span><p>${escapeHtml(l.visualLead)}</p></div>
  <div class="interactive" id="visual"></div>
+ ${visualLegend(l.visual)}
  <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
  </section>
  <section class="learn-area" aria-label="Learn and practice">
