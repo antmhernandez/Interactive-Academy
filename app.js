@@ -2,6 +2,7 @@
 const main=document.querySelector("#main");
 const nav=document.querySelector("#nav");
 let lessons=[];
+let curriculum=null;
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -56,6 +57,10 @@ function home(){
 }
 function catalog(s){
  const items=courseList(s),completedTotal=completedCount(s);
+ const topicOwners=new Map(curriculum.subjects.flatMap(q=>q.units.flatMap(u=>u.topics.map(t=>[t.id,q.id]))));
+ const downloads=curriculum.assets.filter(a=>topicOwners.get(a.owner)===s);
+ const printableLinks=downloads.map(a=>'<a href="'+encodeURI(a.path)+'"'+(a.path.startsWith("lab/")?'':' target="_blank" rel="noopener"')+'>'+escapeHtml(a.label)+' ↗</a>').join("");
+ const futureCount=curriculum.subjects.find(x=>x.id===s).units.flatMap(u=>u.topics).filter(t=>t.status==="planned").length;
  const byUnit=[...new Set(items.map(x=>x.unit))];
  const render=arr=>byUnit.map(unit=>{
    const selected=arr.filter(l=>l.unit===unit);
@@ -67,12 +72,29 @@ function catalog(s){
  <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
- <section class="resources"><details><summary>Printables &amp; experiments</summary>${s==="physics"?`<div class="resource-links"><a href="lab/motion.html">Interactive motion data lab ↗</a><a href="materials/motion-guided-notes.html">Motion diagram notes ↗</a><a href="materials/motion-graphs-guided-notes.html">Position &amp; velocity guided notes ↗</a><a href="materials/motion-observation-lab.html">Motion observation lab ↗</a><a href="materials/motion-data-lab.html">Motion data lab worksheet ↗</a><a href="materials/motion-model-investigation.html">Regression investigation ↗</a></div>`:`<div class="resource-links"><a href="materials/calculus-graphical-meaning-guided-notes.html">Graphical derivative &amp; integral notes ↗</a></div>`}</details></section>`;
+ <div class="outline-link"><a href="#roadmap/${s}">View full course map <span>(${futureCount} planned topics)</span> →</a></div>
+ <section class="resources"><details><summary>Guided notes &amp; experiments</summary><div class="resource-links">${printableLinks}</div></details></section>`;
  document.querySelector("#search").addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase();
   const filtered=items.filter(l=>[l.title,l.subtitle,l.unit,l.idea].join(" ").toLowerCase().includes(q));
   document.querySelector("#topic-groups").innerHTML=filtered.length?render(filtered):'<p class="empty-state">No lesson found. Try another term.</p>';
  });
+}
+function roadmap(subjectId){
+ const info=curriculum.subjects.find(q=>q.id===subjectId);
+ const topics=info.units.flatMap(u=>u.topics),available=topics.filter(t=>t.status==="available").length;
+ const sections=info.units.map(u=>{
+  const ready=u.topics.filter(t=>t.status==="available").length;
+  const rows=u.topics.map(t=>`<div class="roadmap-topic ${t.status==="planned"?"planned":""}">
+    <span>${t.status==="available"?"✓":"○"}</span>
+    <span class="roadmap-topic-name">${t.status==="available"?`<a href="#lesson/${t.id}">${escapeHtml(t.title)}</a>`:escapeHtml(t.title)}<small>${escapeHtml(t.goal)}</small></span>
+    <span class="roadmap-status">${t.status==="available"?"Explore":"Planned"}</span></div>`).join("");
+  return `<details class="roadmap-unit" ${ready?"open":""}><summary><span>${escapeHtml(u.title)}</span><small>${ready} / ${u.topics.length} ready</small></summary><div>${rows}</div></details>`;
+ }).join("");
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#${subjectId}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${courseList(subjectId)[0].id}">First lesson →</a></nav>
+ <header class="catalog-head"><div class="eyebrow">Curriculum roadmap · ${escapeHtml(info.title)}</div><h1>Course Map</h1><p>Explore the lessons available now. Future topics are organized here but cannot yet be opened.</p><div class="mini-progress">${available} available · ${topics.length-available} planned</div></header>
+ <div class="roadmap-units">${sections}</div>
+ <p class="map-footnote">This outline is a development plan, not a promise of course completion or a textbook reproduction. Some topics may be revised as we test the teaching sequence.</p>`;
 }
 function about(){
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
@@ -385,9 +407,11 @@ function riemann(el){
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-fetch("content/lessons.json").then(r=>{if(!r.ok)throw Error("Lesson library unavailable");return r.json()}).then(data=>{lessons=data;route()}).catch(e=>{main.innerHTML='<article class="about"><h1>Unable to open lessons</h1><p>Please use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
+Promise.all(["content/lessons.json","curriculum/catalog.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map])=>{lessons=data;curriculum=map;route();})
+ .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
