@@ -6,7 +6,7 @@
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
 ## Current teaching preview
-Nine short demonstration lessons (six Physics, three Calculus), four original Physics printables, one Calculus printable, and ordered course navigation. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. These are not yet an entire graded course.
+Nine short demonstration lessons (six Physics, three Calculus), nine misconception-aware concept checks, five original Physics printables, one Calculus printable, and ordered course navigation. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Start
 Open `index.html` through a local static server, such as `python -m http.server 8000`. In GitHub Pages, publish `main` from `/(root)` once the account is eligible.
@@ -31,7 +31,10 @@ The initial site is static, does not require a database or login, does not colle
 - `index.html` — accessible single-page entry
 - `styles.css` — responsive design system
 - `app.js` — navigation, diagrams, lesson interactions
-- `content/lessons.json` — structured original lesson text and examples
+- `content/lessons.json` — original lessons, independent practice and conceptual questions with misconception-specific feedback
+- `lab/motion.html` — browser-based position–time experiment and regression investigation
+- `lab/regression.mjs` — separately tested least-squares numerical engine
+- `scripts/test-regression.mjs` — independent mathematical model checks
 - `docs/` — project standards, source provenance and development roadmap
 - `materials/` — original printable student demonstration activities
 
@@ -43,6 +46,6 @@ The initial site is static, does not require a database or login, does not colle
 - Improve exercise verification beyond initial single-number answers; add worked solution and misconception checks.
 - Test with students, parents and teachers, then assess curriculum licensing or publisher distribution.
 
-See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, and `docs/HOSTING.md`.
+See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, `docs/HOSTING.md`, and `docs/08_MOTION_LAB_TEACHING_AND_QA.md`.
 
 © Original website prose and software are project development work; formal licensing and author ownership must be settled before commercial release.
