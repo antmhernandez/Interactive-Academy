@@ -108,6 +108,10 @@ p{margin:0 0 14px}
 .interactive .metric small{display:block;color:var(--muted);font-size:.76rem}
 .interactive .metric strong{display:block;color:var(--teal);font-size:1.3rem;line-height:1.45;font-variant-numeric:tabular-nums}
 .interactive .note{font-size:.8rem;color:var(--muted);margin:12px 0 0}
+.visual-key{display:flex;align-items:center;flex-wrap:wrap;gap:8px 17px;margin-top:11px;padding:2px 3px;font-size:.78rem;font-weight:650;color:#456d67}
+.visual-key span{display:inline-flex;align-items:center;gap:6px}
+.key-dot{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--teal)}
+.key-dot.teal{background:#14727a}.key-dot.amber{background:#c08039}.key-dot.green{background:#56a68d}.key-dot.violet{background:#6578a5}.key-dot.navy{background:#324a6c}
 .notice-line{display:flex;align-items:flex-start;gap:12px;margin-top:14px}
 .notice-line span{color:#075d68;font-weight:840;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em}
 .notice-line p{font-size:.92rem;line-height:1.55;color:#325e5a;margin:0;flex:1}
