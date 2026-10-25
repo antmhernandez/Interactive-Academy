@@ -27,3 +27,4 @@ jobs:
           node scripts/validate-curriculum.mjs
           node scripts/validate-learning-resources.mjs
           node scripts/test-interactives.mjs
+          node scripts/validate-book-portal.mjs
