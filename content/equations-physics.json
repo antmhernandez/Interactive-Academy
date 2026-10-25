@@ -202,8 +202,29 @@
       "title": "Rotational Motion",
       "scope": "optional-extension",
       "status": "extension-reference-preview",
-      "note": "Further textbook chapter: rotational dynamics. Full chapter reference is not yet reviewed.",
-      "equations": []
+      "note": "Rotational motion beyond the present school schedule; use as an optional textbook-chapter reference.",
+      "equations": [
+        {
+          "name": "Angular velocity",
+          "formula": "ωavg = Δθ / Δt",
+          "conditions": "Rotation angle θ in radians; ω in rad/s."
+        },
+        {
+          "name": "Tangential speed",
+          "formula": "v = r|ω|",
+          "conditions": "Point at distance r from a rigid rotation axis."
+        },
+        {
+          "name": "Centripetal acceleration",
+          "formula": "ac = v² / r = rω²",
+          "conditions": "Radially inward component during circular motion."
+        },
+        {
+          "name": "Torque magnitude",
+          "formula": "τ = rF sinθ",
+          "conditions": "Angle between position vector from axis and applied force."
+        }
+      ]
     },
     {
       "number": 9,
