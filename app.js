@@ -42,7 +42,9 @@ const visualKeys={
  "limit-value":[["teal","Nearby graph"],["amber","Defined point"]],
  "unit-conversion":[["teal","Meters"],["amber","Centimeters"]],
  "measurement-ruler":[["teal","Estimated interval"],["amber","Object edge"]],
- "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]]
+ "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]],
+ "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
+ "slope-graph":[["teal","Position curve"],["amber","Secant slope"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -198,6 +200,8 @@ function lesson(l){
  if(l.visual==="unit-conversion")unitConversion(el);
  if(l.visual==="measurement-ruler")measurementRuler(el);
  if(l.visual==="significant-digits")significantDigits(el);
+ if(l.visual==="units-cancel")unitCancellation(el);
+ if(l.visual==="slope-graph")slopeToolkit(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -497,6 +501,22 @@ function significantDigits(el){
   el.querySelector("#sig-rounded").textContent=p.toPrecision(n);
   el.querySelector("#sig-count").textContent=String(n);
  }A.onchange=B.onchange=draw;draw();
+}
+function unitCancellation(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Let the units cancel</strong><span class="pill">Dimensional analysis</span></div><svg viewBox="0 0 540 224" role="img" aria-label="A calculation with units and its resulting physical unit"><rect width="540" height="224" rx="12" fill="#f8fbf9"/><g id="cancel-plot"></g></svg><div class="controls"><label>Choose a relationship <select id="unit-scenario"><option value="distance">Distance = speed × time</option><option value="speed">Speed = distance ÷ time</option><option value="convert">Convert kilometers per hour</option></select></label></div><div class="readout"><div class="metric"><small>Numerical result</small><strong id="unit-cancel-answer"></strong></div><div class="metric"><small>Remaining units</small><strong id="unit-cancel-units"></strong></div></div><p class="note">Consistent units are necessary for an equation, but do not alone prove a physical model correct.</p>`;
+ const D=el.querySelector("#unit-scenario"),G=el.querySelector("#cancel-plot");
+ const models={distance:["3 m/s × 4 s","(m/s) × s","12 m","m","Seconds cancel"],speed:["18 m ÷ 3 s","m ÷ s","6 m/s","m/s","Time remains below"],convert:["36 km/h → m/s","36 × 1000 / 3600","10 m/s","m/s","Convert kilometers and hours"]};
+ function draw(){const [a,b,ans,units,note]=models[D.value];G.innerHTML=`<rect x="30" y="37" width="480" height="139" rx="13" fill="#fff" stroke="#d3e6df"/><text x="270" y="78" font-size="22" fill="#385f5b" text-anchor="middle">${a}</text><text x="270" y="116" font-size="18" fill="#14727a" text-anchor="middle">${b}</text><text x="270" y="151" font-size="22" font-weight="bold" fill="#b27630" text-anchor="middle">= ${ans}</text><text x="270" y="204" font-size="13" fill="#61746f" text-anchor="middle">${note}</text>`;el.querySelector("#unit-cancel-answer").textContent=ans;el.querySelector("#unit-cancel-units").textContent=units;}D.onchange=draw;draw();
+}
+function slopeToolkit(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Position vs. time</strong><span class="pill">Secant slope</span></div><svg viewBox="0 0 540 324" role="img" aria-label="Curved position-time graph with adjustable secant endpoints"><rect width="540" height="324" rx="12" fill="#f8fbf9"/><g id="slope-plot"></g></svg><div class="controls"><label>First time <strong id="slope-t1-label"></strong><input id="slope-t1" type="range" min="0" max="1.5" step=".5" value="0"/></label><label>Second time <strong id="slope-t2-label"></strong><input id="slope-t2" type="range" min="2" max="4" step=".5" value="2"/></label></div><div class="readout"><div class="metric"><small>Change in position</small><strong id="slope-rise"></strong></div><div class="metric"><small>Elapsed time</small><strong id="slope-run"></strong></div><div class="metric"><small>Secant slope</small><strong id="slope-value"></strong></div></div><p class="note">The example model is x(t) = 1 + t² meters, time in seconds. Secant slope is average velocity.</p>`;
+ const A=el.querySelector("#slope-t1"),B=el.querySelector("#slope-t2"),G=el.querySelector("#slope-plot"),X=t=>78+t*105,Y=x=>280-13*x;
+ function draw(){const t1=+A.value,t2=+B.value,x1=1+t1*t1,x2=1+t2*t2;
+  const curve=Array.from({length:41},(_,i)=>{const t=i/10;return `${i?"L":"M"}${X(t)} ${Y(1+t*t)}`}).join(" ");
+  G.innerHTML=`<path d="M77 30V280H510" stroke="#93b5a8" stroke-width="1.5" fill="none"/><path d="${curve}" fill="none" stroke="#14727a" stroke-width="4"/><path d="M${X(t1)} ${Y(x1)}L${X(t2)} ${Y(x2)}" stroke="#c08039" stroke-width="4"/><circle cx="${X(t1)}" cy="${Y(x1)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><circle cx="${X(t2)}" cy="${Y(x2)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><path d="M${X(t1)} ${Y(x1)}V280M${X(t2)} ${Y(x2)}V280" stroke="#b7d3c7" stroke-dasharray="4 4"/><text x="25" y="29" font-size="13" fill="#4c7368">x (m)</text><text x="465" y="307" font-size="13" fill="#4c7368">t (s)</text><text x="${X(t1)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t1)}</text><text x="${X(t2)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t2)}</text>`;
+  el.querySelector("#slope-t1-label").textContent=f(t1)+" s";el.querySelector("#slope-t2-label").textContent=f(t2)+" s";
+  el.querySelector("#slope-rise").textContent=f(x2-x1)+" m";el.querySelector("#slope-run").textContent=f(t2-t1)+" s";el.querySelector("#slope-value").textContent=f((x2-x1)/(t2-t1))+" m/s";
+ }A.oninput=B.oninput=draw;draw();
 }
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
