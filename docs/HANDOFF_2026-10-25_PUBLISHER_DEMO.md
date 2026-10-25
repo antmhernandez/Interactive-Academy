@@ -213,9 +213,9 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - Headless Chromium passed at 320, 375, 768, 1024, and 1440px; covers the experiment-gallery count/filter, book navigation, lesson tabs, numeric sliders, both new onset-of-slip actions, progressive steps and presentation mode.
 - Publishing: PR #12 merged into `main`. Re-verify main-branch CI and public Pages propagation separately; do not substitute a Chromium viewport for actual iOS/Safari, screen-reader, physical projector or lesson-pedagogy testing.
 
-## October 25 continuation: original conservation-of-energy laboratory (PR in progress)
+## October 25 continuation: original conservation-of-energy laboratory (merged PR #13)
 
-**Source:** `feature/energy-conservation-experiment-2026-10-25`. **Use `main` after merge.** The user requested continued implementation following completed Chapter 5 force applets; conserve original textbook order while opening a useful preview of Chapters 10–11.
+**Merged into `main`:** [PR #13](https://github.com/antmhernandez/Interactive-Academy/pull/13); squash commit `958756d3f5220aab0e6e8e67590ab9e1936652dc`. **The authoritative branch is `main`.** The user requested continued implementation following completed Chapter 5 force applets; conserve original textbook order while opening a useful preview of Chapters 10–11.
 
 ### Features and lesson architecture
 - New original `applets/energy-ramp.js` module exports global `energyRampState` (pure physics calculation) and `energyRamp` (accessible controls, geometric illustration, energy bars, step, real-equation playback, compare frictionless, reset).
@@ -228,6 +228,11 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - Full design and source/assumption review: [`docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md`](19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md).
 
 ### Remaining acceptance and next development
-- Complete GitHub Actions on PR, fix test failures, merge after green and verify main deployment; amend this handoff with PR/run/SHA.
+- PR validation passed: [GitHub Actions run #55](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40232066089) (the exact run ID is authoritative; job completed successfully). Check final `main` push and Pages workflows separately after the documentation commits.
 - Physical Safari/Android, keyboard and screen reader, projector and teacher/student comprehension audits are **not** established by automated Chromium.
 - Future progression: first fill Chapters 7–9 sequentially (gravitation, rotation, momentum) when building the required course; or maintain other higher-chapter applets as *clearly optional previews*. Avoid silently skipping prerequisites.
+
+### Verified energy feature implementation
+- PR #13 merged after successful full [GitHub Actions run 40232066089](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40232066089), covering model numerics, school-year textbook sequencing and headless Chromium viewport journeys.
+- Four energy lessons are explicitly `optionalPreview:true` and do not modify the regular Chapter 1–6 next chain; see source audit `docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md`.
+- Manual Safari/iOS/Android, VoiceOver/NVDA and large-display classroom comprehension reviews are still unperformed. Do not imply otherwise.
