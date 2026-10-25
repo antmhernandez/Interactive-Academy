@@ -38,10 +38,21 @@ Two additional complete Chapter 6 Physics concepts are available:
 
 The four Chapter 6 visual concepts now include optional **Predict → Manipulate → Connect** inquiry prompts directly beneath the demonstration. These prepare students to reason physically *before* they calculate. The basic The Idea / Example / Think / Try it framework, three graduated guided problems per lesson, and accumulating worked steps remain unchanged.
 
-The project now has **24 lessons and 72 graduated problems**; the original 84-equation reference index remains available. See [the investigation design and mathematical QA standard](docs/17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md).
+The project now has **26 lessons and 78 graduated problems**; the original 84-equation reference index remains available. See [the investigation design and mathematical QA standard](docs/17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md).
+
+## Contact forces and inclined planes — October 25, 2026
+
+Two new original, classroom-oriented PhET-style investigations extend the existing **Chapter 5** force unit *before* Chapter 6:
+
+- [When Does Friction Give Way?](https://antmhernandez.github.io/Interactive-Academy/#lesson/friction) — vary horizontal pull, crate mass, μₛ and μₖ to predict the transition between rest and sliding; see actual static friction, its maximum, kinetic friction and acceleration.
+- [Forces on an Inclined Plane](https://antmhernandez.github.io/Interactive-Academy/#lesson/inclined-planes) — vary ramp angle, mass and friction coefficients to see how gravity resolves, whether static friction can hold, and how sliding begins.
+
+Both have original diagrams and numerical physical models, a Predict–Manipulate–Connect inquiry, a worked example, a misconception-aware check and **three progressively scaffolded guided problems**. Each diagram states its ideal assumptions; the models represent release from rest and do not simulate later velocity-dependent behavior.
+
+The site now has **12 curated Experiment Room applets, 26 complete lessons and 78 guided problems**. The new applet engines reside in the dedicated source file `applets/contact-forces.js`; the independent Physics sequence remains separate from publisher-specific Novare chapter claims. See [design/math audit](docs/18_CONTACT_FORCES_AND_INCLINES_2026-10-25.md).
 
 ## Current teaching preview
-Twenty-four original demonstration lessons (nineteen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty-four misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Twenty-six original demonstration lessons (twenty-one Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty-six misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
