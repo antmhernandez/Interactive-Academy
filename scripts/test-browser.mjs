@@ -95,8 +95,7 @@ try{
  assert.ok(await page.locator(".companion-links").innerText().then(x=>x.includes("Chapter 1")),"Uncontextualized Glencoe reference survives");
  await route(page,"#lesson/two-dimensional-motion");
  assert.equal(await page.locator("#velocity-vectors path").count()>0,true);
- await page.locator("#velocity-angle").fill("90");
- await page.locator("#velocity-angle").dispatchEvent("input");
+ await page.locator("#velocity-angle").evaluate(el=>{el.value="90";el.dispatchEvent(new Event("input",{bubbles:true}));});
  assert.equal(await page.locator("#velocity-x").innerText(),"0 m/s");
  await page.locator('.route-nav a').last().click();
  await page.locator("#projectile-trace path").first().waitFor();
