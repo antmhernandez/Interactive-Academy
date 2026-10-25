@@ -966,6 +966,132 @@
     ]
   },
   {
+    "owner": "torque-levers",
+    "title": "How a Force Turns a Lever",
+    "levels": [
+      {
+        "prompt": "A 20 N force pushes perpendicularly upward 0.60 m right of a pivot. What signed torque acts about the pivot, in N·m?",
+        "answer": 12,
+        "unit": "N·m",
+        "steps": [
+          "Perpendicular means sin90°=1.",
+          "τ=0.60×20×1.",
+          "τ=+12 N·m (counterclockwise)."
+        ],
+        "level": "Begin",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A 40 N force acts 30° above the rightward arm, 0.50 m from the pivot. What signed torque is produced in N·m?",
+        "answer": 10,
+        "unit": "N·m",
+        "steps": [
+          "Only the perpendicular force component produces turning.",
+          "τ=rF sin30°.",
+          "τ=0.50×40×0.5=10 N·m, counterclockwise."
+        ],
+        "level": "Extend",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A 15 N force acts 60° below the arm, 1.2 m right of the pivot. Find signed torque in N·m.",
+        "answer": -15.588457268119894,
+        "unit": "N·m",
+        "steps": [
+          "Below the arm means φ=−60°, clockwise.",
+          "τ=(1.2)(15)sin(−60°).",
+          "τ≈−15.59 N·m. The sign denotes clockwise turning."
+        ],
+        "level": "Challenge",
+        "tolerance": 0.03
+      }
+    ]
+  },
+  {
+    "owner": "rotational-inertia",
+    "title": "Why Some Wheels Resist Spinning",
+    "levels": [
+      {
+        "prompt": "A 4 kg uniform solid disk has radius 0.50 m. What is its central-axis moment of inertia in kg·m²?",
+        "answer": 0.5,
+        "unit": "kg·m²",
+        "steps": [
+          "A uniform disk about its central axle has I=½mR².",
+          "R²=.5²=.25.",
+          "I=½×4×.25=.50 kg·m²."
+        ],
+        "level": "Begin",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A thin hoop of mass 3 kg has radius 2 m. Find its central-axis moment of inertia in kg·m².",
+        "answer": 12,
+        "unit": "kg·m²",
+        "steps": [
+          "For a thin hoop, I=mR².",
+          "Square R=2 m to get 4 m².",
+          "I=3×4=12 kg·m²."
+        ],
+        "level": "Extend",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A solid disk and thin hoop each have mass 6 kg, radius 1 m and torque 12 N·m. By how many rad/s² does the disk's angular acceleration exceed the hoop's?",
+        "answer": 2,
+        "unit": "rad/s²",
+        "steps": [
+          "I_disk=½(6)(1²)=3 kg·m²; I_hoop=6 kg·m².",
+          "α_disk=12/3=4 rad/s²; α_hoop=12/6=2 rad/s².",
+          "Difference=4−2=2 rad/s²."
+        ],
+        "level": "Challenge",
+        "tolerance": 0.03
+      }
+    ]
+  },
+  {
+    "owner": "rotational-dynamics",
+    "title": "Torque Changes Rotation",
+    "levels": [
+      {
+        "prompt": "A wheel has moment of inertia 2 kg·m² and constant net torque 8 N·m. What is its angular acceleration in rad/s²?",
+        "answer": 4,
+        "unit": "rad/s²",
+        "steps": [
+          "Use τ_net=Iα.",
+          "Solve α=τ/I.",
+          "α=8/2=4 rad/s²."
+        ],
+        "level": "Begin",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A wheel initially at rest has I=4 kg·m² and torque 8 N·m. Find angular speed after 3 s in rad/s.",
+        "answer": 6,
+        "unit": "rad/s",
+        "steps": [
+          "α=τ/I=8/4=2 rad/s².",
+          "Starting from rest, ω=αt.",
+          "ω=2×3=6 rad/s."
+        ],
+        "level": "Extend",
+        "tolerance": 0.03
+      },
+      {
+        "prompt": "A wheel from rest has I=3 kg·m² and constant torque 6 N·m for 4 s. Find angular displacement in radians.",
+        "answer": 16,
+        "unit": "rad",
+        "steps": [
+          "Angular acceleration α=6/3=2 rad/s².",
+          "Starting from rest θ=½αt².",
+          "θ=½×2×4²=16 rad."
+        ],
+        "level": "Challenge",
+        "tolerance": 0.03
+      }
+    ]
+  },
+  {
     "owner": "work-energy",
     "title": "Work Transfers Energy",
     "levels": [
