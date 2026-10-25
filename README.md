@@ -27,8 +27,21 @@ The homepage now uses an original mathematics illustration, a four-part lesson-m
 
 Two new original Physics units of study are available: [Motion in Two Dimensions](https://antmhernandez.github.io/Interactive-Academy/#lesson/two-dimensional-motion) and [The Path of a Projectile](https://antmhernandez.github.io/Interactive-Academy/#lesson/projectile-motion). Each includes a dynamically calculated SVG model, four teaching tabs, stepwise worked example, reasoning check, numeric practice, and a three-level guided practice set. The projectile model assumes level launch/landing height, no air resistance and g = 9.8 m/s². The new content extends the independent Glencoe-index course and is **not** a Novare edition/chapter mapping. See [the implementation and pedagogy review](docs/16_EDITORIAL_INTERFACE_AND_CHAPTER_06.md).
 
+## Interactive investigations / Experiment Room (October 25, 2026)
+
+The new [Experiment Room](https://antmhernandez.github.io/Interactive-Academy/#applets) gives students a dedicated gallery of **ten original Physics and Calculus applets**, filterable by subject and linked directly to their complete lessons. These are independently built educational models, **not copies or embeds of PhET simulations**.
+
+Two additional complete Chapter 6 Physics concepts are available:
+
+- [Why Circular Motion Accelerates](https://antmhernandez.github.io/Interactive-Academy/#lesson/circular-motion): manipulate radius and speed, step through 30° increments, play/pause orbital motion, hide or show tangent/inward arrows, and connect the model to `aᶜ = v²/r` and period `T = 2πr/v`.
+- [Crossing a Moving River](https://antmhernandez.github.io/Interactive-Academy/#lesson/relative-velocity): change speed, current, heading, and width; compare the ground-frame landing point, drift, crossing time, and net ground speed; aim upstream to counter the current.
+
+The four Chapter 6 visual concepts now include optional **Predict → Manipulate → Connect** inquiry prompts directly beneath the demonstration. These prepare students to reason physically *before* they calculate. The basic The Idea / Example / Think / Try it framework, three graduated guided problems per lesson, and accumulating worked steps remain unchanged.
+
+The project now has **24 lessons and 72 graduated problems**; the original 84-equation reference index remains available. See [the investigation design and mathematical QA standard](docs/17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md).
+
 ## Current teaching preview
-Twenty-two original demonstration lessons (seventeen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty-two misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Twenty-four original demonstration lessons (nineteen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty-four misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
@@ -36,7 +49,7 @@ The site offers a dedicated **Course Map** page for each subject, listing availa
 
 ## Textbook progression and learning companions
 
-Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–6, including original **two-dimensional velocity** and **projectile motion** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
+Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–6, including original **two-dimensional velocity**, **projectile motion**, **circular motion**, and **river-crossing relative velocity** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
 
 Every completed topic now includes **Definition & Example** (`#study/{id}`) and **Guided Practice** (`#guided/{id}`) pages. The study page has the original definition, fully worked example, and a student problem directly below. The practice page moves through Begin, Extend, and Challenge problems, progressively revealing each reasoning step *beneath* earlier steps. A separate **Physics Equation Reference** (`#equations`) indexes the formula notes for all 30 chapters. See `docs/13_TEXTBOOK_ORDER_STUDY_GUIDED_PRACTICE_AND_EQUATIONS.md`.
 
