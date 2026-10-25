@@ -224,7 +224,7 @@
             },
             {
               "id": "friction",
-              "title": "Friction and Contact Forces",
+              "title": "When Does Friction Give Way?",
               "status": "available",
               "owns": "phys.force.friction",
               "goal": "Distinguish static and kinetic friction.",
@@ -234,7 +234,7 @@
             },
             {
               "id": "inclined-planes",
-              "title": "Forces on Inclines",
+              "title": "Forces on an Inclined Plane",
               "status": "available",
               "owns": "phys.force.inclines",
               "goal": "Resolve forces parallel and perpendicular to a slope.",
