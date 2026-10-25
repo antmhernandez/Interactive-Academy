@@ -8,10 +8,10 @@ const lessons = JSON.parse(read("content/lessons.json"));
 assert.match(site, /id="main"/);
 for (const file of ["styles.css","app.js"]) assert.ok(site.includes(file), "Page missing dependency "+file);
 assert.ok(css.includes("@media(max-width:760px)"), "Mobile layout missing");
-assert.ok(Array.isArray(lessons) && lessons.length >= 20);
+assert.ok(Array.isArray(lessons) && lessons.length >= 26);
 const ids = new Set(lessons.map(x => x.id));
 assert.equal(ids.size, lessons.length, "Duplicate lesson IDs");
-const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann","displacement","average-velocity","free-fall","velocity-area","force-components","free-body","newton-two","limit-hole","hydrogen-spectrum","one-sided-limit","unit-conversion","measurement-ruler","significant-digits","units-cancel","slope-graph","velocity-components","projectile-motion","circular-motion","river-crossing"]);
+const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann","displacement","average-velocity","free-fall","velocity-area","force-components","free-body","newton-two","limit-hole","hydrogen-spectrum","one-sided-limit","unit-conversion","measurement-ruler","significant-digits","units-cancel","slope-graph","velocity-components","projectile-motion","circular-motion","river-crossing","friction-threshold","incline-friction"]);
 for (const lesson of lessons) {
  assert.ok(/^[a-z0-9-]+$/.test(lesson.id), "Invalid ID");
  assert.ok(["physics","calculus"].includes(lesson.subject), "Invalid subject");
@@ -34,7 +34,7 @@ for (const lesson of lessons) {
 }
 
 // Courses are finite, ordered learning paths, not loops.
-for (const [course, expected] of [["physics",19],["calculus",5]]) {
+for (const [course, expected] of [["physics",21],["calculus",5]]) {
  const group=lessons.filter(l=>l.subject===course);
  assert.equal(group.length,expected,"Unexpected number of "+course+" lessons");
  const learningPath=group.filter(l=>!l.optionalPreview);
@@ -62,9 +62,11 @@ assert.ok(js.includes("function equationIndex(") && js.includes("function equati
 assert.ok(js.includes("renderAccumulativeStep(stepList") && js.includes("worked-steps"),"Cumulative worked solutions missing");
 assert.ok(css.includes(".visual-stage") && css.includes(".focus-head"),"Focused visual layout missing");
 assert.ok(site.includes("lab/motion.html") && js.includes("lab/motion.html"),"Motion lab navigation missing");
+assert.ok(site.includes('src="applets/contact-forces.js"'),"Force applet engine not loaded");
+assert.ok(js.includes("frictionThreshold(el)")&&js.includes("inclineFriction(el)"),"Force applets not wired into lessons");
 for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs","docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
 // Sanity checks for the numerical practice keys in newly added topics.
-for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["scientific-measurement",42.5],["significant-figures",8.4],["dimensional-analysis",30],["graph-slope-physics",3],["one-sided-limits",3],["two-dimensional-motion",10],["projectile-motion",1.42857142857],["circular-motion",16],["relative-velocity",60]]) {
+for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["scientific-measurement",42.5],["significant-figures",8.4],["dimensional-analysis",30],["graph-slope-physics",3],["one-sided-limits",3],["two-dimensional-motion",10],["projectile-motion",1.42857142857],["circular-motion",16],["relative-velocity",60],["friction",4.56],["inclined-planes",9.8*(0.5-.2*Math.sqrt(3)/2)]]) {
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
 }
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));
