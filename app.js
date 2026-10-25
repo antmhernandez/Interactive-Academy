@@ -359,7 +359,7 @@ function hydrogenSpectrum(el){
   if(+low.value>=hi)low.value=String(hi-1);
   const lo=+low.value,energy=13.6*(1/(lo*lo)-1/(hi*hi)),wave=1240/energy;
   const region=wave<380?"Ultraviolet":wave>750?"Infrared":"Visible";
-  const y=n=>250-198*(1-1/(n*n)),upper=y(hi),lower=y(lo);
+  const y=n=>248-29*n,upper=y(hi),lower=y(lo);
   const marker=wave>=380&&wave<=750?`<path d="M${98+(wave-380)/370*340} 287V312" stroke="#213a39" stroke-width="3"/>`:"";
   plot.innerHTML=`<text x="25" y="28" font-size="14" fill="#456d64">Allowed hydrogen states</text>
   <path d="M80 ${upper}H320M80 ${lower}H320" stroke="#14727a" stroke-width="4"/>
