@@ -7,7 +7,7 @@ const guided=read("content/guided-practice.json");
 const eq=read("content/equations-physics.json");
 const map=read("curriculum/catalog.json");
 const book=map.textbook;
-assert.equal(lessons.length,22);
+assert.equal(lessons.length,24);
 assert.equal(guided.length,lessons.length,"Every complete lesson needs guided practice");
 const defined=new Map(lessons.map(x=>[x.id,x])),guidedIds=new Set();
 let problems=0;
@@ -27,7 +27,7 @@ for(const set of guided){
   assert.ok(p.steps.every(s=>s.trim().length>=7),"Missing or empty reasoning step "+set.owner);
  }
 }
-assert.equal(problems,66,"Unexpected practice count");
+assert.equal(problems,72,"Unexpected practice count");
 for(const lesson of lessons){
  assert.ok(lesson.definition?.length>=70&&lesson.definition.length<=350,"Missing concise definition "+lesson.id);
  assert.ok(guidedIds.has(lesson.id),"No guided-practice set "+lesson.id);
@@ -53,7 +53,7 @@ const physics=lessons.filter(l=>l.subject==="physics");
 assert.equal(physics[0].id,"si-units","Learning path must begin with the mathematical toolkit");
 assert.equal(physics.at(-1).id,"atom-spectra","Atomic formula lesson must be at late book chapter 28");
 assert.equal(physics.at(-1).optionalPreview,true,"Chapter 28 preview must be optional");
-assert.equal(physics.at(-2).next,null,"Main pathway must not skip directly from Chapter 5 to Chapter 28");
+assert.equal(physics.at(-2).next,null,"Main pathway must not skip directly from Chapter 6 to Chapter 28");
 const main=physics.filter(l=>!l.optionalPreview);
 for(let i=0;i<main.length;i++)assert.equal(main[i].next,main[i+1]?.id??null,"Broken main textbook learning path");
 const javascript=fs.readFileSync(new URL("app.js",root),"utf8");
