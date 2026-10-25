@@ -47,7 +47,9 @@ const visualKeys={
  "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
  "slope-graph":[["teal","Position curve"],["amber","Secant slope"]],
  "velocity-components":[["amber","Velocity vector"],["teal","Horizontal"],["green","Vertical"]],
- "projectile-motion":[["teal","Flight path"],["amber","Highest point"]]
+ "projectile-motion":[["teal","Flight path"],["amber","Highest point"]],
+ "circular-motion":[["teal","Tangent velocity"],["amber","Inward acceleration"]],
+ "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -255,6 +257,8 @@ function lesson(l){
  if(l.visual==="slope-graph")slopeToolkit(el);
  if(l.visual==="velocity-components")velocityComponents(el);
  if(l.visual==="projectile-motion")projectileMotion(el);
+ if(l.visual==="circular-motion")circularMotion(el);
+ if(l.visual==="river-crossing")riverCrossing(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -702,6 +706,112 @@ function projectileMotion(el){
  speed.oninput=paint;angle.oninput=paint;paint();
 }
 
+
+/* An inward net force continuously turns the tangent velocity. r and v are
+   physical units; arrow lengths are instructional, not a single shared scale. */
+function circularMotion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Constant speed, turning velocity</strong><span class="pill">Inward acceleration</span></div>
+ <svg viewBox="0 0 560 365" role="img" aria-label="Moving point on circular track with tangent velocity and inward acceleration vectors. Values shown below.">
+  <defs><marker id="circle-velocity-tip" markerWidth="7" markerHeight="7" refX="5.7" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#14727a"/></marker>
+  <marker id="circle-accel-tip" markerWidth="7" markerHeight="7" refX="5.7" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#b88445"/></marker></defs>
+  <path d="M30 179H530M275 22V338" stroke="#e3e9e4" stroke-width="1" stroke-dasharray="4 7"/>
+  <circle cx="275" cy="179" r="4" fill="#263c56"/>
+  <g id="circle-picture"></g>
+  <text x="28" y="29" fill="#697078" font-size="14">Top view · ideal horizontal circle</text>
+ </svg>
+ <div class="controls">
+  <label>Speed <output id="circle-speed-value">6 m/s</output><input id="circle-speed" type="range" min="2" max="16" step="1" value="6"></label>
+  <label>Radius <output id="circle-radius-value">3 m</output><input id="circle-radius" type="range" min="2" max="10" step="1" value="3"></label>
+ </div>
+ <div class="applet-actions"><button id="circle-play" type="button" aria-pressed="false">Play motion</button><button id="circle-step" type="button">Step 30°</button><button id="circle-reset" type="button">Reset experiment</button>
+ <label class="applet-check"><input id="circle-arrows" type="checkbox" checked> Show direction arrows</label></div>
+ <div class="readout"><div class="metric"><small>Inward acceleration · v²/r</small><strong id="circle-acceleration"></strong></div><div class="metric"><small>One revolution · 2πr/v</small><strong id="circle-period"></strong></div></div>
+ <p class="note">The arrows show directions, not a common force-to-velocity scale. In an ideal uniform circle, speed stays fixed while velocity continuously turns; acceleration always points inward.</p>`;
+ const speed=el.querySelector("#circle-speed"),radius=el.querySelector("#circle-radius");
+ const play=el.querySelector("#circle-play"),arrows=el.querySelector("#circle-arrows");
+ let angle=0,running=false,lastTime=null,frameId=null;
+ function paint(){
+  const v=Number(speed.value),r=Number(radius.value),ac=v*v/r,R=r*12;
+  const x=275+R*Math.cos(angle),y=179-R*Math.sin(angle),showArrows=arrows.checked!==false;
+  const tangent=25+Math.min(46,v*3),inward=25+Math.min(56,ac*1.6);
+  const tx=x-tangent*Math.sin(angle),ty=y-tangent*Math.cos(angle);
+  const ax=x-inward*Math.cos(angle),ay=y+inward*Math.sin(angle);
+  el.querySelector("#circle-picture").innerHTML=`
+   <circle cx="275" cy="179" r="${R}" fill="#f1f8f4" fill-opacity=".65" stroke="#6c9eab" stroke-width="2.5"/>
+   <path d="M275 179L${f(x)} ${f(y)}" stroke="#9ba9a4" stroke-width="1.6" stroke-dasharray="5 5"/>
+   <path d="M${f(x)} ${f(y)}A${R} ${R} 0 0 0 ${f(275+R*Math.cos(angle-.25))} ${f(179-R*Math.sin(angle-.25))}" fill="none" stroke="#b4a57c" stroke-width="3"/>
+   <circle cx="${f(x)}" cy="${f(y)}" r="9" fill="#243d60" stroke="#fff" stroke-width="3"/>
+   ${showArrows?`<path d="M${f(x)} ${f(y)}L${f(tx)} ${f(ty)}" fill="none" stroke="#14727a" stroke-width="4" stroke-linecap="round" marker-end="url(#circle-velocity-tip)"/>
+   <path d="M${f(x)} ${f(y)}L${f(ax)} ${f(ay)}" fill="none" stroke="#b88445" stroke-width="4" stroke-linecap="round" marker-end="url(#circle-accel-tip)"/>`:""}
+   <text x="27" y="323" fill="#14727a" font-size="16">v tangent</text><text x="27" y="347" fill="#9b6d32" font-size="16">a toward center</text>`;
+  el.querySelector("#circle-speed-value").textContent=v+" m/s";
+  el.querySelector("#circle-radius-value").textContent=r+" m";
+  el.querySelector("#circle-acceleration").textContent=f(ac)+" m/s²";
+  el.querySelector("#circle-period").textContent=f(2*Math.PI*r/v)+" s";
+ }
+ function stop(){running=false;lastTime=null;if(frameId!==null){cancelAnimationFrame(frameId);frameId=null;}play.setAttribute("aria-pressed","false");play.textContent="Play motion";}
+ function animate(time){
+  if(!running)return;
+  if(!el.isConnected){stop();return;}
+  const dt=lastTime===null?0:Math.min(.06,(time-lastTime)/1000);
+  lastTime=time;angle=(angle+Number(speed.value)/Number(radius.value)*dt)%(2*Math.PI);paint();
+  frameId=requestAnimationFrame(animate);
+ }
+ play.onclick=()=>{if(running){stop();return;}running=true;lastTime=null;play.setAttribute("aria-pressed","true");play.textContent="Pause motion";frameId=requestAnimationFrame(animate);};
+ el.querySelector("#circle-step").onclick=()=>{stop();angle=(angle+Math.PI/6)%(2*Math.PI);paint();};
+ el.querySelector("#circle-reset").onclick=()=>{stop();speed.value="6";radius.value="3";arrows.checked=true;angle=0;paint();};
+ speed.oninput=paint;radius.oninput=paint;arrows.onchange=paint;paint();
+}
+/* Vector addition in a river: boat relative water + current relative shore.
+   x drift is measured from the landing point directly opposite the launch. */
+function riverCrossing(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Boat, water, and shore</strong><span class="pill">Two reference frames</span></div>
+ <svg viewBox="0 0 570 390" role="img" aria-label="River crossing with the boat's predicted landing point, current, and ground-frame velocity arrows. Results shown below.">
+  <defs><marker id="river-head" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#14727a"/></marker></defs>
+  <rect x="22" y="67" width="526" height="234" fill="#e5f2f5" rx="6"/>
+  <path d="M22 67H548M22 301H548" stroke="#c4a77b" stroke-width="5"/>
+  <path d="M210 301V67" stroke="#96aeba" stroke-width="2" stroke-dasharray="6 7"/>
+  <text x="29" y="47" fill="#6f6553" font-size="15">Opposite bank</text><text x="29" y="328" fill="#6f6553" font-size="15">Starting bank</text>
+  <g id="river-picture"></g>
+  <text x="23" y="370" fill="#557e8c" font-size="14">River current → east</text>
+ </svg>
+ <div class="controls">
+  <label>Boat speed through water <output id="river-speed-value">6 m/s</output><input id="river-speed" type="range" min="4" max="10" step="1" value="6"></label>
+  <label>Current eastward <output id="river-current-value">2 m/s</output><input id="river-current" type="range" min="0" max="3" step=".5" value="2"></label>
+  <label>Boat heading (west −, east +) <output id="river-heading-value">0°</output><input id="river-heading" type="range" min="-45" max="45" step="1" value="0"></label>
+  <label>River width <output id="river-width-value">90 m</output><input id="river-width" type="range" min="60" max="120" step="10" value="90"></label>
+ </div>
+ <div class="applet-actions"><button id="river-aim" type="button">Aim upstream to cancel drift</button><button id="river-reset" type="button">Reset experiment</button></div>
+ <div class="readout"><div class="metric"><small>Time to cross</small><strong id="river-time"></strong></div><div class="metric"><small>Landing displacement</small><strong id="river-drift"></strong></div><div class="metric"><small>Speed seen from shore</small><strong id="river-ground-speed"></strong></div></div>
+ <p class="note">Blue shows the path relative to shore; the dashed line is directly across. Negative drift means landing west (upstream). Vector addition uses water and shore as distinct frames; the river sketch is schematic.</p>`;
+ const boat=el.querySelector("#river-speed"),current=el.querySelector("#river-current"),heading=el.querySelector("#river-heading"),width=el.querySelector("#river-width");
+ function paint(){
+  const v=Number(boat.value),c=Number(current.value),degrees=Number(heading.value),theta=degrees*Math.PI/180,w=Number(width.value);
+  const north=v*Math.cos(theta),east=c+v*Math.sin(theta),time=w/north,drift=east*time;
+  const landX=210+drift*.9,landY=67,dx=east*12,dy=north*12;
+  const vectorEast=210+c*12,boatX=210+v*Math.sin(theta)*12,boatY=301-v*Math.cos(theta)*12;
+  el.querySelector("#river-picture").innerHTML=`
+   <path d="M210 301L${f(landX)} ${landY}" fill="none" stroke="#14727a" stroke-width="4.5" stroke-linecap="round"/>
+   <circle cx="210" cy="301" r="6" fill="#273b58" stroke="white" stroke-width="2"/>
+   <circle cx="${f(landX)}" cy="${landY}" r="7" fill="#ad7c3e" stroke="white" stroke-width="2"/>
+   <path d="M210 301L${f(boatX)} ${f(boatY)}" fill="none" stroke="#57a589" stroke-width="2.4" stroke-dasharray="5 4"/>
+   <path d="M${f(boatX)} ${f(boatY)}L${f(boatX+c*12)} ${f(boatY)}" fill="none" stroke="#bd8844" stroke-width="2.4" stroke-dasharray="4 5"/>
+   <path d="M210 301L${f(210+dx)} ${f(301-dy)}" fill="none" stroke="#14727a" stroke-width="2.8" marker-end="url(#river-head)"/>
+   <text x="${f(Math.max(65,Math.min(landX,490)))}" y="57" text-anchor="middle" fill="#75542f" font-size="14">landing</text>`;
+  el.querySelector("#river-speed-value").textContent=v+" m/s";
+  el.querySelector("#river-current-value").textContent=c+" m/s";
+  el.querySelector("#river-heading-value").textContent=degrees===0?"Straight across":Math.abs(degrees)+"° "+(degrees<0?"west":"east")+" of north";
+  el.querySelector("#river-width-value").textContent=w+" m";
+  el.querySelector("#river-time").textContent=f(time)+" s";
+  el.querySelector("#river-drift").textContent=f(Math.abs(drift))+" m "+(Math.abs(drift)<.03?"(opposite)":drift>0?"east":"west");
+  el.querySelector("#river-ground-speed").textContent=f(Math.hypot(east,north))+" m/s";
+ }
+ el.querySelector("#river-aim").onclick=()=>{heading.value=String(Math.round(-Math.asin(Number(current.value)/Number(boat.value))*180/Math.PI));paint();};
+ el.querySelector("#river-reset").onclick=()=>{boat.value="6";current.value="2";heading.value="0";width.value="90";paint();};
+ for(const control of [boat,current,heading,width])control.oninput=paint;
+ paint();
+}
+
 function submodulesFor(parentId,ctx={book:null,grade:null}){
  const related=submodules.filter(m=>m.parent===parentId);
  if(!related.length)return "";
@@ -736,7 +846,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
