@@ -337,7 +337,7 @@
             {
               "id": "circular-motion",
               "title": "Circular Motion",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.circular.acceleration",
               "goal": "Explain inward acceleration in uniform circular motion.",
               "prerequisites": [
@@ -347,7 +347,7 @@
             {
               "id": "relative-velocity",
               "title": "Relative Velocity",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.motion.relative-velocity",
               "goal": "Add relative velocities using consistent reference frames.",
               "prerequisites": [
