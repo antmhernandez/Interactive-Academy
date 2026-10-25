@@ -25,6 +25,36 @@
           "name": "Slope of data",
           "formula": "slope = Δy / Δx",
           "conditions": "Meaning and units depend on the plotted physical quantities."
+        },
+        {
+          "name": "Simple reading uncertainty",
+          "formula": "reading ≈ measured value ± u",
+          "conditions": "The reading uncertainty u depends on actual instrument resolution and measurement procedure."
+        },
+        {
+          "name": "Introductory analog resolution estimate",
+          "formula": "u ≈ ½ × smallest division",
+          "conditions": "Illustrative rule for a clearly readable analog scale; not a universal uncertainty law."
+        },
+        {
+          "name": "Uncertainty interval",
+          "formula": "lower = value − u; upper = value + u",
+          "conditions": "Bounded uncertainty model where u is a stated symmetric absolute uncertainty."
+        },
+        {
+          "name": "Dimensional check",
+          "formula": "[distance] = [speed] × [time]",
+          "conditions": "The dimensions reduce as (L/T) × T = L, a necessary but insufficient model check."
+        },
+        {
+          "name": "Significant figures in multiplication",
+          "formula": "reported digits = fewest significant figures of measured factors",
+          "conditions": "Introductory arithmetic rule; do not round intermediate calculator results prematurely."
+        },
+        {
+          "name": "Rounding in addition",
+          "formula": "round to the least precise decimal place",
+          "conditions": "For sums or differences of measured values, the decimal-place rule replaces digit counting."
         }
       ]
     },
