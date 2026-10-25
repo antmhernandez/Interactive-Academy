@@ -6,11 +6,12 @@ const source=fs.readFileSync(new URL("../applets/contact-forces.js",import.meta.
 const f=n=>String(Number(Number(n).toFixed(3)));
 const models=vm.runInNewContext(source+"\n({frictionThreshold,inclineFriction})",{f});
 function harness(){
+ const defaults={"#fr-pull":"20","#fr-mass":"5","#fr-static":".5","#fr-kinetic":".3","#inc-angle":"20","#inc-mass":"4","#inc-static":".5","#inc-kinetic":".3"};
  const elements=new Map();
  const el={
   innerHTML:"",
   querySelector(selector){
-   if(!elements.has(selector))elements.set(selector,{value:"",textContent:"",innerHTML:"",oninput:null,onclick:null});
+   if(!elements.has(selector))elements.set(selector,{value:defaults[selector]??"",textContent:"",innerHTML:"",oninput:null,onclick:null});
    return elements.get(selector);
   }
  };
