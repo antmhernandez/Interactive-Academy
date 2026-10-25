@@ -479,7 +479,7 @@
       },
       {
         "level": "Extend",
-        "prompt": "Find lim as x→4 of (x²−16)/(x−4).",
+        "prompt": "Find the limit as x approaches 4 of (x² − 16)/(x − 4).",
         "answer": 8,
         "tolerance": 0.015,
         "unit": "",
