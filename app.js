@@ -134,6 +134,7 @@ function lesson(l){
  ${contextTrail(ctx)}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
  <article class="focus-lesson">
+ <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
  <div class="visual-intro"><span class="visual-label">EXPLORE</span><p>${escapeHtml(l.visualLead)}</p></div>
  <div class="interactive" id="visual"></div>
@@ -160,6 +161,23 @@ function lesson(l){
  <nav class="companion-links" aria-label="More ways to learn this concept"><a href="${lessonLink("study",l,ctx)}"><strong>Definition &amp; Example</strong><small>One solved problem, then your turn</small></a><a href="${lessonLink("guided",l,ctx)}"><strong>Guided Practice</strong><small>Three increasing levels with optional steps</small></a>${l.subject==="physics"&&allowChapterLink(ctx)?`<a href="#equations/${lessonChapter(l)}"><strong>Chapter ${lessonChapter(l)} Equations</strong><small>Formulas, meaning, and assumptions</small></a>`:""}</nav>
  <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${ctx.book?(next?"Next illustrative example →":"Back to book →"):(next?"Next concept →":"All "+subject(l.subject)+" lessons →")}</a></div>
  </article>`;
+ const presentButton=document.querySelector("#present-toggle");
+ presentButton.onclick=()=>{
+  const enabled=!document.body.classList.contains("presentation-mode");
+  closePresentation();
+  if(enabled){
+   document.body.classList.add("presentation-mode");
+   for(const element of document.querySelectorAll(".edition-strip,.topbar,.footer,.route-nav,.focus-head,.context-trail"))element.inert=true;
+  }
+  presentButton.setAttribute("aria-pressed",String(enabled));
+  presentButton.textContent=enabled?"Exit presentation (Esc)":"Present lesson";
+  presentButton.focus();
+ };
+ document.querySelector("#copy-lesson-link").onclick=async()=>{
+  const result=document.querySelector("#copy-lesson-status");
+  try{await navigator.clipboard.writeText(location.href);result.textContent="Lesson link copied.";}
+  catch{result.textContent="Copy the shareable URL from the browser address bar.";}
+ };
  // Add the check panel before tab handling. The visual remains visible throughout.
  renderConceptCheck(l);
  const tabs=[...document.querySelectorAll(".lesson-tabs [role=tab]")];
@@ -763,6 +781,10 @@ function contextTrail(ctx){
  '<span aria-hidden="true">›</span><span>Illustrative concept</span></nav>';
 }
 function allowChapterLink(ctx){return !ctx.book||ctx.book.id==="existing-glencoe";}
+function closePresentation(){
+ document.body.classList.remove("presentation-mode");
+ for(const element of document.querySelectorAll(".edition-strip,.topbar,.footer,.route-nav,.focus-head,.context-trail"))element.inert=false;
+}
 
 function bookTile(book,grade=null){
  const gradeText=book.gradeIds.map(n=>"Grade "+n).join(" · ");
@@ -828,12 +850,23 @@ function showcase(){
  <a href="#about">Read about the independent prototype →</a></section>`;
 }
 function route(){
+ closePresentation();
  const hash=location.hash.slice(1).split("?")[0]||"home";let decoded="home";try{decoded=decodeURIComponent(hash);}catch{/* malformed hash goes home */}const parts=decoded.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
  if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);main.focus({preventScroll:true});
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
+document.addEventListener("keydown",event=>{
+ if(event.key!=="Escape")return;
+ if(document.body.classList.contains("presentation-mode")){
+  closePresentation();const button=document.querySelector("#present-toggle");
+  if(button){button.setAttribute("aria-pressed","false");button.textContent="Present lesson";button.focus();}
+ }else if(nav.classList.contains("open")){
+  nav.classList.remove("open");const button=document.querySelector("#menu-btn");
+  button.setAttribute("aria-expanded","false");button.focus();
+ }
+});
 window.addEventListener("hashchange",route);
 Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json","content/guided-practice.json","content/equations-physics.json","content/book-pathways.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
  .then(([data,map,micro,practice,equations,books])=>{lessons=data;curriculum=map;submodules=micro;guidedSets=practice;physicsEquations=equations;bookPathways=books;route();})
