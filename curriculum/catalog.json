@@ -897,25 +897,35 @@
           }
         },
         {
-          "id": "phy-modern",
-          "title": "Modern Physics Extensions",
+          "id": "phy-quantum",
+          "title": "Quantum Theory",
           "topics": [
             {
-              "id": "nuclear-physics",
-              "title": "Nuclei and Radioactivity",
+              "id": "quantum-photons",
+              "title": "Light as Photons",
               "status": "planned",
-              "owns": "phys.modern.nuclear",
-              "goal": "Describe elementary nuclear processes and radiation.",
+              "owns": "phys.quantum.photon-introduction",
+              "goal": "Interpret photon energy using frequency and wavelength.",
               "prerequisites": [
-                "atomic-models"
+                "wave-properties"
+              ]
+            },
+            {
+              "id": "photoelectric-effect",
+              "title": "The Photoelectric Effect",
+              "status": "planned",
+              "owns": "phys.quantum.photoelectric",
+              "goal": "Compare photon energy with a material's electron-emission threshold.",
+              "prerequisites": [
+                "quantum-photons"
               ]
             }
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": "27, 29–30",
+            "chapter": "27",
             "scope": "enrichment",
-            "description": "Quantum and nuclear extensions not in ordinary course plan"
+            "description": "Supplementary quantum foundations in the normal textbook position"
           }
         },
         {
@@ -986,6 +996,38 @@
             "chapter": "28",
             "scope": "school-year-core",
             "description": "Spectroscopy, energy levels and atomic models (optional motivating preview, later formal chapter)"
+          }
+        },
+        {
+          "id": "phy-modern",
+          "title": "Solid-State and Nuclear Physics",
+          "topics": [
+            {
+              "id": "semiconductors",
+              "title": "Semiconductors and Solid-State Devices",
+              "status": "planned",
+              "owns": "phys.modern.semiconductor",
+              "goal": "Explain how carrier concentrations influence semiconductor conduction.",
+              "prerequisites": [
+                "atomic-models"
+              ]
+            },
+            {
+              "id": "nuclear-physics",
+              "title": "Nuclei and Radioactivity",
+              "status": "planned",
+              "owns": "phys.modern.nuclear",
+              "goal": "Describe elementary nuclear processes and radiation.",
+              "prerequisites": [
+                "atomic-models"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "29–30",
+            "scope": "enrichment",
+            "description": "Supplementary late-book electronic and nuclear models"
           }
         }
       ]
@@ -2481,7 +2523,7 @@
       {
         "number": 27,
         "title": "Quantum Theory",
-        "unitId": "phy-modern",
+        "unitId": "phy-quantum",
         "scope": "optional-extension",
         "status": "reference-planned"
       },
