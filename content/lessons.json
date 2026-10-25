@@ -781,6 +781,104 @@
       ],
       "explanation": "The apex is a vertical turning point, not a moment without force. Horizontal velocity remains constant in this ideal model."
     },
+    "next": "circular-motion"
+  },
+  {
+    "id": "circular-motion",
+    "subject": "physics",
+    "unitId": "phy-two-dimensional-motion",
+    "unit": "Motion in Two Dimensions",
+    "title": "Why Circular Motion Accelerates",
+    "subtitle": "Constant speed can still mean changing velocity.",
+    "duration": "10 min",
+    "observe": "If the speed stays the same, why does the moving object accelerate?",
+    "idea": "Velocity includes direction, not just speed. On a circular path, the velocity arrow is tangent to the circle and changes direction every instant. Acceleration points inward toward the center and has magnitude aᶜ = v²/r. A net inward force, not an outward force, sustains the curved motion.",
+    "visualLead": "Change speed and radius; step around the path or play the motion and compare the arrows.",
+    "visual": "circular-motion",
+    "focus": "The teal arrow is tangent velocity; the amber arrow points inward for acceleration, even as speed remains constant.",
+    "definition": "Uniform circular motion is travel along a circle at constant speed with continuously changing velocity direction. The centripetal acceleration has magnitude aᶜ = v²/r and points toward the circle's center.",
+    "example": {
+      "question": "A small car follows a circular path of radius 3 m at a constant speed of 6 m/s. Find the magnitude and direction of its acceleration.",
+      "steps": [
+        "Even though the speed is steady, the direction of velocity changes continuously; the acceleration points to the center.",
+        "Use aᶜ = v²/r and substitute v = 6 m/s and r = 3 m.",
+        "aᶜ = (6 m/s)²/(3 m) = 12 m/s² inward. This is acceleration from turning, not from speeding up."
+      ]
+    },
+    "practice": {
+      "prompt": "A cart moves at a constant speed of 8 m/s around a circular track with radius 4 m. Find the magnitude of its inward acceleration in m/s².",
+      "answer": 16,
+      "tolerance": 0.015,
+      "unit": "m/s²",
+      "hints": [
+        "Circular acceleration depends on both speed squared and circle radius: aᶜ = v²/r.",
+        "Square the speed first: 8² = 64. Divide by 4 m."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A runner travels around a circular track at constant speed. What is true of the runner's acceleration?",
+      "choices": [
+        "Acceleration is zero because the speed does not change.",
+        "Acceleration points outward because the runner is being pushed away from the center.",
+        "Acceleration points toward the center because the direction of velocity is continually changing."
+      ],
+      "correct": 2,
+      "feedback": [
+        "Speed is constant, but velocity includes its changing direction.",
+        "The required acceleration points inward, even if the runner feels an apparent outward tendency.",
+        "Correct. Turning means velocity changes, and the inward acceleration is centripetal."
+      ],
+      "explanation": "A vector changes when either its magnitude or direction changes. Uniform circular motion has constant speed but inward acceleration."
+    },
+    "next": "relative-velocity"
+  },
+  {
+    "id": "relative-velocity",
+    "subject": "physics",
+    "unitId": "phy-two-dimensional-motion",
+    "unit": "Motion in Two Dimensions",
+    "title": "Crossing a Moving River",
+    "subtitle": "A velocity depends on the frame from which it is measured.",
+    "duration": "10 min",
+    "observe": "Can a boat point straight across a river yet land downstream?",
+    "idea": "A boat's motion relative to land is the vector sum of its motion relative to water and the current's motion relative to land: v⃗boat/land = v⃗boat/water + v⃗water/land. When the current flows east and a boat aims north, it drifts east as it crosses. Steering upstream can cancel the eastward drift if the boat has enough speed.",
+    "visualLead": "Change the boat's speed, heading, river current, and width. Watch its actual landing point.",
+    "visual": "river-crossing",
+    "focus": "The blue track is the ground-frame path; the boat's heading alone does not predict where it reaches the opposite bank.",
+    "definition": "Relative velocity describes motion as measured from a particular reference frame. A boat's ground velocity equals its velocity relative to the water plus the water's velocity relative to the shore; components are added with their directions.",
+    "example": {
+      "question": "A boat moves straight north at 5 m/s relative to a river. The river flows east at 2 m/s. If the river is 100 m wide, how far east does the boat land?",
+      "steps": [
+        "Choose north and east as positive axes. Ground velocity is 5 m/s north plus 2 m/s east.",
+        "Crossing time depends on the northward component: t = (100 m)/(5 m/s) = 20 s.",
+        "Eastward drift = (2 m/s)(20 s) = 40 m east. The boat points north but lands downstream."
+      ]
+    },
+    "practice": {
+      "prompt": "A boat heads straight north at 4 m/s relative to the water, while a river flows east at 3 m/s. If the river is 80 m wide, how far east does the boat drift in meters?",
+      "answer": 60,
+      "tolerance": 0.015,
+      "unit": "m east",
+      "hints": [
+        "The crossing time is river width divided by the northward component of ground velocity.",
+        "t = 80/4 = 20 s; drift = (3 m/s)(20 s)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A boat aims exactly north while the water flows east. Which statement best describes its path from the shore?",
+      "choices": [
+        "It travels north only because its engine points across the river.",
+        "It travels diagonally northeast because the boat velocity and the current add.",
+        "It always travels east only because water is moving relative to the ground."
+      ],
+      "correct": 1,
+      "feedback": [
+        "A north-pointing engine controls velocity relative to the water, not the riverbank.",
+        "Correct. The ground-frame velocity is the vector sum of northward boat motion and eastward current.",
+        "The boat retains its northward component, so its ground path has both components."
+      ],
+      "explanation": "Velocities must be identified with their reference frames before they can be combined. The shore sees both northward crossing and eastward drift."
+    },
     "next": null
   },
   {
