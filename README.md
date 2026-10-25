@@ -10,7 +10,7 @@ Sixteen original demonstration lessons (eleven Physics, five Calculus) now use a
 
 ## Course map and source boundaries
 
-The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **147 canonical topic slots** across 21 units; 16 are implemented, 131 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
+The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **148 canonical topic slots** across 21 units; 16 are implemented, 132 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
 
 ## Textbook progression and learning companions
 
