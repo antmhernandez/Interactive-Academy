@@ -137,3 +137,26 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 - Chromium successfully completed the grade-to-book-to-original-lesson-to-study-to-guided route, ARIA tab keyboard navigation, cumulative example/practice steps, present/Escape controls, no forbidden chapter crosswalk, independent direct links and no horizontal page overflow at **320, 375, 768, 1024 and 1440 px**.
 - The merge was independently verified on `main`. A green PR CI run does **not** prove that GitHub Pages propagation has completed or that physical-device and assistive-technology QA has occurred.
 - Future conversations should start on `main`, consult PR #9 for the exact code changes, and continue focusing on features and publisher review before adding more curriculum.
+
+## October 25 continuation: visual refinement, library features and carefully scoped content
+
+**Working branch for this iteration:** `feature/editorial-polish-chapter6-interactives-2026-10-25` (once merged, use `main` as authoritative). **Requested change:** user now explicitly authorizes adding content *after* beautification and functional improvement.
+
+### Committed enhancements
+- Original editorial two-column homepage with engraved-feeling mathematical illustration; responsive one-column arrangement on smaller devices; clearer four-part **The Idea / Example / Think / Try it** teaching method; contrast-minded navy/burgundy/gold/cream styles.
+- Homepage privacy-first **Continue learning** links choose the next incomplete Physics or Calculus lesson from the existing local completion set. Nothing is uploaded to a server. School/student data and teacher keys are not introduced.
+- Instant filter/search on `#books` with a result count, empty state, and accessible label. Book detail gives a **clearly illustrative** starting point with the existing rights note.
+- Subject page completion progress bar with accessible ARIA values; concept page now names its original **essential question** alongside the visual, without changing the lesson's four tabs, cumulative steps or working applets.
+- **Two independently authored Physics lessons (Chapter 6 of the existing Glencoe-index course only):**
+  - `#lesson/two-dimensional-motion`: angle/speed vector components, live projections, misconception-aware checkpoint, worked example, 3 guided practice levels.
+  - `#lesson/projectile-motion`: ideal level-to-level projectile path with live launch speed/angle and measured flight time/range/height, deriving results from horizontal uniform motion and gravity; 3 guided levels.
+- Incremental path now goes `force-components → two-dimensional-motion → projectile-motion`, with the separate optional Chapter 28 atom curiosity still at the end of the published list. `existing-glencoe` book-pathways entry exposes these examples; publisher-catalog/Novare records are **unchanged**. No copied textbook language, artwork, answers, covers or proprietary alignment was added.
+- Updated validator counts and added numerical simulator checks plus headless Chromium coverage for the new home layout, library search and lesson interactions. Coverage must be reviewed in CI before merge.
+- Full design, mathematical model assumptions, teaching notes and acceptance scope: [`docs/16_EDITORIAL_INTERFACE_AND_CHAPTER_06.md`](16_EDITORIAL_INTERFACE_AND_CHAPTER_06.md).
+
+### Remaining review and next session
+- Verify full successful GitHub Actions execution and merged PR SHA. Check actual GitHub Pages deployment after merge.
+- Run manual checks on physical iOS/Android phones, Safari, projector and NVDA/VoiceOver. Headless Chromium does not certify WCAG compliance.
+- Review the expanded Chapter 6 pedagogy with a Physics editor and student users, paying attention to no-air-resistance assumptions and the distinction between range, displacement and total path length.
+- Improve diagram text alternatives and printing, run a publisher review meeting, and request approved edition-specific TOCs/branding only once permissions exist.
+- Maintain original content ownership. No ISBN/chapter/page assertions about Novare have been inferred.
