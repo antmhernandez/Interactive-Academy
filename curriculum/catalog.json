@@ -336,7 +336,7 @@
             },
             {
               "id": "circular-motion",
-              "title": "Circular Motion",
+              "title": "Why Circular Motion Accelerates",
               "status": "available",
               "owns": "phys.circular.acceleration",
               "goal": "Explain inward acceleration in uniform circular motion.",
@@ -346,7 +346,7 @@
             },
             {
               "id": "relative-velocity",
-              "title": "Relative Velocity",
+              "title": "Crossing a Moving River",
               "status": "available",
               "owns": "phys.motion.relative-velocity",
               "goal": "Add relative velocities using consistent reference frames.",
