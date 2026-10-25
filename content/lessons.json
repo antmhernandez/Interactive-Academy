@@ -1,56 +1,56 @@
 [
   {
-    "id": "atom-spectra",
+    "id": "si-units",
     "subject": "physics",
-    "unitId": "phy-atomic-introduction",
-    "unit": "Atoms, Light, and Models",
-    "title": "The Colors of Atoms",
-    "subtitle": "An atom's spectrum contains clues about its energy.",
-    "duration": "8 min",
-    "observe": "Why does a glowing gas produce distinct spectral lines instead of every color?",
-    "idea": "Atoms emit or absorb particular photon energies. In a simplified hydrogen energy-level model, the energy difference between two allowed levels sets the photon's frequency and wavelength: ΔE = hf = hc/λ. Real spectra offer observable evidence for discrete energy levels.",
-    "visualLead": "Change the hydrogen transition and inspect the photon it would emit.",
-    "visual": "hydrogen-spectrum",
-    "focus": "A larger energy drop produces a shorter wavelength. The Bohr levels are a model, not tiny planetary orbits.",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "title": "SI Units and Prefixes",
+    "subtitle": "A measurement needs both a number and a unit.",
+    "duration": "7 min",
+    "observe": "Why does the same length have different numbers in meters and centimeters?",
+    "idea": "The International System of Units (SI) provides standard units for physical measurements. A prefix changes a unit's scale: kilo means 1,000 and centi means one hundredth. Multiply by a conversion factor equal to 1 so the physical quantity stays unchanged.",
+    "visualLead": "Move the meter slider and compare meters with centimeters.",
+    "visual": "unit-conversion",
+    "focus": "The numbers change when units change, but the represented distance stays the same.",
     "example": {
-      "question": "In the simplified hydrogen model, a transition from n = 3 to n = 2 releases about 1.89 eV. Estimate the photon's wavelength.",
+      "question": "A student measures a length of 3.4 m. Express the same length in centimeters.",
       "steps": [
-        "Photon energy and wavelength satisfy E = hc/λ. For electronvolts and nanometers, hc ≈ 1240 eV·nm.",
-        "Rearrange: λ = hc/E = (1240 eV·nm)/(1.89 eV).",
-        "The result is approximately 656 nm, in the red portion of the visible spectrum."
+        "Start with the given quantity: 3.4 m.",
+        "Use the exact metric relationship 1 m = 100 cm.",
+        "Convert: 3.4 m × (100 cm / 1 m) = 340 cm. The meters cancel."
       ]
     },
     "practice": {
-      "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
-      "answer": 486.27451,
-      "tolerance": 1,
-      "unit": "nm",
+      "prompt": "Convert 2.5 kilometers to meters. Enter the number of meters.",
+      "answer": 2500,
+      "tolerance": 0.001,
+      "unit": "m",
       "hints": [
-        "Use λ = hc/E and express energy in electronvolts.",
-        "Divide 1240 by 2.55."
+        "The prefix kilo means 1,000. One kilometer is 1,000 meters.",
+        "Multiply 2.5 km × (1,000 m / 1 km)."
       ]
     },
     "checkpoint": {
-      "prompt": "In a hydrogen atom, an electron drops between two allowed energy levels. What determines the emitted light?",
+      "prompt": "An object is 0.42 m long. Which equivalent measurement is correct?",
       "choices": [
-        "Only the size of the atom, regardless of the energy levels.",
-        "The energy difference between those allowed states.",
-        "A continuous range of arbitrary colors from every single transition."
+        "42 cm, because one meter contains 100 centimeters.",
+        "0.0042 cm, because the prefix centi means a hundred.",
+        "420 m, because changing unit names changes the physical length."
       ],
-      "correct": 1,
+      "correct": 0,
       "feedback": [
-        "The observed spectral line is determined by the change in energy, not simply by the atom's diameter.",
-        "Correct. One transition emits a photon carrying the energy difference between the two states.",
-        "For an idealized transition, the energy difference is specific, not a continuum of arbitrary photon energies."
+        "Correct. Multiply 0.42 by 100 to find 42 centimeters.",
+        "The prefix centi means 1/100 of a meter, so there are more centimeters than meters for the same length.",
+        "Units express the same length on different numerical scales; the physical object does not change."
       ],
-      "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
+      "explanation": "Because 1 m = 100 cm, the same length is 0.42 m = 42 cm."
     },
     "next": "position-displacement"
   },
   {
     "id": "position-displacement",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Distance and Displacement",
     "subtitle": "Same journey. Two different measurements.",
     "duration": "8 min",
@@ -98,7 +98,7 @@
   {
     "id": "motion-diagrams",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Motion in Dots",
     "subtitle": "A few dots reveal how speed changes.",
     "duration": "6 min",
@@ -146,7 +146,7 @@
   {
     "id": "average-velocity",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Velocity from a Graph",
     "subtitle": "A secant line tells a story about motion.",
     "duration": "9 min",
@@ -194,7 +194,7 @@
   {
     "id": "acceleration",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "What Acceleration Means",
     "subtitle": "A changing velocity makes a sloping graph.",
     "duration": "7 min",
@@ -242,7 +242,7 @@
   {
     "id": "free-fall",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Falling under Gravity",
     "subtitle": "Predict how a falling object moves.",
     "duration": "9 min",
@@ -290,7 +290,7 @@
   {
     "id": "motion-graphs",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Three Graphs, One Motion",
     "subtitle": "Position, velocity, and acceleration belong together.",
     "duration": "9 min",
@@ -338,7 +338,7 @@
   {
     "id": "free-body-diagram",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "Draw the Forces",
     "subtitle": "A free-body diagram shows every external force.",
     "duration": "8 min",
@@ -386,7 +386,7 @@
   {
     "id": "newtons-second-law",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "Force Changes Motion",
     "subtitle": "Net force and mass determine acceleration.",
     "duration": "8 min",
@@ -434,7 +434,7 @@
   {
     "id": "force-components",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "A Force in Two Directions",
     "subtitle": "One diagonal force has horizontal and vertical parts.",
     "duration": "8 min",
@@ -476,8 +476,56 @@
       ],
       "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
     },
-    "next": null,
+    "next": "atom-spectra",
     "unitId": "phy-forces"
+  },
+  {
+    "id": "atom-spectra",
+    "subject": "physics",
+    "unitId": "phy-atomic-introduction",
+    "unit": "The Atom and Spectra",
+    "title": "The Colors of Atoms",
+    "subtitle": "An atom's spectrum contains clues about its energy.",
+    "duration": "8 min",
+    "observe": "Why does a glowing gas produce distinct spectral lines instead of every color?",
+    "idea": "Atoms emit or absorb particular photon energies. In a simplified hydrogen energy-level model, the energy difference between two allowed levels sets the photon's frequency and wavelength: ΔE = hf = hc/λ. Real spectra offer observable evidence for discrete energy levels.",
+    "visualLead": "Change the hydrogen transition and inspect the photon it would emit.",
+    "visual": "hydrogen-spectrum",
+    "focus": "A larger energy drop produces a shorter wavelength. The Bohr levels are a model, not tiny planetary orbits.",
+    "example": {
+      "question": "In the simplified hydrogen model, a transition from n = 3 to n = 2 releases about 1.89 eV. Estimate the photon's wavelength.",
+      "steps": [
+        "Photon energy and wavelength satisfy E = hc/λ. For electronvolts and nanometers, hc ≈ 1240 eV·nm.",
+        "Rearrange: λ = hc/E = (1240 eV·nm)/(1.89 eV).",
+        "The result is approximately 656 nm, in the red portion of the visible spectrum."
+      ]
+    },
+    "practice": {
+      "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
+      "answer": 486.27451,
+      "tolerance": 1,
+      "unit": "nm",
+      "hints": [
+        "Use λ = hc/E and express energy in electronvolts.",
+        "Divide 1240 by 2.55."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "In a hydrogen atom, an electron drops between two allowed energy levels. What determines the emitted light?",
+      "choices": [
+        "Only the size of the atom, regardless of the energy levels.",
+        "The energy difference between those allowed states.",
+        "A continuous range of arbitrary colors from every single transition."
+      ],
+      "correct": 1,
+      "feedback": [
+        "The observed spectral line is determined by the change in energy, not simply by the atom's diameter.",
+        "Correct. One transition emits a photon carrying the energy difference between the two states.",
+        "For an idealized transition, the energy difference is specific, not a continuum of arbitrary photon energies."
+      ],
+      "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
+    },
+    "next": null
   },
   {
     "id": "limits-near-a-point",
