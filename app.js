@@ -598,14 +598,14 @@ function riemann(el){
  el.innerHTML=`<div class="diagram-head"><strong>Right-endpoint rectangles</strong><span class="pill calculus">Integral</span></div><svg viewBox="0 0 520 309" role="img" aria-label="Rectangles approximating the area under y equals x"><rect width="520" height="309" rx="12" fill="#f8fbf9"/><g id="rgraph"></g></svg><div class="controls"><label>Number of rectangles: <strong id="nv"></strong><input id="nslider" type="range" min="2" max="30" step="1" value="4"></label></div><div class="readout"><div class="metric"><small>Right sum</small><strong id="sum"></strong></div><div class="metric"><small>Exact area</small><strong>8</strong></div></div><p class="note">For an increasing function, these right-endpoint rectangles overestimate the area. More, thinner rectangles reduce the error.</p>`;
  const slider=el.querySelector("#nslider");function paint(){let n=+slider.value,dx=4/n,xp=x=>55+102*x,yp=y=>262-51*y;const rectangles=Array.from({length:n},(_,i)=>{let right=(i+1)*dx;return `<rect x="${xp(i*dx)}" y="${yp(right)}" width="${102*dx}" height="${51*right}" fill="#a8d4c9" fill-opacity=".53" stroke="#14727a" stroke-width=".8"/>`}).join("");el.querySelector("#rgraph").innerHTML=`<path d="M55 15V262H490" fill="none" stroke="#93b2a8" stroke-width="1.6"/>${rectangles}<path d="M55 262L463 58" stroke="#c08039" stroke-width="3" fill="none"/><text x="455" y="282" font-size="14" fill="#50756e">4</text>`;el.querySelector("#nv").textContent=n;el.querySelector("#sum").textContent=f(8+8/n);}slider.oninput=paint;paint();
 }
-function submodulesFor(parentId){
+function submodulesFor(parentId,ctx={book:null,grade:null}){
  const related=submodules.filter(m=>m.parent===parentId);
  if(!related.length)return "";
- return '<aside class="mini-links"><span>Explore deeper</span>'+related.map(m=>'<a href="#submodule/'+encodeURIComponent(m.id)+'">'+escapeHtml(m.title)+' →</a>').join("")+'</aside>';
+ return '<aside class="mini-links"><span>Explore deeper</span>'+related.map(m=>'<a href="#submodule/'+encodeURIComponent(m.id)+(ctx.book?'?book='+encodeURIComponent(ctx.book.id)+(ctx.grade?'&grade='+ctx.grade:''):'')+'">'+escapeHtml(m.title)+' →</a>').join("")+'</aside>';
 }
 function microLesson(m){
- const parent=get(m.parent),link=parent.next||parent.id;
- main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#lesson/${parent.id}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${link}">Next →</a></nav>
+ const parent=get(m.parent),ctx=lessonContext(parent),link=parent.next||parent.id;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="${lessonLink("lesson",parent,ctx)}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${link}">Next →</a></nav>
  <header class="focus-head"><div class="eyebrow">${subject(parent.subject)} · ${escapeHtml(parent.unit)} · Short challenge</div><h1>${escapeHtml(m.title)}</h1><p>${escapeHtml(m.subtitle)}</p></header>
  <article class="focus-lesson">
  <section class="visual-stage"><div class="visual-intro"><span class="visual-label">TRY IT</span><p>${escapeHtml(m.visualLead)}</p></div>
@@ -614,7 +614,7 @@ function microLesson(m){
  <section class="lesson-panel mini-question"><h2>Check your reasoning</h2><p>${escapeHtml(m.challenge.prompt)}</p><fieldset class="choice-group" id="micro-choices"><legend>Choose an answer</legend>
  ${m.challenge.choices.map((v,i)=>`<label class="concept-choice"><input type="radio" name="mini-challenge" value="${i}"><span>${escapeHtml(v)}</span></label>`).join("")}</fieldset>
  <button type="button" class="primary" id="micro-check">Check</button><p id="micro-feedback" role="status" aria-live="polite"></p></section>
- <div class="lesson-end"><a href="#lesson/${parent.id}">← Return to ${escapeHtml(parent.title)}</a></div></article>`;
+ <div class="lesson-end"><a href="${lessonLink("lesson",parent,ctx)}">← Return to ${escapeHtml(parent.title)}</a></div></article>`;
  const fieldset=document.querySelector("#micro-choices"),button=document.querySelector("#micro-check"),output=document.querySelector("#micro-feedback");
  button.onclick=()=>{
   const checked=fieldset.querySelector("input:checked");
@@ -641,8 +641,9 @@ function renderAccumulativeStep(container,step){
  if(typeof li.scrollIntoView==="function")li.scrollIntoView({block:"nearest"});
 }
 function studySheet(l){
- const ch=lessonChapter(l),ref=ch?`<a href="#equations/${ch}">Chapter ${ch} equations →</a>`:"";
- main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#lesson/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#guided/${l.id}">Guided practice →</a></nav>
+ const ctx=lessonContext(l),ch=lessonChapter(l),ref=ch&&allowChapterLink(ctx)?`<a href="#equations/${ch}">Chapter ${ch} equations →</a>`:"";
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="${lessonLink("lesson",l,ctx)}">← Back</a><a href="#home">⌂ Home</a><a href="${lessonLink("guided",l,ctx)}">Guided practice →</a></nav>
+ ${contextTrail(ctx)}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Study this concept</div><h1>${escapeHtml(l.title)}</h1><p>A definition, a solved example, and one problem for you.</p></header>
  <article class="study-sheet">
  <section class="study-section"><div class="eyebrow">01 · Define</div><h2>Know the idea</h2><p class="study-definition">${escapeHtml(l.definition)}</p></section>
@@ -652,7 +653,7 @@ function studySheet(l){
  <div class="answer-row"><input type="number" step="any" inputmode="decimal" id="study-answer" required><button type="submit" class="primary">Check answer</button></div></form>
  <p class="feedback" id="study-feedback" role="status" aria-live="polite"></p><button type="button" class="hint-button" id="study-hint">Show a hint</button>
  <ol id="study-hints" class="study-hints" aria-live="polite"></ol></section>
- <div class="lesson-end"><a class="btn primary" href="#guided/${l.id}">Practice three levels →</a><a href="#lesson/${l.id}">Explore the applet</a>${ref}</div></article>`;
+ <div class="lesson-end"><a class="btn primary" href="${lessonLink("guided",l,ctx)}">Practice three levels →</a><a href="${lessonLink("lesson",l,ctx)}">Explore the applet</a>${ref}</div></article>`;
  let hinted=0;const hints=document.querySelector("#study-hints");
  document.querySelector("#study-hint").onclick=()=>{
    if(hinted>=l.practice.hints.length)return;
@@ -671,15 +672,16 @@ function studySheet(l){
 function guidedPage(l){
  const pack=guidedSets.find(p=>p.owner===l.id);
  if(!pack||pack.levels.length!==3){main.textContent="Guided practice is unavailable for this lesson.";return;}
- const ch=lessonChapter(l);
- main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#study/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${l.id}">Concept →</a></nav>
+ const ctx=lessonContext(l),ch=allowChapterLink(ctx)?lessonChapter(l):null;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="${lessonLink("study",l,ctx)}">← Back</a><a href="#home">⌂ Home</a><a href="${lessonLink("lesson",l,ctx)}">Concept →</a></nav>
+ ${contextTrail(ctx)}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Guided problems</div><h1>${escapeHtml(l.title)}</h1>
  <p>Three similar problems. Each adds one challenge. Ask for the next reasoning step whenever you need it.</p></header>
  <article class="guided-work">
  <nav class="level-navigation" aria-label="Practice difficulty">
  ${pack.levels.map((p,i)=>`<button type="button" data-problem="${i}" class="level-button">${i+1}. ${escapeHtml(p.level)}</button>`).join("")}</nav>
  <section class="guided-card" id="guided-card" aria-live="off"></section>
- <div class="lesson-end"><a href="#study/${l.id}">← Definition and example</a><a href="#lesson/${l.id}">Return to interactive lesson</a>${ch?`<a href="#equations/${ch}">Chapter equations →</a>`:""}</div></article>`;
+ <div class="lesson-end"><a href="${lessonLink("study",l,ctx)}">← Definition and example</a><a href="${lessonLink("lesson",l,ctx)}">Return to interactive lesson</a>${ch?`<a href="#equations/${ch}">Chapter equations →</a>`:""}</div></article>`;
  const buttons=[...main.querySelectorAll("[data-problem]")],stage=main.querySelector("#guided-card");
  let index=0;
  function show(i){
@@ -826,10 +828,10 @@ function showcase(){
  <a href="#about">Read about the independent prototype →</a></section>`;
 }
 function route(){
- const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
+ const hash=location.hash.slice(1).split("?")[0]||"home";let decoded="home";try{decoded=decodeURIComponent(hash);}catch{/* malformed hash goes home */}const parts=decoded.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
  if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
- nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
+ nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);main.focus({preventScroll:true});
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
