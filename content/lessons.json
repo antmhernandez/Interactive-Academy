@@ -178,9 +178,9 @@
     "checkpoint": {
       "prompt": "Which product has units of distance?",
       "choices": [
-        "(m/s) × s",
-        "(m/s) ÷ s",
-        "(m/s²) ÷ s"
+        "(m/s) × s, because the seconds cancel and leave meters.",
+        "(m/s) ÷ s, because dividing speed by time gives distance.",
+        "(m/s²) ÷ s, because dividing acceleration by time gives distance."
       ],
       "correct": 0,
       "feedback": [
