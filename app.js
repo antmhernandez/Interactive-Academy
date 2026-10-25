@@ -4,6 +4,8 @@ const nav=document.querySelector("#nav");
 let lessons=[];
 let curriculum=null;
 let submodules=[];
+let guidedSets=[];
+let physicsEquations=null;
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -37,7 +39,8 @@ const visualKeys={
  "one-sided-limit":[["teal","Left approach"],["amber","Right approach"]],
  "slope-height":[["teal","Position line"],["amber","Current point"]],
  "sign-speed":[["teal","Velocity"],["amber","Acceleration"]],
- "limit-value":[["teal","Nearby graph"],["amber","Defined point"]]
+ "limit-value":[["teal","Nearby graph"],["amber","Defined point"]],
+ "unit-conversion":[["teal","Meters"],["amber","Centimeters"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -186,6 +189,7 @@ function lesson(l){
  if(l.visual==="limit-hole")limitHole(el);
  if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
  if(l.visual==="one-sided-limit")oneSidedLimit(el);
+ if(l.visual==="unit-conversion")unitConversion(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -445,6 +449,22 @@ function limitValue(el){
  <text x="70" y="${yp(2)+5}" font-size="13" fill="#537369" text-anchor="end">2</text>`;
  el.querySelector("#lv-setting").textContent=f(v);el.querySelector("#lv-current").textContent=f(v);
  }I.oninput=paint;paint();
+}
+function unitConversion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>The length stays the same</strong><span class="pill">SI measurement</span></div>
+ <svg viewBox="0 0 540 225" role="img" aria-label="Two equal-length bars, one labeled in meters and the other in centimeters"><rect width="540" height="225" rx="12" fill="#f8fbf9"/><g id="unit-plot"></g></svg>
+ <div class="controls"><label>Length <strong id="unit-input-value"></strong><input id="unit-slider" type="range" min=".5" max="5" value="2.5" step=".1" aria-label="Length in meters"/></label></div>
+ <div class="readout"><div class="metric"><small>Measured in meters</small><strong id="unit-meters"></strong></div><div class="metric"><small>Same length in centimeters</small><strong id="unit-centimeters"></strong></div></div>
+ <p class="note">The displayed ruler length changes as you move the slider. For any given slider position, both colored bars depict the same distance.</p>`;
+ const slider=el.querySelector("#unit-slider"),plot=el.querySelector("#unit-plot");
+ function draw(){const meters=+slider.value,width=meters*77;
+ plot.innerHTML=`<path d="M55 183H480" stroke="#97b9aa" stroke-width="2"/><rect x="55" y="57" width="${width}" height="33" rx="5" fill="#14727a"/><rect x="55" y="129" width="${width}" height="33" rx="5" fill="#c08039"/>
+ <text x="55" y="44" font-size="14" fill="#14727a">meters</text><text x="55" y="116" font-size="14" fill="#a4662e">centimeters</text>
+ <text x="${Math.min(480,65+width)}" y="78" font-size="14" fill="#2b5c5f">${f(meters)} m</text>
+ <text x="${Math.min(480,65+width)}" y="151" font-size="14" fill="#8f5523">${f(meters*100)} cm</text>`;
+ el.querySelector("#unit-input-value").textContent=f(meters)+" m";el.querySelector("#unit-meters").textContent=f(meters)+" m";el.querySelector("#unit-centimeters").textContent=f(meters*100)+" cm";
+ }
+ slider.oninput=draw;draw();
 }
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
