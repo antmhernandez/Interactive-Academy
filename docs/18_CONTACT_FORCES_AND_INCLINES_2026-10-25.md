@@ -64,3 +64,9 @@ The “first sliding angle” button selects the next whole-degree slider settin
 - Add module syntax checks, independent quantitative physics tests (threshold, acceleration, mass cancellation, critical angle, constrained coefficients, reset) and responsive Chromium interactions to CI. All initial-rest assumptions must be shown on screen, not hidden in this document.
 - Do not introduce any textbook diagrams, school-owned keys, Memoria Press typography, logos or chapter assertions. Only add these examples to the separate `existing-glencoe` independent prototype mapping.
 - Physical classroom/projector and screen-reader/Safari tests remain necessary. Automated Chromium tests are not a substitute for observing learning outcomes.
+
+## Implementation and test result (post-merge)
+
+**Merged:** [PR #12](https://github.com/antmhernandez/Interactive-Academy/pull/12) into main, squash SHA `d4578df7b0dda89831eab9835aac8b8e1261af68`.
+
+The full [GitHub Actions PR run #50](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40229164106) succeeded. This includes source and curriculum validation; 26 original lessons, 78 graduated problems, 84 formula entries; direct contact force and incline numerical regression tests; and Chromium at 320, 375, 768, 1024 and 1440 px. No manual iOS Safari, screen-reader, projector or classroom comprehension audit has been performed.
