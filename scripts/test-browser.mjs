@@ -39,6 +39,7 @@ try{
   await page.locator('.grade-choices a[href="#grade/8"]').click();
   await page.locator('main h1').filter({hasText:"Grade 8"}).waitFor();
   await page.locator('.book-grid a[href="#book/physical-science?grade=8"]').click();
+  await page.locator(".book-detail-head h1").filter({hasText:"Novare Physical Science"}).waitFor();
   assert.match(await page.locator(".route-nav").innerText(),/Grade 8/);
   await page.locator('.book-match a[href="#lesson/si-units?book=physical-science&grade=8"]').click();
   await page.locator(".context-trail").getByText("Novare Physical Science").waitFor();
