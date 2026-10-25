@@ -637,3 +637,72 @@ a,button{ -webkit-tap-highlight-color:transparent}
 .book-tile[hidden]{display:none!important}
 #book-search-empty{border:1px dashed #bfa98c;background:#f9f2e8;margin:-15px 0 34px}
 @media(max-width:600px){.book-search{max-width:none;flex-basis:100%}.book-search-count{padding-bottom:0}}
+
+/* Original inquiry applets: controls and the discovery room share our
+   established parchment, navy, burgundy and muted-gold editorial identity. */
+.applet-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:17px 0 0}
+.applet-actions button{border:1px solid #a89579;background:#fffaf1;color:#5a3348;
+ min-height:44px;padding:10px 14px}
+.applet-actions button:hover{background:#f4e6cf}
+.applet-actions button[aria-pressed="true"]{background:#762e43;color:white;border-color:#762e43}
+.applet-actions .applet-check{display:inline-flex;align-items:center;gap:8px;
+ font-size:.84rem;color:#4d5b5a;padding:7px 0}
+.applet-actions .applet-check input{width:19px;height:19px;accent-color:#762e43}
+.investigation-guide{margin:17px 0 20px;border:1px solid #d9c5a6;border-left:4px solid #b18d57;background:#fcf7ec}
+.investigation-guide summary{cursor:pointer;padding:15px 19px;color:#57344b;font-weight:780;font-size:.91rem}
+.investigation-guide[open] summary{border-bottom:1px solid #e0d2ba}
+.investigation-guide ol{list-style:none;counter-reset:inquiry;margin:0;padding:18px;
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.investigation-guide li{counter-increment:inquiry;min-width:0;padding:0 14px;border-left:1px solid #d9cab1}
+.investigation-guide li:first-child{border-left:0}
+.investigation-guide li strong{font-family:Georgia,serif;color:#6e2c43;font-size:1.1rem}
+.investigation-guide li strong::before{content:counter(inquiry,decimal-leading-zero) " · ";font:750 .71rem system-ui;color:#a17b47}
+.investigation-guide li p{font-size:.86rem;line-height:1.65;color:#5c6061;margin:7px 0 0}
+.applet-library-head{text-align:center;margin:20px auto 33px;padding:37px 24px;max-width:1100px;
+ background:linear-gradient(135deg,#fffdf6,#efe6d6);border:1px solid #d8c7a9;border-top:4px solid #9e7849}
+.applet-library-head h1{font-size:clamp(2.25rem,5vw,4.4rem);margin:9px 0 15px;color:#263a58}
+.applet-library-head p{max-width:720px;margin:0 auto 24px;line-height:1.75;color:#595c5f}
+.applet-library-principles{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;
+ border-top:1px solid #d4c6ad;padding-top:17px;font-size:.73rem;letter-spacing:.09em;color:#7e5a45;font-weight:800}
+.applet-filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 20px}
+.applet-filters button{min-height:44px;padding:8px 17px;background:#fffefa;border:1px solid #cbb99d;color:#574b46}
+.applet-filters button[aria-pressed="true"]{color:white;background:#762e43;border-color:#762e43}
+#applet-count{margin-left:auto;color:#686765;font-size:.82rem;font-weight:700}
+.applet-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.applet-tile{display:flex;gap:19px;min-width:0;text-decoration:none;background:#fffdfa;border:1px solid #dfd1bd;
+ border-bottom:3px solid #d1ba93;padding:21px;box-shadow:0 6px 17px #2036530a;transition:border-color .15s ease,transform .15s ease}
+.applet-tile:hover{border-color:#9c784b;transform:translateY(-2px)}
+.applet-tile[hidden]{display:none!important}
+.applet-tile-mark{display:grid;place-items:center;flex:none;width:72px;height:90px;background:#203b57;
+ color:#e3c796;font:italic 2.4rem Georgia,serif;border:2px double #bf9d68}
+.applet-tile:nth-child(2n) .applet-tile-mark{background:#733348}
+.applet-tile-info{display:grid;gap:8px;align-content:center;min-width:0}
+.applet-tile-info .eyebrow{font-size:.65rem}
+.applet-tile-info strong{color:#253b58;font:700 1.35rem/1.2 Georgia,serif}
+.applet-tile-info small{font-size:.84rem;color:#66716d;line-height:1.5}
+.applet-tile-action{font-size:.79rem;font-weight:800;color:#742d40;margin-top:6px}
+.applet-data-lab{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#213957;
+ padding:25px;color:#fffefa;margin:28px 0}
+.applet-data-lab h2{color:#fffefa;font-size:1.55rem;margin-bottom:8px}
+.applet-data-lab p{color:#ecdfc9;font-size:.89rem;margin:0}
+.applet-data-lab .btn{border-color:#ccad79;background:#fffaf0;color:#6f2b43;white-space:nowrap}
+@media(max-width:760px){
+ .applet-gallery{grid-template-columns:1fr}
+ .investigation-guide ol{grid-template-columns:1fr;gap:15px}
+ .investigation-guide li{padding:0 0 0 12px;border-left:2px solid #d9cab1}
+ .investigation-guide li:first-child{border-left:2px solid #d9cab1}
+ .applet-data-lab{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:390px){
+ .applet-tile{padding:14px;gap:12px}
+ .applet-tile-mark{width:50px;height:75px;font-size:1.8rem}
+ .applet-tile-info strong{font-size:1.14rem}
+ .applet-library-head{padding:27px 15px}
+}
+@media(prefers-reduced-motion:reduce){.applet-tile:hover{transform:none}}
+@media print{.applet-actions,.applet-filters{display:none!important}}
+
+.applet-home-call{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+ padding:22px 27px;margin:18px 0 28px;border:1px solid #dcc9a9;border-left:4px solid #b28b53;
+ background:linear-gradient(105deg,#fcf6e8,#fffdf6)}
+.applet-home-call h2{font-size:1.6rem;margin:7px 0}.applet-home-call p{font-size:.89rem;color:#6a6964;margin:0}
