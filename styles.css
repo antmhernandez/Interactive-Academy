@@ -429,3 +429,50 @@ a:hover{color:#54182e}
  .publisher-note{padding:19px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}.book-tile:hover{transform:none}}
+
+
+/* Publisher demonstration usability pass: minimum keyboard/touch targets, no narrow-screen route overflow. */
+.route-nav a{min-height:44px;white-space:normal;text-align:center}
+.context-trail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-7px 0 16px;color:#665c55;font-size:.82rem}
+.context-trail a{color:#743246;text-underline-offset:3px}
+.context-trail span:last-child{font-style:italic}
+.lesson-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin:0 0 12px}
+.lesson-tools button{min-height:44px;border:1px solid #bd9f80;background:#fffdf8;color:#603148;padding:10px 15px;font-weight:720}
+.lesson-tools #present-toggle{background:#742a3e;color:white;border-color:#742a3e}
+.lesson-tools #copy-lesson-status{font-size:.82rem;color:#385b55;margin-right:auto}
+.lesson-tabs button{min-height:48px;overflow-wrap:anywhere}
+.grade-choices a{min-height:54px}
+@media(max-width:760px){
+ .route-nav{flex-wrap:wrap}
+ .route-nav a{flex:1 1 29%;min-width:0;line-height:1.25;overflow-wrap:anywhere}
+ .lesson-tools{justify-content:space-between}
+ .lesson-tools button{flex:1 1 auto}
+ .context-trail{font-size:.77rem}
+}
+
+/* Projector view is a local-only focused page, not a browser full-screen permission request.
+   The ordinary four learning tabs and cumulative worked steps remain functional. */
+body.presentation-mode{overflow:hidden}
+.presentation-mode .focus-lesson{
+ position:fixed;inset:0;z-index:100;max-width:none;margin:0;
+ padding:clamp(12px,2vw,32px);overflow-y:auto;overscroll-behavior:contain;
+ background:#f8f5ed;scrollbar-gutter:stable
+}
+.presentation-mode .lesson-tools,.presentation-mode .visual-stage,
+.presentation-mode .learn-area{max-width:1440px;margin-left:auto;margin-right:auto}
+.presentation-mode .lesson-tools{position:sticky;top:-12px;z-index:2;padding:10px 12px;
+ background:#f8f5ed;border-bottom:1px solid #d5c7b5}
+.presentation-mode .visual-stage{padding:clamp(16px,2vw,32px)}
+.presentation-mode .visual-intro p{font-size:clamp(1rem,1.7vw,1.4rem)}
+.presentation-mode .notice-line p{font-size:clamp(.98rem,1.5vw,1.2rem)}
+.presentation-mode .learn-area{margin-top:20px}
+.presentation-mode .lesson-panel{max-width:1150px}
+.presentation-mode .lesson-panel h2{font-size:clamp(1.5rem,2vw,2.1rem)}
+.presentation-mode .lesson-panel>p,.presentation-mode .worked-steps{font-size:clamp(1rem,1.5vw,1.25rem)}
+.presentation-mode .companion-links,.presentation-mode .lesson-end,.presentation-mode .mini-links{display:none}
+@media(max-width:600px){
+ .presentation-mode .focus-lesson{padding:10px}
+ .presentation-mode .lesson-tools{top:-10px;gap:7px}
+ .presentation-mode .lesson-tools #copy-lesson-status{flex-basis:100%;order:3}
+}
+@media print{.lesson-tools{display:none!important}}
