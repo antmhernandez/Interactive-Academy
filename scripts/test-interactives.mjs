@@ -16,7 +16,7 @@ function createElement(initial){
  const el={
   innerHTML:"",
   querySelector(selector){
-   if(!objects.has(selector))objects.set(selector,{value:initial[selector]??"",textContent:"",innerHTML:"",oninput:null});
+   if(!objects.has(selector))objects.set(selector,{value:initial[selector]??"",textContent:"",innerHTML:"",oninput:null,checked:true,setAttribute(){},getAttribute(){return null;}});
    return objects.get(selector);
   }
  };
