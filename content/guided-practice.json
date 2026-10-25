@@ -840,6 +840,132 @@
     ]
   },
   {
+    "owner": "universal-gravitation",
+    "title": "Gravity Weakens with Distance",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A spacecraft is 3 Earth radii from Earth's center. If surface g is 9.8 m/s², what is its gravitational acceleration in m/s²?",
+        "answer": 1.088888888888889,
+        "tolerance": 0.02,
+        "unit": "m/s²",
+        "steps": [
+          "For a fixed planet, gravity's acceleration follows the inverse square of distance from its center.",
+          "At 3R, the factor compared with R is 1/3²=1/9.",
+          "g≈9.8/9≈1.09 m/s² inward."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Gravity exerts 100 N of force on a spacecraft at a given center-to-center separation. How large is the force, in newtons, when the distance triples while both masses remain fixed?",
+        "answer": 11.11111111111111,
+        "tolerance": 0.025,
+        "unit": "N",
+        "steps": [
+          "Use F=GMm/r² for unchanged masses.",
+          "Tripling r multiplies r² by 9.",
+          "New force=100/9≈11.11 N toward the planet."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Near the surface of an ideal spherical planet, a 4 kg test body experiences gravitational acceleration 9 m/s². What force in newtons would an 8 kg body experience at twice that center-to-center radius?",
+        "answer": 18,
+        "tolerance": 0.03,
+        "unit": "N",
+        "steps": [
+          "At twice the center-to-center radius, acceleration is quartered: g=9/4=2.25 m/s².",
+          "Gravitational acceleration does not depend on the mass of the test body.",
+          "Force=(8 kg)(2.25 m/s²)=18 N inward."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "orbital-motion",
+    "title": "Falling Around a Planet",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A satellite's ideal circular orbit radius increases from 1 Earth radius to 4 Earth radii around the same planet. If the first orbital speed is 8 km/s, what is the second speed in km/s?",
+        "answer": 4,
+        "tolerance": 0.02,
+        "unit": "km/s",
+        "steps": [
+          "For a fixed central mass in a circular orbit, v∝1/√r.",
+          "From R to 4R, orbital speed is multiplied by √(1/4)=1/2.",
+          "8 km/s×1/2=4 km/s."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "An ideal circular satellite orbit has a period of 4 hours. If its orbital radius doubles while the planet's mass is unchanged, what is its new period in hours?",
+        "answer": 11.313708498984761,
+        "tolerance": 0.03,
+        "unit": "hours",
+        "steps": [
+          "For the same central mass, T∝r^(3/2).",
+          "Doubling radius multiplies period by 2^(3/2)=√8.",
+          "T₂=4×√8≈11.31 hours."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A spacecraft circles an ideal spherical planet with gravitational parameter GM = 360000 km³/s² at a center-to-center radius of 10000 km. What is its circular speed in km/s?",
+        "answer": 6,
+        "tolerance": 0.02,
+        "unit": "km/s",
+        "steps": [
+          "In circular orbit, the force of gravity supplies centripetal acceleration: v²/r=GM/r².",
+          "Solve v=√(GM/r); units km³/s² ÷ km = km²/s².",
+          "v=√(360000/10000)=√36=6 km/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "weightlessness",
+    "title": "Why Orbit Feels Weightless",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 60 kg astronaut is in ideal free fall where gravitational acceleration is 4 m/s². What is the magnitude of the gravitational force on the astronaut in newtons?",
+        "answer": 240,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "Gravitational force remains present in free fall.",
+          "Apply Newton's law to the astronaut: Fg=mg.",
+          "Fg=(60 kg)(4 m/s²)=240 N inward."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 75 kg astronaut floats freely inside an ideal orbiting spacecraft. What is the normal force in newtons exerted by an ideal floor scale on the astronaut?",
+        "answer": 0,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "A floor scale measures the upward contact (normal) force, not the gravitational force.",
+          "The astronaut and spacecraft freely fall together and the floor need not support the astronaut.",
+          "The ideal scale reads N=0 N, even while gravity acts."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 90 kg astronaut orbits at three Earth radii from Earth's center. Approximate the magnitude of Earth's gravitational force on the astronaut in newtons using surface g=9.8 m/s².",
+        "answer": 98,
+        "tolerance": 0.03,
+        "unit": "N",
+        "steps": [
+          "At 3R, acceleration is one ninth of surface gravity: g=9.8/9 m/s².",
+          "The astronaut is in free fall but Earth still exerts force Fg=mg.",
+          "Fg=90×(9.8/9)=98 N toward Earth's center."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "work-energy",
     "title": "Work Transfers Energy",
     "levels": [
