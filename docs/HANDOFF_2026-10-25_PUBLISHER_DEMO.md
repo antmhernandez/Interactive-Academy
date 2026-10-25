@@ -108,7 +108,7 @@ No new subject lessons, licensed diagrams, Memoria Press logos/book covers, copi
 
 ## Follow-up implementation: publisher journey and classroom mode (October 25, 2026)
 
-**Branch:** `feature/navigation-presentation-accessibility-2026-10-25` (merge this work by PR into `main`; `main` remains the source of truth). **Scope:** features and accessibility, not new curriculum. This supplements rather than supersedes the original handoff above.
+**Merged:** [PR #9](https://github.com/antmhernandez/Interactive-Academy/pull/9) into `main` on October 25, 2026 (merge commit `7ad687a1d5b33614d410852bf9b1bef162408cd0`). **Scope:** features and accessibility, not new curriculum. This supplements rather than supersedes the original handoff above.
 
 ### What changed
 - **Shareable, non-authoritative context URLs:** A grade selection opens `#book/physical-science?grade=8`. The book's original concept links open `#lesson/si-units?book=physical-science&grade=8`; that origin is preserved in `#study/...` and `#guided/...` (and optional short challenges). Book Back returns to Grade 8; lesson Back returns to the actual book; Next advances through that book's *illustrative* concept shortlist, not an invented Novare chapter sequence. A visible breadcrumb says **Illustrative concept**.
@@ -129,3 +129,11 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 5. Maintain the original twenty lessons, four learning tabs and accumulative problem-reveal behavior without broad curriculum expansion.
 
 **Rights invariant:** The existing Glencoe thirty-chapter framework remains independent from Novare/Memoria Press. The contextual URL is an *illustrative topic discovery link*, not a claim about a publisher book's adopted edition or chapter. No protected content, institutional files or branded art have been added.
+
+### Verification record for follow-up
+
+- **GitHub Actions PR run #32:** [Validate interactive academy](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40215750919) — **successful** after two corrections to test fixtures/timing and a genuine mobile masthead overflow fix.
+- The existing syntax, resource, curriculum, simulation and numerical regression validators passed.
+- Chromium successfully completed the grade-to-book-to-original-lesson-to-study-to-guided route, ARIA tab keyboard navigation, cumulative example/practice steps, present/Escape controls, no forbidden chapter crosswalk, independent direct links and no horizontal page overflow at **320, 375, 768, 1024 and 1440 px**.
+- The merge was independently verified on `main`. A green PR CI run does **not** prove that GitHub Pages propagation has completed or that physical-device and assistive-technology QA has occurred.
+- Future conversations should start on `main`, consult PR #9 for the exact code changes, and continue focusing on features and publisher review before adding more curriculum.
