@@ -40,7 +40,7 @@ The four Chapter 6 visual concepts now include optional **Predict → Manipulate
 
 The project now has **26 lessons and 78 graduated problems**; the original 84-equation reference index remains available. See [the investigation design and mathematical QA standard](docs/17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md).
 
-## Contact forces and inclined planes — October 25, 2026
+## Contact forces and inclined planes — October 25, 2026 · [merged PR #12](https://github.com/antmhernandez/Interactive-Academy/pull/12)
 
 Two new original, classroom-oriented PhET-style investigations extend the existing **Chapter 5** force unit *before* Chapter 6:
 
