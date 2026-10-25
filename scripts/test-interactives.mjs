@@ -97,4 +97,12 @@ function createElement(initial){
  get("#lv-slider").value="-1";get("#lv-slider").oninput();
  assert.equal(get("#lv-current").textContent,"-1");
 }
+{
+ const {el,get}=createElement({"#unit-slider":"2.5"});
+ renderer("unitConversion")(el);
+ assert.equal(get("#unit-meters").textContent,"2.5 m");
+ assert.equal(get("#unit-centimeters").textContent,"250 cm");
+ get("#unit-slider").value="4.2";get("#unit-slider").oninput();
+ assert.equal(get("#unit-centimeters").textContent,"420 cm");
+}
 console.log("PASS: original physics, calculus and short-challenge visual readouts");
