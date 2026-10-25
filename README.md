@@ -59,8 +59,20 @@ A short optional **four-lesson pathway** keeps necessary concepts in order: [Wor
 
 **Sequencing boundary:** Because this is an optional preview of **Glencoe-indexed Chapters 10–11**, the main textbook-first lesson chain still ends at Chapter 6; energy has a separate contextual sequence, not a premature Next Lesson link. The independent prototype does *not* claim Novare/Memoria Press edition alignment. Site inventory after this pass: **30 lessons (25 Physics, 5 Calculus), 90 guided problems, 13 featured applets**, with the existing 84-equation index unchanged. See [the energy model and pedagogy audit](docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md).
 
+## Chapter 7 Gravitation — New required Physics sequence (October 25, 2026)
+
+The required course now continues beyond Chapter 6 into three original **Chapter 7: Gravitation** lessons:
+
+- [Gravity Weakens with Distance](https://antmhernandez.github.io/Interactive-Academy/#lesson/universal-gravitation): Earth-mass multiple, test-body mass and center-to-center orbital radius; precise Newtonian `F=GMm/r²` and `g=GM/r²` readouts show the inverse-square law, test-mass cancellation, and real measurement units.
+- [Falling Around a Planet](https://antmhernandez.github.io/Interactive-Academy/#lesson/orbital-motion): ideal circular orbital speed, period, gravitational acceleration, inward force, tangent-velocity arrow, phase step and slowed animation; `v=√(GM/r)` and `T=2π√(r³/GM)`.
+- [Why Orbit Feels Weightless](https://antmhernandez.github.io/Interactive-Academy/#lesson/weightlessness): original free-fall concept explanation reusing the circular-orbit applet to distinguish nonzero gravitational force from zero ideal normal/support force.
+
+Each has an original definition, three-step worked example, conceptual misconception check, Predict–Manipulate–Connect inquiry and three increasingly difficult numerical guided problems. Two original applets are in `applets/gravitation.js`. The regular Next Lesson path is now `relative-velocity → universal-gravitation → orbital-motion → weightlessness`, so **Chapter 7 follows Chapter 6**, while Chapters 10–11 energy and Chapter 28 atomic investigations remain optional previews. Other Chapter 7 topics (historical planetary models, Kepler's laws, cosmology) remain planned, not fabricated as complete.
+
+This adds **33 total lessons (28 Physics, 5 Calculus), 99 guided problems and 15 Experiment Room models**. The independent Glencoe-indexed prototype chapter ordering remains separate from *illustrative*, unauthorized Novare/Memoria Press book connections. Full mathematics and test limitations: [Chapter 7 design audit](docs/20_GRAVITATION_CHAPTER_07_2026-10-25.md).
+
 ## Current teaching preview
-Thirty original demonstration lessons (twenty-five Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Thirty misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Thirty-three original demonstration lessons (twenty-eight Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Thirty-three misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
@@ -68,7 +80,7 @@ The site offers a dedicated **Course Map** page for each subject, listing availa
 
 ## Textbook progression and learning companions
 
-Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–6, including original **two-dimensional velocity**, **projectile motion**, **circular motion**, and **river-crossing relative velocity** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
+Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–7, including original **two-dimensional velocity**, **projectile motion**, **circular motion**, and **river-crossing relative velocity** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
 
 Every completed topic now includes **Definition & Example** (`#study/{id}`) and **Guided Practice** (`#guided/{id}`) pages. The study page has the original definition, fully worked example, and a student problem directly below. The practice page moves through Begin, Extend, and Challenge problems, progressively revealing each reasoning step *beneath* earlier steps. A separate **Physics Equation Reference** (`#equations`) indexes the formula notes for all 30 chapters. See `docs/13_TEXTBOOK_ORDER_STUDY_GUIDED_PRACTICE_AND_EQUATIONS.md`.
 
