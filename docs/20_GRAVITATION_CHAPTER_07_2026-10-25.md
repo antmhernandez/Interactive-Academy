@@ -58,3 +58,7 @@ These examples are added only to `existing-glencoe`, an **independent prototype*
 - Additional required review before a publisher demo: in-person Physics editorial review, touch devices, Safari, keyboard/screen-reader assistive technology, visual pacing on a physical projector, student understanding of apparent weight versus gravity, and original IP review.
 
 **Next incremental direction:** a carefully scoped Chapter 8 rotational-motion or Chapter 9 momentum investigation following actual book order; first address issues surfaced by classroom testing of the current 15 original applets.
+
+## Implemented and verified (post-merge)
+
+Merged via [PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14), squash SHA `849ae8c6c56831fba1952a366434ca9c7a01aeba`. Before merge, [Actions run #60](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40241966619) successfully completed content, physics, publisher-pathway and five-width Chromium validations. Real-device/assistive technology and classroom observation remain pending.
