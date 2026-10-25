@@ -40,7 +40,11 @@ const visualKeys={
  "slope-height":[["teal","Position line"],["amber","Current point"]],
  "sign-speed":[["teal","Velocity"],["amber","Acceleration"]],
  "limit-value":[["teal","Nearby graph"],["amber","Defined point"]],
- "unit-conversion":[["teal","Meters"],["amber","Centimeters"]]
+ "unit-conversion":[["teal","Meters"],["amber","Centimeters"]],
+ "measurement-ruler":[["teal","Estimated interval"],["amber","Object edge"]],
+ "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]],
+ "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
+ "slope-graph":[["teal","Position curve"],["amber","Secant slope"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -194,6 +198,10 @@ function lesson(l){
  if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
  if(l.visual==="one-sided-limit")oneSidedLimit(el);
  if(l.visual==="unit-conversion")unitConversion(el);
+ if(l.visual==="measurement-ruler")measurementRuler(el);
+ if(l.visual==="significant-digits")significantDigits(el);
+ if(l.visual==="units-cancel")unitCancellation(el);
+ if(l.visual==="slope-graph")slopeToolkit(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -469,6 +477,46 @@ function unitConversion(el){
  el.querySelector("#unit-input-value").textContent=f(meters)+" m";el.querySelector("#unit-meters").textContent=f(meters)+" m";el.querySelector("#unit-centimeters").textContent=f(meters*100)+" cm";
  }
  slider.oninput=draw;draw();
+}
+function measurementRuler(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Read an analog ruler</strong><span class="pill">Measurement resolution</span></div><svg viewBox="0 0 540 260" role="img" aria-label="Millimeter ruler and movable object edge with measurement uncertainty"><rect width="540" height="260" rx="12" fill="#f8fbf9"/><g id="ruler-plot"></g></svg><div class="controls"><label>Object edge <strong id="measure-pos"></strong><input id="ruler-pos" type="range" min="2" max="78" step=".1" value="26.4"/></label><label>Smallest division <select id="ruler-resolution"><option value="1">1 mm</option><option value=".5">0.5 mm</option></select></label></div><div class="readout"><div class="metric"><small>Ruler reading</small><strong id="measure-reading"></strong></div><div class="metric"><small>Reading uncertainty</small><strong id="measure-uncertainty"></strong></div></div><p class="note">Illustrative ±half-division uncertainty. Calibration, alignment and reading method also matter.</p>`;
+ const value=el.querySelector("#ruler-pos"),res=el.querySelector("#ruler-resolution"),graph=el.querySelector("#ruler-plot"),px=n=>68+5*n;
+ function draw(){
+  const pos=+value.value,r=+res.value,reading=Math.round(pos/r)*r,uncertainty=r/2,decimals=r===1?1:2;
+  const ticks=Array.from({length:Math.round(80/r)+1},(_,i)=>{const m=i*r,x=px(m),major=m%10===0,mid=m%5===0;return `<path d="M${x} 114V${major?151:mid?137:122}" stroke="#7a9c91" stroke-width="${major?1.8:.7}"/>${major?`<text x="${x}" y="169" font-size="11" text-anchor="middle" fill="#526b64">${m}</text>`:""}`}).join("");
+  graph.innerHTML=`<rect x="52" y="110" width="430" height="65" rx="7" fill="#e5f0eb" stroke="#8aaea0"/>${ticks}<path d="M${px(pos)} 54V195" stroke="#c08039" stroke-width="3.5"/><path d="M${px(reading-uncertainty)} 203H${px(reading+uncertainty)}" stroke="#14727a" stroke-width="6" stroke-linecap="round"/><text x="68" y="31" font-size="14" fill="#45645e">Length on ruler (mm)</text><text x="68" y="244" font-size="12" fill="#496c65">Teal segment: reading ± uncertainty</text>`;
+  el.querySelector("#measure-pos").textContent=f(pos)+" mm";
+  el.querySelector("#measure-reading").textContent=reading.toFixed(decimals)+" mm";
+  el.querySelector("#measure-uncertainty").textContent="±"+uncertainty.toFixed(decimals)+" mm";
+ }value.oninput=res.onchange=draw;draw();
+}
+function significantDigits(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Keep only justified digits</strong><span class="pill">Multiplication rule</span></div><svg viewBox="0 0 540 226" role="img" aria-label="Measured factors and correctly rounded numerical product"><rect width="540" height="226" rx="12" fill="#f8fbf9"/><g id="sig-plot"></g></svg><div class="controls"><label>First measured factor <select id="sig-a"><option value="2.40">2.40 (3 digits)</option><option value="4.20">4.20 (3 digits)</option><option value="12.36">12.36 (4 digits)</option></select></label><label>Second measured factor <select id="sig-b"><option value="3.1">3.1 (2 digits)</option><option value="2.0">2.0 (2 digits)</option><option value="4.25">4.25 (3 digits)</option></select></label></div><div class="readout"><div class="metric"><small>Unrounded product</small><strong id="sig-raw"></strong></div><div class="metric"><small>Reported product</small><strong id="sig-rounded"></strong></div><div class="metric"><small>Significant digits</small><strong id="sig-count"></strong></div></div><p class="note">Multiplication/division: use the fewest significant digits. Addition/subtraction: round to the least precise decimal place.</p>`;
+ const A=el.querySelector("#sig-a"),B=el.querySelector("#sig-b"),G=el.querySelector("#sig-plot");
+ const digits=v=>v.replace(".","").replace(/^0+/,"").length;
+ function draw(){
+  const a=A.value,b=B.value,p=Number(a)*Number(b),n=Math.min(digits(a),digits(b));
+  G.innerHTML=`<rect x="27" y="44" width="145" height="88" rx="11" fill="#e0f1ed" stroke="#93c9bb"/><rect x="194" y="44" width="145" height="88" rx="11" fill="#fff0dc" stroke="#e1ba85"/><rect x="362" y="44" width="149" height="88" rx="11" fill="#e6eff9" stroke="#b7cbdc"/><text x="100" y="71" text-anchor="middle" font-size="12" fill="#4e7168">Factor A</text><text x="100" y="105" text-anchor="middle" font-size="25" fill="#14727a">${a}</text><text x="267" y="71" text-anchor="middle" font-size="12" fill="#a17035">Factor B</text><text x="267" y="105" text-anchor="middle" font-size="25" fill="#b87831">${b}</text><text x="436" y="71" text-anchor="middle" font-size="12" fill="#506f8c">Report</text><text x="436" y="105" text-anchor="middle" font-size="25" fill="#315c82">${p.toPrecision(n)}</text><text x="182" y="94" font-size="20" fill="#647e74">×</text><text x="346" y="94" font-size="20" fill="#647e74">→</text><text x="270" y="167" text-anchor="middle" font-size="15" fill="#3d6d65">The less precise factor limits the product.</text><text x="270" y="193" text-anchor="middle" font-size="13" fill="#66817a">Calculate first, then round once.</text>`;
+  el.querySelector("#sig-raw").textContent=String(Number(p.toFixed(8)));
+  el.querySelector("#sig-rounded").textContent=p.toPrecision(n);
+  el.querySelector("#sig-count").textContent=String(n);
+ }A.onchange=B.onchange=draw;draw();
+}
+function unitCancellation(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Let the units cancel</strong><span class="pill">Dimensional analysis</span></div><svg viewBox="0 0 540 224" role="img" aria-label="A calculation with units and its resulting physical unit"><rect width="540" height="224" rx="12" fill="#f8fbf9"/><g id="cancel-plot"></g></svg><div class="controls"><label>Choose a relationship <select id="unit-scenario"><option value="distance">Distance = speed × time</option><option value="speed">Speed = distance ÷ time</option><option value="convert">Convert kilometers per hour</option></select></label></div><div class="readout"><div class="metric"><small>Numerical result</small><strong id="unit-cancel-answer"></strong></div><div class="metric"><small>Remaining units</small><strong id="unit-cancel-units"></strong></div></div><p class="note">Consistent units are necessary for an equation, but do not alone prove a physical model correct.</p>`;
+ const D=el.querySelector("#unit-scenario"),G=el.querySelector("#cancel-plot");
+ const models={distance:["3 m/s × 4 s","(m/s) × s","12 m","m","Seconds cancel"],speed:["18 m ÷ 3 s","m ÷ s","6 m/s","m/s","Time remains below"],convert:["36 km/h → m/s","36 × 1000 / 3600","10 m/s","m/s","Convert kilometers and hours"]};
+ function draw(){const [a,b,ans,units,note]=models[D.value];G.innerHTML=`<rect x="30" y="37" width="480" height="139" rx="13" fill="#fff" stroke="#d3e6df"/><text x="270" y="78" font-size="22" fill="#385f5b" text-anchor="middle">${a}</text><text x="270" y="116" font-size="18" fill="#14727a" text-anchor="middle">${b}</text><text x="270" y="151" font-size="22" font-weight="bold" fill="#b27630" text-anchor="middle">= ${ans}</text><text x="270" y="204" font-size="13" fill="#61746f" text-anchor="middle">${note}</text>`;el.querySelector("#unit-cancel-answer").textContent=ans;el.querySelector("#unit-cancel-units").textContent=units;}D.onchange=draw;draw();
+}
+function slopeToolkit(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Position vs. time</strong><span class="pill">Secant slope</span></div><svg viewBox="0 0 540 324" role="img" aria-label="Curved position-time graph with adjustable secant endpoints"><rect width="540" height="324" rx="12" fill="#f8fbf9"/><g id="slope-plot"></g></svg><div class="controls"><label>First time <strong id="slope-t1-label"></strong><input id="slope-t1" type="range" min="0" max="1.5" step=".5" value="0"/></label><label>Second time <strong id="slope-t2-label"></strong><input id="slope-t2" type="range" min="2" max="4" step=".5" value="2"/></label></div><div class="readout"><div class="metric"><small>Change in position</small><strong id="slope-rise"></strong></div><div class="metric"><small>Elapsed time</small><strong id="slope-run"></strong></div><div class="metric"><small>Secant slope</small><strong id="slope-value"></strong></div></div><p class="note">The example model is x(t) = 1 + t² meters, time in seconds. Secant slope is average velocity.</p>`;
+ const A=el.querySelector("#slope-t1"),B=el.querySelector("#slope-t2"),G=el.querySelector("#slope-plot"),X=t=>78+t*105,Y=x=>280-13*x;
+ function draw(){const t1=+A.value,t2=+B.value,x1=1+t1*t1,x2=1+t2*t2;
+  const curve=Array.from({length:41},(_,i)=>{const t=i/10;return `${i?"L":"M"}${X(t)} ${Y(1+t*t)}`}).join(" ");
+  G.innerHTML=`<path d="M77 30V280H510" stroke="#93b5a8" stroke-width="1.5" fill="none"/><path d="${curve}" fill="none" stroke="#14727a" stroke-width="4"/><path d="M${X(t1)} ${Y(x1)}L${X(t2)} ${Y(x2)}" stroke="#c08039" stroke-width="4"/><circle cx="${X(t1)}" cy="${Y(x1)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><circle cx="${X(t2)}" cy="${Y(x2)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><path d="M${X(t1)} ${Y(x1)}V280M${X(t2)} ${Y(x2)}V280" stroke="#b7d3c7" stroke-dasharray="4 4"/><text x="25" y="29" font-size="13" fill="#4c7368">x (m)</text><text x="465" y="307" font-size="13" fill="#4c7368">t (s)</text><text x="${X(t1)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t1)}</text><text x="${X(t2)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t2)}</text>`;
+  el.querySelector("#slope-t1-label").textContent=f(t1)+" s";el.querySelector("#slope-t2-label").textContent=f(t2)+" s";
+  el.querySelector("#slope-rise").textContent=f(x2-x1)+" m";el.querySelector("#slope-run").textContent=f(t2-t1)+" s";el.querySelector("#slope-value").textContent=f((x2-x1)/(t2-t1))+" m/s";
+ }A.oninput=B.oninput=draw;draw();
 }
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;

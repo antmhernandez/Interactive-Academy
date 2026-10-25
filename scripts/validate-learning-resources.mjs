@@ -7,7 +7,7 @@ const guided=read("content/guided-practice.json");
 const eq=read("content/equations-physics.json");
 const map=read("curriculum/catalog.json");
 const book=map.textbook;
-assert.equal(lessons.length,16);
+assert.equal(lessons.length,20);
 assert.equal(guided.length,lessons.length,"Every complete lesson needs guided practice");
 const defined=new Map(lessons.map(x=>[x.id,x])),guidedIds=new Set();
 let problems=0;
@@ -27,7 +27,7 @@ for(const set of guided){
   assert.ok(p.steps.every(s=>s.trim().length>=7),"Missing or empty reasoning step "+set.owner);
  }
 }
-assert.equal(problems,48,"Unexpected practice count");
+assert.equal(problems,60,"Unexpected practice count");
 for(const lesson of lessons){
  assert.ok(lesson.definition?.length>=70&&lesson.definition.length<=350,"Missing concise definition "+lesson.id);
  assert.ok(guidedIds.has(lesson.id),"No guided-practice set "+lesson.id);
@@ -48,7 +48,7 @@ for(let i=0;i<30;i++){
    "Incomplete equation/assumption "+chapter.number);
  }
 }
-assert.ok(equations>=75,"Too few current formula entries");
+assert.ok(equations>=84,"Too few current formula entries");
 const physics=lessons.filter(l=>l.subject==="physics");
 assert.equal(physics[0].id,"si-units","Learning path must begin with the mathematical toolkit");
 assert.equal(physics.at(-1).id,"atom-spectra","Atomic formula lesson must be at late book chapter 28");

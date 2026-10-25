@@ -8,10 +8,10 @@ const lessons = JSON.parse(read("content/lessons.json"));
 assert.match(site, /id="main"/);
 for (const file of ["styles.css","app.js"]) assert.ok(site.includes(file), "Page missing dependency "+file);
 assert.ok(css.includes("@media(max-width:760px)"), "Mobile layout missing");
-assert.ok(Array.isArray(lessons) && lessons.length >= 16);
+assert.ok(Array.isArray(lessons) && lessons.length >= 20);
 const ids = new Set(lessons.map(x => x.id));
 assert.equal(ids.size, lessons.length, "Duplicate lesson IDs");
-const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann","displacement","average-velocity","free-fall","velocity-area","force-components","free-body","newton-two","limit-hole","hydrogen-spectrum","one-sided-limit","unit-conversion"]);
+const visuals = new Set(["motion","acceleration","motion-graphs","tangent","riemann","displacement","average-velocity","free-fall","velocity-area","force-components","free-body","newton-two","limit-hole","hydrogen-spectrum","one-sided-limit","unit-conversion","measurement-ruler","significant-digits","units-cancel","slope-graph"]);
 for (const lesson of lessons) {
  assert.ok(/^[a-z0-9-]+$/.test(lesson.id), "Invalid ID");
  assert.ok(["physics","calculus"].includes(lesson.subject), "Invalid subject");
@@ -34,7 +34,7 @@ for (const lesson of lessons) {
 }
 
 // Courses are finite, ordered learning paths, not loops.
-for (const [course, expected] of [["physics",11],["calculus",5]]) {
+for (const [course, expected] of [["physics",15],["calculus",5]]) {
  const group=lessons.filter(l=>l.subject===course);
  assert.equal(group.length,expected,"Unexpected number of "+course+" lessons");
  const learningPath=group.filter(l=>!l.optionalPreview);
@@ -47,7 +47,7 @@ for (const [course, expected] of [["physics",11],["calculus",5]]) {
  }
 }
 // A simulator must exist for each named diagram.
-for (const fn of ["displacement","averageVelocity","freeFall","velocityArea","motion","acceleration","linkedGraphs","tangent","riemann","forceComponents","freeBody","newtonTwo","limitHole","hydrogenSpectrum","oneSidedLimit","unitConversion","slopeHeight","signSpeed","limitValue"]) {
+for (const fn of ["displacement","averageVelocity","freeFall","velocityArea","motion","acceleration","linkedGraphs","tangent","riemann","forceComponents","freeBody","newtonTwo","limitHole","hydrogenSpectrum","oneSidedLimit","unitConversion","measurementRuler","significantDigits","unitCancellation","slopeToolkit","slopeHeight","signSpeed","limitValue"]) {
  assert.ok(js.includes("function "+fn+"("),"Missing simulator "+fn);
 }
 assert.ok(js.includes("learning-atlas-completed-v1"),"Local-only progress store missing");
@@ -64,7 +64,7 @@ assert.ok(css.includes(".visual-stage") && css.includes(".focus-head"),"Focused 
 assert.ok(site.includes("lab/motion.html") && js.includes("lab/motion.html"),"Motion lab navigation missing");
 for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs","docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
 // Sanity checks for the numerical practice keys in newly added topics.
-for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["one-sided-limits",3]]) {
+for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["scientific-measurement",42.5],["significant-figures",8.4],["dimensional-analysis",30],["graph-slope-physics",3],["one-sided-limits",3]]) {
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
 }
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));

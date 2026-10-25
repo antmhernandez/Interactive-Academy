@@ -105,4 +105,39 @@ function createElement(initial){
  get("#unit-slider").value="4.2";get("#unit-slider").oninput();
  assert.equal(get("#unit-centimeters").textContent,"420 cm");
 }
+
+{
+ const {el,get}=createElement({"#ruler-pos":"26.4","#ruler-resolution":"1"});
+ renderer("measurementRuler")(el);
+ assert.equal(get("#measure-reading").textContent,"26.0 mm");
+ assert.equal(get("#measure-uncertainty").textContent,"±0.5 mm");
+ get("#ruler-resolution").value=".5";get("#ruler-resolution").onchange();
+ assert.equal(get("#measure-reading").textContent,"26.50 mm");
+ assert.equal(get("#measure-uncertainty").textContent,"±0.25 mm");
+ assert.ok(get("#ruler-plot").innerHTML.includes("object")===false||get("#ruler-plot").innerHTML.length>500);
+}
+{
+ const {el,get}=createElement({"#sig-a":"2.40","#sig-b":"3.1"});
+ renderer("significantDigits")(el);
+ assert.equal(get("#sig-raw").textContent,"7.44");
+ assert.equal(get("#sig-rounded").textContent,"7.4");
+ assert.equal(get("#sig-count").textContent,"2");
+ get("#sig-a").value="12.36";get("#sig-b").value="4.25";get("#sig-b").onchange();
+ assert.equal(get("#sig-count").textContent,"3");
+}
+{
+ const {el,get}=createElement({"#unit-scenario":"distance"});
+ renderer("unitCancellation")(el);
+ assert.equal(get("#unit-cancel-answer").textContent,"12 m");
+ get("#unit-scenario").value="convert";get("#unit-scenario").onchange();
+ assert.equal(get("#unit-cancel-answer").textContent,"10 m/s");
+}
+{
+ const {el,get}=createElement({"#slope-t1":"0","#slope-t2":"2"});
+ renderer("slopeToolkit")(el);
+ assert.equal(get("#slope-value").textContent,"2 m/s");
+ get("#slope-t2").value="4";get("#slope-t2").oninput();
+ assert.equal(get("#slope-rise").textContent,"16 m");
+ assert.equal(get("#slope-value").textContent,"4 m/s");
+}
 console.log("PASS: original physics, calculus and short-challenge visual readouts");

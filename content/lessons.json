@@ -45,8 +45,204 @@
       ],
       "explanation": "Because 1 m = 100 cm, the same length is 0.42 m = 42 cm."
     },
-    "next": "position-displacement",
+    "next": "scientific-measurement",
     "definition": "An SI unit is an agreed standard used to express a physical quantity. Metric prefixes multiply or divide its scale by powers of ten."
+  },
+  {
+    "id": "scientific-measurement",
+    "title": "Measurement and Uncertainty",
+    "subtitle": "Every measurement has a limit to its precision.",
+    "duration": "8 min",
+    "visual": "measurement-ruler",
+    "observe": "If a ruler's marks are 1 mm apart, how closely can you report a length?",
+    "visualLead": "Move the edge and change the ruler's smallest division.",
+    "focus": "A ruler reading is an estimate within the instrument's resolution; finer marks narrow the uncertainty.",
+    "definition": "Measurement uncertainty is the range of reasonable values associated with a measurement. Resolution is the smallest marked or displayed change an instrument can distinguish.",
+    "idea": "A measured number is not perfectly exact. A common introductory convention for an analog scale is to report an uncertainty of about half the smallest division when the reading is clear; other instruments and laboratory procedures require their own uncertainty models.",
+    "example": {
+      "question": "A ruler marked every 1 mm gives a reading of 26 mm. Using half a division as an uncertainty estimate, report the result.",
+      "steps": [
+        "Identify the instrument resolution: one division represents 1 mm.",
+        "Half a division is 0.5 mm. This is a simple reading-uncertainty estimate, not a claim of perfect accuracy.",
+        "Write the measurement as (26.0 ± 0.5) mm so the value and uncertainty use the same decimal place."
+      ]
+    },
+    "practice": {
+      "prompt": "A length is reported as (42.0 ± 0.5) mm. What is the largest value in that stated interval, in millimeters?",
+      "answer": 42.5,
+      "tolerance": 0.001,
+      "unit": "mm",
+      "hints": [
+        "The upper end of an interval is the reported value plus its uncertainty.",
+        "Add 42.0 and 0.5 mm."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Two rulers measure the same object. Which observation best supports a more precise measurement?",
+      "choices": [
+        "The ruler with more closely spaced and accurately readable subdivisions can resolve smaller changes.",
+        "The longer ruler always produces more precise measurements.",
+        "Writing more decimal places always improves measurement accuracy."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. Smaller readable subdivisions generally reduce reading uncertainty, though calibration and technique also matter.",
+        "Ruler length alone does not determine measurement precision.",
+        "Extra digits cannot create reliable information beyond what the instrument measures."
+      ],
+      "explanation": "Precision is limited by actual instrument resolution and measurement method, not by the number of typed decimal places."
+    },
+    "subject": "physics",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "next": "significant-figures"
+  },
+  {
+    "id": "significant-figures",
+    "title": "Meaningful Digits",
+    "subtitle": "A calculated answer should respect its measurements.",
+    "duration": "7 min",
+    "visual": "significant-digits",
+    "observe": "Should 2.40 × 3.1 be reported as 7.44 or 7.4?",
+    "visualLead": "Choose a measured factor and compare the unrounded and reported results.",
+    "focus": "For multiplication, the factor with the fewest significant figures controls the reported count.",
+    "definition": "Significant figures are the digits that communicate a measurement's reported precision, including its last meaningful digit.",
+    "idea": "For multiplication and division, a common introductory rule reports as many significant figures as the factor with the fewest. For addition and subtraction, the limiting decimal place matters instead. Keep guard digits during calculation and round once at the end.",
+    "example": {
+      "question": "Multiply two measured factors, 2.40 and 3.1, and report the product with appropriate significant figures.",
+      "steps": [
+        "Count significant figures: 2.40 has three and 3.1 has two.",
+        "Calculate using the unrounded values: 2.40 × 3.1 = 7.44.",
+        "Multiplication is limited to two significant figures. Report 7.4, not 7.44."
+      ]
+    },
+    "practice": {
+      "prompt": "Compute 4.20 × 2.0 and report the product to the correct number of significant figures. Enter the numeric result.",
+      "answer": 8.4,
+      "tolerance": 0.001,
+      "unit": "",
+      "hints": [
+        "4.20 has three significant figures; 2.0 has two.",
+        "The unrounded product is 8.40. Round it to two significant figures."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A measurement is written as 2.40 m. What does its final zero communicate?",
+      "choices": [
+        "The length is exact because the zero is written.",
+        "The zero counts as a meaningful measured digit to the hundredths place.",
+        "Zeros never count as significant figures."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Measured values normally have uncertainty, regardless of zeros.",
+        "Correct. The terminal zero after the decimal point communicates precision.",
+        "Trailing zeros to the right of a decimal point can be significant."
+      ],
+      "explanation": "The notation 2.40 m communicates three significant figures, while 2.4 m communicates two."
+    },
+    "subject": "physics",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "next": "dimensional-analysis"
+  },
+  {
+    "id": "dimensional-analysis",
+    "title": "Let the Units Guide You",
+    "subtitle": "Units can reveal how quantities belong together.",
+    "duration": "8 min",
+    "visual": "units-cancel",
+    "observe": "Why does multiplying meters per second by seconds give meters?",
+    "visualLead": "Switch between distance, speed, and acceleration examples.",
+    "focus": "Multiply or divide the units along with the numbers. Units cancel only when the algebra permits it.",
+    "definition": "Dimensional analysis uses the units or dimensions of quantities to check a relationship or construct a valid conversion.",
+    "idea": "Treat units as algebraic factors. For example, (m/s) × s = m: seconds cancel and leave meters. Dimensional consistency helps identify many impossible formulas, but matching dimensions alone does not prove a formula physically correct.",
+    "example": {
+      "question": "A cart travels at 3 m/s for 4 s. Find the distance traveled at constant speed.",
+      "steps": [
+        "Select the relation d = vt because distance depends on constant speed and elapsed time.",
+        "Substitute with units: d = (3 m/s)(4 s).",
+        "Cancel seconds: (m/s) × s = m. The distance is 12 m."
+      ]
+    },
+    "practice": {
+      "prompt": "At a constant speed of 6 m/s, a cart travels for 5 seconds. How many meters does it travel?",
+      "answer": 30,
+      "tolerance": 0.001,
+      "unit": "m",
+      "hints": [
+        "Distance = speed × time when the speed is constant.",
+        "Multiply (6 m/s)(5 s) and cancel seconds."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Which product has units of distance?",
+      "choices": [
+        "(m/s) × s, because the seconds cancel and leave meters.",
+        "(m/s) ÷ s, because dividing speed by time gives distance.",
+        "(m/s²) ÷ s, because dividing acceleration by time gives distance."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. The seconds factors cancel, leaving meters.",
+        "This expression has units of m/s², which is acceleration.",
+        "This expression has units of m/s³, not distance."
+      ],
+      "explanation": "Carry units through multiplication and division in the same way you carry the numerical factors."
+    },
+    "subject": "physics",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "next": "graph-slope-physics"
+  },
+  {
+    "id": "graph-slope-physics",
+    "title": "What a Graph's Slope Means",
+    "subtitle": "Read change from the shape—not just the height.",
+    "duration": "8 min",
+    "visual": "slope-graph",
+    "observe": "How can two time intervals have different average velocities on the same curve?",
+    "visualLead": "Move the endpoint times and watch the secant line.",
+    "focus": "The amber line's slope is Δposition/Δtime, and its units are meters per second.",
+    "definition": "The slope between two points on a physical graph is the vertical change divided by the horizontal change, including the resulting units.",
+    "idea": "On a position–time graph, secant slope is average velocity. For a curved graph, the slope depends on the interval. Always read both axis labels before interpreting height, slope, or area.",
+    "example": {
+      "question": "On a position–time graph, a cart is at 3 m at t = 1 s and 15 m at t = 5 s. Find the secant slope.",
+      "steps": [
+        "Identify the vertical change: Δx = 15 − 3 = 12 m.",
+        "Identify the horizontal change: Δt = 5 − 1 = 4 s.",
+        "Calculate slope = Δx/Δt = 12 m/4 s = +3 m/s. It represents average velocity."
+      ]
+    },
+    "practice": {
+      "prompt": "On a position–time graph, position changes from 2 m at 1 s to 14 m at 5 s. What is the secant slope in meters per second?",
+      "answer": 3,
+      "tolerance": 0.001,
+      "unit": "m/s",
+      "hints": [
+        "Find the change in the vertical quantity and divide by elapsed time.",
+        "Compute (14 − 2)/(5 − 1), carrying meters per second."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A position–time curve is rising and becoming steeper. What does a larger positive slope mean?",
+      "choices": [
+        "The object's position is necessarily negative.",
+        "The object's average velocity across short successive intervals is increasing.",
+        "The graph is taller, so its acceleration must be zero."
+      ],
+      "correct": 1,
+      "feedback": [
+        "A rising graph does not tell you the sign of position without reading its axis.",
+        "Correct. A steeper positive position–time graph indicates a greater positive velocity.",
+        "Graph height and slope describe different things. The increasing slope signals changing velocity."
+      ],
+      "explanation": "For position against time, slope describes velocity; an increase in slope indicates positive acceleration in this context."
+    },
+    "subject": "physics",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "next": "position-displacement"
   },
   {
     "id": "position-displacement",

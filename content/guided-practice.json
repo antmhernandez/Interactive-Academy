@@ -42,6 +42,174 @@
     ]
   },
   {
+    "owner": "scientific-measurement",
+    "title": "Measurement and Uncertainty",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A length is reported as (42.0 ± 0.5) mm. What is the largest value in that stated interval, in millimeters?",
+        "answer": 42.5,
+        "tolerance": 0.01,
+        "unit": "mm",
+        "steps": [
+          "Interpret the ± sign as a range around the reported measurement.",
+          "The upper bound is the central reading plus its stated uncertainty: 42.0 + 0.5 mm.",
+          "The upper end of the interval is 42.5 mm."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A ruler reading is reported as (38.0 ± 1.0) mm. Find the lower bound of the stated interval.",
+        "answer": 37,
+        "tolerance": 0.01,
+        "unit": "mm",
+        "steps": [
+          "Use the lowest plausible value in the reported interval.",
+          "Subtract the uncertainty, rather than adding it: 38.0 − 1.0 mm.",
+          "The lower bound is 37.0 mm."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Two measured lengths are (2.5 ± 0.2) cm and (3.0 ± 0.1) cm. Assuming both could be at their upper bounds, find the greatest total length in centimeters.",
+        "answer": 5.8,
+        "tolerance": 0.01,
+        "unit": "cm",
+        "steps": [
+          "For a largest possible sum, use each reported upper bound.",
+          "Add (2.5 + 0.2) cm and (3.0 + 0.1) cm; this is a conservative interval-bound approach.",
+          "The greatest total in those intervals is 2.7 + 3.1 = 5.8 cm."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "significant-figures",
+    "title": "Meaningful Digits",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "Compute 4.20 × 2.0 and report the product to the correct number of significant figures. Enter the numeric result.",
+        "answer": 8.4,
+        "tolerance": 0.01,
+        "unit": "",
+        "steps": [
+          "Count digits: 4.20 has three significant figures and 2.0 has two.",
+          "Multiply first: 4.20 × 2.0 = 8.40 before rounding.",
+          "Round to two significant figures, yielding the reported number 8.4."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Two measured factors are 12.36 and 1.2. Multiply and round the product to the correct significant-figure count.",
+        "answer": 15,
+        "tolerance": 0.01,
+        "unit": "",
+        "steps": [
+          "The measured factor 1.2 has only two significant figures.",
+          "The unrounded product is 12.36 × 1.2 = 14.832.",
+          "Round once to two significant figures: 15."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Measurements 2.48 cm and 3.1 cm are added. What is the properly rounded numerical sum in centimeters?",
+        "answer": 5.6,
+        "tolerance": 0.01,
+        "unit": "cm",
+        "steps": [
+          "Addition uses the least precise decimal place, rather than the fewest significant figures.",
+          "The unrounded sum is 2.48 + 3.1 = 5.58 cm.",
+          "The least precise addend is to tenths, so report 5.6 cm."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "dimensional-analysis",
+    "title": "Let the Units Guide You",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "At a constant speed of 6 m/s, a cart travels for 5 seconds. How many meters does it travel?",
+        "answer": 30,
+        "tolerance": 0.01,
+        "unit": "m",
+        "steps": [
+          "Distance equals constant speed multiplied by the time interval.",
+          "Write (6 m/s) × (5 s), including the units.",
+          "Seconds cancel, so the distance is 30 m."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A runner travels 150 meters in 12 seconds at a constant average speed. Find the numerical speed in m/s.",
+        "answer": 12.5,
+        "tolerance": 0.01,
+        "unit": "m/s",
+        "steps": [
+          "Find what is asked: distance divided by elapsed time.",
+          "The units become m ÷ s, so the result is expressed in m/s.",
+          "Calculate 150 m ÷ 12 s = 12.5 m/s."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A vehicle travels at 36 km/h. Convert its speed to meters per second, using 1 km = 1,000 m and 1 hour = 3,600 seconds.",
+        "answer": 10,
+        "tolerance": 0.01,
+        "unit": "m/s",
+        "steps": [
+          "Write conversion factors that cancel both kilometers and hours.",
+          "36 km/h × (1000 m/km) × (1 h/3600 s).",
+          "Both unwanted units cancel: 36,000/3600 = 10 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "graph-slope-physics",
+    "title": "What a Graph's Slope Means",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "On a position–time graph, position changes from 2 m at 1 s to 14 m at 5 s. What is the secant slope in meters per second?",
+        "answer": 3,
+        "tolerance": 0.01,
+        "unit": "m/s",
+        "steps": [
+          "Find Δposition = 14 − 2 = 12 m.",
+          "Find Δtime = 5 − 1 = 4 s.",
+          "Slope is 12 m/4 s = 3 m/s."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "On a position–time plot a cart is at 14 m at t = 2 s and at −4 m at t = 8 s. Find signed average velocity.",
+        "answer": -3,
+        "tolerance": 0.01,
+        "unit": "m/s",
+        "steps": [
+          "A graph may slope downward, so preserve the sign of displacement.",
+          "Δx = −4 − 14 = −18 m and Δt = 8 − 2 = 6 s.",
+          "Slope = −18/6 = −3 m/s, indicating motion in the negative direction."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "For the curved position function x(t) = 1 + t² meters, calculate average velocity from t = 2 s to t = 4 s.",
+        "answer": 6,
+        "tolerance": 0.01,
+        "unit": "m/s",
+        "steps": [
+          "Compute the two positions, not the instantaneous derivative.",
+          "x(2) = 5 m and x(4) = 17 m; elapsed time is 2 s.",
+          "Average velocity = (17 − 5)/(4 − 2) = 6 m/s."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "position-displacement",
     "title": "Distance and Displacement",
     "levels": [
