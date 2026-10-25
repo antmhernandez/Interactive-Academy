@@ -476,3 +476,13 @@ body.presentation-mode{overflow:hidden}
  .presentation-mode .lesson-tools #copy-lesson-status{flex-basis:100%;order:3}
 }
 @media print{.lesson-tools{display:none!important}}
+
+/* Small phones: prevent the masthead's long subtitle from forcing the viewport wider. */
+@media(max-width:410px){
+ .topbar{gap:7px;min-width:0}
+ .logo{flex:1;min-width:0;gap:7px;white-space:normal}
+ .logo>span:last-child{min-width:0;font-size:.97rem;line-height:1.05;overflow-wrap:anywhere}
+ .logo small{white-space:normal;font-size:.54rem;line-height:1.2;letter-spacing:.06em}
+ .brand-mark{flex:none}
+ .menu-btn{flex:none;min-width:44px;min-height:44px;padding:6px 9px}
+}
