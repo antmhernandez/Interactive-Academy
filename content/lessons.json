@@ -732,7 +732,12 @@
       ],
       "explanation": "Components are products of the speed and a fixed trigonometric ratio, so changing the magnitude scales both projections."
     },
-    "next": "projectile-motion"
+    "next": "projectile-motion",
+    "investigation": {
+      "prediction": "If the angle increases from 0° toward 90° while speed stays fixed, which component grows?",
+      "experiment": "Keep speed at 20 m/s and slide the angle slowly from 0° to 90°. Compare the horizontal and vertical readouts.",
+      "connection": "The sine and cosine projections exchange their shares of the unchanged speed: vₓ = v cos θ; vᵧ = v sin θ."
+    }
   },
   {
     "id": "projectile-motion",
@@ -781,7 +786,12 @@
       ],
       "explanation": "The apex is a vertical turning point, not a moment without force. Horizontal velocity remains constant in this ideal model."
     },
-    "next": "circular-motion"
+    "next": "circular-motion",
+    "investigation": {
+      "prediction": "Will 30° and 60° launch angles produce the same horizontal range if launch speed is unchanged?",
+      "experiment": "Fix the launch speed, compare 30° and 60°, then look at both peak height and flight time.",
+      "connection": "On level ground without drag, R = v₀² sin(2θ)/g. Complementary angles give equal range but different flight time and height."
+    }
   },
   {
     "id": "circular-motion",
@@ -830,7 +840,12 @@
       ],
       "explanation": "A vector changes when either its magnitude or direction changes. Uniform circular motion has constant speed but inward acceleration."
     },
-    "next": "relative-velocity"
+    "next": "relative-velocity",
+    "investigation": {
+      "prediction": "If a rotating object's speed doubles and its radius stays fixed, does inward acceleration double or quadruple?",
+      "experiment": "Pause motion. Keep radius at 4 m, compare acceleration at speeds of 4 and 8 m/s, then step around the circle.",
+      "connection": "Acceleration points inward, while v is tangent. Because aᶜ = v²/r, doubling speed multiplies aᶜ by four."
+    }
   },
   {
     "id": "relative-velocity",
@@ -879,7 +894,12 @@
       ],
       "explanation": "Velocities must be identified with their reference frames before they can be combined. The shore sees both northward crossing and eastward drift."
     },
-    "next": null
+    "next": null,
+    "investigation": {
+      "prediction": "Will pointing straight across a river always make the boat land directly opposite its starting point?",
+      "experiment": "With a nonzero current, compare the straight-across heading with 'Aim upstream to cancel drift.' Watch the landing displacement.",
+      "connection": "Ground velocity equals boat-through-water velocity plus current velocity. Time depends on the northward component; drift depends on the eastward component."
+    }
   },
   {
     "id": "atom-spectra",
