@@ -626,3 +626,14 @@ a,button{ -webkit-tap-highlight-color:transparent}
  .atlas-continue,.atlas-method,.atlas-hero-figure,.focus-question{break-inside:avoid}
  .book-start{display:none}
 }
+
+/* Search is an optional discovery aid; the grade and book links remain accessible without it. */
+.book-search-row{display:flex;align-items:end;justify-content:space-between;gap:13px;flex-wrap:wrap;margin:5px 0 18px}
+.book-search{display:grid;gap:6px;flex:1;max-width:500px;font-size:.8rem;color:#543d44;font-weight:760}
+.book-search input{width:100%;min-height:48px;border:1px solid #cbbba6;background:#fffefa;
+ color:#213754;border-radius:4px;padding:10px 14px;font:inherit;font-size:.95rem}
+.book-search input:focus-visible{outline:3px solid #c69a52;outline-offset:3px}
+.book-search-count{font-size:.78rem;color:#745c50;padding-bottom:10px}
+.book-tile[hidden]{display:none!important}
+#book-search-empty{border:1px dashed #bfa98c;background:#f9f2e8;margin:-15px 0 34px}
+@media(max-width:600px){.book-search{max-width:none;flex-basis:100%}.book-search-count{padding-bottom:0}}
