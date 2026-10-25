@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "course": "Physics",
+  "textbook": "Physics: Principles and Problems",
+  "scope": "Independently authored reference preview; not a reproduction or exhaustive list of any copyrighted textbook's equations.",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "A Physics Toolkit",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Start with units and graphs; do not begin with advanced atomic energy equations.",
+      "equations": [
+        {
+          "name": "Metric prefixes",
+          "formula": "1 km = 1,000 m; 1 m = 100 cm",
+          "conditions": "Exact length-unit equivalences, not measured uncertainty."
+        },
+        {
+          "name": "Change in a quantity",
+          "formula": "Δq = qfinal − qinitial",
+          "conditions": "Subtract starting value from final value, keeping signs and units."
+        },
+        {
+          "name": "Slope of data",
+          "formula": "slope = Δy / Δx",
+          "conditions": "Meaning and units depend on the plotted physical quantities."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Representing Motion",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Define the coordinate axis before interpreting signed displacement.",
+      "equations": [
+        {
+          "name": "Displacement",
+          "formula": "Δx = xf − xi",
+          "conditions": "Signed change in position in one dimension."
+        },
+        {
+          "name": "Average velocity",
+          "formula": "vavg = Δx / Δt",
+          "conditions": "Displacement per elapsed time; slope on a position–time graph."
+        },
+        {
+          "name": "Average speed",
+          "formula": "speedavg = total distance / Δt",
+          "conditions": "Uses total path length, not signed displacement."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Accelerated Motion",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Acceleration equations require constant acceleration unless otherwise stated.",
+      "equations": [
+        {
+          "name": "Average acceleration",
+          "formula": "aavg = (vf − vi) / Δt",
+          "conditions": "Change in velocity over elapsed time."
+        },
+        {
+          "name": "Velocity under constant acceleration",
+          "formula": "vf = vi + at",
+          "conditions": "Valid only when acceleration is constant."
+        },
+        {
+          "name": "Position under constant acceleration",
+          "formula": "xf = xi + vit + ½at²",
+          "conditions": "Assume constant a; t measured from the initial state."
+        },
+        {
+          "name": "Velocity and displacement",
+          "formula": "vf² = vi² + 2a(xf − xi)",
+          "conditions": "One-dimensional constant-a relationship."
+        },
+        {
+          "name": "Free fall from rest",
+          "formula": "d = ½gt²",
+          "conditions": "Distance downward, g ≈ 9.8 m/s²; neglect air resistance."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Forces in One Dimension",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Draw one object's external forces before writing a force equation.",
+      "equations": [
+        {
+          "name": "Newton's second law",
+          "formula": "ΣF = ma",
+          "conditions": "Vector sum of external forces on the chosen object."
+        },
+        {
+          "name": "Weight near Earth",
+          "formula": "Fg = mg",
+          "conditions": "g is downward gravitational field strength."
+        },
+        {
+          "name": "Vertical equilibrium",
+          "formula": "ΣFy = 0",
+          "conditions": "Only when vertical acceleration is zero; normal force need not always equal mg."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Forces in Two Dimensions",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Angle reference and friction model determine signs and applicability.",
+      "equations": [
+        {
+          "name": "Horizontal vector component",
+          "formula": "Fx = F cosθ",
+          "conditions": "θ measured from positive x-axis."
+        },
+        {
+          "name": "Vertical vector component",
+          "formula": "Fy = F sinθ",
+          "conditions": "Angle and component signs depend on the chosen axes."
+        },
+        {
+          "name": "Vector magnitude",
+          "formula": "F = √(Fx² + Fy²)",
+          "conditions": "Magnitude from perpendicular components."
+        },
+        {
+          "name": "Kinetic friction magnitude",
+          "formula": "fk = μk N",
+          "conditions": "Basic sliding-contact model."
+        },
+        {
+          "name": "Maximum static friction",
+          "formula": "fs ≤ μs N",
+          "conditions": "Static friction adjusts up to a maximum; it is not always μsN."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Motion in Two Dimensions",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Resolve horizontal and vertical motion with shared time.",
+      "equations": [
+        {
+          "name": "Horizontal projectile position",
+          "formula": "x = x0 + v0x t",
+          "conditions": "Neglect horizontal air resistance."
+        },
+        {
+          "name": "Vertical projectile position",
+          "formula": "y = y0 + v0y t − ½gt²",
+          "conditions": "Upward coordinate positive; ignore air resistance."
+        },
+        {
+          "name": "Centripetal acceleration",
+          "formula": "ac = v² / r",
+          "conditions": "Points toward the center during uniform circular motion."
+        },
+        {
+          "name": "Relative velocity",
+          "formula": "vA/C = vA/B + vB/C",
+          "conditions": "Consistent vector frames and sign conventions."
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Gravitation",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "In orbital models, circular and elliptical orbit formulas have different scopes.",
+      "equations": [
+        {
+          "name": "Universal gravitation",
+          "formula": "F = G m1m2 / r²",
+          "conditions": "Magnitude; point masses or spherically symmetric masses."
+        },
+        {
+          "name": "Gravitational field strength",
+          "formula": "g = GM / r²",
+          "conditions": "Outside a spherically symmetric gravitating body."
+        },
+        {
+          "name": "Circular orbital speed",
+          "formula": "v = √(GM / r)",
+          "conditions": "Circular orbit with gravity as the only force."
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Rotational Motion",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: rotational dynamics. Full chapter reference is not yet reviewed.",
+      "equations": []
+    },
+    {
+      "number": 9,
+      "title": "Momentum and Its Conservation",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Linear momentum",
+          "formula": "p = mv",
+          "conditions": "Vector quantity; v carries sign and direction."
+        },
+        {
+          "name": "Impulse",
+          "formula": "J = Δp = Favg Δt",
+          "conditions": "Average net force over the interaction interval."
+        },
+        {
+          "name": "Conservation of momentum",
+          "formula": "Σpi = Σpf",
+          "conditions": "Requires negligible external impulse on the chosen system."
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Energy, Work, and Simple Machines",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Work of a constant force",
+          "formula": "W = Fd cosθ",
+          "conditions": "d is displacement, θ is angle between force and displacement."
+        },
+        {
+          "name": "Average power",
+          "formula": "Pavg = W / Δt",
+          "conditions": "Rate at which work is done."
+        },
+        {
+          "name": "Machine efficiency",
+          "formula": "η = useful output / total input × 100%",
+          "conditions": "Compare energy or power quantities consistently."
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Energy and Its Conservation",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Kinetic energy",
+          "formula": "K = ½mv²",
+          "conditions": "Nonrelativistic speed v."
+        },
+        {
+          "name": "Near-Earth gravitational potential energy",
+          "formula": "Ug = mgh",
+          "conditions": "Choose a reference height; near-Earth g constant."
+        },
+        {
+          "name": "Elastic potential energy",
+          "formula": "Us = ½kx²",
+          "conditions": "Ideal spring within its linear range."
+        },
+        {
+          "name": "Mechanical energy conservation",
+          "formula": "Ki + Ui = Kf + Uf",
+          "conditions": "Only if nonconservative work is negligible."
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Thermal Energy",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: thermodynamics. These are introductory relations only.",
+      "equations": [
+        {
+          "name": "Sensible heat",
+          "formula": "Q = mcΔT",
+          "conditions": "Assume constant specific heat c and no phase transition."
+        },
+        {
+          "name": "Latent heat",
+          "formula": "Q = mL",
+          "conditions": "Energy during a phase transition at specified conditions."
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "title": "States of Matter",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: states of matter. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Ideal gas law",
+          "formula": "PV = nRT",
+          "conditions": "Ideal gas model; use absolute temperature kelvins."
+        },
+        {
+          "name": "Density",
+          "formula": "ρ = m / V",
+          "conditions": "Mass per unit volume."
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "title": "Vibrations and Waves",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Wave speed",
+          "formula": "v = fλ",
+          "conditions": "Applies to periodic wave traveling in a medium."
+        },
+        {
+          "name": "Period and frequency",
+          "formula": "T = 1 / f",
+          "conditions": "T in seconds, f in hertz."
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "title": "Sound",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Sound-wave speed",
+          "formula": "v = fλ",
+          "conditions": "Speed depends on medium properties."
+        },
+        {
+          "name": "Standing string frequencies",
+          "formula": "fn = nv / (2L)",
+          "conditions": "Ideal string fixed at both ends, n = 1, 2, 3, …"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "title": "Fundamentals of Light",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Light in vacuum",
+          "formula": "c = fλ",
+          "conditions": "c ≈ 3.00 × 10⁸ m/s."
+        },
+        {
+          "name": "Refractive index",
+          "formula": "n = c / v",
+          "conditions": "Phase speed v in a material."
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "title": "Reflection and Mirrors",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Law of reflection",
+          "formula": "θi = θr",
+          "conditions": "Angles measured from the surface normal."
+        },
+        {
+          "name": "Mirror equation",
+          "formula": "1/f = 1/do + 1/di",
+          "conditions": "Thin paraxial mirror, consistent sign convention."
+        },
+        {
+          "name": "Magnification",
+          "formula": "m = hi/ho = −di/do",
+          "conditions": "Paraxial mirror with algebraic signs."
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "title": "Refraction and Lenses",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Snell's law",
+          "formula": "n1 sinθ1 = n2 sinθ2",
+          "conditions": "Angles measured from the normal."
+        },
+        {
+          "name": "Thin lens equation",
+          "formula": "1/f = 1/do + 1/di",
+          "conditions": "Paraxial thin lens; apply consistent signs."
+        },
+        {
+          "name": "Lens magnification",
+          "formula": "m = hi/ho = −di/do",
+          "conditions": "Sign indicates image orientation."
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Interference and Diffraction",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: interference and diffraction. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Two-slit fringe spacing",
+          "formula": "Δy ≈ λL / d",
+          "conditions": "Small-angle approximation; screen distance L much greater than slit separation d."
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "title": "Static Electricity",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Coulomb force magnitude",
+          "formula": "F = k |q1q2| / r²",
+          "conditions": "Point charges; attraction/repulsion determined by charge signs."
+        },
+        {
+          "name": "Charge quantization",
+          "formula": "q = ne",
+          "conditions": "Integer n of elementary charges."
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "title": "Electric Fields",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Electric field",
+          "formula": "E = F / qtest",
+          "conditions": "Define field using a small positive test charge."
+        },
+        {
+          "name": "Field of a point charge",
+          "formula": "|E| = k|Q| / r²",
+          "conditions": "Outside a point charge; direction radial."
+        },
+        {
+          "name": "Potential difference",
+          "formula": "ΔV = ΔU / q",
+          "conditions": "Change in electric potential energy per charge."
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "title": "Current Electricity",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Electric current",
+          "formula": "I = ΔQ / Δt",
+          "conditions": "Rate of charge passing a cross section."
+        },
+        {
+          "name": "Ohm's law",
+          "formula": "V = IR",
+          "conditions": "For ohmic conductors at relevant conditions."
+        },
+        {
+          "name": "Electric power",
+          "formula": "P = IV",
+          "conditions": "Power transferred in a circuit element."
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "title": "Series and Parallel Circuits",
+      "scope": "classroom-core",
+      "status": "reference-preview",
+      "note": "Selection of foundational relations, not a complete formula sheet or replacement for the textbook.",
+      "equations": [
+        {
+          "name": "Resistors in series",
+          "formula": "Req = R1 + R2 + …",
+          "conditions": "The same current passes through each resistor."
+        },
+        {
+          "name": "Resistors in parallel",
+          "formula": "1/Req = 1/R1 + 1/R2 + …",
+          "conditions": "Each branch has the same potential difference."
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "title": "Magnetic Fields",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: magnetism. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Magnetic force on a charge",
+          "formula": "F = |q|vB sinθ",
+          "conditions": "Magnitude of magnetic force on a moving charge."
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "title": "Electromagnetic Induction",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: induction. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Faraday's law",
+          "formula": "ℰ = −N ΔΦB/Δt",
+          "conditions": "Average induced emf; negative sign encodes Lenz's law."
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "title": "Electromagnetism",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: electromagnetism. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Electromagnetic wave speed",
+          "formula": "c = 1 / √(μ0ε0)",
+          "conditions": "Vacuum electromagnetic wave speed."
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "title": "Quantum Theory",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Late-book modern physics; use this after the prerequisite classical topics.",
+      "equations": [
+        {
+          "name": "Photon energy",
+          "formula": "E = hf = hc/λ",
+          "conditions": "Photon energy; λ is wavelength in vacuum."
+        },
+        {
+          "name": "Matter-wave wavelength",
+          "formula": "λ = h / p",
+          "conditions": "de Broglie relation with momentum magnitude p."
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "title": "The Atom",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Spectral lines can inspire early curiosity, but quantitative energy models belong late in the normal chapter progression.",
+      "equations": [
+        {
+          "name": "Hydrogen energy levels",
+          "formula": "En ≈ −13.6 eV / n²",
+          "conditions": "Simplified hydrogen Bohr energy model; n = 1, 2, …"
+        },
+        {
+          "name": "Emitted photon energy",
+          "formula": "Eγ = Ei − Ef = hf",
+          "conditions": "Positive energy emitted from a higher to a lower state."
+        },
+        {
+          "name": "Photon wavelength",
+          "formula": "λ = hc / Eγ",
+          "conditions": "For eV and nm, hc ≈ 1240 eV·nm."
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "title": "Solid-State Electronics",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: solid-state electronics. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Conductivity and resistivity",
+          "formula": "σ = 1 / ρ",
+          "conditions": "In a simple isotropic bulk material."
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "title": "Nuclear Physics",
+      "scope": "optional-extension",
+      "status": "extension-reference-preview",
+      "note": "Further textbook chapter: nuclear physics. Full treatment is not yet reviewed.",
+      "equations": [
+        {
+          "name": "Rest-energy relation",
+          "formula": "E0 = mc²",
+          "conditions": "Einstein's mass–energy equivalence."
+        },
+        {
+          "name": "Radioactive decay",
+          "formula": "N = N0(½)^(t/t½)",
+          "conditions": "Ideal exponential decay; t½ is the half-life."
+        }
+      ]
+    }
+  ]
+}
