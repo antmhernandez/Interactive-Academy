@@ -47,3 +47,7 @@ GitHub Actions must run the existing JS/lesson/curriculum/source validators, uni
 - **Calculus convergence:** secant difference quotient tending toward a derivative and signed Riemann sums with error and subdivisions, tied to the five current Calculus concepts.
 
 Use original source equations and diagrams and design concept cards only when each can be integrated with the course registry and a working test. No teacher keys, copyrighted workbook problems, accounts or publisher fonts/images should be bundled into the public site.
+
+## Verified implementation record
+
+The changes were merged through [PR #11](https://github.com/antmhernandez/Interactive-Academy/pull/11), commit `f60ee820161ab3562e8ccca89f4cc29842067a53`. Before merge, [GitHub Actions run #44](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40221549917) passed all Node curriculum and numerical tests and five-width Chromium navigation/interaction journeys. Follow-up physical phone, screen-reader and classroom teaching reviews remain needed.
