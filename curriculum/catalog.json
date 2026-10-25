@@ -23,11 +23,41 @@
             {
               "id": "scientific-measurement",
               "title": "Measurement and Uncertainty",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.uncertainty",
               "goal": "Report precision, uncertainty and significant figures.",
               "prerequisites": [
                 "si-units"
+              ]
+            },
+            {
+              "id": "significant-figures",
+              "title": "Meaningful Digits",
+              "status": "available",
+              "owns": "phys.tools.sigfigs",
+              "goal": "Report measured quantities with appropriate significant digits.",
+              "prerequisites": [
+                "scientific-measurement"
+              ]
+            },
+            {
+              "id": "dimensional-analysis",
+              "title": "Let the Units Guide You",
+              "status": "available",
+              "owns": "phys.tools.dimensions",
+              "goal": "Check equations and convert units by dimension.",
+              "prerequisites": [
+                "si-units"
+              ]
+            },
+            {
+              "id": "graph-slope-physics",
+              "title": "What a Graph's Slope Means",
+              "status": "available",
+              "owns": "phys.tools.graph-slope",
+              "goal": "Interpret rise over run, axes and units on measured graphs.",
+              "prerequisites": [
+                "scientific-measurement"
               ]
             },
             {
@@ -51,41 +81,11 @@
               ]
             },
             {
-              "id": "dimensional-analysis",
-              "title": "Dimensional Analysis",
-              "status": "planned",
-              "owns": "phys.tools.dimensions",
-              "goal": "Check equations and convert units by dimension.",
-              "prerequisites": [
-                "si-units"
-              ]
-            },
-            {
-              "id": "significant-figures",
-              "title": "Significant Figures",
-              "status": "planned",
-              "owns": "phys.tools.sigfigs",
-              "goal": "Report measured quantities with appropriate significant digits.",
-              "prerequisites": [
-                "scientific-measurement"
-              ]
-            },
-            {
               "id": "parallax",
               "title": "Parallax and Measurement Resolution",
               "status": "planned",
               "owns": "phys.tools.parallax",
               "goal": "Predict and explain systematic reading differences.",
-              "prerequisites": [
-                "scientific-measurement"
-              ]
-            },
-            {
-              "id": "graph-slope-physics",
-              "title": "Physical Meaning of Graph Slope",
-              "status": "planned",
-              "owns": "phys.tools.graph-slope",
-              "goal": "Interpret rise over run, axes and units on measured graphs.",
               "prerequisites": [
                 "scientific-measurement"
               ]
@@ -1937,10 +1937,10 @@
     }
   ],
   "nextBuild": [
-    "scientific-measurement",
-    "graph-slope-physics",
-    "mass-vs-weight",
-    "power-rule"
+    "scientific-notation",
+    "parallax",
+    "regression-models",
+    "newtons-third-law"
   ],
   "contentKinds": {
     "interactive-lesson": "One canonical concept, visual, explanatory tabs, worked example, practice and conceptual check. Only reviewed originals reach content/lessons.json.",
