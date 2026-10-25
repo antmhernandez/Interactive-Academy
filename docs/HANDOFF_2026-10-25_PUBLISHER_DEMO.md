@@ -237,9 +237,9 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - Four energy lessons are explicitly `optionalPreview:true` and do not modify the regular Chapter 1–6 next chain; see source audit `docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md`.
 - Manual Safari/iOS/Android, VoiceOver/NVDA and large-display classroom comprehension reviews are still unperformed. Do not imply otherwise.
 
-## October 25 continuation — Chapter 7 gravitation investigations (PR in progress)
+## October 25 continuation — Chapter 7 gravitation investigations (merged PR #14)
 
-**Working branch:** `feature/chapter-07-gravitation-investigations-2026-10-25` based on successful main release `df93e9219c06a1184358065c73cc70043c299d0e`. User explicitly requested continued implementation after the energy applet release. The correct next primary unit is Glencoe-indexed Chapter 7, not Chapter 10–11, which remains an optional preview.
+**Merged:** [PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14) into `main`, squash commit `849ae8c6c56831fba1952a366434ca9c7a01aeba`. User explicitly requested continued implementation after the energy applet release. The correct next primary unit is Glencoe-indexed Chapter 7, not Chapter 10–11, which remains an optional preview.
 
 ### Contents of this release
 - Two original simulations in standalone `applets/gravitation.js`. First: `gravityField` with Earth-mass multiple 1–10, small test mass 1–10kg, center radius 1–8 Earth radii, Newtonian force and free-fall acceleration; explicit inverse-square numerics. Second: `orbitGravity` with central mass, satellite/test mass, radius 1.5–8 Earth radii, 360° orbit phase, manually stepped/visually slowed play, inward force, speed, period, gravitational acceleration and zero ideal normal-force readout. Central radius is fixed to Earth's even when mass varies, and the drawing is schematic.
@@ -252,3 +252,8 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 
 ### Required handoff checks
 PR CI, merge SHA, main push CI, Pages publishing workflow must all be independently verified and recorded before claiming success. Human iOS/Android, NVDA/VoiceOver, physical projector and pupil comprehension remain unverified; do not suggest this is a completed accessible commercial product. Chapter 8 Rotation and Chapter 9 Momentum are logical later primary expansions, but accuracy and design refinement should precede content acceleration.
+
+### Chapter 7 acceptance result
+- [Full PR validation #60](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40241966619) passed lesson/data/curriculum/source validators, regression models, Chapters 5/6/7 physics model tests, 33 lessons/99 guided problems/84 equation entries, and all five Chromium widths (320/375/768/1024/1440px), including orbit phase/step/play, 0N ideal support, gravity ratio and lesson next navigation.
+- [PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14) successfully squash merged. Record final `main` CI and Pages workflow status after the last documentation push separately.
+- The new Chapter 7 physics applets are original, simplified Newtonian models; physical phone, projector, Safari, screen-reader and educational efficacy testing have not been performed.
