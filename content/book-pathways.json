@@ -173,7 +173,9 @@
         "motion-graphs",
         "newtons-second-law",
         "two-dimensional-motion",
-        "projectile-motion"
+        "projectile-motion",
+        "circular-motion",
+        "relative-velocity"
       ],
       "alignment": "independent-prototype",
       "review": "prototype-only"
