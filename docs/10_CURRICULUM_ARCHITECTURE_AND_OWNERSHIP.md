@@ -77,9 +77,9 @@ Future growth can split `content/lessons.json` by subject or topic, but only aft
 
 ## Current map and next scope
 
-The registry currently reserves **79 unique topics across 18 units**, including 13 available and 66 planned topics. These are *planning slots*, not 66 completed lessons or an unconditional promise about a finished full curriculum. Review topic sequence and scope against the HLS teaching approach, homeschool needs, approved source rights, and anticipated publisher requirements before authoring at scale.
+The registry currently reserves **145 unique topics across 20 units**, including 15 available and 130 planned topics, plus 34 small challenge slots (three available). These are *planning slots*, not 130 completed lessons or an unconditional promise about a finished full curriculum. Review topic sequence and scope against the HLS teaching approach, homeschool needs, approved source rights, and anticipated publisher requirements before authoring at scale.
 
-The catalog's `nextBuild` field currently proposes: friction, one-sided limits, power rule, and work/energy. Only begin another new unit when its foundational topic and the previous unit's review are coherent.
+The catalog's `nextBuild` field currently proposes: atomic models, significant figures, Newton's third-law interactions and the power rule. Only begin another new unit when its foundational topic and the previous unit's review are coherent.
 
 ## Review checklist
 
@@ -92,3 +92,9 @@ The catalog's `nextBuild` field currently proposes: friction, one-sided limits, 
 - [ ] Supporting PDFs or printable pages have one registered public owner.
 - [ ] Classroom and teacher-only resources are not in the public site.
 - [ ] CI succeeds and mobile + keyboard review is complete.
+
+## Chapter-owned difficult-concept challenges
+
+A submodule is an optional four-minute visual clarification attached to exactly one parent topic. Its record is in `curriculum/catalog.json` under `submodules`; its implemented, independently written student material lives in `content/submodules.json`. Its `status` must match across the two files. Planned challenges remain unpublished, and available challenges are reachable through a small `Explore deeper` link at the end of their parent lesson.
+
+A challenge must not become a competing course topic, must not change the parent chapter sequence, and must not duplicate a lesson's core question. Challenges have one troublesome inference (e.g., slope vs graph height, sign of acceleration vs slowing down) and a short demonstrator with one original conceptual check. The syllabus review and source hierarchy are in `docs/12_SYLLABUS_ALIGNMENT_AND_CHALLENGE_MODULES.md`.

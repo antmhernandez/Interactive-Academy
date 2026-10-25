@@ -3,6 +3,7 @@ const main=document.querySelector("#main");
 const nav=document.querySelector("#nav");
 let lessons=[];
 let curriculum=null;
+let submodules=[];
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -31,7 +32,12 @@ const visualKeys={
  "force-components":[["amber","Applied force"],["teal","Horizontal"],["green","Vertical"]],
  "free-body":[["amber","Push"],["teal","Normal"],["violet","Weight"]],
  "newton-two":[["teal","Cart"],["amber","Net force"]],
- "limit-hole":[["teal","Curve / hole"],["amber","Nearby value"]]
+ "limit-hole":[["teal","Curve / hole"],["amber","Nearby value"]],
+ "hydrogen-spectrum":[["teal","Allowed states"],["amber","Photon"]],
+ "one-sided-limit":[["teal","Left approach"],["amber","Right approach"]],
+ "slope-height":[["teal","Position line"],["amber","Current point"]],
+ "sign-speed":[["teal","Velocity"],["amber","Acceleration"]],
+ "limit-value":[["teal","Nearby graph"],["amber","Defined point"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -127,6 +133,7 @@ function lesson(l){
  <form id="answerform"><label for="answer">Answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required inputmode="decimal" placeholder="Enter your answer"><button class="primary" type="submit">Check</button></div></form><p id="feedback" class="feedback" role="status" aria-live="polite"></p>
  <button class="hint-button" id="hintbtn" type="button">Need a hint?</button><p id="hinttext" class="hint" hidden></p></section>
  </section>
+ ${submodulesFor(l.id)}
  <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${next?"Next concept →":"All "+subject(l.subject)+" lessons →"}</a></div>
  </article>`;
  // Add the check panel before tab handling. The visual remains visible throughout.
@@ -177,6 +184,8 @@ function lesson(l){
  if(l.visual==="free-body")freeBody(el);
  if(l.visual==="newton-two")newtonTwo(el);
  if(l.visual==="limit-hole")limitHole(el);
+ if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
+ if(l.visual==="one-sided-limit")oneSidedLimit(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -338,6 +347,105 @@ function limitHole(el){
  }
  input.oninput=draw;draw();
 }
+function hydrogenSpectrum(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Hydrogen emission</strong><span class="pill">Energy levels</span></div>
+ <svg viewBox="0 0 540 320" role="img" aria-label="Hydrogen energy levels and an emitted photon"><defs><marker id="hyd-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#c08039"/></marker><linearGradient id="vis-spectrum"><stop offset="0" stop-color="#7539c4"/><stop offset=".2" stop-color="#275cd0"/><stop offset=".39" stop-color="#2dbea9"/><stop offset=".55" stop-color="#4aba56"/><stop offset=".72" stop-color="#ebd442"/><stop offset=".87" stop-color="#ea8529"/><stop offset="1" stop-color="#d83d47"/></linearGradient></defs><rect width="540" height="320" rx="12" fill="#f8fbf9"/><g id="atom-plot"></g></svg>
+ <div class="controls"><label>Start level <select id="n-high"><option value="2">n = 2</option><option value="3" selected>n = 3</option><option value="4">n = 4</option><option value="5">n = 5</option><option value="6">n = 6</option></select></label>
+ <label>End level <select id="n-low"><option value="1">n = 1</option><option value="2" selected>n = 2</option><option value="3">n = 3</option><option value="4">n = 4</option><option value="5">n = 5</option></select></label></div>
+ <div class="readout"><div class="metric"><small>Photon energy</small><strong id="atom-energy"></strong></div><div class="metric"><small>Wavelength</small><strong id="atom-wavelength"></strong></div><div class="metric"><small>Region</small><strong id="atom-band"></strong></div></div>
+ <p class="note">Simplified hydrogen energy levels; no fine structure. Diagram not to scale.</p>`;
+ const high=el.querySelector("#n-high"),low=el.querySelector("#n-low"),plot=el.querySelector("#atom-plot");
+ function paint(){const hi=+high.value;
+  if(+low.value>=hi)low.value=String(hi-1);
+  const lo=+low.value,energy=13.6*(1/(lo*lo)-1/(hi*hi)),wave=1240/energy;
+  const region=wave<380?"Ultraviolet":wave>750?"Infrared":"Visible";
+  const y=n=>248-29*n,upper=y(hi),lower=y(lo);
+  const marker=wave>=380&&wave<=750?`<path d="M${98+(wave-380)/370*340} 287V312" stroke="#213a39" stroke-width="3"/>`:"";
+  plot.innerHTML=`<text x="25" y="28" font-size="14" fill="#456d64">Allowed hydrogen states</text>
+  <path d="M80 ${upper}H320M80 ${lower}H320" stroke="#14727a" stroke-width="4"/>
+  <text x="29" y="${upper+5}" font-size="15" fill="#14727a">n = ${hi}</text>
+  <text x="29" y="${lower+5}" font-size="15" fill="#14727a">n = ${lo}</text>
+  <path d="M228 ${upper+8}V${lower-8}" stroke="#c08039" stroke-width="4.5" marker-end="url(#hyd-arrow)"/>
+  <text x="252" y="${(upper+lower)/2}" font-size="14" fill="#a5682e">Photon</text>
+  <text x="26" y="283" font-size="12" fill="#56746b">Visible spectrum</text>
+  <rect x="98" y="294" width="340" height="12" fill="url(#vis-spectrum)" rx="5"/>${marker}
+  <text x="98" y="289" font-size="10" fill="#56746b">380 nm</text>
+  <text x="399" y="289" font-size="10" fill="#56746b">750 nm</text>`;
+  el.querySelector("#atom-energy").textContent=f(energy)+" eV";
+  el.querySelector("#atom-wavelength").textContent=f(wave)+" nm";
+  el.querySelector("#atom-band").textContent=region;
+ }high.onchange=low.onchange=paint;paint();
+}
+function oneSidedLimit(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Two approaches to x = 1</strong><span class="pill calculus">One-sided limits</span></div>
+ <svg viewBox="0 0 540 290" role="img" aria-label="Piecewise function approaching 3 from left and 5 from right"><rect width="540" height="290" rx="12" fill="#f8fbf9"/><g id="side-plot"></g></svg>
+ <div class="controls"><label>Approach from <select id="side-direction"><option value="left">the left</option><option value="right">the right</option></select></label>
+ <label>Distance from x = 1 <strong id="side-distance"></strong><input type="range" id="side-delta" min=".05" max=".95" step=".05" value=".6"/></label></div>
+ <div class="readout"><div class="metric"><small>Nearby value</small><strong id="side-output"></strong></div><div class="metric"><small>Left-hand limit</small><strong>3</strong></div><div class="metric"><small>Right-hand limit</small><strong>5</strong></div></div>
+ <p class="note">f(x) = x + 2 for x &lt; 1, and x + 4 for x ≥ 1.</p>`;
+ const D=el.querySelector("#side-direction"),H=el.querySelector("#side-delta"),G=el.querySelector("#side-plot");
+ const xp=x=>82+x*190,yp=y=>252-(y-1.5)*42;
+ function paint(){const h=+H.value,left=D.value==="left",x=left?1-h:1+h,y=left?x+2:x+4;
+ G.innerHTML=`<path d="M73 252H508M82 25V265" stroke="#a9c4b8" stroke-width="1.5" fill="none"/>
+ <path d="M${xp(0)} ${yp(2)}L${xp(1)} ${yp(3)}" stroke="#14727a" stroke-width="4"/>
+ <path d="M${xp(1)} ${yp(5)}L${xp(2)} ${yp(6)}" stroke="#c08039" stroke-width="4"/>
+ <path d="M${xp(1)} 24V252" stroke="#bad1c7" stroke-dasharray="5 5"/>
+ <circle cx="${xp(1)}" cy="${yp(3)}" r="8" stroke="#14727a" fill="#f8fbf9" stroke-width="3"/>
+ <circle cx="${xp(1)}" cy="${yp(5)}" r="7" fill="#c08039" stroke="#f8fbf9" stroke-width="2"/>
+ <circle cx="${xp(x)}" cy="${yp(y)}" r="8" fill="${left?"#14727a":"#c08039"}" stroke="#fff" stroke-width="2"/>
+ <text x="${xp(1)}" y="274" text-anchor="middle" fill="#56746b" font-size="13">1</text>
+ <text x="63" y="${yp(3)+5}" text-anchor="end" fill="#14727a" font-size="13">3</text>
+ <text x="63" y="${yp(5)+5}" text-anchor="end" fill="#aa6d2f" font-size="13">5</text>`;
+ el.querySelector("#side-distance").textContent=f(h);
+ el.querySelector("#side-output").textContent="f("+f(x)+") = "+f(y);
+ }D.onchange=H.oninput=paint;paint();
+}
+function slopeHeight(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Position versus time</strong><span class="pill">x(t) = 2 + 3t</span></div>
+ <svg viewBox="0 0 540 280" role="img" aria-label="Line with selected point: its height changes while slope stays fixed"><rect width="540" height="280" rx="12" fill="#f8fbf9"/><g id="sh-plot"></g></svg>
+ <div class="controls"><label>Time <strong id="sh-time"></strong><input id="sh-slider" type="range" min="0" max="4" step=".25" value="2"/></label></div>
+ <div class="readout"><div class="metric"><small>Position (height)</small><strong id="sh-position"></strong></div><div class="metric"><small>Velocity (slope)</small><strong>3 m/s</strong></div></div>`;
+ const inp=el.querySelector("#sh-slider"),G=el.querySelector("#sh-plot"),xp=t=>75+102*t,yp=x=>255-13*x;
+ function paint(){const t=+inp.value,x=2+3*t;
+ G.innerHTML=`<path d="M75 40V255H510" stroke="#aecac0" stroke-width="1.5" fill="none"/><path d="M${xp(0)} ${yp(2)}L${xp(4)} ${yp(14)}" stroke="#14727a" stroke-width="4"/>
+ <path d="M${xp(t)} ${yp(x)}V255M75 ${yp(x)}H${xp(t)}" stroke="#cbd9d1" stroke-width="1.4" stroke-dasharray="5 5"/>
+ <circle cx="${xp(t)}" cy="${yp(x)}" r="8" fill="#c08039" stroke="#fff" stroke-width="2"/>
+ <text x="18" y="24" font-size="13" fill="#4d716b">position (m)</text><text x="448" y="275" font-size="13" fill="#4d716b">time (s)</text>`;
+ el.querySelector("#sh-time").textContent=f(t)+" s";el.querySelector("#sh-position").textContent=f(x)+" m";
+ }inp.oninput=paint;paint();
+}
+function signSpeed(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Which way does acceleration point?</strong><span class="pill">Signed motion</span></div>
+ <svg viewBox="0 0 540 230" role="img" aria-label="Cart with velocity and acceleration arrows, positive or negative"><defs><marker id="sign-v" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#14727a"/></marker><marker id="sign-a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#c08039"/></marker></defs><rect width="540" height="230" rx="12" fill="#f8fbf9"/><g id="sign-plot"></g></svg>
+ <div class="controls"><label>Velocity direction <select id="sign-v-dir"><option value="1">Right (+)</option><option value="-1">Left (−)</option></select></label><label>Acceleration direction <select id="sign-a-dir"><option value="1">Right (+)</option><option value="-1">Left (−)</option></select></label></div>
+ <div class="readout"><div class="metric"><small>Initial velocity</small><strong id="sign-velocity"></strong></div><div class="metric"><small>Speed after 1 s</small><strong id="sign-after"></strong></div><div class="metric"><small>Speed is</small><strong id="sign-result"></strong></div></div><p class="note">Initial speed 4 m/s; acceleration magnitude 1 m/s².</p>`;
+ const V=el.querySelector("#sign-v-dir"),A=el.querySelector("#sign-a-dir"),G=el.querySelector("#sign-plot");
+ function paint(){const v=4*(+V.value),a=+A.value,speed=Math.abs(v+a);
+ G.innerHTML=`<path d="M35 190H507" stroke="#a1c6b6" stroke-width="3"/><rect x="238" y="147" width="64" height="40" rx="7" fill="#d6eae4" stroke="#14727a" stroke-width="2"/><circle cx="251" cy="190" r="7" fill="#385a62"/><circle cx="289" cy="190" r="7" fill="#385a62"/>
+ <path d="M270 90H${270+Math.sign(v)*100}" stroke="#14727a" stroke-width="4" marker-end="url(#sign-v)"/>
+ <path d="M270 127H${270+Math.sign(a)*75}" stroke="#c08039" stroke-width="4" marker-end="url(#sign-a)"/>
+ <text x="25" y="89" font-size="14" fill="#14727a">Velocity</text><text x="25" y="126" font-size="14" fill="#a36b31">Acceleration</text>`;
+ el.querySelector("#sign-velocity").textContent=(v>0?"+":"")+f(v)+" m/s";
+ el.querySelector("#sign-after").textContent=f(speed)+" m/s";
+ el.querySelector("#sign-result").textContent=v*a>0?"Increasing":"Decreasing";
+ }V.onchange=A.onchange=paint;paint();
+}
+function limitValue(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Approach 2, but choose f(1)</strong><span class="pill calculus">Limit ≠ value</span></div>
+ <svg viewBox="0 0 540 280" role="img" aria-label="Line with a missing point at x=1,y=2 and an independently adjustable defined point"><rect width="540" height="280" rx="12" fill="#f8fbf9"/><g id="lv-plot"></g></svg>
+ <div class="controls"><label>Set f(1) <strong id="lv-setting"></strong><input id="lv-slider" type="range" min="-1" max="5" step=".5" value="5"/></label></div>
+ <div class="readout"><div class="metric"><small>Limit as x → 1</small><strong>2</strong></div><div class="metric"><small>Actual value f(1)</small><strong id="lv-current"></strong></div></div>`;
+ const I=el.querySelector("#lv-slider"),G=el.querySelector("#lv-plot"),xp=x=>90+185*x,yp=y=>230-(y+1)*33;
+ function paint(){const v=+I.value;
+ G.innerHTML=`<path d="M76 20V245H493" stroke="#aac3b7" fill="none" stroke-width="1.5"/>
+ <path d="M${xp(0)} ${yp(1)}L${xp(2)} ${yp(3)}" stroke="#14727a" stroke-width="4"/>
+ <circle cx="${xp(1)}" cy="${yp(2)}" r="9" stroke="#14727a" stroke-width="3.7" fill="#f8fbf9"/>
+ <circle cx="${xp(1)}" cy="${yp(v)}" r="7" fill="#c08039" stroke="white" stroke-width="2"/>
+ <text x="${xp(1)}" y="257" font-size="13" fill="#537369" text-anchor="middle">1</text>
+ <text x="70" y="${yp(2)+5}" font-size="13" fill="#537369" text-anchor="end">2</text>`;
+ el.querySelector("#lv-setting").textContent=f(v);el.querySelector("#lv-current").textContent=f(v);
+ }I.oninput=paint;paint();
+}
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
  const select=el.querySelector("#pattern"),dots=el.querySelector("#dots"),cart=el.querySelector("#cart");let frameId;
@@ -404,14 +512,45 @@ function riemann(el){
  el.innerHTML=`<div class="diagram-head"><strong>Right-endpoint rectangles</strong><span class="pill calculus">Integral</span></div><svg viewBox="0 0 520 309" role="img" aria-label="Rectangles approximating the area under y equals x"><rect width="520" height="309" rx="12" fill="#f8fbf9"/><g id="rgraph"></g></svg><div class="controls"><label>Number of rectangles: <strong id="nv"></strong><input id="nslider" type="range" min="2" max="30" step="1" value="4"></label></div><div class="readout"><div class="metric"><small>Right sum</small><strong id="sum"></strong></div><div class="metric"><small>Exact area</small><strong>8</strong></div></div><p class="note">For an increasing function, these right-endpoint rectangles overestimate the area. More, thinner rectangles reduce the error.</p>`;
  const slider=el.querySelector("#nslider");function paint(){let n=+slider.value,dx=4/n,xp=x=>55+102*x,yp=y=>262-51*y;const rectangles=Array.from({length:n},(_,i)=>{let right=(i+1)*dx;return `<rect x="${xp(i*dx)}" y="${yp(right)}" width="${102*dx}" height="${51*right}" fill="#a8d4c9" fill-opacity=".53" stroke="#14727a" stroke-width=".8"/>`}).join("");el.querySelector("#rgraph").innerHTML=`<path d="M55 15V262H490" fill="none" stroke="#93b2a8" stroke-width="1.6"/>${rectangles}<path d="M55 262L463 58" stroke="#c08039" stroke-width="3" fill="none"/><text x="455" y="282" font-size="14" fill="#50756e">4</text>`;el.querySelector("#nv").textContent=n;el.querySelector("#sum").textContent=f(8+8/n);}slider.oninput=paint;paint();
 }
+function submodulesFor(parentId){
+ const related=submodules.filter(m=>m.parent===parentId);
+ if(!related.length)return "";
+ return '<aside class="mini-links"><span>Explore deeper</span>'+related.map(m=>'<a href="#submodule/'+encodeURIComponent(m.id)+'">'+escapeHtml(m.title)+' →</a>').join("")+'</aside>';
+}
+function microLesson(m){
+ const parent=get(m.parent),link=parent.next||parent.id;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#lesson/${parent.id}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${link}">Next →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(parent.subject)} · ${escapeHtml(parent.unit)} · Short challenge</div><h1>${escapeHtml(m.title)}</h1><p>${escapeHtml(m.subtitle)}</p></header>
+ <article class="focus-lesson">
+ <section class="visual-stage"><div class="visual-intro"><span class="visual-label">TRY IT</span><p>${escapeHtml(m.visualLead)}</p></div>
+ <div class="interactive" id="visual"></div>${visualLegend(m.visual)}<div class="notice-line"><span>Notice</span><p>${escapeHtml(m.focus)}</p></div></section>
+ <section class="learn-area micro-explain"><details><summary>The idea</summary><p>${escapeHtml(m.idea)}</p></details></section>
+ <section class="lesson-panel mini-question"><h2>Check your reasoning</h2><p>${escapeHtml(m.challenge.prompt)}</p><fieldset class="choice-group" id="micro-choices"><legend>Choose an answer</legend>
+ ${m.challenge.choices.map((v,i)=>`<label class="concept-choice"><input type="radio" name="mini-challenge" value="${i}"><span>${escapeHtml(v)}</span></label>`).join("")}</fieldset>
+ <button type="button" class="primary" id="micro-check">Check</button><p id="micro-feedback" role="status" aria-live="polite"></p></section>
+ <div class="lesson-end"><a href="#lesson/${parent.id}">← Return to ${escapeHtml(parent.title)}</a></div></article>`;
+ const fieldset=document.querySelector("#micro-choices"),button=document.querySelector("#micro-check"),output=document.querySelector("#micro-feedback");
+ button.onclick=()=>{
+  const checked=fieldset.querySelector("input:checked");
+  if(!checked){output.textContent="Select an answer first.";return;}
+  const index=+checked.value,good=index===m.challenge.correct;
+  output.textContent=m.challenge.feedback[index]+(good?" "+m.idea:"");
+  output.className=good?"feedback good":"feedback try";
+  if(good){fieldset.disabled=true;button.disabled=true;button.textContent="Understood ✓";}
+ };
+ const el=document.querySelector("#visual");
+ if(m.visual==="slope-height")slopeHeight(el);
+ if(m.visual==="sign-speed")signSpeed(el);
+ if(m.visual==="limit-value")limitValue(el);
+}
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-Promise.all(["content/lessons.json","curriculum/catalog.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
- .then(([data,map])=>{lessons=data;curriculum=map;route();})
+Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map,micro])=>{lessons=data;curriculum=map;submodules=micro;route();})
  .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});

@@ -6,7 +6,7 @@ const read = p => fs.readFileSync(new URL(p,root),"utf8");
 const catalog=JSON.parse(read("curriculum/catalog.json"));
 const published=JSON.parse(read("content/lessons.json"));
 
-assert.equal(catalog.schemaVersion,1,"Unexpected curriculum schema");
+assert.equal(catalog.schemaVersion,2,"Unexpected curriculum schema");
 assert.ok(catalog.subjects.length===2);
 assert.ok(catalog.assets.length>=8);
 const subjectIds=new Set(),unitIds=new Set(),topics=new Map(),conceptKeys=new Set();
@@ -94,6 +94,48 @@ for(const a of catalog.assets){
  assert.ok(fs.existsSync(new URL(a.path,root)),"Missing registered asset: "+a.path);
 }
 
+
+// Chapter ownership and available-vs-planned micromodule consistency.
+const micros=JSON.parse(read("content/submodules.json"));
+const moduleIds=new Set(),availableModuleIds=new Set();
+for(const m of catalog.submodules){
+ assert.ok(/^[a-z0-9-]+$/.test(m.id),"Invalid short challenge slug");
+ assert.ok(!moduleIds.has(m.id),"Duplicate submodule: "+m.id);
+ assert.ok(!topics.has(m.id),"Submodule duplicates a full-topic ID: "+m.id);
+ moduleIds.add(m.id);
+ assert.ok(topics.has(m.parent),"Unknown submodule parent "+m.parent);
+ assert.ok(["available","planned"].includes(m.status),"Invalid submodule status "+m.id);
+ assert.ok(typeof m.misconception==="string"&&m.misconception.length>15,"Missing misconception "+m.id);
+ assert.ok(typeof m.visual==="string"&&m.visual.length>20,"Missing visualization specification "+m.id);
+ if(m.status==="available"){
+  assert.equal(topics.get(m.parent).status,"available","Live submodule attached to planned topic "+m.id);
+  availableModuleIds.add(m.id);
+ }
+}
+assert.equal(micros.length,availableModuleIds.size,"Implemented submodules disagree with roadmap");
+for(const m of micros){
+ assert.ok(availableModuleIds.has(m.id),"Unregistered or unfinished short challenge "+m.id);
+ assert.equal(catalog.submodules.find(x=>x.id===m.id).parent,m.parent,"Wrong parent: "+m.id);
+ assert.ok(Array.isArray(m.challenge.choices)&&m.challenge.choices.length>=3,"Missing choices "+m.id);
+ assert.ok(Number.isInteger(m.challenge.correct)&&m.challenge.correct>=0&&m.challenge.correct<m.challenge.choices.length,"Bad answer "+m.id);
+ assert.equal(m.challenge.choices.length,m.challenge.feedback.length,"Missing misconception feedback "+m.id);
+ for(const key of ["title","visual","visualLead","focus","idea"]){
+  assert.ok(typeof m[key]==="string"&&m[key].length>8,"Missing module field "+key+" in "+m.id);
+ }
+ assert.ok(["slope-height","sign-speed","limit-value"].includes(m.visual),"Unknown micro visualization "+m.id);
+ const owner=published.find(x=>x.id===m.parent);
+ assert.ok(owner,"No student lesson for short challenge "+m.id);
+ const expected=catalog.submodules.find(x=>x.id===m.id);
+ assert.equal(expected.title,m.title,"Submodule title conflict "+m.id);
+}
+assert.ok(catalog.sourceAlignment?.teacherReviewRequired===true,"Syllabus source review gate missing");
+for(const unit of catalog.subjects.find(s=>s.id==="physics").units){
+ assert.ok(unit.syllabus && ["school-year-core","enrichment"].includes(unit.syllabus.scope),"Physics chapter scope missing "+unit.id);
+}
+for(const unit of catalog.subjects.find(s=>s.id==="calculus").units){
+ assert.ok(["shared-ab-bc","bc-additional"].includes(unit.syllabus?.scope),"Calculus course-track classification missing "+unit.id);
+}
+
 const relationships=new Set();
 for(const c of catalog.connections){
  assert.ok(topics.has(c.from)&&topics.has(c.to),"Unregistered connection");
@@ -110,5 +152,6 @@ const summary=catalog.subjects.map(s=>{
  const arr=s.units.flatMap(u=>u.topics);
  return s.id+": "+arr.filter(t=>t.status==="available").length+" available / "+arr.length+" planned slots";
 });
+console.log("PASS "+availableModuleIds.size+" implemented short challenges / "+catalog.submodules.length+" planned slots");
 console.log("PASS curriculum registry: "+topics.size+" canonical concepts, "+unitIds.size+" units, "+
 catalog.assets.length+" assigned assets, acyclic prerequisites; "+summary.join("; "));

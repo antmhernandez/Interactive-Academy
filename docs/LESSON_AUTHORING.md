@@ -23,7 +23,7 @@ Start by asking one clear, meaningful question. Introduce the phenomenon, then a
 - Provenance: document original authorship, sources of numerical data and any borrowed materials privately.
 
 ## Current sample lessons
-Thirteen interactive samples are now present. The initial motion/derivative/integral collection included: `position-displacement`, `motion-diagrams`, `average-velocity`, `acceleration`, `free-fall`, `motion-graphs`, `tangent-line`, `velocity-accumulation`, and `riemann-sums`. All are newly composed demonstrations rather than HLS assessment reproductions. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
+Fifteen interactive samples are now present, including the opening hydrogen spectrum and one-sided-limit demonstrations. The initial motion/derivative/integral collection included: `position-displacement`, `motion-diagrams`, `average-velocity`, `acceleration`, `free-fall`, `motion-graphs`, `tangent-line`, `velocity-accumulation`, and `riemann-sums`. All are newly composed demonstrations rather than HLS assessment reproductions. They do not contain HLS quizzes or textbook figures. Do not infer that the entire HLS source corpus is cleared for public use.
 
 ## Future guided-note bundles
 Use canonical lesson concepts to produce synchronized blank/student and teacher editions and short observation labs. Test against the actual assessments. Release dates, license rights, institutional pricing and teacher-only access are future decisions, not current site features.
@@ -42,3 +42,7 @@ Before authoring, check `curriculum/catalog.json` for the existing concept owner
 
 ## Expanded lessons
 The new pilot builds force components, free-body diagrams and Newton's second law as distinct successive Physics concepts, plus a Calculus limit applet with an omitted point. Each receives an original visualization, example, practice and reasoning check. Do not duplicate the core applet in later lessons—link to it and apply the knowledge in new contexts.
+
+## Syllabus review and short visual challenges
+
+The course's high-level chapter progression is summarized in `docs/12_SYLLABUS_ALIGNMENT_AND_CHALLENGE_MODULES.md`. Do not copy the private syllabi, source notes, or textbook examples into the public site. Submodules are owned by existing lesson IDs: create a planned record under `catalog.submodules`, independently author the challenge in `content/submodules.json`, and change status to `available` only when its short diagram and reasoning check are complete and validated. They do not alter the core lesson `next` chain.

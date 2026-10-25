@@ -219,3 +219,16 @@ p{margin:0 0 14px}
 .roadmap-topic.planned .roadmap-status{color:#829189}
 .map-footnote{font-size:.83rem;color:var(--muted);max-width:780px;margin:8px 0 48px}
 @media(max-width:760px){.roadmap-unit>summary{padding:14px}.roadmap-topic{padding:12px;gap:9px}.roadmap-topic-name small{font-size:.76rem}.outline-link a{flex-wrap:wrap}}
+
+/* Four-minute challenge pages remain secondary to a chapter's primary concept. */
+.mini-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:17px;padding:12px 17px;background:#f5f9f6;border:1px solid #dbe9df;border-radius:12px}
+.mini-links>span{color:#527569;font-size:.75rem;font-weight:830;text-transform:uppercase;letter-spacing:.07em}
+.mini-links a{font-size:.85rem;font-weight:740;text-decoration:none;background:white;border:1px solid #cce2d5;border-radius:8px;padding:7px 10px}
+.mini-explain{margin-top:16px}
+.mini-explain details{padding:16px 20px}
+.mini-explain summary{cursor:pointer;font-weight:700;color:var(--teal)}
+.mini-explain p{padding-top:10px;color:#3c5d56}
+.mini-question{border:1px solid var(--line);border-radius:15px;background:#fff;margin-top:16px;max-width:1040px}
+.mini-question h2{margin-bottom:10px}
+.mini-question #micro-feedback{margin-top:12px}
+@media(max-width:760px){.mini-links{align-items:flex-start;flex-direction:column;padding:13px}.mini-links a{width:100%}.mini-question{padding:18px}}

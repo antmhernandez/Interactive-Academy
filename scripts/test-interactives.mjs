@@ -58,4 +58,43 @@ function createElement(initial){
  get("#lh-x").value=".9";get("#lh-x").oninput();
  assert.equal(get("#lh-y").textContent,"1.9");
 }
-console.log("PASS: force projection, free-body balance, net-force acceleration and one-sided limit visual readouts");
+
+{
+ const {el,get}=createElement({"#n-high":"3","#n-low":"2"});
+ renderer("hydrogenSpectrum")(el);
+ assert.ok(Math.abs(parseFloat(get("#atom-wavelength").textContent)-656.471)<1,"Hydrogen Balmer alpha line");
+ assert.equal(get("#atom-band").textContent,"Visible");
+ get("#n-low").value="1";get("#n-low").onchange();
+ assert.equal(get("#atom-band").textContent,"Ultraviolet");
+}
+{
+ const {el,get}=createElement({"#side-direction":"left","#side-delta":".6"});
+ renderer("oneSidedLimit")(el);
+ assert.equal(get("#side-output").textContent,"f(0.4) = 2.4");
+ get("#side-direction").value="right";get("#side-direction").onchange();
+ assert.equal(get("#side-output").textContent,"f(1.6) = 5.6");
+}
+{
+ const {el,get}=createElement({"#sh-slider":"2"});
+ renderer("slopeHeight")(el);
+ assert.equal(get("#sh-position").textContent,"8 m");
+ get("#sh-slider").value="4";get("#sh-slider").oninput();
+ assert.equal(get("#sh-position").textContent,"14 m");
+}
+{
+ const {el,get}=createElement({"#sign-v-dir":"1","#sign-a-dir":"1"});
+ renderer("signSpeed")(el);
+ assert.equal(get("#sign-after").textContent,"5 m/s");
+ assert.equal(get("#sign-result").textContent,"Increasing");
+ get("#sign-v-dir").value="-1";get("#sign-v-dir").onchange();
+ assert.equal(get("#sign-after").textContent,"3 m/s");
+ assert.equal(get("#sign-result").textContent,"Decreasing");
+}
+{
+ const {el,get}=createElement({"#lv-slider":"5"});
+ renderer("limitValue")(el);
+ assert.equal(get("#lv-current").textContent,"5");
+ get("#lv-slider").value="-1";get("#lv-slider").oninput();
+ assert.equal(get("#lv-current").textContent,"-1");
+}
+console.log("PASS: original physics, calculus and short-challenge visual readouts");
