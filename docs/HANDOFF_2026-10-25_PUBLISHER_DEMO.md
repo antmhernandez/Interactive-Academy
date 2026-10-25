@@ -166,3 +166,24 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 - Passed: 22 lesson records, 66 guided problems, 148 canonical curriculum topics (17 live Physics, 5 live Calculus), 84 equations, independent publisher-reference integrity, mathematical regression checks and both new visual simulator unit tests.
 - Chromium: successful at 320, 375, 768, 1024 and 1440 px with homepage/editorial overflow checks, catalog search with empty state, grade/book/context route, 4-tab keyboard accessibility, cumulative steps, projector overlay/exit and Chapter 6 original simulator navigation.
 - GitHub branch merge confirmed. As with earlier runs, the browser suite is not a substitute for real-device or screen-reader testing, nor a formal publisher permissions review.
+
+## October 25 continuation: Interactive investigations and content (PR pending)
+
+The user explicitly wants **many original PhET-style interactive applets** for difficult Physics/Calculus concepts, integrated with mathematical intuition and graduated computation. The project contains its own code, not externally embedded PhET resources. Keep independent rights status and original publisher demonstration visual identity.
+
+This feature branch is `feature/interactive-investigations-ch6-2026-10-25`. When the PR is merged use **main** as authoritative; replace this status with the PR and tested SHA.
+
+### Work completed on this branch
+- New `#applets` route: **Experiment Room**, ten discoverable original teaching models with subject filter. The top navigation, homepage and publisher overview now link to the resource library.
+- Four Chapter 6 concepts include original collapsible **Predict → Manipulate → Connect** activities that connect a manipulable investigation to governing equations.
+- `#lesson/circular-motion`: speed and radius sliders, physically consistent `aᶜ=v²/r` and `T=2πr/v`, directions of velocity and acceleration, motion playback/pause, 30° step, reset, and arrow toggle. Animation is requestAnimationFrame-based, stops on detached views, and honors direct user control.
+- `#lesson/relative-velocity`: river width, boat-through-water speed, eastward current and directional heading sliders, shore-frame path, arrival drift, crossing time, ground speed, an upstream-aiming button and reset. Physics adds velocity **vectors from stated reference frames**.
+- Two more complete original concept lessons, worked examples, misconception checks and six more guided problems. Physics primary chain now `... projectile-motion → circular-motion → relative-velocity`, preserving the optional Chapter 28 preview as a separate appendix. Total 24 live lessons (19 Physics, 5 Calculus), 72 guided problems; mathematical curriculum registry still has 148 total planned/live topics.
+- The `existing-glencoe` independent book entry includes both new applets; **no Novare/Memoria Press chapter references were added or relabeled**.
+- Numerical simulator tests and responsive browser checks were expanded, along with existing content validation count assertions.
+- Design and further-applications standard: [`docs/17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md`](17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md).
+
+### Next focus
+Keep expanding conceptual simulations selectively: friction/inclines, energy conservation, waves, electric fields and advanced Calculus convergence are promising *after* classroom testing identifies misconceptions. For each: a manipulable physical/mathematical model, explicit assumptions, predict/explain task, exact governing equations, solved example, conceptual distractors, numeric independent practice and 3 scaffolded problem levels. Do not equate more buttons with better pedagogy; do not incorporate school or publisher IP without permission.
+
+The GitHub Action result, PR number/merged SHA and physical-device QA status must be recorded on main after validation.
