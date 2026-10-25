@@ -1,0 +1,77 @@
+[
+  {
+    "id": "slope-versus-height",
+    "parent": "average-velocity",
+    "title": "Slope Is Not Height",
+    "subtitle": "The y-value shows position. The slope shows velocity.",
+    "duration": "4 min",
+    "visual": "slope-height",
+    "visualLead": "Move along the graph; compare position with slope.",
+    "focus": "The amber point rises with time, but the line's teal slope stays at 3 m/s.",
+    "idea": "On a position–time graph, vertical height is position, while slope is change in position divided by change in time. They describe different quantities and have different units.",
+    "challenge": {
+      "prompt": "At t = 2 s, the position graph x(t) = 2 + 3t has height 8 m. What is the object's velocity?",
+      "choices": [
+        "8 m/s, because the graph has height 8.",
+        "3 m/s, because the slope is 3.",
+        "2 m/s, because the time is 2."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Height is position, not velocity.",
+        "Correct. A linear position graph has constant velocity equal to its slope.",
+        "Time is the horizontal coordinate, not the velocity."
+      ]
+    }
+  },
+  {
+    "id": "signs-of-acceleration",
+    "parent": "acceleration",
+    "title": "Can Negative Acceleration Speed You Up?",
+    "subtitle": "Direction matters more than the sign alone.",
+    "duration": "4 min",
+    "visual": "sign-speed",
+    "visualLead": "Choose the directions of velocity and acceleration.",
+    "focus": "If velocity and acceleration point the same way, the object's speed increases.",
+    "idea": "Speed is the magnitude of velocity. Negative acceleration means a change toward the negative direction—not necessarily slowing down. For nonzero velocity, acceleration in the same direction makes the speed grow.",
+    "challenge": {
+      "prompt": "A cart is moving left and also accelerates left. What happens to its speed?",
+      "choices": [
+        "Its speed increases.",
+        "Its speed decreases because acceleration is negative.",
+        "Its speed stays unchanged because the arrows cancel."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. Velocity becomes more negative and its magnitude increases.",
+        "Negative acceleration describes direction on a chosen axis, not automatically slowing down.",
+        "Velocity and acceleration have different units and do not cancel as forces."
+      ]
+    }
+  },
+  {
+    "id": "hole-versus-limit",
+    "parent": "limits-near-a-point",
+    "title": "The Limit Is Not the Point",
+    "subtitle": "Change f(1) without changing the limit.",
+    "duration": "4 min",
+    "visual": "limit-value",
+    "visualLead": "Change the function value at x = 1. Watch the open circle.",
+    "focus": "The teal curve still approaches 2 from both sides—even if the filled dot moves.",
+    "idea": "A limit is about values of f(x) near the target. Changing the value at that one input leaves the nearby graph unchanged. Thus f(1) and limₓ→1 f(x) can be different.",
+    "challenge": {
+      "prompt": "Suppose limₓ→1 f(x) = 2 but f(1) = 5. Which statement is correct?",
+      "choices": [
+        "The limit automatically becomes 5.",
+        "The limit remains 2; the function value at 1 is 5.",
+        "The limit does not exist because the function has a value."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Changing a single function value does not change the approach from nearby x-values.",
+        "Correct. The limit and the actual point value can differ.",
+        "A defined value at the point does not prevent a two-sided limit."
+      ]
+    }
+  }
+]
