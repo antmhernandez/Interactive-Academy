@@ -31,7 +31,9 @@ const visualKeys={
  "force-components":[["amber","Applied force"],["teal","Horizontal"],["green","Vertical"]],
  "free-body":[["amber","Push"],["teal","Normal"],["violet","Weight"]],
  "newton-two":[["teal","Cart"],["amber","Net force"]],
- "limit-hole":[["teal","Curve / hole"],["amber","Nearby value"]]
+ "limit-hole":[["teal","Curve / hole"],["amber","Nearby value"]],
+ "hydrogen-spectrum":[["teal","Allowed states"],["amber","Photon"]],
+ "one-sided-limit":[["teal","Left approach"],["amber","Right approach"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -177,6 +179,8 @@ function lesson(l){
  if(l.visual==="free-body")freeBody(el);
  if(l.visual==="newton-two")newtonTwo(el);
  if(l.visual==="limit-hole")limitHole(el);
+ if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
+ if(l.visual==="one-sided-limit")oneSidedLimit(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -337,6 +341,59 @@ function limitHole(el){
   el.querySelector("#lh-y").textContent=undef?"undefined":f(y);
  }
  input.oninput=draw;draw();
+}
+function hydrogenSpectrum(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Hydrogen emission</strong><span class="pill">Energy levels</span></div>
+ <svg viewBox="0 0 540 320" role="img" aria-label="Hydrogen energy levels and an emitted photon"><defs><marker id="hyd-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#c08039"/></marker><linearGradient id="vis-spectrum"><stop offset="0" stop-color="#7539c4"/><stop offset=".2" stop-color="#275cd0"/><stop offset=".39" stop-color="#2dbea9"/><stop offset=".55" stop-color="#4aba56"/><stop offset=".72" stop-color="#ebd442"/><stop offset=".87" stop-color="#ea8529"/><stop offset="1" stop-color="#d83d47"/></linearGradient></defs><rect width="540" height="320" rx="12" fill="#f8fbf9"/><g id="atom-plot"></g></svg>
+ <div class="controls"><label>Start level <select id="n-high"><option value="2">n = 2</option><option value="3" selected>n = 3</option><option value="4">n = 4</option><option value="5">n = 5</option><option value="6">n = 6</option></select></label>
+ <label>End level <select id="n-low"><option value="1">n = 1</option><option value="2" selected>n = 2</option><option value="3">n = 3</option><option value="4">n = 4</option><option value="5">n = 5</option></select></label></div>
+ <div class="readout"><div class="metric"><small>Photon energy</small><strong id="atom-energy"></strong></div><div class="metric"><small>Wavelength</small><strong id="atom-wavelength"></strong></div><div class="metric"><small>Region</small><strong id="atom-band"></strong></div></div>
+ <p class="note">Simplified hydrogen energy levels; no fine structure. Diagram not to scale.</p>`;
+ const high=el.querySelector("#n-high"),low=el.querySelector("#n-low"),plot=el.querySelector("#atom-plot");
+ function paint(){const hi=+high.value;
+  if(+low.value>=hi)low.value=String(hi-1);
+  const lo=+low.value,energy=13.6*(1/(lo*lo)-1/(hi*hi)),wave=1240/energy;
+  const region=wave<380?"Ultraviolet":wave>750?"Infrared":"Visible";
+  const y=n=>250-198*(1-1/(n*n)),upper=y(hi),lower=y(lo);
+  const marker=wave>=380&&wave<=750?`<path d="M${98+(wave-380)/370*340} 287V312" stroke="#213a39" stroke-width="3"/>`:"";
+  plot.innerHTML=`<text x="25" y="28" font-size="14" fill="#456d64">Allowed hydrogen states</text>
+  <path d="M80 ${upper}H320M80 ${lower}H320" stroke="#14727a" stroke-width="4"/>
+  <text x="29" y="${upper+5}" font-size="15" fill="#14727a">n = ${hi}</text>
+  <text x="29" y="${lower+5}" font-size="15" fill="#14727a">n = ${lo}</text>
+  <path d="M228 ${upper+8}V${lower-8}" stroke="#c08039" stroke-width="4.5" marker-end="url(#hyd-arrow)"/>
+  <text x="252" y="${(upper+lower)/2}" font-size="14" fill="#a5682e">Photon</text>
+  <text x="26" y="283" font-size="12" fill="#56746b">Visible spectrum</text>
+  <rect x="98" y="294" width="340" height="12" fill="url(#vis-spectrum)" rx="5"/>${marker}
+  <text x="98" y="289" font-size="10" fill="#56746b">380 nm</text>
+  <text x="399" y="289" font-size="10" fill="#56746b">750 nm</text>`;
+  el.querySelector("#atom-energy").textContent=f(energy)+" eV";
+  el.querySelector("#atom-wavelength").textContent=f(wave)+" nm";
+  el.querySelector("#atom-band").textContent=region;
+ }high.onchange=low.onchange=paint;paint();
+}
+function oneSidedLimit(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Two approaches to x = 1</strong><span class="pill calculus">One-sided limits</span></div>
+ <svg viewBox="0 0 540 290" role="img" aria-label="Piecewise function approaching 3 from left and 5 from right"><rect width="540" height="290" rx="12" fill="#f8fbf9"/><g id="side-plot"></g></svg>
+ <div class="controls"><label>Approach from <select id="side-direction"><option value="left">the left</option><option value="right">the right</option></select></label>
+ <label>Distance from x = 1 <strong id="side-distance"></strong><input type="range" id="side-delta" min=".05" max=".95" step=".05" value=".6"/></label></div>
+ <div class="readout"><div class="metric"><small>Nearby value</small><strong id="side-output"></strong></div><div class="metric"><small>Left-hand limit</small><strong>3</strong></div><div class="metric"><small>Right-hand limit</small><strong>5</strong></div></div>
+ <p class="note">f(x) = x + 2 for x &lt; 1, and x + 4 for x ≥ 1.</p>`;
+ const D=el.querySelector("#side-direction"),H=el.querySelector("#side-delta"),G=el.querySelector("#side-plot");
+ const xp=x=>82+x*190,yp=y=>252-(y-1.5)*42;
+ function paint(){const h=+H.value,left=D.value==="left",x=left?1-h:1+h,y=left?x+2:x+4;
+ G.innerHTML=`<path d="M73 252H508M82 25V265" stroke="#a9c4b8" stroke-width="1.5" fill="none"/>
+ <path d="M${xp(0)} ${yp(2)}L${xp(1)} ${yp(3)}" stroke="#14727a" stroke-width="4"/>
+ <path d="M${xp(1)} ${yp(5)}L${xp(2)} ${yp(6)}" stroke="#c08039" stroke-width="4"/>
+ <path d="M${xp(1)} 24V252" stroke="#bad1c7" stroke-dasharray="5 5"/>
+ <circle cx="${xp(1)}" cy="${yp(3)}" r="8" stroke="#14727a" fill="#f8fbf9" stroke-width="3"/>
+ <circle cx="${xp(1)}" cy="${yp(5)}" r="7" fill="#c08039" stroke="#f8fbf9" stroke-width="2"/>
+ <circle cx="${xp(x)}" cy="${yp(y)}" r="8" fill="${left?"#14727a":"#c08039"}" stroke="#fff" stroke-width="2"/>
+ <text x="${xp(1)}" y="274" text-anchor="middle" fill="#56746b" font-size="13">1</text>
+ <text x="63" y="${yp(3)+5}" text-anchor="end" fill="#14727a" font-size="13">3</text>
+ <text x="63" y="${yp(5)+5}" text-anchor="end" fill="#aa6d2f" font-size="13">5</text>`;
+ el.querySelector("#side-distance").textContent=f(h);
+ el.querySelector("#side-output").textContent="f("+f(x)+") = "+f(y);
+ }D.onchange=H.oninput=paint;paint();
 }
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
