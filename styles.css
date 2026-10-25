@@ -723,3 +723,7 @@ a,button{ -webkit-tap-highlight-color:transparent}
 .energy-study-path a[aria-current="page"]{background:#713349;color:#fff;border-color:#713349}
 .energy-study-path a:hover:not([aria-current="page"]){border-color:#77516a;color:#713349}
 @media(max-width:390px){.energy-study-path{padding:12px 10px}.energy-study-path a{width:100%}}
+
+/* Gravitation investigations retain the original editorial colors; numeric readouts, not diagram scale, determine force magnitudes. */
+#gr-field-plot,#or-plot{pointer-events:none}
+@media (prefers-reduced-motion:reduce){#or-plot{transition:none}}
