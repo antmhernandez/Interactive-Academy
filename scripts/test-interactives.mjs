@@ -160,4 +160,31 @@ function createElement(initial){
  assert.ok(Math.abs(Number.parseFloat(get("#projectile-range").textContent)-400*Math.sin(Math.PI/3)/9.8)<.002);
  assert.ok(get("#projectile-trace").innerHTML.includes("path"));
 }
-console.log("PASS: original physics, calculus, Chapter 6 and short-challenge visual readouts");
+
+{
+ const {el,get}=createElement({"#circle-speed":"6","#circle-radius":"3"});
+ renderer("circularMotion")(el);
+ assert.equal(get("#circle-acceleration").textContent,"12 m/s²");
+ assert.ok(Math.abs(parseFloat(get("#circle-period").textContent)-Math.PI)<.002);
+ get("#circle-radius").value="6";get("#circle-radius").oninput();
+ assert.equal(get("#circle-acceleration").textContent,"6 m/s²");
+ get("#circle-speed").value="12";get("#circle-speed").oninput();
+ assert.equal(get("#circle-acceleration").textContent,"24 m/s²");
+ assert.ok(get("#circle-picture").innerHTML.includes("circle"));
+ get("#circle-step").onclick();
+ assert.ok(get("#circle-picture").innerHTML.includes("path"));
+}
+{
+ const {el,get}=createElement({"#river-speed":"6","#river-current":"2","#river-heading":"0","#river-width":"90"});
+ renderer("riverCrossing")(el);
+ assert.equal(get("#river-time").textContent,"15 s");
+ assert.equal(get("#river-drift").textContent,"30 m east");
+ assert.ok(Math.abs(parseFloat(get("#river-ground-speed").textContent)-Math.sqrt(40))<.002);
+ get("#river-aim").onclick();
+ assert.ok(parseFloat(get("#river-drift").textContent)<2,"Upstream heading should nearly cancel drift");
+ get("#river-reset").onclick();
+ assert.equal(get("#river-drift").textContent,"30 m east");
+ get("#river-current").value="0";get("#river-current").oninput();
+ assert.ok(get("#river-drift").textContent.includes("opposite"));
+}
+console.log("PASS: original physics, calculus, circular motion and river-frame visual readouts");
