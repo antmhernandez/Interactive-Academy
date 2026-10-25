@@ -563,14 +563,122 @@ function microLesson(m){
  if(m.visual==="sign-speed")signSpeed(el);
  if(m.visual==="limit-value")limitValue(el);
 }
+function lessonChapter(l){return l.subject==="physics"?({
+"si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
+"acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
+"newtons-second-law":4,"force-components":5,"atom-spectra":28
+})[l.id]??null:null;}
+function renderAccumulativeStep(container,step){
+ const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
+ container.append(li);
+ li.focus({preventScroll:true});
+ if(typeof li.scrollIntoView==="function")li.scrollIntoView({block:"nearest"});
+}
+function studySheet(l){
+ const ch=lessonChapter(l),ref=ch?`<a href="#equations/${ch}">Chapter ${ch} equations →</a>`:"";
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#lesson/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#guided/${l.id}">Guided practice →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Study this concept</div><h1>${escapeHtml(l.title)}</h1><p>A definition, a solved example, and one problem for you.</p></header>
+ <article class="study-sheet">
+ <section class="study-section"><div class="eyebrow">01 · Define</div><h2>Know the idea</h2><p class="study-definition">${escapeHtml(l.definition)}</p></section>
+ <section class="study-section"><div class="eyebrow">02 · Example</div><h2>Watch the reasoning</h2><p>${escapeHtml(l.example.question)}</p><ol class="worked-steps study-steps">${l.example.steps.map(s=>`<li class="worked-step">${escapeHtml(s)}</li>`).join("")}</ol></section>
+ <section class="study-section"><div class="eyebrow">03 · Your turn</div><h2>Use the same method</h2><p>${escapeHtml(l.practice.prompt)}</p>
+ <form id="study-form"><label for="study-answer">Your answer ${l.practice.unit?`(${escapeHtml(l.practice.unit)})`:""}</label>
+ <div class="answer-row"><input type="number" step="any" inputmode="decimal" id="study-answer" required><button type="submit" class="primary">Check answer</button></div></form>
+ <p class="feedback" id="study-feedback" role="status" aria-live="polite"></p><button type="button" class="hint-button" id="study-hint">Show a hint</button>
+ <ol id="study-hints" class="study-hints" aria-live="polite"></ol></section>
+ <div class="lesson-end"><a class="btn primary" href="#guided/${l.id}">Practice three levels →</a><a href="#lesson/${l.id}">Explore the applet</a>${ref}</div></article>`;
+ let hinted=0;const hints=document.querySelector("#study-hints");
+ document.querySelector("#study-hint").onclick=()=>{
+   if(hinted>=l.practice.hints.length)return;
+   const item=document.createElement("li");item.textContent=l.practice.hints[hinted++];hints.append(item);
+   const button=document.querySelector("#study-hint");
+   button.textContent=hinted===l.practice.hints.length?"All hints shown":"Show another hint";
+   if(hinted===l.practice.hints.length)button.disabled=true;
+ };
+ document.querySelector("#study-form").onsubmit=e=>{
+  e.preventDefault();const input=document.querySelector("#study-answer").value.trim(),val=Number(input);
+  const good=input!==""&&Number.isFinite(val)&&Math.abs(val-l.practice.answer)<=l.practice.tolerance;
+  const target=document.querySelector("#study-feedback");target.className="feedback "+(good?"good":"try");
+  target.textContent=good?"Correct. Now try the progressive practice page.":"Not quite. Review the known values, the conversion, or the signs; use a hint if needed.";
+ };
+}
+function guidedPage(l){
+ const pack=guidedSets.find(p=>p.owner===l.id);
+ if(!pack||pack.levels.length!==3){main.textContent="Guided practice is unavailable for this lesson.";return;}
+ const ch=lessonChapter(l);
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#study/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${l.id}">Concept →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Guided problems</div><h1>${escapeHtml(l.title)}</h1>
+ <p>Three similar problems. Each adds one challenge. Ask for the next reasoning step whenever you need it.</p></header>
+ <article class="guided-work">
+ <nav class="level-navigation" aria-label="Practice difficulty">
+ ${pack.levels.map((p,i)=>`<button type="button" data-problem="${i}" class="level-button">${i+1}. ${escapeHtml(p.level)}</button>`).join("")}</nav>
+ <section class="guided-card" id="guided-card" aria-live="off"></section>
+ <div class="lesson-end"><a href="#study/${l.id}">← Definition and example</a><a href="#lesson/${l.id}">Return to interactive lesson</a>${ch?`<a href="#equations/${ch}">Chapter equations →</a>`:""}</div></article>`;
+ const buttons=[...main.querySelectorAll("[data-problem]")],stage=main.querySelector("#guided-card");
+ let index=0;
+ function show(i){
+  index=i;buttons.forEach((b,j)=>{b.setAttribute("aria-current",j===i?"step":"false");b.classList.toggle("selected",j===i)});
+  const p=pack.levels[index];stage.innerHTML=`<div class="eyebrow">Problem ${index+1} of 3 · ${escapeHtml(p.level)}</div>
+   <h2>Consider the situation</h2><p class="guided-prompt">${escapeHtml(p.prompt)}</p>
+   <form id="guided-answerform"><label for="guided-answer">Answer ${p.unit?"("+escapeHtml(p.unit)+")":""}</label>
+   <div class="answer-row"><input type="number" step="any" required inputmode="decimal" id="guided-answer"><button type="submit" class="primary">Check</button></div></form>
+   <p id="guided-feedback" class="feedback" role="status" aria-live="polite"></p>
+   <div class="guided-thinking"><div class="eyebrow">Reason through it</div>
+   <ol id="guided-steps" class="worked-steps" aria-label="Revealed solution steps" aria-live="polite" aria-relevant="additions"></ol>
+   <div class="step-nav"><button type="button" id="guided-reveal" class="primary">Show first thinking step →</button><button type="button" id="guided-reset">Hide steps</button></div></div>
+   <div class="step-nav problem-switch"><button type="button" id="guided-prev" ${index===0?"disabled":""}>← Easier problem</button>
+   <button type="button" id="guided-next" ${index===pack.levels.length-1?"disabled":""}>Harder problem →</button></div>`;
+  const solution=stage.querySelector("#guided-steps"),reveal=stage.querySelector("#guided-reveal");let seen=0;
+  reveal.onclick=()=>{
+    if(seen>=p.steps.length)return;
+    renderAccumulativeStep(solution,p.steps[seen++]);
+    reveal.textContent=seen<p.steps.length?"Show next thinking step →":"All steps shown";
+    reveal.disabled=seen===p.steps.length;
+  };
+  stage.querySelector("#guided-reset").onclick=()=>{solution.replaceChildren();seen=0;reveal.disabled=false;reveal.textContent="Show first thinking step →";};
+  stage.querySelector("#guided-answerform").onsubmit=e=>{
+    e.preventDefault();const raw=stage.querySelector("#guided-answer").value.trim(),val=Number(raw);
+    const good=raw!==""&&Number.isFinite(val)&&Math.abs(val-p.answer)<=p.tolerance;
+    const out=stage.querySelector("#guided-feedback");out.className="feedback "+(good?"good":"try");
+    out.textContent=good?"Correct. Can you explain the key reasoning step?":"Check your signs, the relevant relation, and its units. Reveal one thinking step if needed.";
+  };
+  stage.querySelector("#guided-prev").onclick=()=>show(index-1);
+  stage.querySelector("#guided-next").onclick=()=>show(index+1);
+ }
+ buttons.forEach((button,i)=>button.onclick=()=>show(i));show(0);
+}
+function equationIndex(){
+ const chapters=physicsEquations.chapters;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#physics">← Back</a><a href="#home">⌂ Home</a><a href="#equations/1">Chapter 1 →</a></nav>
+ <header class="catalog-head"><div class="eyebrow">Physics · Reference library</div><h1>Equation Reference</h1>
+ <p>Find a chapter, see its equations, and check when the model applies. This is a developing original summary, not a complete substitute for your textbook.</p></header>
+ <div class="equation-book">
+ ${chapters.map(c=>`<a class="equation-index-link" href="#equations/${c.number}"><span class="chapter-index">${String(c.number).padStart(2,"0")}</span>
+ <span><strong>${escapeHtml(c.title)}</strong><small>${c.equations.length} reference ${c.equations.length===1?"relationship":"relationships"}${c.scope==="classroom-core"?"":" · additional chapter"}</small></span><span aria-hidden="true">→</span></a>`).join("")}</div>`;
+}
+function equationChapter(ch){
+ const chapters=physicsEquations.chapters,idx=chapters.findIndex(c=>c.number===ch);
+ if(idx<0){equationIndex();return;}
+ const data=chapters[idx],prev=chapters[idx-1],next=chapters[idx+1];
+ const items=data.equations.map((e,i)=>`<section class="formula-entry"><div class="formula-label">${i+1}. ${escapeHtml(e.name)}</div>
+  <div class="formula-expression">${escapeHtml(e.formula)}</div><p>${escapeHtml(e.conditions)}</p></section>`).join("");
+ const supporting=lessons.filter(x=>x.subject==="physics"&&lessonChapter(x)===ch);
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#equations">← All chapters</a><a href="#home">⌂ Home</a>${next?`<a href="#equations/${next.number}">Chapter ${next.number} →</a>`:'<a href="#equations">All equations →</a>'}</nav>
+ <header class="focus-head"><div class="eyebrow">Physics · Chapter ${ch}</div><h1>${escapeHtml(data.title)}</h1>
+ <p>Selected governing equations and their conditions.</p></header>
+ <article class="equation-chapter"><p class="equation-caution">${escapeHtml(data.note)}</p>
+ ${items||'<div class="empty-state">The detailed reference for this chapter is not yet written. Check your textbook and instructor notes.</div>'}
+ ${supporting.length?`<section class="chapter-topic-links"><h2>Study these concepts</h2>${supporting.map(l=>`<a href="#study/${l.id}">${escapeHtml(l.title)} →</a>`).join("")}</section>`:""}
+ <div class="lesson-end">${prev?`<a href="#equations/${prev.number}">← Chapter ${prev.number}</a>`:""}<a href="#equations">Full equation index</a>${next?`<a class="next-link" href="#equations/${next.number}">Chapter ${next.number} →</a>`:""}</div></article>`;
+}
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
- .then(([data,map,micro])=>{lessons=data;curriculum=map;submodules=micro;route();})
+Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json","content/guided-practice.json","content/equations-physics.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map,micro,practice,equations])=>{lessons=data;curriculum=map;submodules=micro;guidedSets=practice;physicsEquations=equations;route();})
  .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
