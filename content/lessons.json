@@ -1127,7 +1127,7 @@
     "duration": "9 min",
     "observe": "Why do astronauts float when Earth's gravity still pulls on their spacecraft?",
     "idea": "In an ideal orbit, the astronaut and the spacecraft accelerate together under gravity. Because the floor need not push upward on the freely falling astronaut, a scale would read essentially zero normal force: this is apparent weightlessness. The gravitational force mg remains nonzero. Free fall describes motion under gravity alone, not the absence of gravitational attraction.",
-    "visualLead": "Compare gravitational acceleration and force with the apparent scale reading while an orbiting spacecraft travels.",
+    "visualLead": "Compare gravitational force with the apparent scale reading while an orbiting spacecraft travels.",
     "visual": "circular-orbit",
     "focus": "The satellite and passenger continually fall together. Their scale reading can be zero even when gravity is strong.",
     "definition": "Apparent weight is the support (normal) force that a scale exerts on an object. In ideal shared free fall under gravity alone, the normal force can be zero even when gravitational force and acceleration are nonzero.",
