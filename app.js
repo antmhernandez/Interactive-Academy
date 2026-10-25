@@ -47,7 +47,9 @@ const visualKeys={
  "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
  "slope-graph":[["teal","Position curve"],["amber","Secant slope"]],
  "velocity-components":[["amber","Velocity vector"],["teal","Horizontal"],["green","Vertical"]],
- "projectile-motion":[["teal","Flight path"],["amber","Highest point"]]
+ "projectile-motion":[["teal","Flight path"],["amber","Highest point"]],
+ "circular-motion":[["teal","Tangent velocity"],["amber","Inward acceleration"]],
+ "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -64,7 +66,7 @@ function home(){
   <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
    <h1>See clearly.<br><em>Reason deeply.</em></h1>
    <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
-   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#physics">Begin Physics</a></div>
+   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#applets">Explore applets</a></div>
    <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
   <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
    ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
@@ -83,6 +85,7 @@ function home(){
   <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
   <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
+ <div class="applet-home-call"><div><div class="eyebrow">Learn by experimenting</div><h2>Discover the Experiment Room.</h2><p>Explore original interactive investigations in Physics and Calculus.</p></div><a class="btn primary" href="#applets">Open the applet collection →</a></div>
  <section class="atlas-continue" aria-label="Continue a course on this device">
   <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
   <div class="continue-options">
@@ -160,6 +163,10 @@ function lesson(l){
  ${visualLegend(l.visual)}
  <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
  </section>
+ ${l.investigation?`<details class="investigation-guide"><summary>Before you calculate · try an experiment</summary>
+ <ol><li><strong>Predict</strong><p>${escapeHtml(l.investigation.prediction)}</p></li>
+ <li><strong>Manipulate</strong><p>${escapeHtml(l.investigation.experiment)}</p></li>
+ <li><strong>Connect</strong><p>${escapeHtml(l.investigation.connection)}</p></li></ol></details>`:""}
  <section class="learn-area" aria-label="Learn and practice">
  <div class="lesson-tabs" role="tablist" aria-label="Learning activities">
  <button id="tab-understand" role="tab" type="button" data-view="understand" aria-controls="understand">The idea</button>
@@ -255,6 +262,8 @@ function lesson(l){
  if(l.visual==="slope-graph")slopeToolkit(el);
  if(l.visual==="velocity-components")velocityComponents(el);
  if(l.visual==="projectile-motion")projectileMotion(el);
+ if(l.visual==="circular-motion")circularMotion(el);
+ if(l.visual==="river-crossing")riverCrossing(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -702,6 +711,112 @@ function projectileMotion(el){
  speed.oninput=paint;angle.oninput=paint;paint();
 }
 
+
+/* An inward net force continuously turns the tangent velocity. r and v are
+   physical units; arrow lengths are instructional, not a single shared scale. */
+function circularMotion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Constant speed, turning velocity</strong><span class="pill">Inward acceleration</span></div>
+ <svg viewBox="0 0 560 365" role="img" aria-label="Moving point on circular track with tangent velocity and inward acceleration vectors. Values shown below.">
+  <defs><marker id="circle-velocity-tip" markerWidth="7" markerHeight="7" refX="5.7" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#14727a"/></marker>
+  <marker id="circle-accel-tip" markerWidth="7" markerHeight="7" refX="5.7" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#b88445"/></marker></defs>
+  <path d="M30 179H530M275 22V338" stroke="#e3e9e4" stroke-width="1" stroke-dasharray="4 7"/>
+  <circle cx="275" cy="179" r="4" fill="#263c56"/>
+  <g id="circle-picture"></g>
+  <text x="28" y="29" fill="#697078" font-size="14">Top view · ideal horizontal circle</text>
+ </svg>
+ <div class="controls">
+  <label>Speed <output id="circle-speed-value">6 m/s</output><input id="circle-speed" type="range" min="2" max="16" step="1" value="6"></label>
+  <label>Radius <output id="circle-radius-value">3 m</output><input id="circle-radius" type="range" min="2" max="10" step="1" value="3"></label>
+ </div>
+ <div class="applet-actions"><button id="circle-play" type="button" aria-pressed="false">Play motion</button><button id="circle-step" type="button">Step 30°</button><button id="circle-reset" type="button">Reset experiment</button>
+ <label class="applet-check"><input id="circle-arrows" type="checkbox" checked> Show direction arrows</label></div>
+ <div class="readout"><div class="metric"><small>Inward acceleration · v²/r</small><strong id="circle-acceleration"></strong></div><div class="metric"><small>One revolution · 2πr/v</small><strong id="circle-period"></strong></div></div>
+ <p class="note">The arrows show directions, not a common force-to-velocity scale. In an ideal uniform circle, speed stays fixed while velocity continuously turns; acceleration always points inward.</p>`;
+ const speed=el.querySelector("#circle-speed"),radius=el.querySelector("#circle-radius");
+ const play=el.querySelector("#circle-play"),arrows=el.querySelector("#circle-arrows");
+ let angle=0,running=false,lastTime=null,frameId=null;
+ function paint(){
+  const v=Number(speed.value),r=Number(radius.value),ac=v*v/r,R=r*12;
+  const x=275+R*Math.cos(angle),y=179-R*Math.sin(angle),showArrows=arrows.checked!==false;
+  const tangent=25+Math.min(46,v*3),inward=25+Math.min(56,ac*1.6);
+  const tx=x-tangent*Math.sin(angle),ty=y-tangent*Math.cos(angle);
+  const ax=x-inward*Math.cos(angle),ay=y+inward*Math.sin(angle);
+  el.querySelector("#circle-picture").innerHTML=`
+   <circle cx="275" cy="179" r="${R}" fill="#f1f8f4" fill-opacity=".65" stroke="#6c9eab" stroke-width="2.5"/>
+   <path d="M275 179L${f(x)} ${f(y)}" stroke="#9ba9a4" stroke-width="1.6" stroke-dasharray="5 5"/>
+   <path d="M${f(x)} ${f(y)}A${R} ${R} 0 0 0 ${f(275+R*Math.cos(angle-.25))} ${f(179-R*Math.sin(angle-.25))}" fill="none" stroke="#b4a57c" stroke-width="3"/>
+   <circle cx="${f(x)}" cy="${f(y)}" r="9" fill="#243d60" stroke="#fff" stroke-width="3"/>
+   ${showArrows?`<path d="M${f(x)} ${f(y)}L${f(tx)} ${f(ty)}" fill="none" stroke="#14727a" stroke-width="4" stroke-linecap="round" marker-end="url(#circle-velocity-tip)"/>
+   <path d="M${f(x)} ${f(y)}L${f(ax)} ${f(ay)}" fill="none" stroke="#b88445" stroke-width="4" stroke-linecap="round" marker-end="url(#circle-accel-tip)"/>`:""}
+   <text x="27" y="323" fill="#14727a" font-size="16">v tangent</text><text x="27" y="347" fill="#9b6d32" font-size="16">a toward center</text>`;
+  el.querySelector("#circle-speed-value").textContent=v+" m/s";
+  el.querySelector("#circle-radius-value").textContent=r+" m";
+  el.querySelector("#circle-acceleration").textContent=f(ac)+" m/s²";
+  el.querySelector("#circle-period").textContent=f(2*Math.PI*r/v)+" s";
+ }
+ function stop(){running=false;lastTime=null;if(frameId!==null){cancelAnimationFrame(frameId);frameId=null;}play.setAttribute("aria-pressed","false");play.textContent="Play motion";}
+ function animate(time){
+  if(!running)return;
+  if(!el.isConnected){stop();return;}
+  const dt=lastTime===null?0:Math.min(.06,(time-lastTime)/1000);
+  lastTime=time;angle=(angle+Number(speed.value)/Number(radius.value)*dt)%(2*Math.PI);paint();
+  frameId=requestAnimationFrame(animate);
+ }
+ play.onclick=()=>{if(running){stop();return;}running=true;lastTime=null;play.setAttribute("aria-pressed","true");play.textContent="Pause motion";frameId=requestAnimationFrame(animate);};
+ el.querySelector("#circle-step").onclick=()=>{stop();angle=(angle+Math.PI/6)%(2*Math.PI);paint();};
+ el.querySelector("#circle-reset").onclick=()=>{stop();speed.value="6";radius.value="3";arrows.checked=true;angle=0;paint();};
+ speed.oninput=paint;radius.oninput=paint;arrows.onchange=paint;paint();
+}
+/* Vector addition in a river: boat relative water + current relative shore.
+   x drift is measured from the landing point directly opposite the launch. */
+function riverCrossing(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Boat, water, and shore</strong><span class="pill">Two reference frames</span></div>
+ <svg viewBox="0 0 570 390" role="img" aria-label="River crossing with the boat's predicted landing point, current, and ground-frame velocity arrows. Results shown below.">
+  <defs><marker id="river-head" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#14727a"/></marker></defs>
+  <rect x="22" y="67" width="526" height="234" fill="#e5f2f5" rx="6"/>
+  <path d="M22 67H548M22 301H548" stroke="#c4a77b" stroke-width="5"/>
+  <path d="M210 301V67" stroke="#96aeba" stroke-width="2" stroke-dasharray="6 7"/>
+  <text x="29" y="47" fill="#6f6553" font-size="15">Opposite bank</text><text x="29" y="328" fill="#6f6553" font-size="15">Starting bank</text>
+  <g id="river-picture"></g>
+  <text x="23" y="370" fill="#557e8c" font-size="14">River current → east</text>
+ </svg>
+ <div class="controls">
+  <label>Boat speed through water <output id="river-speed-value">6 m/s</output><input id="river-speed" type="range" min="4" max="10" step="1" value="6"></label>
+  <label>Current eastward <output id="river-current-value">2 m/s</output><input id="river-current" type="range" min="0" max="3" step=".5" value="2"></label>
+  <label>Boat heading (west −, east +) <output id="river-heading-value">0°</output><input id="river-heading" type="range" min="-45" max="45" step="1" value="0"></label>
+  <label>River width <output id="river-width-value">90 m</output><input id="river-width" type="range" min="60" max="120" step="10" value="90"></label>
+ </div>
+ <div class="applet-actions"><button id="river-aim" type="button">Aim upstream to cancel drift</button><button id="river-reset" type="button">Reset experiment</button></div>
+ <div class="readout"><div class="metric"><small>Time to cross</small><strong id="river-time"></strong></div><div class="metric"><small>Landing displacement</small><strong id="river-drift"></strong></div><div class="metric"><small>Speed seen from shore</small><strong id="river-ground-speed"></strong></div></div>
+ <p class="note">Blue shows the path relative to shore; the dashed line is directly across. Negative drift means landing west (upstream). Vector addition uses water and shore as distinct frames; the river sketch is schematic.</p>`;
+ const boat=el.querySelector("#river-speed"),current=el.querySelector("#river-current"),heading=el.querySelector("#river-heading"),width=el.querySelector("#river-width");
+ function paint(){
+  const v=Number(boat.value),c=Number(current.value),degrees=Number(heading.value),theta=degrees*Math.PI/180,w=Number(width.value);
+  const north=v*Math.cos(theta),east=c+v*Math.sin(theta),time=w/north,drift=east*time;
+  const landX=210+drift*.9,landY=67,dx=east*12,dy=north*12;
+  const vectorEast=210+c*12,boatX=210+v*Math.sin(theta)*12,boatY=301-v*Math.cos(theta)*12;
+  el.querySelector("#river-picture").innerHTML=`
+   <path d="M210 301L${f(landX)} ${landY}" fill="none" stroke="#14727a" stroke-width="4.5" stroke-linecap="round"/>
+   <circle cx="210" cy="301" r="6" fill="#273b58" stroke="white" stroke-width="2"/>
+   <circle cx="${f(landX)}" cy="${landY}" r="7" fill="#ad7c3e" stroke="white" stroke-width="2"/>
+   <path d="M210 301L${f(boatX)} ${f(boatY)}" fill="none" stroke="#57a589" stroke-width="2.4" stroke-dasharray="5 4"/>
+   <path d="M${f(boatX)} ${f(boatY)}L${f(boatX+c*12)} ${f(boatY)}" fill="none" stroke="#bd8844" stroke-width="2.4" stroke-dasharray="4 5"/>
+   <path d="M210 301L${f(210+dx)} ${f(301-dy)}" fill="none" stroke="#14727a" stroke-width="2.8" marker-end="url(#river-head)"/>
+   <text x="${f(Math.max(65,Math.min(landX,490)))}" y="57" text-anchor="middle" fill="#75542f" font-size="14">landing</text>`;
+  el.querySelector("#river-speed-value").textContent=v+" m/s";
+  el.querySelector("#river-current-value").textContent=c+" m/s";
+  el.querySelector("#river-heading-value").textContent=degrees===0?"Straight across":Math.abs(degrees)+"° "+(degrees<0?"west":"east")+" of north";
+  el.querySelector("#river-width-value").textContent=w+" m";
+  el.querySelector("#river-time").textContent=f(time)+" s";
+  el.querySelector("#river-drift").textContent=f(Math.abs(drift))+" m "+(Math.abs(drift)<.03?"(opposite)":drift>0?"east":"west");
+  el.querySelector("#river-ground-speed").textContent=f(Math.hypot(east,north))+" m/s";
+ }
+ el.querySelector("#river-aim").onclick=()=>{heading.value=String(Math.round(-Math.asin(Number(current.value)/Number(boat.value))*180/Math.PI));paint();};
+ el.querySelector("#river-reset").onclick=()=>{boat.value="6";current.value="2";heading.value="0";width.value="90";paint();};
+ for(const control of [boat,current,heading,width])control.oninput=paint;
+ paint();
+}
+
 function submodulesFor(parentId,ctx={book:null,grade:null}){
  const related=submodules.filter(m=>m.parent===parentId);
  if(!related.length)return "";
@@ -736,7 +851,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -880,6 +995,47 @@ function bookTile(book,grade=null){
  <span class="book-tile-body"><span class="eyebrow">${escapeHtml(gradeText)}</span><strong>${escapeHtml(book.title)}</strong>
  <small>${escapeHtml(book.imprint)}</small><em>${count?count+" example concept "+(count===1?"link":"links"):"Navigation example · content pending"}</em></span><span aria-hidden="true" class="book-tile-arrow">→</span></a>`;
 }
+function appletsHome(){
+ const entries=[
+ ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
+ ["relative-velocity","⇢","physics","Reference frames","Steer against a river current and track your landing."],
+ ["projectile-motion","⌒","physics","Projectile motion","Change the launch angle to examine range and height."],
+ ["two-dimensional-motion","↗","physics","Vectors","Split an angled velocity into components."],
+ ["force-components","∠","physics","Forces","Rotate a force and observe its projections."],
+ ["free-body-diagram","⬡","physics","Force diagrams","Change a push and study the force arrows."],
+ ["motion-graphs","∿","physics","Graphs","Connect position, velocity and acceleration."],
+ ["limits-near-a-point","→","calculus","Limits","Approach a point and distinguish limit from value."],
+ ["tangent-line","∂","calculus","Derivatives","Watch a secant approach the tangent."],
+ ["riemann-sums","∫","calculus","Integration","Use rectangles to approximate accumulated area."]
+ ];
+ const cards=entries.map(([id,glyph,kind,tag,teaser])=>{
+  const l=get(id);if(!l)return "";
+  return `<a class="applet-tile" data-subject="${kind}" href="#lesson/${encodeURIComponent(id)}">
+   <span class="applet-tile-mark" aria-hidden="true">${escapeHtml(glyph)}</span>
+   <span class="applet-tile-info"><span class="eyebrow">${escapeHtml(tag)} · ${subject(kind)}</span>
+   <strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(teaser)}</small>
+   <span class="applet-tile-action">Explore model →</span></span></a>`;
+ }).join("");
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Physics lessons →</a></nav>
+ <header class="applet-library-head"><div class="eyebrow">Original interactive investigations</div><h1>The Experiment Room</h1>
+ <p>Predict what happens. Change a variable. Study the pattern. Then use the equation to explain what you see.</p>
+ <div class="applet-library-principles"><span>01 · Predict</span><span>02 · Manipulate</span><span>03 · Explain</span><span>04 · Calculate</span></div></header>
+ <div class="applet-filters" role="group" aria-label="Filter experiment models">
+ <button type="button" data-applet-filter="all" aria-pressed="true">All</button><button type="button" data-applet-filter="physics" aria-pressed="false">Physics</button>
+ <button type="button" data-applet-filter="calculus" aria-pressed="false">Calculus</button>
+ <span id="applet-count" role="status" aria-live="polite">${entries.length} models</span></div>
+ <div class="applet-gallery">${cards}</div>
+ <aside class="applet-data-lab"><div><h2>Work with measured motion</h2><p>Collect position and time data, graph it, and fit a model.</p></div>
+ <a class="btn primary" href="lab/motion.html">Motion Data Lab →</a></aside>
+ <p class="independence-note">Original browser-based educational models—not embedded PhET resources. The approximations and assumptions are stated on each lesson. Textbook links remain illustrative.</p>`;
+ const filters=[...main.querySelectorAll("[data-applet-filter]")],tiles=[...main.querySelectorAll(".applet-tile")];
+ for(const button of filters)button.onclick=()=>{
+  const selected=button.dataset.appletFilter;let count=0;
+  for(const b of filters)b.setAttribute("aria-pressed",String(b===button));
+  for(const card of tiles){const shown=selected==="all"||selected===card.dataset.subject;card.hidden=!shown;if(shown)count++;}
+  main.querySelector("#applet-count").textContent=count+" "+(count===1?"model":"models");
+ };
+}
 function booksHome(){
  const catalog=bookPathways;
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
@@ -939,7 +1095,7 @@ function showcase(){
  <section class="showcase-step"><span class="step-no">01</span><h2>Choose a text</h2><p>Browse by grade and a curated catalog reference. Concept links are intentionally marked illustrative until a publisher-approved crosswalk exists.</p><a href="#book/physical-science">Explore a science book pathway →</a></section>
  <section class="showcase-step"><span class="step-no">02</span><h2>See the idea</h2><p>One striking visual and an intentionally brief explanation, with The Idea, Example, Think and Try it available underneath.</p><a href="#lesson/motion-graphs">See a Physics demonstration →</a></section>
  <section class="showcase-step"><span class="step-no">03</span><h2>Reason through it</h2><p>New worked-solution steps remain visible as a student advances. A separate page offers three levels of independent guided practice.</p><a href="#guided/graph-slope-physics">Explore graduated problems →</a></section>
- <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#equations">Open the equation reference →</a></section></div>
+ <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#applets">Explore the interactive models →</a></section></div>
  <section class="publisher-note"><div class="eyebrow">Discussion points</div><h2>What would need publisher approval?</h2>
  <p>Textbook editions and page-by-page mapping, protected diagrams or passages, brand and logo permissions, teacher-only materials, editorial review, commercial hosting, accessibility requirements, support ownership and educational claims.</p>
  <p><strong>Current boundary:</strong> independently written original lessons and illustrations; no copied textbook content, no student accounts, no student-data collection, and no claim of official Memoria Press sponsorship.</p>
@@ -949,7 +1105,7 @@ function route(){
  closePresentation();
  const hash=location.hash.slice(1).split("?")[0]||"home";let decoded="home";try{decoded=decodeURIComponent(hash);}catch{/* malformed hash goes home */}const parts=decoded.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="applets")appletsHome();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);main.focus({preventScroll:true});
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
