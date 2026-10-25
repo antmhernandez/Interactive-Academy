@@ -42,6 +42,12 @@ try{
    console.error("Overflow candidates at "+width+"px:",culprits);
   }
   assert.ok(!hasOverflow,"Book library has horizontal overflow at "+width+"px");
+  await page.locator("#book-search").fill("physical science");
+  assert.equal(await page.locator("#book-results .book-tile:visible").count(),1,"Catalog search filters cards");
+  assert.match(await page.locator("#book-search-count").innerText(),/1 matching pathway/);
+  await page.locator("#book-search").fill("no-such-text");
+  assert.equal(await page.locator("#book-search-empty").isVisible(),true,"Search empty state visible");
+  await page.locator("#book-search").fill("");
   await page.locator('.grade-choices a[href="#grade/8"]').click();
   await page.locator('main h1').filter({hasText:"Grade 8"}).waitFor();
   await page.locator('.book-grid a[href="#book/physical-science?grade=8"]').click();
