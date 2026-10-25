@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "status": "publisher-discussion-prototype",
+  "notices": {
+    "relationship": "Independent demonstration, not an official Memoria Press product, course supplement, or endorsed textbook companion.",
+    "mappings": "Connections indicate broadly relevant concepts only. They are not approved chapter, page, assignment, or edition alignments.",
+    "sources": "Official Memoria Press catalog or grade pages are linked for context. No book covers, logos, protected text, or publisher files are embedded."
+  },
+  "grades": [
+    {
+      "id": "7",
+      "label": "Grade 7",
+      "description": "Narrative science and the move toward formal mathematical reasoning."
+    },
+    {
+      "id": "8",
+      "label": "Grade 8",
+      "description": "Physical science and the algebraic language of measurement."
+    },
+    {
+      "id": "9",
+      "label": "Grade 9",
+      "description": "Introductory physics, including motion, evidence and models."
+    },
+    {
+      "id": "11",
+      "label": "Grade 11",
+      "description": "A more advanced physics pathway, including mathematical models."
+    },
+    {
+      "id": "12",
+      "label": "Grade 12",
+      "description": "A possible calculus pathway; exact textbook adoption varies."
+    }
+  ],
+  "references": [
+    {
+      "id": "tiner-physics",
+      "title": "Exploring the World of Physics",
+      "imprint": "John Hudson Tiner · Memoria Press science catalog",
+      "kind": "publisher-catalog",
+      "subject": "physics",
+      "gradeIds": [
+        "7",
+        "8",
+        "9"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/science/",
+      "publishedLinkLabel": "View the official science catalog",
+      "description": "An historical and narrative treatment of physics. These related visual ideas are illustrative, not a text-specific chapter sequence.",
+      "topicIds": [
+        "motion-diagrams",
+        "atom-spectra"
+      ],
+      "alignment": "conceptual-example",
+      "review": "not-authorized"
+    },
+    {
+      "id": "physical-science",
+      "title": "Novare Physical Science",
+      "imprint": "Novare Science · Memoria Press eighth-grade selection",
+      "kind": "publisher-catalog",
+      "subject": "physics",
+      "gradeIds": [
+        "8"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/8th-grade/",
+      "publishedLinkLabel": "View the official eighth-grade selection",
+      "description": "Show how physical quantities, measurement and motion demonstrations could sit beside a grade-level science text.",
+      "topicIds": [
+        "si-units",
+        "scientific-measurement",
+        "dimensional-analysis",
+        "motion-diagrams"
+      ],
+      "alignment": "conceptual-example",
+      "review": "not-authorized"
+    },
+    {
+      "id": "introductory-physics",
+      "title": "Novare Introductory Physics",
+      "imprint": "Novare Science · Memoria Press science catalog",
+      "kind": "publisher-catalog",
+      "subject": "physics",
+      "gradeIds": [
+        "9"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/science/",
+      "publishedLinkLabel": "View the official science catalog",
+      "description": "A textbook-adjacent demonstration of original interactive physics topics; its actual chapter map has not been reviewed.",
+      "topicIds": [
+        "si-units",
+        "graph-slope-physics",
+        "average-velocity",
+        "acceleration",
+        "free-body-diagram"
+      ],
+      "alignment": "conceptual-example",
+      "review": "not-authorized"
+    },
+    {
+      "id": "physics-modeling-nature",
+      "title": "Physics: Modeling Nature",
+      "imprint": "Novare Science · listed in Memoria Press eleventh grade",
+      "kind": "publisher-catalog",
+      "subject": "physics",
+      "gradeIds": [
+        "11"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/11th-grade/",
+      "publishedLinkLabel": "View the official eleventh-grade selection",
+      "description": "A higher-level illustration of conceptual support. Grade availability does not establish this prototype's sequence or equation alignment.",
+      "topicIds": [
+        "motion-graphs",
+        "force-components",
+        "newtons-second-law",
+        "velocity-accumulation"
+      ],
+      "alignment": "conceptual-example",
+      "review": "not-authorized"
+    },
+    {
+      "id": "pre-algebra",
+      "title": "Memoria Pre-Algebra",
+      "imprint": "Memoria Press · Mathematics",
+      "kind": "publisher-catalog",
+      "subject": "mathematics",
+      "gradeIds": [
+        "7"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/curriculum/math/memoria-pre-algebra-set/",
+      "publishedLinkLabel": "View the official product description",
+      "description": "An example of how a mathematics text could connect to a future topic library. No directly aligned lessons are published in this prototype.",
+      "topicIds": [],
+      "alignment": "awaiting-content",
+      "review": "not-authorized"
+    },
+    {
+      "id": "calculus-pathway",
+      "title": "Upper-School Calculus",
+      "imprint": "Example course pathway · Not a Memoria Press textbook listing",
+      "kind": "course-pathway",
+      "subject": "calculus",
+      "gradeIds": [
+        "12"
+      ],
+      "publishedUrl": "https://www.memoriapress.com/math/",
+      "publishedLinkLabel": "Explore the official mathematics catalog",
+      "description": "Shows the existing independent Calculus demonstrations as a possible upper-school extension. No specific Memoria Press calculus title is claimed.",
+      "topicIds": [
+        "limits-near-a-point",
+        "tangent-line",
+        "riemann-sums"
+      ],
+      "alignment": "independent-demonstration",
+      "review": "not-authorized"
+    },
+    {
+      "id": "existing-glencoe",
+      "title": "Physics: Principles and Problems",
+      "imprint": "Existing prototype chapter-index example · Glencoe / McGraw-Hill",
+      "kind": "independent-reference",
+      "subject": "physics",
+      "gradeIds": [
+        "11"
+      ],
+      "publishedUrl": null,
+      "publishedLinkLabel": null,
+      "description": "The original thirty-chapter navigation framework currently used in this prototype. This is separate from the Novare books offered through Memoria Press.",
+      "topicIds": [
+        "si-units",
+        "position-displacement",
+        "motion-graphs",
+        "newtons-second-law"
+      ],
+      "alignment": "independent-prototype",
+      "review": "prototype-only"
+    }
+  ]
+}
