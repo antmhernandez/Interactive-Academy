@@ -167,11 +167,11 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 - Chromium: successful at 320, 375, 768, 1024 and 1440 px with homepage/editorial overflow checks, catalog search with empty state, grade/book/context route, 4-tab keyboard accessibility, cumulative steps, projector overlay/exit and Chapter 6 original simulator navigation.
 - GitHub branch merge confirmed. As with earlier runs, the browser suite is not a substitute for real-device or screen-reader testing, nor a formal publisher permissions review.
 
-## October 25 continuation: Interactive investigations and content (PR pending)
+## October 25 continuation: Interactive investigations and content (merged PR #11)
 
 The user explicitly wants **many original PhET-style interactive applets** for difficult Physics/Calculus concepts, integrated with mathematical intuition and graduated computation. The project contains its own code, not externally embedded PhET resources. Keep independent rights status and original publisher demonstration visual identity.
 
-This feature branch is `feature/interactive-investigations-ch6-2026-10-25`. When the PR is merged use **main** as authoritative; replace this status with the PR and tested SHA.
+**Merged:** [PR #11](https://github.com/antmhernandez/Interactive-Academy/pull/11) into `main` on October 25, 2026; squash commit `f60ee820161ab3562e8ccca89f4cc29842067a53`. **Source of truth:** `main`.
 
 ### Work completed on this branch
 - New `#applets` route: **Experiment Room**, ten discoverable original teaching models with subject filter. The top navigation, homepage and publisher overview now link to the resource library.
@@ -186,4 +186,4 @@ This feature branch is `feature/interactive-investigations-ch6-2026-10-25`. When
 ### Next focus
 Keep expanding conceptual simulations selectively: friction/inclines, energy conservation, waves, electric fields and advanced Calculus convergence are promising *after* classroom testing identifies misconceptions. For each: a manipulable physical/mathematical model, explicit assumptions, predict/explain task, exact governing equations, solved example, conceptual distractors, numeric independent practice and 3 scaffolded problem levels. Do not equate more buttons with better pedagogy; do not incorporate school or publisher IP without permission.
 
-The GitHub Action result, PR number/merged SHA and physical-device QA status must be recorded on main after validation.
+**Successful CI before merge:** [GitHub Actions run #44](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40221549917). The existing content, Physics numeric, textbook source and five-width Chromium suites passed; browser covered gallery filtering, circular-motion step/play/pause, river-crossing aim/reset and existing classroom modes. Physical-device/Safari/VoiceOver/projector reviews have not been performed and must not be inferred from automated Chromium.
