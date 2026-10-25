@@ -9,83 +9,15 @@
       "title": "Physics",
       "units": [
         {
-          "id": "phy-atomic-introduction",
-          "title": "Atoms, Light, and Models",
-          "topics": [
-            {
-              "id": "atomic-models",
-              "title": "How Atomic Models Changed",
-              "status": "planned",
-              "owns": "phys.atomic.evidence-history",
-              "goal": "Connect observations with successive models of atomic structure.",
-              "prerequisites": []
-            },
-            {
-              "id": "atom-spectra",
-              "title": "The Colors of Atoms",
-              "status": "available",
-              "owns": "phys.atomic.spectral-lines",
-              "goal": "Interpret discrete spectral lines using allowed atomic energy changes.",
-              "prerequisites": []
-            },
-            {
-              "id": "photon-energy",
-              "title": "Photons and Energy",
-              "status": "planned",
-              "owns": "phys.atomic.photon-energy",
-              "goal": "Relate photon energy to frequency and wavelength.",
-              "prerequisites": [
-                "atom-spectra"
-              ]
-            },
-            {
-              "id": "bohr-energy-levels",
-              "title": "Quantized Energy Levels",
-              "status": "planned",
-              "owns": "phys.atomic.bohr-levels",
-              "goal": "Explain allowed hydrogen energy levels and emission transitions.",
-              "prerequisites": [
-                "atom-spectra"
-              ]
-            },
-            {
-              "id": "matter-waves",
-              "title": "Matter Waves and the Quantum Model",
-              "status": "planned",
-              "owns": "phys.atomic.matter-waves",
-              "goal": "Connect the de Broglie wavelength idea with quantum states.",
-              "prerequisites": [
-                "bohr-energy-levels"
-              ]
-            },
-            {
-              "id": "lasers",
-              "title": "How Lasers Produce Light",
-              "status": "planned",
-              "owns": "phys.atomic.lasers",
-              "goal": "Explain stimulated emission and coherence at an introductory level.",
-              "prerequisites": [
-                "bohr-energy-levels"
-              ]
-            }
-          ],
-          "syllabus": {
-            "course": "General Physics 2026–27",
-            "chapter": "00",
-            "scope": "school-year-core",
-            "description": "Atomic models, spectra, quantum theory"
-          }
-        },
-        {
           "id": "phy-foundations",
-          "title": "Measurement and Scientific Models",
+          "title": "A Physics Toolkit",
           "topics": [
             {
               "id": "si-units",
-              "title": "Units and Dimensional Thinking",
-              "status": "planned",
+              "title": "SI Units and Prefixes",
+              "status": "available",
               "owns": "phys.units",
-              "goal": "Explain how units constrain a physical model.",
+              "goal": "Use SI length units and metric prefixes with appropriate conversion factors.",
               "prerequisites": []
             },
             {
@@ -171,14 +103,14 @@
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": "01",
+            "chapter": "1",
             "scope": "school-year-core",
-            "description": "SI measurements, graphing, uncertainties and regression"
+            "description": "Measurements, dimensional reasoning, variables and graphing"
           }
         },
         {
           "id": "phy-motion",
-          "title": "Motion and Kinematics",
+          "title": "Representing and Accelerated Motion",
           "topics": [
             {
               "id": "position-displacement",
@@ -251,14 +183,14 @@
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": "02–03",
+            "chapter": "2–3",
             "scope": "school-year-core",
-            "description": "Position, velocity, acceleration and free fall"
+            "description": "Position, motion diagrams, average velocity, acceleration and free fall"
           }
         },
         {
           "id": "phy-forces",
-          "title": "Forces and Newton's Laws",
+          "title": "Forces in One and Two Dimensions",
           "topics": [
             {
               "id": "free-body-diagram",
@@ -373,14 +305,189 @@
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": "04–05",
+            "chapter": "4–5",
             "scope": "school-year-core",
-            "description": "Newton's laws, vectors, contact forces and inclines"
+            "description": "Free-body diagrams, Newton's laws, vectors, friction and inclines"
+          }
+        },
+        {
+          "id": "phy-two-dimensional-motion",
+          "title": "Motion in Two Dimensions",
+          "topics": [
+            {
+              "id": "two-dimensional-motion",
+              "title": "Motion in Two Dimensions",
+              "status": "planned",
+              "owns": "phys.motion.two-dimensional",
+              "goal": "Resolve velocity into two axes.",
+              "prerequisites": [
+                "force-components"
+              ]
+            },
+            {
+              "id": "projectile-motion",
+              "title": "Projectiles",
+              "status": "planned",
+              "owns": "phys.motion.projectiles",
+              "goal": "Analyze horizontal and vertical projectile motion.",
+              "prerequisites": [
+                "two-dimensional-motion"
+              ]
+            },
+            {
+              "id": "circular-motion",
+              "title": "Circular Motion",
+              "status": "planned",
+              "owns": "phys.circular.acceleration",
+              "goal": "Explain inward acceleration in uniform circular motion.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "relative-velocity",
+              "title": "Relative Velocity",
+              "status": "planned",
+              "owns": "phys.motion.relative-velocity",
+              "goal": "Add relative velocities using consistent reference frames.",
+              "prerequisites": [
+                "two-dimensional-motion"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "6",
+            "scope": "school-year-core",
+            "description": "Projectiles, circular motion and relative velocity"
+          }
+        },
+        {
+          "id": "phy-gravity",
+          "title": "Gravitation",
+          "topics": [
+            {
+              "id": "history-planetary-models",
+              "title": "Planetary Models and Evidence",
+              "status": "planned",
+              "owns": "phys.gravity.planetary-models",
+              "goal": "Compare historical models using observed planetary motions.",
+              "prerequisites": []
+            },
+            {
+              "id": "universal-gravitation",
+              "title": "Universal Gravitation",
+              "status": "planned",
+              "owns": "phys.gravity.inverse-square",
+              "goal": "Describe the inverse-square gravitational model.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "orbital-motion",
+              "title": "Orbits",
+              "status": "planned",
+              "owns": "phys.gravity.orbits",
+              "goal": "Connect centripetal acceleration to orbital speed.",
+              "prerequisites": [
+                "universal-gravitation"
+              ]
+            },
+            {
+              "id": "keplers-laws",
+              "title": "Kepler's Planetary Laws",
+              "status": "planned",
+              "owns": "phys.gravity.kepler",
+              "goal": "Relate orbital shape, swept area, and period-distance scaling.",
+              "prerequisites": [
+                "history-planetary-models"
+              ]
+            },
+            {
+              "id": "weightlessness",
+              "title": "Weightlessness in Orbit",
+              "status": "planned",
+              "owns": "phys.gravity.weightlessness",
+              "goal": "Explain apparent weightlessness as shared free fall.",
+              "prerequisites": [
+                "orbital-motion"
+              ]
+            },
+            {
+              "id": "cosmic-models",
+              "title": "Gravity, Light, and the Cosmos",
+              "status": "planned",
+              "owns": "phys.modern.cosmos",
+              "goal": "Connect astronomical evidence with changing cosmological models.",
+              "prerequisites": [
+                "history-planetary-models"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "7",
+            "scope": "school-year-core",
+            "description": "Planetary models, Newtonian gravitation and orbital motion"
+          }
+        },
+        {
+          "id": "phy-momentum",
+          "title": "Momentum and Its Conservation",
+          "topics": [
+            {
+              "id": "impulse",
+              "title": "Impulse and Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.impulse",
+              "goal": "Connect impulse to change in momentum.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "momentum-conservation",
+              "title": "Conservation of Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.conservation",
+              "goal": "Analyze momentum transfer in an isolated system.",
+              "prerequisites": [
+                "impulse"
+              ]
+            },
+            {
+              "id": "collisions",
+              "title": "Collisions",
+              "status": "planned",
+              "owns": "phys.momentum.collisions",
+              "goal": "Contrast elastic and inelastic collisions.",
+              "prerequisites": [
+                "momentum-conservation",
+                "energy-conservation"
+              ]
+            },
+            {
+              "id": "momentum-vectors",
+              "title": "Momentum as a Vector",
+              "status": "planned",
+              "owns": "phys.momentum.vector",
+              "goal": "Track signed momentum through one-dimensional interactions.",
+              "prerequisites": [
+                "impulse"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "9",
+            "scope": "school-year-core",
+            "description": "Impulse, signed momentum and collisions"
           }
         },
         {
           "id": "phy-energy",
-          "title": "Work and Energy",
+          "title": "Work, Energy, and Machines",
           "topics": [
             {
               "id": "work-energy",
@@ -468,134 +575,54 @@
             "course": "General Physics 2026–27",
             "chapter": "10–11",
             "scope": "school-year-core",
-            "description": "Work, machines, energy and conservation"
+            "description": "Work, power, energy, conservation and mechanical advantage"
           }
         },
         {
-          "id": "phy-two-dimensional-motion",
-          "title": "Motion in Two Dimensions",
+          "id": "phy-thermal",
+          "title": "Thermal Physics and Matter",
           "topics": [
             {
-              "id": "two-dimensional-motion",
-              "title": "Motion in Two Dimensions",
+              "id": "temperature",
+              "title": "Temperature and Internal Energy",
               "status": "planned",
-              "owns": "phys.motion.two-dimensional",
-              "goal": "Resolve velocity into two axes.",
+              "owns": "phys.thermal.temperature",
+              "goal": "Differentiate thermal energy from temperature.",
               "prerequisites": [
-                "force-components"
+                "energy-conservation"
               ]
             },
             {
-              "id": "projectile-motion",
-              "title": "Projectiles",
+              "id": "heat-transfer",
+              "title": "Heat Transfer",
               "status": "planned",
-              "owns": "phys.motion.projectiles",
-              "goal": "Analyze horizontal and vertical projectile motion.",
+              "owns": "phys.thermal.heat",
+              "goal": "Compare conduction, convection and radiation.",
               "prerequisites": [
-                "two-dimensional-motion"
+                "temperature"
               ]
             },
             {
-              "id": "circular-motion",
-              "title": "Circular Motion",
+              "id": "gas-laws",
+              "title": "Gases and Pressure",
               "status": "planned",
-              "owns": "phys.circular.acceleration",
-              "goal": "Explain inward acceleration in uniform circular motion.",
+              "owns": "phys.thermal.gas-laws",
+              "goal": "Relate state variables for simple ideal gas systems.",
               "prerequisites": [
-                "newtons-second-law"
-              ]
-            },
-            {
-              "id": "relative-velocity",
-              "title": "Relative Velocity",
-              "status": "planned",
-              "owns": "phys.motion.relative-velocity",
-              "goal": "Add relative velocities using consistent reference frames.",
-              "prerequisites": [
-                "two-dimensional-motion"
+                "temperature"
               ]
             }
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": "06",
-            "scope": "school-year-core",
-            "description": "Projectiles, circular motion, relative velocity"
-          }
-        },
-        {
-          "id": "phy-gravity",
-          "title": "Circular Motion and Gravitation",
-          "topics": [
-            {
-              "id": "history-planetary-models",
-              "title": "Planetary Models and Evidence",
-              "status": "planned",
-              "owns": "phys.gravity.planetary-models",
-              "goal": "Compare historical models using observed planetary motions.",
-              "prerequisites": []
-            },
-            {
-              "id": "universal-gravitation",
-              "title": "Universal Gravitation",
-              "status": "planned",
-              "owns": "phys.gravity.inverse-square",
-              "goal": "Describe the inverse-square gravitational model.",
-              "prerequisites": [
-                "newtons-second-law"
-              ]
-            },
-            {
-              "id": "orbital-motion",
-              "title": "Orbits",
-              "status": "planned",
-              "owns": "phys.gravity.orbits",
-              "goal": "Connect centripetal acceleration to orbital speed.",
-              "prerequisites": [
-                "universal-gravitation"
-              ]
-            },
-            {
-              "id": "keplers-laws",
-              "title": "Kepler's Planetary Laws",
-              "status": "planned",
-              "owns": "phys.gravity.kepler",
-              "goal": "Relate orbital shape, swept area, and period-distance scaling.",
-              "prerequisites": [
-                "history-planetary-models"
-              ]
-            },
-            {
-              "id": "weightlessness",
-              "title": "Weightlessness in Orbit",
-              "status": "planned",
-              "owns": "phys.gravity.weightlessness",
-              "goal": "Explain apparent weightlessness as shared free fall.",
-              "prerequisites": [
-                "orbital-motion"
-              ]
-            },
-            {
-              "id": "cosmic-models",
-              "title": "Gravity, Light, and the Cosmos",
-              "status": "planned",
-              "owns": "phys.modern.cosmos",
-              "goal": "Connect astronomical evidence with changing cosmological models.",
-              "prerequisites": [
-                "history-planetary-models"
-              ]
-            }
-          ],
-          "syllabus": {
-            "course": "General Physics 2026–27",
-            "chapter": "07",
-            "scope": "school-year-core",
-            "description": "Cosmology, gravitation and satellites"
+            "chapter": "12–13",
+            "scope": "enrichment",
+            "description": "Thermal energy, heating and states of matter (extension)"
           }
         },
         {
           "id": "phy-waves",
-          "title": "Oscillations and Waves",
+          "title": "Vibrations, Waves, and Sound",
           "topics": [
             {
               "id": "oscillation",
@@ -672,65 +699,12 @@
             "course": "General Physics 2026–27",
             "chapter": "14–15",
             "scope": "school-year-core",
-            "description": "Vibrations, waves and sound"
-          }
-        },
-        {
-          "id": "phy-momentum",
-          "title": "Momentum and Collisions",
-          "topics": [
-            {
-              "id": "impulse",
-              "title": "Impulse and Momentum",
-              "status": "planned",
-              "owns": "phys.momentum.impulse",
-              "goal": "Connect impulse to change in momentum.",
-              "prerequisites": [
-                "newtons-second-law"
-              ]
-            },
-            {
-              "id": "momentum-conservation",
-              "title": "Conservation of Momentum",
-              "status": "planned",
-              "owns": "phys.momentum.conservation",
-              "goal": "Analyze momentum transfer in an isolated system.",
-              "prerequisites": [
-                "impulse"
-              ]
-            },
-            {
-              "id": "collisions",
-              "title": "Collisions",
-              "status": "planned",
-              "owns": "phys.momentum.collisions",
-              "goal": "Contrast elastic and inelastic collisions.",
-              "prerequisites": [
-                "momentum-conservation",
-                "energy-conservation"
-              ]
-            },
-            {
-              "id": "momentum-vectors",
-              "title": "Momentum as a Vector",
-              "status": "planned",
-              "owns": "phys.momentum.vector",
-              "goal": "Track signed momentum through one-dimensional interactions.",
-              "prerequisites": [
-                "impulse"
-              ]
-            }
-          ],
-          "syllabus": {
-            "course": "General Physics 2026–27",
-            "chapter": "09",
-            "scope": "school-year-core",
-            "description": "Impulse and momentum conservation"
+            "description": "Periodic motion, wave speed and musical sound"
           }
         },
         {
           "id": "phy-optics",
-          "title": "Light and Optics",
+          "title": "Light, Reflection, and Lenses",
           "topics": [
             {
               "id": "reflection",
@@ -807,12 +781,12 @@
             "course": "General Physics 2026–27",
             "chapter": "16–18",
             "scope": "school-year-core",
-            "description": "Light, mirrors and lenses"
+            "description": "Light, reflection, mirrors, refraction and lenses"
           }
         },
         {
           "id": "phy-electricity",
-          "title": "Electricity and Magnetism",
+          "title": "Electricity and Circuits",
           "topics": [
             {
               "id": "electric-charge",
@@ -919,55 +893,125 @@
             "course": "General Physics 2026–27",
             "chapter": "20–23",
             "scope": "school-year-core",
-            "description": "Charges, electric fields, current and circuits"
+            "description": "Charges, fields, current, resistance and networks"
           }
         },
         {
-          "id": "phy-thermal",
-          "title": "Thermal Physics",
+          "id": "phy-quantum",
+          "title": "Quantum Theory",
           "topics": [
             {
-              "id": "temperature",
-              "title": "Temperature and Internal Energy",
+              "id": "quantum-photons",
+              "title": "Light as Photons",
               "status": "planned",
-              "owns": "phys.thermal.temperature",
-              "goal": "Differentiate thermal energy from temperature.",
+              "owns": "phys.quantum.photon-introduction",
+              "goal": "Interpret photon energy using frequency and wavelength.",
               "prerequisites": [
-                "energy-conservation"
+                "wave-properties"
               ]
             },
             {
-              "id": "heat-transfer",
-              "title": "Heat Transfer",
+              "id": "photoelectric-effect",
+              "title": "The Photoelectric Effect",
               "status": "planned",
-              "owns": "phys.thermal.heat",
-              "goal": "Compare conduction, convection and radiation.",
+              "owns": "phys.quantum.photoelectric",
+              "goal": "Compare photon energy with a material's electron-emission threshold.",
               "prerequisites": [
-                "temperature"
-              ]
-            },
-            {
-              "id": "gas-laws",
-              "title": "Gases and Pressure",
-              "status": "planned",
-              "owns": "phys.thermal.gas-laws",
-              "goal": "Relate state variables for simple ideal gas systems.",
-              "prerequisites": [
-                "temperature"
+                "quantum-photons"
               ]
             }
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": null,
+            "chapter": "27",
             "scope": "enrichment",
-            "description": "Possible enrichment; not on the principal 2026–27 school calendar"
+            "description": "Supplementary quantum foundations in the normal textbook position"
+          }
+        },
+        {
+          "id": "phy-atomic-introduction",
+          "title": "The Atom and Spectra",
+          "topics": [
+            {
+              "id": "atomic-models",
+              "title": "How Atomic Models Changed",
+              "status": "planned",
+              "owns": "phys.atomic.evidence-history",
+              "goal": "Connect observations with successive models of atomic structure.",
+              "prerequisites": []
+            },
+            {
+              "id": "atom-spectra",
+              "title": "The Colors of Atoms",
+              "status": "available",
+              "owns": "phys.atomic.spectral-lines",
+              "goal": "Interpret discrete spectral lines using allowed atomic energy changes.",
+              "prerequisites": [
+                "si-units"
+              ]
+            },
+            {
+              "id": "photon-energy",
+              "title": "Photons and Energy",
+              "status": "planned",
+              "owns": "phys.atomic.photon-energy",
+              "goal": "Relate photon energy to frequency and wavelength.",
+              "prerequisites": [
+                "atom-spectra"
+              ]
+            },
+            {
+              "id": "bohr-energy-levels",
+              "title": "Quantized Energy Levels",
+              "status": "planned",
+              "owns": "phys.atomic.bohr-levels",
+              "goal": "Explain allowed hydrogen energy levels and emission transitions.",
+              "prerequisites": [
+                "atom-spectra"
+              ]
+            },
+            {
+              "id": "matter-waves",
+              "title": "Matter Waves and the Quantum Model",
+              "status": "planned",
+              "owns": "phys.atomic.matter-waves",
+              "goal": "Connect the de Broglie wavelength idea with quantum states.",
+              "prerequisites": [
+                "bohr-energy-levels"
+              ]
+            },
+            {
+              "id": "lasers",
+              "title": "How Lasers Produce Light",
+              "status": "planned",
+              "owns": "phys.atomic.lasers",
+              "goal": "Explain stimulated emission and coherence at an introductory level.",
+              "prerequisites": [
+                "bohr-energy-levels"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "28",
+            "scope": "school-year-core",
+            "description": "Spectroscopy, energy levels and atomic models (optional motivating preview, later formal chapter)"
           }
         },
         {
           "id": "phy-modern",
-          "title": "Additional Modern Physics",
+          "title": "Solid-State and Nuclear Physics",
           "topics": [
+            {
+              "id": "semiconductors",
+              "title": "Semiconductors and Solid-State Devices",
+              "status": "planned",
+              "owns": "phys.modern.semiconductor",
+              "goal": "Explain how carrier concentrations influence semiconductor conduction.",
+              "prerequisites": [
+                "atomic-models"
+              ]
+            },
             {
               "id": "nuclear-physics",
               "title": "Nuclei and Radioactivity",
@@ -981,9 +1025,9 @@
           ],
           "syllabus": {
             "course": "General Physics 2026–27",
-            "chapter": null,
+            "chapter": "29–30",
             "scope": "enrichment",
-            "description": "Possible enrichment; not on the principal 2026–27 school calendar"
+            "description": "Supplementary late-book electronic and nuclear models"
           }
         }
       ]
@@ -1893,9 +1937,9 @@
     }
   ],
   "nextBuild": [
-    "atomic-models",
-    "significant-figures",
-    "newtons-third-law",
+    "scientific-measurement",
+    "graph-slope-physics",
+    "mass-vs-weight",
     "power-rule"
   ],
   "contentKinds": {
@@ -2288,5 +2332,223 @@
     "calculusCourse": "HLS AP Calculus AB and BC 2026–27 / Larson, Hostetler and Edwards Calculus, 8th edition",
     "apFrameworkUrl": "https://apcentral.collegeboard.org/courses/ap-calculus-bc",
     "teacherReviewRequired": true
+  },
+  "textbook": {
+    "title": "Physics: Principles and Problems",
+    "edition": "Glencoe / McGraw-Hill, student ISBN 0-07-845813-7",
+    "order": "ascending printed chapter number",
+    "chapters": [
+      {
+        "number": 1,
+        "title": "A Physics Toolkit",
+        "unitId": "phy-foundations",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 2,
+        "title": "Representing Motion",
+        "unitId": "phy-motion",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 3,
+        "title": "Accelerated Motion",
+        "unitId": "phy-motion",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 4,
+        "title": "Forces in One Dimension",
+        "unitId": "phy-forces",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 5,
+        "title": "Forces in Two Dimensions",
+        "unitId": "phy-forces",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 6,
+        "title": "Motion in Two Dimensions",
+        "unitId": "phy-two-dimensional-motion",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 7,
+        "title": "Gravitation",
+        "unitId": "phy-gravity",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 8,
+        "title": "Rotational Motion",
+        "unitId": null,
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 9,
+        "title": "Momentum and Its Conservation",
+        "unitId": "phy-momentum",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 10,
+        "title": "Energy, Work, and Simple Machines",
+        "unitId": "phy-energy",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 11,
+        "title": "Energy and Its Conservation",
+        "unitId": "phy-energy",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 12,
+        "title": "Thermal Energy",
+        "unitId": "phy-thermal",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 13,
+        "title": "States of Matter",
+        "unitId": "phy-thermal",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 14,
+        "title": "Vibrations and Waves",
+        "unitId": "phy-waves",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 15,
+        "title": "Sound",
+        "unitId": "phy-waves",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 16,
+        "title": "Fundamentals of Light",
+        "unitId": "phy-optics",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 17,
+        "title": "Reflection and Mirrors",
+        "unitId": "phy-optics",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 18,
+        "title": "Refraction and Lenses",
+        "unitId": "phy-optics",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 19,
+        "title": "Interference and Diffraction",
+        "unitId": null,
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 20,
+        "title": "Static Electricity",
+        "unitId": "phy-electricity",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 21,
+        "title": "Electric Fields",
+        "unitId": "phy-electricity",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 22,
+        "title": "Current Electricity",
+        "unitId": "phy-electricity",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 23,
+        "title": "Series and Parallel Circuits",
+        "unitId": "phy-electricity",
+        "scope": "classroom-core",
+        "status": "reference-planned"
+      },
+      {
+        "number": 24,
+        "title": "Magnetic Fields",
+        "unitId": null,
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 25,
+        "title": "Electromagnetic Induction",
+        "unitId": null,
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 26,
+        "title": "Electromagnetism",
+        "unitId": null,
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 27,
+        "title": "Quantum Theory",
+        "unitId": "phy-quantum",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 28,
+        "title": "The Atom",
+        "unitId": "phy-atomic-introduction",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 29,
+        "title": "Solid-State Electronics",
+        "unitId": "phy-modern",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      },
+      {
+        "number": 30,
+        "title": "Nuclear Physics",
+        "unitId": "phy-modern",
+        "scope": "optional-extension",
+        "status": "reference-planned"
+      }
+    ],
+    "note": "Chapter 28's attractive phenomena can be mentioned early as a motivation, but the worked photon-energy model is studied later in its textbook place. Chapter lists are an independently entered index; no publisher question or illustration has been copied."
   }
 }

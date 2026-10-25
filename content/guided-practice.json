@@ -1,0 +1,674 @@
+[
+  {
+    "owner": "si-units",
+    "title": "SI Units and Prefixes",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "Convert 2.5 kilometers to meters. Enter the number of meters.",
+        "answer": 2500,
+        "tolerance": 0.001,
+        "unit": "m",
+        "steps": [
+          "The prefix kilo means 1,000. One kilometer is 1,000 meters.",
+          "Multiply 2.5 km × (1,000 m / 1 km).",
+          "The correct result is 2500 m. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A board is 650 cm long. How many meters long is it?",
+        "answer": 6.5,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Start with 650 cm. Each 100 cm equals 1 m.",
+          "Choose the factor 1 m / 100 cm so centimeters cancel.",
+          "650 ÷ 100 = 6.5 m."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Convert 0.045 kilometers directly into centimeters. How many centimeters is that?",
+        "answer": 4500,
+        "tolerance": 0.015,
+        "unit": "cm",
+        "steps": [
+          "A kilometer contains 1,000 m; a meter contains 100 cm.",
+          "Convert in two stages: 0.045 km × (1,000 m/km) × (100 cm/m).",
+          "The intermediate length is 45 m; the final length is 4,500 cm."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "position-displacement",
+    "title": "Distance and Displacement",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A cart starts at 2 m, moves to 9 m, then ends at 5 m. What is the total distance traveled (in meters)?",
+        "answer": 11,
+        "tolerance": 0.001,
+        "unit": "m",
+        "steps": [
+          "Count the distance along both legs of the journey, not just the displacement.",
+          "Add |9 − 2| and |5 − 9|.",
+          "The correct result is 11 m. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A runner begins at −2 m, moves to +5 m, and finishes at +1 m. What is the signed displacement?",
+        "answer": 3,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "The intermediate turning point does not determine displacement.",
+          "Subtract start from finish: 1 − (−2).",
+          "The displacement is +3 m (right)."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A robot travels from −4 m to +6 m, then to −1 m, then to +8 m. What total distance does it travel?",
+        "answer": 26,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Find each leg's unsigned length.",
+          "Compute |6−(−4)|, |−1−6|, and |8−(−1)|.",
+          "Distance = 10 + 7 + 9 = 26 m."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "motion-diagrams",
+    "title": "Motion in Dots",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A cart travels 18 meters in 6 seconds. What is its average speed?",
+        "answer": 3,
+        "tolerance": 0.001,
+        "unit": "m/s",
+        "steps": [
+          "Average speed compares distance with elapsed time.",
+          "Divide 18 by 6.",
+          "The correct result is 3 m/s. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Five snapshots one second apart show a cart at 0, 2, 4, 6, and 8 meters. What is its average speed?",
+        "answer": 2,
+        "tolerance": 0.015,
+        "unit": "m/s",
+        "steps": [
+          "Five equally spaced snapshots create four time intervals, not five.",
+          "Total time is 4 s; total distance is 8 m.",
+          "Average speed = 8/4 = 2 m/s."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Seven snapshots one second apart show positions 0, 1, 3, 6, 10, 15, 21 meters. What is the average speed over the full interval?",
+        "answer": 3.5,
+        "tolerance": 0.015,
+        "unit": "m/s",
+        "steps": [
+          "The gaps grow, so speed varies; use total distance and total time for the average.",
+          "Seven snapshots define six one-second intervals. Travel is 21 m.",
+          "Average speed = 21/6 = 3.5 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "average-velocity",
+    "title": "Velocity from a Graph",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "An object moves from x = 3 m at t = 1 s to x = 15 m at t = 5 s. What is its average velocity?",
+        "answer": 3,
+        "tolerance": 0.001,
+        "unit": "m/s",
+        "steps": [
+          "Divide the change in position by the change in time.",
+          "Compute (15 − 3)/(5 − 1).",
+          "The correct result is 3 m/s. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "At 2 s a cart is at −3 m; at 5 s it is at +9 m. Find average velocity.",
+        "answer": 4,
+        "tolerance": 0.015,
+        "unit": "m/s",
+        "steps": [
+          "Compute displacement first: 9 − (−3).",
+          "Elapsed time is 5 − 2 seconds.",
+          "Average velocity = 12/3 = +4 m/s."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A cart's position changes from +14 m at 1 s to −10 m at 7 s. Find signed average velocity.",
+        "answer": -4,
+        "tolerance": 0.015,
+        "unit": "m/s",
+        "steps": [
+          "Do not divide by absolute distance: signed displacement matters.",
+          "Displacement is −10 − 14 = −24 m, time is 6 s.",
+          "Average velocity = −24/6 = −4 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "acceleration",
+    "title": "What Acceleration Means",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A cart begins at 5 m/s and accelerates at −1 m/s² for 3 seconds. What is its final velocity?",
+        "answer": 2,
+        "tolerance": 0.001,
+        "unit": "m/s",
+        "steps": [
+          "Use v = v₀ + at, keeping the negative acceleration.",
+          "Compute 5 + (−1)(3).",
+          "The correct result is 2 m/s. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Velocity rises from 8 m/s to 20 m/s over 4 s. Find average acceleration.",
+        "answer": 3,
+        "tolerance": 0.015,
+        "unit": "m/s²",
+        "steps": [
+          "Use acceleration = change in velocity / time.",
+          "Change in velocity is 20 − 8 = 12 m/s.",
+          "a = 12/4 = +3 m/s²."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A cart starts with velocity −2 m/s and has constant acceleration −3 m/s² for 5 s. Find final signed velocity.",
+        "answer": -17,
+        "tolerance": 0.015,
+        "unit": "m/s",
+        "steps": [
+          "Negative acceleration points left. Do not automatically interpret it as slowing down.",
+          "Use v = v₀ + at = −2 + (−3)(5).",
+          "v = −17 m/s; its speed has increased from 2 to 17 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "free-fall",
+    "title": "Falling under Gravity",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "An object is dropped from rest 44.1 m above the ground. Ignoring air resistance and using g = 9.8 m/s², how many seconds until impact?",
+        "answer": 3,
+        "tolerance": 0.01,
+        "unit": "s",
+        "steps": [
+          "Use h = ½gt² for a drop from rest.",
+          "Compute t = √(2 × 44.1 / 9.8).",
+          "The correct result is 3 s. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Ignoring air resistance, how far does a ball dropped from rest fall in 2 s? Take g = 9.8 m/s².",
+        "answer": 19.6,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Take downward distance as positive for this calculation.",
+          "Use distance = ½gt² for an object released from rest.",
+          "d = 0.5 × 9.8 × 2² = 19.6 m."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A ball is dropped from rest 122.5 m above the ground. Neglect air resistance. How many seconds until it hits?",
+        "answer": 5,
+        "tolerance": 0.015,
+        "unit": "s",
+        "steps": [
+          "Use h = ½gt² and isolate t.",
+          "t² = (2 × 122.5)/9.8 = 25.",
+          "Time t = +√25 = 5 s (take the positive time)."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "motion-graphs",
+    "title": "Three Graphs, One Motion",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A cart begins at position 0 m with velocity 2 m/s and acceleration 1 m/s². What is its position after 2 seconds?",
+        "answer": 6,
+        "tolerance": 0.001,
+        "unit": "m",
+        "steps": [
+          "Use x = x₀ + v₀t + ½at².",
+          "Compute 2(2) + ½(1)(2²).",
+          "The correct result is 6 m. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A cart has x₀=3 m, v₀=4 m/s, and a=−1 m/s². What is x after 2 s?",
+        "answer": 9,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Write x=x₀+v₀t+½at². A negative a subtracts a term.",
+          "Substitute: x=3+4(2)+0.5(−1)(2²).",
+          "x=3+8−2=9 m."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A cart begins at x₀=−2 m with v₀=−3 m/s and a=+2 m/s². What is x after 4 s?",
+        "answer": 2,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Signed velocity and signed acceleration are different physical quantities.",
+          "x=−2+(−3)(4)+0.5(2)(4²).",
+          "x=−2−12+16=+2 m."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "free-body-diagram",
+    "title": "Draw the Forces",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 3 kg block rests on a level floor and is pushed only horizontally. What is the normal force (in newtons)? Use g = 9.8 m/s².",
+        "answer": 29.4,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "The horizontal push has no vertical component, and vertical acceleration is zero.",
+          "The normal force equals mg = 3 × 9.8.",
+          "The correct result is 29.4 N. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 5 kg box rests on a level floor without other vertical forces. Use g=9.8 m/s². Find the upward normal force.",
+        "answer": 49,
+        "tolerance": 0.015,
+        "unit": "N",
+        "steps": [
+          "Vertical acceleration is zero, so vertical forces balance.",
+          "The downward weight is mg=5×9.8 N.",
+          "The upward normal force is 49 N."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 4 kg block is on a floor while a rope pulls vertically upward with 10 N. The block has zero vertical acceleration. Find the floor's normal force (g=9.8 m/s²).",
+        "answer": 29.2,
+        "tolerance": 0.015,
+        "unit": "N",
+        "steps": [
+          "There are three vertical forces: normal up, rope tension up, weight down.",
+          "Balance forces: N+10−mg=0, so N=mg−10.",
+          "N=4(9.8)−10=29.2 N."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "newtons-second-law",
+    "title": "Force Changes Motion",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 4 kg cart experiences a net force of 20 N to the right. What is its acceleration in m/s²?",
+        "answer": 5,
+        "tolerance": 0.02,
+        "unit": "m/s²",
+        "steps": [
+          "Acceleration equals net force divided by mass.",
+          "Divide 20 N by 4 kg.",
+          "The correct result is 5 m/s². Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 6 kg cart experiences net force −18 N. Find signed acceleration.",
+        "answer": -3,
+        "tolerance": 0.015,
+        "unit": "m/s²",
+        "steps": [
+          "Acceleration points with the net force.",
+          "Use a=Fnet/m=−18/6.",
+          "a=−3 m/s²."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 4 kg cart has a 22 N force right and a 6 N force left. Find its acceleration, right positive.",
+        "answer": 4,
+        "tolerance": 0.015,
+        "unit": "m/s²",
+        "steps": [
+          "First combine the forces using their signs.",
+          "Fnet=22−6=16 N to the right.",
+          "a=16/4=+4 m/s²."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "force-components",
+    "title": "A Force in Two Directions",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 20 N force acts 60° above the positive horizontal axis. What is the horizontal component (in newtons)?",
+        "answer": 10,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "The horizontal component uses cosine: Fₓ = F cos θ.",
+          "Compute 20 cos 60° = 20(0.5).",
+          "The correct result is 10 N. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 10 N force is 30° above the +x-axis. What is its vertical component?",
+        "answer": 5,
+        "tolerance": 0.015,
+        "unit": "N",
+        "steps": [
+          "The vertical component is opposite the angle drawn from +x.",
+          "Fy=F sin θ; sin30°=0.5.",
+          "Fy=10×0.5=5 N upward."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A horizontal force of 8 N right acts together with a 10 N force at 60° above +x. What is total horizontal force?",
+        "answer": 13,
+        "tolerance": 0.015,
+        "unit": "N",
+        "steps": [
+          "Resolve the angled force into its x-component first.",
+          "10 cos60°=5 N to the right; add the other +8 N.",
+          "Net horizontal force =8+5=+13 N."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "atom-spectra",
+    "title": "The Colors of Atoms",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
+        "answer": 486.27451,
+        "tolerance": 1,
+        "unit": "nm",
+        "steps": [
+          "Use λ = hc/E and express energy in electronvolts.",
+          "Divide 1240 by 2.55.",
+          "The correct result is 486.2745 nm. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A photon has wavelength 620 nm. Using hc ≈ 1240 eV·nm, find its energy in electronvolts.",
+        "answer": 2,
+        "tolerance": 0.015,
+        "unit": "eV",
+        "steps": [
+          "Rearrange E=hc/λ.",
+          "E≈1240/620, with nm units canceling.",
+          "E≈2 eV."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "In the simple hydrogen model, an electron falls from n=5 to n=2. Find the emitted photon wavelength, using ΔE =13.6(1/nlow²−1/nhigh²) eV and hc≈1240 eV·nm.",
+        "answer": 434.173669,
+        "tolerance": 0.7,
+        "unit": "nm",
+        "steps": [
+          "First determine the energy difference; do not use 13.6 eV directly.",
+          "ΔE=13.6(1/4−1/25)=13.6(0.21)=2.856 eV.",
+          "λ≈1240/2.856≈434.17 nm (visible violet)."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "limits-near-a-point",
+    "title": "Approaching a Limit",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "Find the limit as x approaches 3 of (x² − 9)/(x − 3). Enter the number.",
+        "answer": 6,
+        "tolerance": 0.001,
+        "unit": "limit",
+        "steps": [
+          "Factor the numerator as (x − 3)(x + 3).",
+          "Cancel the nonzero common factor for x ≠ 3, then let x approach 3.",
+          "The correct result is 6 limit. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Find the limit as x approaches 4 of (x² − 16)/(x − 4).",
+        "answer": 8,
+        "tolerance": 0.015,
+        "unit": "",
+        "steps": [
+          "Factor x²−16=(x−4)(x+4).",
+          "Cancel x−4 for all x≠4; near x=4 the quotient equals x+4.",
+          "Limit is 4+4=8."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Find lim as x→−2 of (x²+5x+6)/(x+2).",
+        "answer": 1,
+        "tolerance": 0.015,
+        "unit": "",
+        "steps": [
+          "Direct substitution gives 0/0, which calls for algebra.",
+          "Factor numerator: (x+2)(x+3). Cancel x+2 for x≠−2.",
+          "Limit = x+3 at x→−2, which equals 1."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "one-sided-limits",
+    "title": "Two Sides of a Limit",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "For f(x) = x + 1 when x < 2 and f(x) = x + 3 when x ≥ 2, what is the left-hand limit as x approaches 2?",
+        "answer": 3,
+        "tolerance": 0.001,
+        "unit": "limit",
+        "steps": [
+          "Use only the expression for x < 2 when approaching from the left.",
+          "Evaluate x + 1 at values of x close to 2.",
+          "The correct result is 3 limit. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Let f(x)=2x+1 for x<3 and f(x)=x−1 for x≥3. Find the left-hand limit as x approaches 3.",
+        "answer": 7,
+        "tolerance": 0.015,
+        "unit": "",
+        "steps": [
+          "The left-hand limit uses x<3, not the second branch.",
+          "Evaluate 2x+1 as x approaches 3 from below.",
+          "The limit is 2(3)+1=7."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Let f(x)=−x+5 for x<2 and f(x)=2x−1 for x≥2. Find the two-sided limit at x=2, if it exists.",
+        "answer": 3,
+        "tolerance": 0.015,
+        "unit": "",
+        "steps": [
+          "Compute left and right limits independently.",
+          "Left: −2+5=3. Right: 2(2)−1=3.",
+          "Both limits agree at 3, so the two-sided limit is 3."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "tangent-line",
+    "title": "The Tangent and the Derivative",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "For f(x) = x², what is the derivative at x = −2?",
+        "answer": -4,
+        "tolerance": 0.001,
+        "unit": "slope",
+        "steps": [
+          "The derivative of x² at x is 2x.",
+          "Substitute x = −2 into 2x.",
+          "The correct result is -4 slope. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "For f(x)=x², find the tangent slope at x=5.",
+        "answer": 10,
+        "tolerance": 0.015,
+        "unit": "slope",
+        "steps": [
+          "The nearby secant slope tends to 2x.",
+          "At x=5, f′(5)=2(5).",
+          "The tangent slope is 10."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Using the derivative of f(x)=x²+2x, find the tangent slope at x=3.",
+        "answer": 8,
+        "tolerance": 0.015,
+        "unit": "slope",
+        "steps": [
+          "Use the limit definition or find derivatives of each term.",
+          "The derivative of x²+2x is 2x+2.",
+          "At x=3, slope =6+2=8."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "velocity-accumulation",
+    "title": "Area Becomes Displacement",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "For v(t) = 2 + t m/s, what is the displacement from t = 0 to t = 4 seconds?",
+        "answer": 16,
+        "tolerance": 0.001,
+        "unit": "m",
+        "steps": [
+          "Find the area under a line with initial height 2 and final height 6.",
+          "Compute ∫₀⁴(2+t)dt = [2t + t²/2]₀⁴.",
+          "The correct result is 16 m. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A cart travels at 4 m/s for 3 seconds. What is its displacement?",
+        "answer": 12,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Constant velocity creates a rectangular area under v–t graph.",
+          "Displacement = velocity × time.",
+          "Δx=4×3=12 m."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "For v(t)=6−2t m/s, find signed displacement from t=0 to 5 s.",
+        "answer": 5,
+        "tolerance": 0.015,
+        "unit": "m",
+        "steps": [
+          "Velocity changes sign; do not simply add absolute areas.",
+          "Integrate 6−2t: antiderivative is 6t−t².",
+          "[6(5)−5²]−0=30−25=+5 m."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "riemann-sums",
+    "title": "Discovering Area with Rectangles",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "What is the exact area under y = x from x = 0 to x = 6?",
+        "answer": 18,
+        "tolerance": 0.001,
+        "unit": "square units",
+        "steps": [
+          "For this straight line, the region is a triangle.",
+          "Use area = ½ × 6 × 6.",
+          "The correct result is 18 square units. Explain why the chosen equation applies."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "Use four right-endpoint rectangles for y=x on [0,2]. What is the sum?",
+        "answer": 2.5,
+        "tolerance": 0.015,
+        "unit": "square units",
+        "steps": [
+          "Width Δx=(2−0)/4=0.5.",
+          "Right endpoints: 0.5,1,1.5,2; add their heights.",
+          "Sum=0.5(0.5+1+1.5+2)=2.5."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "Use eight left-endpoint rectangles for y=x on [0,4]. What is the left sum?",
+        "answer": 7,
+        "tolerance": 0.015,
+        "unit": "square units",
+        "steps": [
+          "Δx=(4−0)/8=0.5; list left endpoints, not right endpoints.",
+          "Left endpoints: 0,0.5,1,1.5,2,2.5,3,3.5. Their sum is 14.",
+          "Approximation =0.5×14=7 square units (below exact area 8)."
+        ]
+      }
+    ]
+  }
+]

@@ -1,56 +1,57 @@
 [
   {
-    "id": "atom-spectra",
+    "id": "si-units",
     "subject": "physics",
-    "unitId": "phy-atomic-introduction",
-    "unit": "Atoms, Light, and Models",
-    "title": "The Colors of Atoms",
-    "subtitle": "An atom's spectrum contains clues about its energy.",
-    "duration": "8 min",
-    "observe": "Why does a glowing gas produce distinct spectral lines instead of every color?",
-    "idea": "Atoms emit or absorb particular photon energies. In a simplified hydrogen energy-level model, the energy difference between two allowed levels sets the photon's frequency and wavelength: ΔE = hf = hc/λ. Real spectra offer observable evidence for discrete energy levels.",
-    "visualLead": "Change the hydrogen transition and inspect the photon it would emit.",
-    "visual": "hydrogen-spectrum",
-    "focus": "A larger energy drop produces a shorter wavelength. The Bohr levels are a model, not tiny planetary orbits.",
+    "unitId": "phy-foundations",
+    "unit": "A Physics Toolkit",
+    "title": "SI Units and Prefixes",
+    "subtitle": "A measurement needs both a number and a unit.",
+    "duration": "7 min",
+    "observe": "Why does the same length have different numbers in meters and centimeters?",
+    "idea": "The International System of Units (SI) provides standard units for physical measurements. A prefix changes a unit's scale: kilo means 1,000 and centi means one hundredth. Multiply by a conversion factor equal to 1 so the physical quantity stays unchanged.",
+    "visualLead": "Move the meter slider and compare meters with centimeters.",
+    "visual": "unit-conversion",
+    "focus": "The numbers change when units change, but the represented distance stays the same.",
     "example": {
-      "question": "In the simplified hydrogen model, a transition from n = 3 to n = 2 releases about 1.89 eV. Estimate the photon's wavelength.",
+      "question": "A student measures a length of 3.4 m. Express the same length in centimeters.",
       "steps": [
-        "Photon energy and wavelength satisfy E = hc/λ. For electronvolts and nanometers, hc ≈ 1240 eV·nm.",
-        "Rearrange: λ = hc/E = (1240 eV·nm)/(1.89 eV).",
-        "The result is approximately 656 nm, in the red portion of the visible spectrum."
+        "Start with the given quantity: 3.4 m.",
+        "Use the exact metric relationship 1 m = 100 cm.",
+        "Convert: 3.4 m × (100 cm / 1 m) = 340 cm. The meters cancel."
       ]
     },
     "practice": {
-      "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
-      "answer": 486.27451,
-      "tolerance": 1,
-      "unit": "nm",
+      "prompt": "Convert 2.5 kilometers to meters. Enter the number of meters.",
+      "answer": 2500,
+      "tolerance": 0.001,
+      "unit": "m",
       "hints": [
-        "Use λ = hc/E and express energy in electronvolts.",
-        "Divide 1240 by 2.55."
+        "The prefix kilo means 1,000. One kilometer is 1,000 meters.",
+        "Multiply 2.5 km × (1,000 m / 1 km)."
       ]
     },
     "checkpoint": {
-      "prompt": "In a hydrogen atom, an electron drops between two allowed energy levels. What determines the emitted light?",
+      "prompt": "An object is 0.42 m long. Which equivalent measurement is correct?",
       "choices": [
-        "Only the size of the atom, regardless of the energy levels.",
-        "The energy difference between those allowed states.",
-        "A continuous range of arbitrary colors from every single transition."
+        "42 cm, because one meter contains 100 centimeters.",
+        "0.0042 cm, because the prefix centi means a hundred.",
+        "420 m, because changing unit names changes the physical length."
       ],
-      "correct": 1,
+      "correct": 0,
       "feedback": [
-        "The observed spectral line is determined by the change in energy, not simply by the atom's diameter.",
-        "Correct. One transition emits a photon carrying the energy difference between the two states.",
-        "For an idealized transition, the energy difference is specific, not a continuum of arbitrary photon energies."
+        "Correct. Multiply 0.42 by 100 to find 42 centimeters.",
+        "The prefix centi means 1/100 of a meter, so there are more centimeters than meters for the same length.",
+        "Units express the same length on different numerical scales; the physical object does not change."
       ],
-      "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
+      "explanation": "Because 1 m = 100 cm, the same length is 0.42 m = 42 cm."
     },
-    "next": "position-displacement"
+    "next": "position-displacement",
+    "definition": "An SI unit is an agreed standard used to express a physical quantity. Metric prefixes multiply or divide its scale by powers of ten."
   },
   {
     "id": "position-displacement",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Distance and Displacement",
     "subtitle": "Same journey. Two different measurements.",
     "duration": "8 min",
@@ -93,12 +94,13 @@
       "explanation": "Distance adds the lengths of the outward and return paths. Displacement uses only final minus initial position."
     },
     "focus": "The blue final point determines displacement; the complete path determines distance.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "Distance is the length of the path traveled. Displacement is the signed difference between final and starting position: Δx = xfinal − xinitial."
   },
   {
     "id": "motion-diagrams",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Motion in Dots",
     "subtitle": "A few dots reveal how speed changes.",
     "duration": "6 min",
@@ -141,12 +143,13 @@
       "explanation": "The equal-time spacing is essential. Equal position differences per interval produce a constant average velocity across those intervals."
     },
     "focus": "Equal gaps mean equal distances in equal times. Widening gaps show greater speed.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "A motion diagram shows successive positions marked at equal time intervals. Greater spacing between dots indicates greater speed."
   },
   {
     "id": "average-velocity",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Velocity from a Graph",
     "subtitle": "A secant line tells a story about motion.",
     "duration": "9 min",
@@ -189,12 +192,13 @@
       "explanation": "Both numerator and denominator come directly from the two chosen graph points: displacement divided by elapsed time."
     },
     "focus": "The orange line's slope equals displacement divided by elapsed time.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "Average velocity is signed displacement divided by elapsed time, vavg = Δx/Δt. It is the secant slope on a position–time graph."
   },
   {
     "id": "acceleration",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "What Acceleration Means",
     "subtitle": "A changing velocity makes a sloping graph.",
     "duration": "7 min",
@@ -237,12 +241,13 @@
       "explanation": "Speed is the magnitude of velocity. When velocity and acceleration have the same sign, the object's speed increases."
     },
     "focus": "The graph's slope is acceleration, not speed. A downward-sloping line means negative acceleration.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "Acceleration is the rate of change of velocity: aavg = Δv/Δt. The sign describes direction relative to the chosen axis."
   },
   {
     "id": "free-fall",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Falling under Gravity",
     "subtitle": "Predict how a falling object moves.",
     "duration": "9 min",
@@ -285,12 +290,13 @@
       "explanation": "Without significant air resistance, gravitational acceleration near Earth's surface is approximately independent of an object's mass."
     },
     "focus": "Without air resistance, constant gravity changes velocity every second; the object falls farther during later seconds.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "Free fall is motion influenced only by gravity. Near Earth's surface, ignoring air resistance, the acceleration is about 9.8 m/s² downward."
   },
   {
     "id": "motion-graphs",
     "subject": "physics",
-    "unit": "Motion and Kinematics",
+    "unit": "Representing and Accelerated Motion",
     "title": "Three Graphs, One Motion",
     "subtitle": "Position, velocity, and acceleration belong together.",
     "duration": "9 min",
@@ -333,12 +339,13 @@
       "explanation": "With constant a ≠ 0, v(t)=v₀+at is linear, and x(t)=x₀+v₀t+½at² is quadratic."
     },
     "focus": "The slope of position is velocity. The slope of velocity is acceleration.",
-    "unitId": "phy-motion"
+    "unitId": "phy-motion",
+    "definition": "A position–time graph gives location; its slope gives velocity. The slope of velocity versus time gives acceleration."
   },
   {
     "id": "free-body-diagram",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "Draw the Forces",
     "subtitle": "A free-body diagram shows every external force.",
     "duration": "8 min",
@@ -381,12 +388,13 @@
       "explanation": "Analyze each axis separately: vertical acceleration is zero, so N = mg; horizontal acceleration depends on the net horizontal force."
     },
     "next": "newtons-second-law",
-    "unitId": "phy-forces"
+    "unitId": "phy-forces",
+    "definition": "A free-body diagram represents one isolated object and all external forces acting on it as arrows."
   },
   {
     "id": "newtons-second-law",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "Force Changes Motion",
     "subtitle": "Net force and mass determine acceleration.",
     "duration": "8 min",
@@ -429,12 +437,13 @@
       "explanation": "The inverse proportionality between mass and acceleration applies when the net external force is held constant."
     },
     "next": "force-components",
-    "unitId": "phy-forces"
+    "unitId": "phy-forces",
+    "definition": "Newton's second law states that the vector sum of external forces equals mass times acceleration: ΣF = ma."
   },
   {
     "id": "force-components",
     "subject": "physics",
-    "unit": "Forces and Newton's Laws",
+    "unit": "Forces in One and Two Dimensions",
     "title": "A Force in Two Directions",
     "subtitle": "One diagonal force has horizontal and vertical parts.",
     "duration": "8 min",
@@ -477,7 +486,58 @@
       "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
     },
     "next": null,
-    "unitId": "phy-forces"
+    "unitId": "phy-forces",
+    "definition": "A force component is a signed projection of a vector onto an axis. At an angle θ measured from +x, Fx = F cosθ and Fy = F sinθ."
+  },
+  {
+    "id": "atom-spectra",
+    "subject": "physics",
+    "unitId": "phy-atomic-introduction",
+    "unit": "The Atom and Spectra",
+    "title": "The Colors of Atoms",
+    "subtitle": "An atom's spectrum contains clues about its energy.",
+    "duration": "8 min",
+    "observe": "Why does a glowing gas produce distinct spectral lines instead of every color?",
+    "idea": "Atoms emit or absorb particular photon energies. In a simplified hydrogen energy-level model, the energy difference between two allowed levels sets the photon's frequency and wavelength: ΔE = hf = hc/λ. Real spectra offer observable evidence for discrete energy levels.",
+    "visualLead": "Change the hydrogen transition and inspect the photon it would emit.",
+    "visual": "hydrogen-spectrum",
+    "focus": "A larger energy drop produces a shorter wavelength. The Bohr levels are a model, not tiny planetary orbits.",
+    "example": {
+      "question": "In the simplified hydrogen model, a transition from n = 3 to n = 2 releases about 1.89 eV. Estimate the photon's wavelength.",
+      "steps": [
+        "Photon energy and wavelength satisfy E = hc/λ. For electronvolts and nanometers, hc ≈ 1240 eV·nm.",
+        "Rearrange: λ = hc/E = (1240 eV·nm)/(1.89 eV).",
+        "The result is approximately 656 nm, in the red portion of the visible spectrum."
+      ]
+    },
+    "practice": {
+      "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
+      "answer": 486.27451,
+      "tolerance": 1,
+      "unit": "nm",
+      "hints": [
+        "Use λ = hc/E and express energy in electronvolts.",
+        "Divide 1240 by 2.55."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "In a hydrogen atom, an electron drops between two allowed energy levels. What determines the emitted light?",
+      "choices": [
+        "Only the size of the atom, regardless of the energy levels.",
+        "The energy difference between those allowed states.",
+        "A continuous range of arbitrary colors from every single transition."
+      ],
+      "correct": 1,
+      "feedback": [
+        "The observed spectral line is determined by the change in energy, not simply by the atom's diameter.",
+        "Correct. One transition emits a photon carrying the energy difference between the two states.",
+        "For an idealized transition, the energy difference is specific, not a continuum of arbitrary photon energies."
+      ],
+      "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
+    },
+    "next": null,
+    "definition": "An emission spectrum is a set of characteristic wavelengths of light from an excited substance. Hydrogen's spectral lines reflect discrete energy changes.",
+    "optionalPreview": true
   },
   {
     "id": "limits-near-a-point",
@@ -525,7 +585,8 @@
       "explanation": "The two-sided limit exists when the function values approach the same number from the left and right, whether or not the function is defined at the target input."
     },
     "next": "one-sided-limits",
-    "unitId": "cal-limits"
+    "unitId": "cal-limits",
+    "definition": "The limit of f(x) as x approaches a is the number its nearby values approach; this need not equal f(a)."
   },
   {
     "id": "one-sided-limits",
@@ -573,7 +634,8 @@
       ],
       "explanation": "Existence of limₓ→a f(x) requires matching left-hand and right-hand limits, regardless of whether f(a) is defined."
     },
-    "next": "tangent-line"
+    "next": "tangent-line",
+    "definition": "A one-sided limit examines values approaching a point from only the left or only the right. A two-sided finite limit requires both to agree."
   },
   {
     "id": "tangent-line",
@@ -621,7 +683,8 @@
       "explanation": "The derivative is a limit of difference quotients as h approaches zero—not an assumption that the graph's height or slope vanishes."
     },
     "focus": "As the two points meet, the amber secant approaches the green tangent. Its slope approaches the derivative.",
-    "unitId": "cal-derivatives"
+    "unitId": "cal-derivatives",
+    "definition": "The derivative f′(a) is the limit of nearby secant slopes at a, when that limit exists; geometrically it is tangent slope."
   },
   {
     "id": "velocity-accumulation",
@@ -669,7 +732,8 @@
       "explanation": "The integral measures net change in position. Distance traveled would be 6 m, but the displacement is −6 m."
     },
     "focus": "The teal area beneath velocity shows accumulated displacement; negative velocities would contribute negative signed area.",
-    "unitId": "cal-integrals"
+    "unitId": "cal-integrals",
+    "definition": "Accumulated signed area under a velocity–time graph over an interval equals displacement during that interval."
   },
   {
     "id": "riemann-sums",
@@ -717,6 +781,7 @@
       "explanation": "Because f is increasing, each rectangle based on the right endpoint is above the graph across its subinterval. As Δx shrinks, the excess area tends to zero."
     },
     "focus": "For an increasing function, right-endpoint rectangles overestimate area. Narrower rectangles reduce the error.",
-    "unitId": "cal-integrals"
+    "unitId": "cal-integrals",
+    "definition": "A Riemann sum estimates signed area using rectangles. Refining the partition can make the sums approach a definite integral."
   }
 ]

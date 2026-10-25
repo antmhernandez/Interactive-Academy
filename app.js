@@ -4,6 +4,8 @@ const nav=document.querySelector("#nav");
 let lessons=[];
 let curriculum=null;
 let submodules=[];
+let guidedSets=[];
+let physicsEquations=null;
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -37,7 +39,8 @@ const visualKeys={
  "one-sided-limit":[["teal","Left approach"],["amber","Right approach"]],
  "slope-height":[["teal","Position line"],["amber","Current point"]],
  "sign-speed":[["teal","Velocity"],["amber","Acceleration"]],
- "limit-value":[["teal","Nearby graph"],["amber","Defined point"]]
+ "limit-value":[["teal","Nearby graph"],["amber","Defined point"]],
+ "unit-conversion":[["teal","Meters"],["amber","Centimeters"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -79,6 +82,7 @@ function catalog(s){
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
  <div class="outline-link"><a href="#roadmap/${s}">View full course map <span>(${futureCount} planned topics)</span> →</a></div>
+ ${s==="physics"?'<div class="outline-link"><a href="#equations">Chapter Equation Reference →</a></div><div class="optional-preview">Curious about atoms? <a href="#lesson/atom-spectra">Preview the colors of hydrogen</a>. Its quantitative model belongs in Chapter 28.</div>':""}
  <section class="resources"><details><summary>Guided notes &amp; experiments</summary><div class="resource-links">${printableLinks}</div></details></section>`;
  document.querySelector("#search").addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase();
@@ -99,6 +103,7 @@ function roadmap(subjectId){
  }).join("");
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#${subjectId}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${courseList(subjectId)[0].id}">First lesson →</a></nav>
  <header class="catalog-head"><div class="eyebrow">Curriculum roadmap · ${escapeHtml(info.title)}</div><h1>Course Map</h1><p>Explore the lessons available now. Future topics are organized here but cannot yet be opened.</p><div class="mini-progress">${available} available · ${topics.length-available} planned</div></header>
+ ${subjectId==="physics"?'<p><a href="#equations" class="btn">Physics equation reference →</a></p>':""}
  <div class="roadmap-units">${sections}</div>
  <p class="map-footnote">This outline is a development plan, not a promise of course completion or a textbook reproduction. Some topics may be revised as we test the teaching sequence.</p>`;
 }
@@ -106,7 +111,7 @@ function about(){
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
 }
 function lesson(l){
- const group=courseList(l.subject),idx=courseOrder(l),previous=group[idx-2],next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
+ const group=courseList(l.subject),idx=courseOrder(l),previous=lessons.find(x=>x.subject===l.subject&&x.next===l.id),next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">← Back</a><a href="#home">⌂ Home</a><a href="${end}">Next →</a></nav>
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
@@ -124,16 +129,17 @@ function lesson(l){
  <button id="tab-concept-check" role="tab" type="button" data-view="concept-check" aria-controls="concept-check">Think</button>
  <button id="tab-practice" role="tab" type="button" data-view="practice" aria-controls="practice">Try it</button>
  </div>
- <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text">${escapeHtml(l.idea)}</p></section>
+ <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text definition-first">${escapeHtml(l.definition)}</p><p class="concept-context">${escapeHtml(l.idea)}</p><p class="topic-readmore"><a href="#study/${l.id}">Read definition &amp; try an example →</a></p></section>
  <section class="lesson-panel" role="tabpanel" id="example" aria-labelledby="tab-example">
  <div class="eyebrow">Worked example</div><h2>Follow the steps</h2><p>${escapeHtml(l.example.question)}</p>
- <div class="example"><div class="step-counter" id="stepcount"></div><div class="step" id="steptext"></div><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Next step →</button><button id="restart" type="button">Start over</button></div></div></section>
+ <div class="example"><div class="step-counter" id="stepcount"></div><ol class="worked-steps" id="steptext" aria-label="Cumulative worked solution" aria-live="polite" aria-relevant="additions"></ol><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Reveal next step ↓</button><button id="restart" type="button">Start over</button></div></div></section>
  <section class="lesson-panel" role="tabpanel" id="practice" aria-labelledby="tab-practice">
  <div class="eyebrow">Independent practice</div><h2>Your turn</h2><p>${escapeHtml(l.practice.prompt)}</p>
  <form id="answerform"><label for="answer">Answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required inputmode="decimal" placeholder="Enter your answer"><button class="primary" type="submit">Check</button></div></form><p id="feedback" class="feedback" role="status" aria-live="polite"></p>
  <button class="hint-button" id="hintbtn" type="button">Need a hint?</button><p id="hinttext" class="hint" hidden></p></section>
  </section>
  ${submodulesFor(l.id)}
+ <nav class="companion-links" aria-label="More ways to learn this concept"><a href="#study/${l.id}"><strong>Definition &amp; Example</strong><small>One solved problem, then your turn</small></a><a href="#guided/${l.id}"><strong>Guided Practice</strong><small>Three increasing levels with optional steps</small></a>${l.subject==="physics"?`<a href="#equations/${lessonChapter(l)}"><strong>Chapter ${lessonChapter(l)} Equations</strong><small>Formulas, meaning, and assumptions</small></a>`:""}</nav>
  <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${next?"Next concept →":"All "+subject(l.subject)+" lessons →"}</a></div>
  </article>`;
  // Add the check panel before tab handling. The visual remains visible throughout.
@@ -155,9 +161,10 @@ function lesson(l){
  }
  showTab("understand");
  const st=l.example.steps;let step=0;
- function paintStep(){document.querySelector("#stepcount").textContent=`Step ${step+1} of ${st.length}`;document.querySelector("#steptext").textContent=st[step];document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
+ const stepList=document.querySelector("#steptext");
+ function paintStep(){stepList.replaceChildren();for(const sentence of st.slice(0,step+1)){const li=document.createElement("li");li.className="worked-step";li.textContent=sentence;stepList.append(li);}document.querySelector("#stepcount").textContent=`Showing ${step+1} of ${st.length} steps`;document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
  document.querySelector("#prev").onclick=()=>{step=Math.max(0,step-1);paintStep();};
- document.querySelector("#next").onclick=()=>{step=Math.min(st.length-1,step+1);paintStep();};
+ document.querySelector("#next").onclick=()=>{if(step>=st.length-1)return;step++;renderAccumulativeStep(stepList,st[step]);document.querySelector("#stepcount").textContent=`Showing ${step+1} of ${st.length} steps`;document.querySelector("#prev").disabled=false;document.querySelector("#next").disabled=step===st.length-1;};
  document.querySelector("#restart").onclick=()=>{step=0;paintStep();};paintStep();
  document.querySelector("#answerform").onsubmit=e=>{
   e.preventDefault();const input=document.querySelector("#answer").value, value=Number(input);
@@ -186,6 +193,7 @@ function lesson(l){
  if(l.visual==="limit-hole")limitHole(el);
  if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
  if(l.visual==="one-sided-limit")oneSidedLimit(el);
+ if(l.visual==="unit-conversion")unitConversion(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -446,6 +454,22 @@ function limitValue(el){
  el.querySelector("#lv-setting").textContent=f(v);el.querySelector("#lv-current").textContent=f(v);
  }I.oninput=paint;paint();
 }
+function unitConversion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>The length stays the same</strong><span class="pill">SI measurement</span></div>
+ <svg viewBox="0 0 540 225" role="img" aria-label="Two equal-length bars, one labeled in meters and the other in centimeters"><rect width="540" height="225" rx="12" fill="#f8fbf9"/><g id="unit-plot"></g></svg>
+ <div class="controls"><label>Length <strong id="unit-input-value"></strong><input id="unit-slider" type="range" min=".5" max="5" value="2.5" step=".1" aria-label="Length in meters"/></label></div>
+ <div class="readout"><div class="metric"><small>Measured in meters</small><strong id="unit-meters"></strong></div><div class="metric"><small>Same length in centimeters</small><strong id="unit-centimeters"></strong></div></div>
+ <p class="note">The displayed ruler length changes as you move the slider. For any given slider position, both colored bars depict the same distance.</p>`;
+ const slider=el.querySelector("#unit-slider"),plot=el.querySelector("#unit-plot");
+ function draw(){const meters=+slider.value,width=meters*77;
+ plot.innerHTML=`<path d="M55 183H480" stroke="#97b9aa" stroke-width="2"/><rect x="55" y="57" width="${width}" height="33" rx="5" fill="#14727a"/><rect x="55" y="129" width="${width}" height="33" rx="5" fill="#c08039"/>
+ <text x="55" y="44" font-size="14" fill="#14727a">meters</text><text x="55" y="116" font-size="14" fill="#a4662e">centimeters</text>
+ <text x="${Math.min(480,65+width)}" y="78" font-size="14" fill="#2b5c5f">${f(meters)} m</text>
+ <text x="${Math.min(480,65+width)}" y="151" font-size="14" fill="#8f5523">${f(meters*100)} cm</text>`;
+ el.querySelector("#unit-input-value").textContent=f(meters)+" m";el.querySelector("#unit-meters").textContent=f(meters)+" m";el.querySelector("#unit-centimeters").textContent=f(meters*100)+" cm";
+ }
+ slider.oninput=draw;draw();
+}
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
  const select=el.querySelector("#pattern"),dots=el.querySelector("#dots"),cart=el.querySelector("#cart");let frameId;
@@ -543,14 +567,122 @@ function microLesson(m){
  if(m.visual==="sign-speed")signSpeed(el);
  if(m.visual==="limit-value")limitValue(el);
 }
+function lessonChapter(l){return l.subject==="physics"?({
+"si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
+"acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
+"newtons-second-law":4,"force-components":5,"atom-spectra":28
+})[l.id]??null:null;}
+function renderAccumulativeStep(container,step){
+ const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
+ container.append(li);
+ li.focus({preventScroll:true});
+ if(typeof li.scrollIntoView==="function")li.scrollIntoView({block:"nearest"});
+}
+function studySheet(l){
+ const ch=lessonChapter(l),ref=ch?`<a href="#equations/${ch}">Chapter ${ch} equations →</a>`:"";
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#lesson/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#guided/${l.id}">Guided practice →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Study this concept</div><h1>${escapeHtml(l.title)}</h1><p>A definition, a solved example, and one problem for you.</p></header>
+ <article class="study-sheet">
+ <section class="study-section"><div class="eyebrow">01 · Define</div><h2>Know the idea</h2><p class="study-definition">${escapeHtml(l.definition)}</p></section>
+ <section class="study-section"><div class="eyebrow">02 · Example</div><h2>Watch the reasoning</h2><p>${escapeHtml(l.example.question)}</p><ol class="worked-steps study-steps">${l.example.steps.map(s=>`<li class="worked-step">${escapeHtml(s)}</li>`).join("")}</ol></section>
+ <section class="study-section"><div class="eyebrow">03 · Your turn</div><h2>Use the same method</h2><p>${escapeHtml(l.practice.prompt)}</p>
+ <form id="study-form"><label for="study-answer">Your answer ${l.practice.unit?`(${escapeHtml(l.practice.unit)})`:""}</label>
+ <div class="answer-row"><input type="number" step="any" inputmode="decimal" id="study-answer" required><button type="submit" class="primary">Check answer</button></div></form>
+ <p class="feedback" id="study-feedback" role="status" aria-live="polite"></p><button type="button" class="hint-button" id="study-hint">Show a hint</button>
+ <ol id="study-hints" class="study-hints" aria-live="polite"></ol></section>
+ <div class="lesson-end"><a class="btn primary" href="#guided/${l.id}">Practice three levels →</a><a href="#lesson/${l.id}">Explore the applet</a>${ref}</div></article>`;
+ let hinted=0;const hints=document.querySelector("#study-hints");
+ document.querySelector("#study-hint").onclick=()=>{
+   if(hinted>=l.practice.hints.length)return;
+   const item=document.createElement("li");item.textContent=l.practice.hints[hinted++];hints.append(item);
+   const button=document.querySelector("#study-hint");
+   button.textContent=hinted===l.practice.hints.length?"All hints shown":"Show another hint";
+   if(hinted===l.practice.hints.length)button.disabled=true;
+ };
+ document.querySelector("#study-form").onsubmit=e=>{
+  e.preventDefault();const input=document.querySelector("#study-answer").value.trim(),val=Number(input);
+  const good=input!==""&&Number.isFinite(val)&&Math.abs(val-l.practice.answer)<=l.practice.tolerance;
+  const target=document.querySelector("#study-feedback");target.className="feedback "+(good?"good":"try");
+  target.textContent=good?"Correct. Now try the progressive practice page.":"Not quite. Review the known values, the conversion, or the signs; use a hint if needed.";
+ };
+}
+function guidedPage(l){
+ const pack=guidedSets.find(p=>p.owner===l.id);
+ if(!pack||pack.levels.length!==3){main.textContent="Guided practice is unavailable for this lesson.";return;}
+ const ch=lessonChapter(l);
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#study/${l.id}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${l.id}">Concept →</a></nav>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} · Guided problems</div><h1>${escapeHtml(l.title)}</h1>
+ <p>Three similar problems. Each adds one challenge. Ask for the next reasoning step whenever you need it.</p></header>
+ <article class="guided-work">
+ <nav class="level-navigation" aria-label="Practice difficulty">
+ ${pack.levels.map((p,i)=>`<button type="button" data-problem="${i}" class="level-button">${i+1}. ${escapeHtml(p.level)}</button>`).join("")}</nav>
+ <section class="guided-card" id="guided-card" aria-live="off"></section>
+ <div class="lesson-end"><a href="#study/${l.id}">← Definition and example</a><a href="#lesson/${l.id}">Return to interactive lesson</a>${ch?`<a href="#equations/${ch}">Chapter equations →</a>`:""}</div></article>`;
+ const buttons=[...main.querySelectorAll("[data-problem]")],stage=main.querySelector("#guided-card");
+ let index=0;
+ function show(i){
+  index=i;buttons.forEach((b,j)=>{b.setAttribute("aria-current",j===i?"step":"false");b.classList.toggle("selected",j===i)});
+  const p=pack.levels[index];stage.innerHTML=`<div class="eyebrow">Problem ${index+1} of 3 · ${escapeHtml(p.level)}</div>
+   <h2>Consider the situation</h2><p class="guided-prompt">${escapeHtml(p.prompt)}</p>
+   <form id="guided-answerform"><label for="guided-answer">Answer ${p.unit?"("+escapeHtml(p.unit)+")":""}</label>
+   <div class="answer-row"><input type="number" step="any" required inputmode="decimal" id="guided-answer"><button type="submit" class="primary">Check</button></div></form>
+   <p id="guided-feedback" class="feedback" role="status" aria-live="polite"></p>
+   <div class="guided-thinking"><div class="eyebrow">Reason through it</div>
+   <ol id="guided-steps" class="worked-steps" aria-label="Revealed solution steps" aria-live="polite" aria-relevant="additions"></ol>
+   <div class="step-nav"><button type="button" id="guided-reveal" class="primary">Show first thinking step →</button><button type="button" id="guided-reset">Hide steps</button></div></div>
+   <div class="step-nav problem-switch"><button type="button" id="guided-prev" ${index===0?"disabled":""}>← Easier problem</button>
+   <button type="button" id="guided-next" ${index===pack.levels.length-1?"disabled":""}>Harder problem →</button></div>`;
+  const solution=stage.querySelector("#guided-steps"),reveal=stage.querySelector("#guided-reveal");let seen=0;
+  reveal.onclick=()=>{
+    if(seen>=p.steps.length)return;
+    renderAccumulativeStep(solution,p.steps[seen++]);
+    reveal.textContent=seen<p.steps.length?"Show next thinking step →":"All steps shown";
+    reveal.disabled=seen===p.steps.length;
+  };
+  stage.querySelector("#guided-reset").onclick=()=>{solution.replaceChildren();seen=0;reveal.disabled=false;reveal.textContent="Show first thinking step →";};
+  stage.querySelector("#guided-answerform").onsubmit=e=>{
+    e.preventDefault();const raw=stage.querySelector("#guided-answer").value.trim(),val=Number(raw);
+    const good=raw!==""&&Number.isFinite(val)&&Math.abs(val-p.answer)<=p.tolerance;
+    const out=stage.querySelector("#guided-feedback");out.className="feedback "+(good?"good":"try");
+    out.textContent=good?"Correct. Can you explain the key reasoning step?":"Check your signs, the relevant relation, and its units. Reveal one thinking step if needed.";
+  };
+  stage.querySelector("#guided-prev").onclick=()=>show(index-1);
+  stage.querySelector("#guided-next").onclick=()=>show(index+1);
+ }
+ buttons.forEach((button,i)=>button.onclick=()=>show(i));show(0);
+}
+function equationIndex(){
+ const chapters=physicsEquations.chapters;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#physics">← Back</a><a href="#home">⌂ Home</a><a href="#equations/1">Chapter 1 →</a></nav>
+ <header class="catalog-head"><div class="eyebrow">Physics · Reference library</div><h1>Equation Reference</h1>
+ <p>Find a chapter, see its equations, and check when the model applies. This is a developing original summary, not a complete substitute for your textbook.</p></header>
+ <div class="equation-book">
+ ${chapters.map(c=>`<a class="equation-index-link" href="#equations/${c.number}"><span class="chapter-index">${String(c.number).padStart(2,"0")}</span>
+ <span><strong>${escapeHtml(c.title)}</strong><small>${c.equations.length} reference ${c.equations.length===1?"relationship":"relationships"}${c.scope==="classroom-core"?"":" · additional chapter"}</small></span><span aria-hidden="true">→</span></a>`).join("")}</div>`;
+}
+function equationChapter(ch){
+ const chapters=physicsEquations.chapters,idx=chapters.findIndex(c=>c.number===ch);
+ if(idx<0){equationIndex();return;}
+ const data=chapters[idx],prev=chapters[idx-1],next=chapters[idx+1];
+ const items=data.equations.map((e,i)=>`<section class="formula-entry"><div class="formula-label">${i+1}. ${escapeHtml(e.name)}</div>
+  <div class="formula-expression">${escapeHtml(e.formula)}</div><p>${escapeHtml(e.conditions)}</p></section>`).join("");
+ const supporting=lessons.filter(x=>x.subject==="physics"&&lessonChapter(x)===ch);
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#equations">← All chapters</a><a href="#home">⌂ Home</a>${next?`<a href="#equations/${next.number}">Chapter ${next.number} →</a>`:'<a href="#equations">All equations →</a>'}</nav>
+ <header class="focus-head"><div class="eyebrow">Physics · Chapter ${ch}</div><h1>${escapeHtml(data.title)}</h1>
+ <p>Selected governing equations and their conditions.</p></header>
+ <article class="equation-chapter"><p class="equation-caution">${escapeHtml(data.note)}</p>
+ ${items||'<div class="empty-state">The detailed reference for this chapter is not yet written. Check your textbook and instructor notes.</div>'}
+ ${supporting.length?`<section class="chapter-topic-links"><h2>Study these concepts</h2>${supporting.map(l=>`<a href="#study/${l.id}">${escapeHtml(l.title)} →</a>`).join("")}</section>`:""}
+ <div class="lesson-end">${prev?`<a href="#equations/${prev.number}">← Chapter ${prev.number}</a>`:""}<a href="#equations">Full equation index</a>${next?`<a class="next-link" href="#equations/${next.number}">Chapter ${next.number} →</a>`:""}</div></article>`;
+}
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
- .then(([data,map,micro])=>{lessons=data;curriculum=map;submodules=micro;route();})
+Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json","content/guided-practice.json","content/equations-physics.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map,micro,practice,equations])=>{lessons=data;curriculum=map;submodules=micro;guidedSets=practice;physicsEquations=equations;route();})
  .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
