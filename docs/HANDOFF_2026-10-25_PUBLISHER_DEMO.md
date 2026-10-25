@@ -187,3 +187,22 @@ The user explicitly wants **many original PhET-style interactive applets** for d
 Keep expanding conceptual simulations selectively: friction/inclines, energy conservation, waves, electric fields and advanced Calculus convergence are promising *after* classroom testing identifies misconceptions. For each: a manipulable physical/mathematical model, explicit assumptions, predict/explain task, exact governing equations, solved example, conceptual distractors, numeric independent practice and 3 scaffolded problem levels. Do not equate more buttons with better pedagogy; do not incorporate school or publisher IP without permission.
 
 **Successful CI before merge:** [GitHub Actions run #44](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40221549917). The existing content, Physics numeric, textbook source and five-width Chromium suites passed; browser covered gallery filtering, circular-motion step/play/pause, river-crossing aim/reset and existing classroom modes. Physical-device/Safari/VoiceOver/projector reviews have not been performed and must not be inferred from automated Chromium.
+
+## October 25 continuation — Contact-force concept laboratories
+
+**Feature branch:** `feature/friction-inclines-inquiry-2026-10-25`. **User goal:** proceed immediately with original interactive curriculum work, prioritizing authentic manipulable applets for difficult Physics concepts, then worked examples and practice.
+
+### Implementation
+- Two complete original student-facing Chapter 5 lessons:
+  - `friction`: horizontal applied pull, mass, static coefficient and kinetic coefficient sliders; physically coherent initial-rest static equilibrium `|fs| ≤ μs N`, crossing to kinetic sliding `fk=μk N` and `a=(F-fk)/m`; an action jumps just beyond static threshold; Reset and numeric force/acceleration readouts.
+  - `inclined-planes`: ramp angle/mass/coefficients, `mg sinθ` downhill, `mg cosθ` normal, adaptive static friction vs kinetic branch, critical angle `arctan μs`, acceleration and first-slip experiment button; Reset.
+- **Important scope:** both models predict onset from rest under stated steady forces. They do not integrate motion trajectories, reverse slip, coasting, complex surface contact, rolling or hysteresis. Kinetic coefficient is constrained to ≤ static coefficient within this idealized educational model. Avoid treating these visual diagrams as exact-scaled force arrows; numeric readouts are authoritative.
+- All existing twenty-four lessons and ten curated applet examples are retained. Total: **26 lessons (21 Physics + 5 Calculus), 78 three-level problems, 12 gallery applets**; equation reference remains 84 entries. The added lessons are inserted in Chapter 5 between `force-components` and `two-dimensional-motion` so the independent learning chain continues in textbook order, and the main optional Chapter 28 curiosity remains separate.
+- The original applet engines are in `applets/contact-forces.js`, loaded as a plain deferred script before `app.js`, instead of further enlarging the main file. The existing `#applets` gallery and original Glencoe prototype route gain these examples. No Novare/Memoria Press edition or chapter alignment is claimed.
+- Standard data/lesson validators, new physics-specific `scripts/test-contact-forces.mjs` and enhanced Chromium navigation tests at 320, 375, 768, 1024 and 1440 px. Check completed workflow result before merge.
+- Full numerical teaching/design standard: [`docs/18_CONTACT_FORCES_AND_INCLINES_2026-10-25.md`](18_CONTACT_FORCES_AND_INCLINES_2026-10-25.md).
+
+### Next work
+- Verify numerical cases, browser accessibility/overflow, signed units, threshold controls and PR CI. Merge only after successful validation; record PR SHA, final main CI run and truthful untested areas.
+- Human teacher/student review of static friction (not always μsN), start-of-slip and ramp component intuition; manual touch, Safari and screen-reader testing.
+- Next high-value applet topics after a real classroom review: energy conservation and frictional loss; elastic/inelastic collisions; wave interference; graphical Calculus convergence.
