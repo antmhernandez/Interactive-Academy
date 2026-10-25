@@ -5,6 +5,18 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
+## Publisher discussion edition (October 25, 2026)
+
+**Development focus: features and presentation, not additional curriculum content.** This public prototype now has an independent classical-inspired visual identity and a *textbook-aware discovery experience*, without presenting itself as an authorized Memoria Press product.
+
+- [Browse by grade and book](https://antmhernandez.github.io/Interactive-Academy/#books) — official public catalog references and curated original topic links. All links from publisher texts to lessons are explicitly **illustrative, not chapter-, page- or edition-approved**.
+- [Explore a Grade 8 textbook path](https://antmhernandez.github.io/Interactive-Academy/#book/physical-science) — Novare Physical Science as a navigation example, with an official public catalog link.
+- [Publisher demonstration overview](https://antmhernandez.github.io/Interactive-Academy/#showcase) — product concept, educational use, evidence of existing features, and the required editorial/rights decisions.
+- [Publisher proposal/design/approval brief](docs/15_PUBLISHER_DEMO_DESIGN_AND_PRODUCT_REVIEW.md).
+- [Portable handoff and next-conversation prompt](docs/HANDOFF_2026-10-25_PUBLISHER_DEMO.md).
+
+The user-facing design takes inspiration from a classical publishing aesthetic (navy, burgundy, parchment, restrained gold and serif headings). **No Memoria Press logo, proprietary artwork, covers, passages, or branded fonts were copied**, and the publisher has not authorized this project. Our existing Glencoe-based 30-chapter Physics sequence is *separate* from the Novare textbook references in the discovery portal.
+
 ## Current teaching preview
 Twenty original demonstration lessons (fifteen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
@@ -46,6 +58,8 @@ The initial site is static, does not require a database or login, does not colle
 - `content/guided-practice.json` — three graduated student problems for every working lesson (60 total)
 - `content/equations-physics.json` — 30 chapters of selected Physics equations with modeling assumptions
 - `content/lessons.json` — only available original lessons, independent practice and conceptual questions with misconception-specific feedback
+- `content/book-pathways.json` — independent publisher discussion catalog with authentic outbound grade/textbook links and explicitly illustrative topic associations
+- `scripts/validate-book-portal.mjs` — grade, book, publisher source, and route HTML consistency checks
 - `scripts/validate-curriculum.mjs` — guards against duplicated topics, broken prerequisites, conflicting unit assignments and unregistered resources
 - `lab/motion.html` — browser-based position–time experiment and regression investigation
 - `lab/regression.mjs` — separately tested least-squares numerical engine
