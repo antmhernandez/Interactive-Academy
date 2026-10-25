@@ -21,7 +21,7 @@ The user-facing design takes inspiration from a classical publishing aesthetic (
 
 Book-origin lesson routes retain a clearly labeled **illustrative** context through the concept, definition and guided practice, with Back-to-Book controls. For instance, `#lesson/si-units?book=physical-science&grade=8` links an original demonstration to an example Grade 8 discovery path; it **does not** claim Novare chapter or edition alignment. Teachers may use a local **Present lesson** overlay (Escape exits) and copy a direct lesson link. New headless Chromium smoke tests cover several viewport sizes and keyboard journeys; manual real-device and assistive-technology review remains necessary.
 
-## Editorial interface and Chapter 6 expansion (October 25, 2026)
+## Editorial interface and Chapter 6 expansion (October 25, 2026 · [merged PR #10](https://github.com/antmhernandez/Interactive-Academy/pull/10))
 
 The homepage now uses an original mathematics illustration, a four-part lesson-method overview, more refined editorial typography and a private **Continue learning** area. The book library has instant search, a visible result count and an accessible empty state. Course pages show local completion progress and lessons foreground an essential question. The original navy, burgundy, antiqued-gold and cream palette remains distinct from official publisher branding.
 
