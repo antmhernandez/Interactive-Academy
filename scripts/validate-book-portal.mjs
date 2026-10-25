@@ -43,15 +43,15 @@ for(const fragment of ["content/book-pathways.json","bookPathways=books","functi
 for(const fragment of ["PUBLISHER DISCUSSION EDITION","Not an official","Books &amp; Grades","Publisher Demo"]){
  assert.ok(html.includes(fragment),"No visible independent demo framing "+fragment);
 }
-for(const fragment of [".book-grid",".book-tile",".book-detail-head",".grade-choices",".publisher-note",".showcase-columns"]){
+for(const fragment of [".book-grid",".book-tile",".book-detail-head",".grade-choices",".publisher-note",".showcase-columns",".context-trail",".presentation-mode .focus-lesson"]){
  assert.ok(css.includes(fragment),"Missing publisher demonstration styling "+fragment);
 }
-const start=js.indexOf("function bookTile("),end=js.indexOf("\nfunction route(){",start);
+const start=js.indexOf("function hashParams("),end=js.indexOf("\nfunction route(){",start);
 assert.ok(start>=0&&end>start);
 const mockMain={innerHTML:""};
 const safe=x=>String(x).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
-const context={bookPathways:books,lessons,main:mockMain,escapeHtml:safe};
-const functions=vm.runInNewContext(js.slice(start,end)+"\n({bookTile,booksHome,gradeBooks,bookDetail,showcase})",context);
+const context={bookPathways:books,lessons,main:mockMain,escapeHtml:safe,location:{hash:"#book/physical-science?grade=8"},URLSearchParams};
+const functions=vm.runInNewContext(js.slice(start,end)+"\n({bookTile,booksHome,gradeBooks,bookDetail,showcase,lessonContext,lessonLink,contextTrail,allowChapterLink})",context);
 functions.booksHome();
 assert.ok(mockMain.innerHTML.includes("Begin with a book."));
 assert.ok(mockMain.innerHTML.includes("#grade/8"));
@@ -59,10 +59,21 @@ assert.ok(mockMain.innerHTML.includes("not approved chapter"));
 functions.gradeBooks("8");
 assert.ok(mockMain.innerHTML.includes("Novare Physical Science"));
 assert.ok(mockMain.innerHTML.includes("Grade 8"));
+assert.ok(mockMain.innerHTML.includes("#book/physical-science?grade=8"),"Grade must survive into textbook URL");
 functions.bookDetail("physical-science");
 assert.ok(mockMain.innerHTML.includes("not a chapter match"));
-assert.ok(mockMain.innerHTML.includes("#lesson/si-units"));
+assert.ok(mockMain.innerHTML.includes("#lesson/si-units?book=physical-science&amp;grade=8")||mockMain.innerHTML.includes("#lesson/si-units?book=physical-science&grade=8"),"Lesson must retain its illustrative book and grade context");
 assert.ok(mockMain.innerHTML.includes("www.memoriapress.com/8th-grade/"));
+assert.ok(mockMain.innerHTML.includes("← Grade 8"));
+const recognized=functions.lessonContext({id:"si-units"});
+assert.equal(recognized.book.id,"physical-science");
+assert.equal(recognized.grade,"8");
+assert.equal(functions.lessonLink("guided",{id:"si-units"},recognized),"#guided/si-units?book=physical-science&grade=8");
+assert.ok(functions.contextTrail(recognized).includes("Illustrative concept"));
+assert.equal(functions.allowChapterLink(recognized),false);
+context.location.hash="#lesson/tangent-line?book=physical-science&grade=8";
+assert.equal(functions.lessonContext({id:"tangent-line"}).book,null,"Forged lesson-to-book associations must be rejected");
+context.location.hash="#book/pre-algebra";
 functions.bookDetail("pre-algebra");
 assert.ok(mockMain.innerHTML.includes("not yet a published lesson connection"));
 functions.showcase();
