@@ -52,7 +52,9 @@ const visualKeys={
  "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]],
  "friction-threshold":[["amber","Applied pull"],["teal","Friction"],["green","Normal"],["navy","Weight"]],
  "incline-friction":[["amber","Downhill gravity"],["teal","Uphill friction"],["green","Normal"],["navy","Weight"]],
- "energy-ramp":[["teal","Kinetic"],["navy","Gravitational potential"],["amber","Thermal transfer"]]
+ "energy-ramp":[["teal","Kinetic"],["navy","Gravitational potential"],["amber","Thermal transfer"]],
+ "gravity-field":[["teal","Inward gravitational force"],["amber","Test mass"]],
+ "circular-orbit":[["teal","Tangential velocity"],["amber","Inward gravitational acceleration"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -275,6 +277,8 @@ function lesson(l){
  if(l.visual==="friction-threshold")frictionThreshold(el);
  if(l.visual==="incline-friction")inclineFriction(el);
  if(l.visual==="energy-ramp")energyRamp(el);
+ if(l.visual==="gravity-field")gravityField(el);
+ if(l.visual==="circular-orbit")orbitGravity(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -862,7 +866,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -1008,6 +1012,8 @@ function bookTile(book,grade=null){
 }
 function appletsHome(){
  const entries=[
+ ["universal-gravitation","◎","physics","Gravity · Chapter 7","Measure the inverse-square force and acceleration as distance changes."],
+ ["orbital-motion","◌","physics","Orbits · Chapter 7","Explore the inward pull and tangent velocity of a circular satellite."],
  ["energy-conservation","◒","physics","Energy · Chapters 10–11 preview","Watch height and motion become thermal energy without changing the total."],
  ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
  ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
