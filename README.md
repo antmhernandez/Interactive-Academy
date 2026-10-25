@@ -6,11 +6,11 @@
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
 ## Current teaching preview
-Sixteen original demonstration lessons (eleven Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Sixteen misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Twenty original demonstration lessons (fifteen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
-The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **148 canonical topic slots** across 21 units; 16 are implemented, 132 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
+The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **148 canonical topic slots** across 21 units; 20 are implemented, 128 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
 
 ## Textbook progression and learning companions
 
@@ -43,7 +43,7 @@ The initial site is static, does not require a database or login, does not colle
 - `app.js` — navigation, diagrams, lesson interactions
 - `curriculum/catalog.json` — canonical syllabus-aligned map of available/planned topics, AB/BC scope, 34 difficulty-focused submodule slots, prerequisites, course order, and resource links
 - `content/submodules.json` — three available short visual challenges tied to primary chapter lessons
-- `content/guided-practice.json` — three graduated student problems for every working lesson (48 total)
+- `content/guided-practice.json` — three graduated student problems for every working lesson (60 total)
 - `content/equations-physics.json` — 30 chapters of selected Physics equations with modeling assumptions
 - `content/lessons.json` — only available original lessons, independent practice and conceptual questions with misconception-specific feedback
 - `scripts/validate-curriculum.mjs` — guards against duplicated topics, broken prerequisites, conflicting unit assignments and unregistered resources
@@ -64,3 +64,7 @@ The initial site is static, does not require a database or login, does not colle
 See `docs/PROJECT_PLAN.md`, `docs/PUBLICATION_AND_RIGHTS.md`, `docs/HOSTING.md`, `docs/08_MOTION_LAB_TEACHING_AND_QA.md`, and `docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md`, `docs/10_CURRICULUM_ARCHITECTURE_AND_OWNERSHIP.md`, and `docs/11_DEVELOPMENT_BACKLOG.md`, and `docs/12_SYLLABUS_ALIGNMENT_AND_CHALLENGE_MODULES.md` and `docs/13_TEXTBOOK_ORDER_STUDY_GUIDED_PRACTICE_AND_EQUATIONS.md`.
 
 © Original website prose and software are project development work; formal licensing and author ownership must be settled before commercial release.
+
+## Chapter 1 production milestone (October 2026)
+
+The first textbook chapter now includes **five complete interactive topic previews**, each with a separate definition/example page and three progressively scaffolded practice tasks. The shared `#equations/1` reference addresses simple measurement-uncertainty bounds, units, precision conventions and graph slopes. There is a new original printable student review under `materials/physics-toolkit-chapter1-notes.html`. See `docs/14_CHAPTER_01_FOUNDATIONS_BUILD.md` for editorial and mathematical caveats.
