@@ -111,7 +111,7 @@ function about(){
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
 }
 function lesson(l){
- const group=courseList(l.subject),idx=courseOrder(l),previous=group[idx-2],next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
+ const group=courseList(l.subject),idx=courseOrder(l),previous=lessons.find(x=>x.subject===l.subject&&x.next===l.id),next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">← Back</a><a href="#home">⌂ Home</a><a href="${end}">Next →</a></nav>
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
