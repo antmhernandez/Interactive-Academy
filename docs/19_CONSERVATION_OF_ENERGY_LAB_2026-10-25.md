@@ -43,3 +43,7 @@ Each lesson is registered as available under `phy-energy` with established prere
 ## Editorial and rights limitations
 
 All figures, code, prose and numeric exercises are original. The unit's historical Glencoe chapter index does not assert that Novare or Memoria Press editions contain equivalent numbered lessons. No copyrighted publisher material, official branding, teacher-only keys, student data, account or paid hosted simulation has been added. Before real deployment into a publisher product, review actual adopted texts, branded design assets/permissions, physical touch and screen-reader use, and observed student comprehension. Do not equate automation test completion with WCAG certification or classroom effectiveness.
+
+## Integration verification, October 25, 2026
+
+This pass was merged through [PR #13](https://github.com/antmhernandez/Interactive-Academy/pull/13), squash commit `958756d3f5220aab0e6e8e67590ab9e1936652dc`. The headless browser, numerical physics and course-structure checks completed successfully in [Actions run 40232066089](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40232066089). Human classroom and accessibility audits remain pending.
