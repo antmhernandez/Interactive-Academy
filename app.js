@@ -158,6 +158,11 @@ function lesson(l){
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">Optional later-chapter exploration · This does not advance the regular chapter sequence.</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
+ ${["work-energy","kinetic-energy","potential-energy","energy-conservation"].includes(l.id)?`
+ <nav class="energy-study-path" aria-label="Optional energy study sequence">
+  <span class="eyebrow">Chapters 10–11 exploration · A guided sequence</span>
+  ${["work-energy","kinetic-energy","potential-energy","energy-conservation"].map((id,i)=>`<a href="#lesson/${id}" ${l.id===id?'aria-current="page"':""}>${i+1}. ${escapeHtml(get(id).title)}</a>`).join("")}
+ </nav>`:""}
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
