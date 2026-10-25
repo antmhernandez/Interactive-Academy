@@ -672,6 +672,90 @@
     ]
   },
   {
+    "owner": "circular-motion",
+    "title": "Why Circular Motion Accelerates",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A cart moves at a constant speed of 8 m/s around a circular track with radius 4 m. Find the magnitude of its inward acceleration in m/s².",
+        "answer": 16,
+        "tolerance": 0.015,
+        "unit": "m/s²",
+        "steps": [
+          "For constant-speed circular travel, use aᶜ = v²/r.",
+          "Square the speed: (8 m/s)² = 64 m²/s².",
+          "Divide by r = 4 m: aᶜ = 16 m/s² toward the center."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A bicycle moves at 10 m/s around a smooth circular curve of radius 5 m. What is the magnitude of the centripetal acceleration in m/s²?",
+        "answer": 20,
+        "tolerance": 0.02,
+        "unit": "m/s²",
+        "steps": [
+          "Turning at constant speed still requires inward acceleration.",
+          "aᶜ = v²/r = 10²/5.",
+          "The inward acceleration is 20 m/s²."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 2 kg cart rounds a horizontal circle of radius 3 m at 9 m/s. How much net inward force is needed, in newtons?",
+        "answer": 54,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "The net radial force is maᶜ, with aᶜ = v²/r.",
+          "Fᶜ = mv²/r = (2 kg)(9 m/s)²/(3 m).",
+          "Fᶜ = 54 N inward; centripetal force is a name for the net inward force, not an extra force."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "relative-velocity",
+    "title": "Crossing a Moving River",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A boat heads straight north at 4 m/s relative to the water, while a river flows east at 3 m/s. If the river is 80 m wide, how far east does the boat drift in meters?",
+        "answer": 60,
+        "tolerance": 0.02,
+        "unit": "m east",
+        "steps": [
+          "With the boat aimed north, northward ground speed equals 4 m/s.",
+          "Time to cross = 80 m / 4 m/s = 20 s.",
+          "Downstream displacement = 3 m/s × 20 s = 60 m east."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A boat points straight north at 6 m/s relative to the water. The current is 2 m/s east. What is its speed relative to land, in m/s?",
+        "answer": 6.324555320336759,
+        "tolerance": 0.025,
+        "unit": "m/s",
+        "steps": [
+          "The ground velocity has perpendicular components 6 m/s north and 2 m/s east.",
+          "Use the Pythagorean theorem: |v| = √(6² + 2²).",
+          "The ground speed is √40 ≈ 6.32 m/s toward the northeast."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A boat moves at 6 m/s relative to water and points 30° west of north against a 3 m/s east current. A river is 90 m wide. How many seconds does it take to cross?",
+        "answer": 17.32050807568877,
+        "tolerance": 0.025,
+        "unit": "s",
+        "steps": [
+          "The upstream heading cancels the current: eastward ground speed = 3 − 6 sin 30° = 0.",
+          "Northward ground speed is 6 cos 30° ≈ 5.196 m/s.",
+          "Crossing time = 90/(6 cos 30°) ≈ 17.32 s. The boat lands directly opposite."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "atom-spectra",
     "title": "The Colors of Atoms",
     "levels": [
