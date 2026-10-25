@@ -45,7 +45,9 @@ const visualKeys={
  "measurement-ruler":[["teal","Estimated interval"],["amber","Object edge"]],
  "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]],
  "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
- "slope-graph":[["teal","Position curve"],["amber","Secant slope"]]
+ "slope-graph":[["teal","Position curve"],["amber","Secant slope"]],
+ "velocity-components":[["amber","Velocity vector"],["teal","Horizontal"],["green","Vertical"]],
+ "projectile-motion":[["teal","Flight path"],["amber","Highest point"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -234,6 +236,8 @@ function lesson(l){
  if(l.visual==="significant-digits")significantDigits(el);
  if(l.visual==="units-cancel")unitCancellation(el);
  if(l.visual==="slope-graph")slopeToolkit(el);
+ if(l.visual==="velocity-components")velocityComponents(el);
+ if(l.visual==="projectile-motion")projectileMotion(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -616,6 +620,71 @@ function riemann(el){
  el.innerHTML=`<div class="diagram-head"><strong>Right-endpoint rectangles</strong><span class="pill calculus">Integral</span></div><svg viewBox="0 0 520 309" role="img" aria-label="Rectangles approximating the area under y equals x"><rect width="520" height="309" rx="12" fill="#f8fbf9"/><g id="rgraph"></g></svg><div class="controls"><label>Number of rectangles: <strong id="nv"></strong><input id="nslider" type="range" min="2" max="30" step="1" value="4"></label></div><div class="readout"><div class="metric"><small>Right sum</small><strong id="sum"></strong></div><div class="metric"><small>Exact area</small><strong>8</strong></div></div><p class="note">For an increasing function, these right-endpoint rectangles overestimate the area. More, thinner rectangles reduce the error.</p>`;
  const slider=el.querySelector("#nslider");function paint(){let n=+slider.value,dx=4/n,xp=x=>55+102*x,yp=y=>262-51*y;const rectangles=Array.from({length:n},(_,i)=>{let right=(i+1)*dx;return `<rect x="${xp(i*dx)}" y="${yp(right)}" width="${102*dx}" height="${51*right}" fill="#a8d4c9" fill-opacity=".53" stroke="#14727a" stroke-width=".8"/>`}).join("");el.querySelector("#rgraph").innerHTML=`<path d="M55 15V262H490" fill="none" stroke="#93b2a8" stroke-width="1.6"/>${rectangles}<path d="M55 262L463 58" stroke="#c08039" stroke-width="3" fill="none"/><text x="455" y="282" font-size="14" fill="#50756e">4</text>`;el.querySelector("#nv").textContent=n;el.querySelector("#sum").textContent=f(8+8/n);}slider.oninput=paint;paint();
 }
+
+function velocityComponents(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Velocity as a vector</strong><span class="pill">Two components</span></div>
+ <svg viewBox="0 0 560 330" role="img" aria-label="Angled velocity, horizontal and vertical arrows; exact values shown below">
+ <defs><marker id="velocity-tip" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#ba8240"/></marker></defs>
+ <path d="M55 271H526M81 301V25" fill="none" stroke="#8fa69d" stroke-width="1.7"/>
+ <path d="M81 241H525M81 211H525M81 181H525M81 151H525M81 121H525M81 91H525" stroke="#dfe9e1" stroke-width="1" stroke-dasharray="3 7"/>
+ <text x="510" y="295" fill="#455d63" font-size="15">+x</text><text x="48" y="25" fill="#455d63" font-size="15">+y</text>
+ <g id="velocity-vectors"></g><circle cx="81" cy="271" r="5" fill="#253c56"/></svg>
+ <div class="controls">
+ <label>Speed <output id="velocity-speed-value">20 m/s</output><input id="velocity-speed" type="range" min="4" max="30" step="1" value="20"></label>
+ <label>Angle above +x <output id="velocity-angle-value">30°</output><input id="velocity-angle" type="range" min="0" max="90" step="5" value="30"></label></div>
+ <div class="readout"><div class="metric"><small>Horizontal vₓ</small><strong id="velocity-x"></strong></div><div class="metric"><small>Vertical vᵧ</small><strong id="velocity-y"></strong></div></div>
+ <p class="note">Components describe one velocity, not two separate motions. Angles are measured from +x.</p>`;
+ const speed=el.querySelector("#velocity-speed"),angle=el.querySelector("#velocity-angle");
+ function paint(){
+  const v=Number(speed.value),theta=Number(angle.value)*Math.PI/180;
+  const vx=v*Math.cos(theta),vy=v*Math.sin(theta),x=81+vx*8,y=271-vy*8;
+  el.querySelector("#velocity-vectors").innerHTML=`
+   <path d="M81 271H${x}V${y}" fill="none" stroke="#9aafa6" stroke-width="1.3" stroke-dasharray="5 5"/>
+   <path d="M81 271L${x} 271" stroke="#14727a" stroke-width="5" stroke-linecap="round"/>
+   <path d="M${x} 271V${y}" stroke="#32986f" stroke-width="5" stroke-linecap="round"/>
+   <path d="M81 271L${x} ${y}" stroke="#ba8240" stroke-width="5" stroke-linecap="round" marker-end="url(#velocity-tip)"/>
+   <circle cx="${x}" cy="${y}" r="5" fill="#ba8240" stroke="#fff" stroke-width="2"/>
+   <text x="${(81+x)/2}" y="291" fill="#136670" font-size="17" text-anchor="middle">vₓ</text>
+   <text x="${x+10}" y="${(y+271)/2}" fill="#237650" font-size="17">vᵧ</text>`;
+  el.querySelector("#velocity-speed-value").textContent=v+" m/s";
+  el.querySelector("#velocity-angle-value").textContent=angle.value+"°";
+  el.querySelector("#velocity-x").textContent=f(vx)+" m/s";
+  el.querySelector("#velocity-y").textContent=f(vy)+" m/s";
+ }
+ speed.oninput=paint;angle.oninput=paint;paint();
+}
+function projectileMotion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>An ideal projectile</strong><span class="pill">g = 9.8 m/s²</span></div>
+ <svg viewBox="0 0 560 335" role="img" aria-label="Flight trajectory from launch to equal-height landing; numerical values shown below">
+ <path d="M53 268H524M74 294V24" fill="none" stroke="#8fa69d" stroke-width="1.7"/>
+ <path d="M74 215H524M74 162H524M74 109H524M74 56H524" fill="none" stroke="#e1e9e2" stroke-width="1" stroke-dasharray="4 6"/>
+ <text x="506" y="294" fill="#435d63" font-size="15">x (m)</text><text x="35" y="26" fill="#435d63" font-size="15">y</text>
+ <g id="projectile-trace"></g><circle cx="74" cy="268" r="5" fill="#263c56"/></svg>
+ <div class="controls"><label>Launch speed <output id="projectile-speed-value">20 m/s</output><input id="projectile-speed" type="range" min="12" max="30" step="1" value="20"></label>
+ <label>Angle above ground <output id="projectile-angle-value">40°</output><input id="projectile-angle" type="range" min="20" max="70" step="5" value="40"></label></div>
+ <div class="readout"><div class="metric"><small>Flight time</small><strong id="projectile-flight"></strong></div><div class="metric"><small>Horizontal range</small><strong id="projectile-range"></strong></div><div class="metric"><small>Peak height</small><strong id="projectile-height"></strong></div></div>
+ <p class="note">Ideal model: no air resistance; launch and landing at the same height. A fixed scale makes changing range and height visible.</p>`;
+ const speed=el.querySelector("#projectile-speed"),angle=el.querySelector("#projectile-angle"),g=9.8;
+ function paint(){
+  const v=Number(speed.value),theta=Number(angle.value)*Math.PI/180,vx=v*Math.cos(theta),vy=v*Math.sin(theta);
+  const T=2*vy/g,R=vx*T,H=vy*vy/(2*g),sx=t=>74+4*vx*t,sy=t=>268-4*(vy*t-.5*g*t*t);
+  const path=Array.from({length:49},(_,i)=>{const t=T*i/48;return (i?"L":"M")+f(sx(t))+" "+f(sy(t));}).join(" ");
+  const peakX=sx(T/2),peakY=sy(T/2);
+  el.querySelector("#projectile-trace").innerHTML=`
+  <path d="${path}" stroke="#14727a" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <path d="M${f(peakX)} ${f(peakY)}V268" stroke="#be9257" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <circle cx="${f(peakX)}" cy="${f(peakY)}" r="7" fill="#ba8240" stroke="white" stroke-width="2"/>
+  <circle cx="${f(sx(T))}" cy="268" r="5" fill="#14727a"/>
+  <text x="${f(Math.max(110,Math.min(peakX,450)))}" y="${f(Math.max(22,peakY-13))}" text-anchor="middle" fill="#946736" font-size="15">peak</text>`;
+  el.querySelector("#projectile-speed-value").textContent=v+" m/s";
+  el.querySelector("#projectile-angle-value").textContent=angle.value+"°";
+  el.querySelector("#projectile-flight").textContent=f(T)+" s";
+  el.querySelector("#projectile-range").textContent=f(R)+" m";
+  el.querySelector("#projectile-height").textContent=f(H)+" m";
+ }
+ speed.oninput=paint;angle.oninput=paint;paint();
+}
+
 function submodulesFor(parentId,ctx={book:null,grade:null}){
  const related=submodules.filter(m=>m.parent===parentId);
  if(!related.length)return "";
@@ -650,7 +719,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
