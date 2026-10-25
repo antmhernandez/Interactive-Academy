@@ -103,3 +103,12 @@ Neither the publisher nor the school has approved this prototype. The book match
 - [ ] No unauthorized logos, book covers or imported teacher-only files.
 - [ ] GitHub Actions and Pages deployment green.
 - [ ] Reviewer feedback and permissions recorded before any formal publisher branding or exact crosswalk.
+
+## Publisher-demo UX refinement: contextual navigation and classroom display (October 25 follow-up)
+
+The prototype's new optional `?book=...&grade=...` hash context preserves the visitor's route from grade to text to a related *original* lesson, its definition/example and graduated practice. Its visible breadcrumb and Back-to-Book behavior avoid misleading jumps into the general Glencoe sequence. The order of the linked examples reflects an illustrative curated list **only**, not a claimed Novare chapter order.
+
+The classroom presentation button opens a local visual-focused overlay with the same four learning tabs, working simulation controls and cumulative example steps, plus Escape to leave. A copy-link control offers a shareable direct lesson URL; no login, tracking, publisher content or student account is introduced. The mode is not an authorized teacher-only area and does not contain keys.
+
+New CI Chromium smoke checks cover 320/375/768/1024/1440px, grade-to-book-to-lesson traversal, keyboard tabs and Escape, and cumulative steps. These are valuable automated safeguards, **not** a substitute for physical mobile device, projector, screen-reader or editorial acceptance testing. The publisher would still need to approve exact textbook editions, mapping, IP, commercial branding and learning claims.
+
