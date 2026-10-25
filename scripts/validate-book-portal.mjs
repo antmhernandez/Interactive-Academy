@@ -55,7 +55,7 @@ const functions=vm.runInNewContext(js.slice(start,end)+"\n({bookTile,booksHome,g
 functions.booksHome();
 assert.ok(mockMain.innerHTML.includes("Begin with a book."));
 assert.ok(mockMain.innerHTML.includes("#grade/8"));
-assert.ok(mockMain.innerHTML.includes("Illustrative"));
+assert.ok(mockMain.innerHTML.includes("not approved chapter"));
 functions.gradeBooks("8");
 assert.ok(mockMain.innerHTML.includes("Novare Physical Science"));
 assert.ok(mockMain.innerHTML.includes("Grade 8"));
