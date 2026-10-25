@@ -27,7 +27,7 @@ The homepage now uses an original mathematics illustration, a four-part lesson-m
 
 Two new original Physics units of study are available: [Motion in Two Dimensions](https://antmhernandez.github.io/Interactive-Academy/#lesson/two-dimensional-motion) and [The Path of a Projectile](https://antmhernandez.github.io/Interactive-Academy/#lesson/projectile-motion). Each includes a dynamically calculated SVG model, four teaching tabs, stepwise worked example, reasoning check, numeric practice, and a three-level guided practice set. The projectile model assumes level launch/landing height, no air resistance and g = 9.8 m/s². The new content extends the independent Glencoe-index course and is **not** a Novare edition/chapter mapping. See [the implementation and pedagogy review](docs/16_EDITORIAL_INTERFACE_AND_CHAPTER_06.md).
 
-## Interactive investigations / Experiment Room (October 25, 2026)
+## Interactive investigations / Experiment Room (October 25, 2026 · [merged PR #11](https://github.com/antmhernandez/Interactive-Academy/pull/11))
 
 The new [Experiment Room](https://antmhernandez.github.io/Interactive-Academy/#applets) gives students a dedicated gallery of **ten original Physics and Calculus applets**, filterable by subject and linked directly to their complete lessons. These are independently built educational models, **not copies or embeds of PhET simulations**.
 
