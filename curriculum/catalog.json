@@ -2144,7 +2144,7 @@
       "title": "Real and Virtual Images",
       "status": "planned",
       "misconception": "A virtual image is confused with an actual ray intersection.",
-      "visual": "Ray-tracing toggle",
+      "visual": "Interactive principal-ray tracing with real and virtual image indicators",
       "estimatedMinutes": 4,
       "kind": "visual-challenge",
       "standalone": false
