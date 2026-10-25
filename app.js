@@ -85,6 +85,7 @@ function home(){
   <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
   <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
+ <div class="applet-home-call"><div><div class="eyebrow">Learn by experimenting</div><h2>Discover the Experiment Room.</h2><p>Explore original interactive investigations in Physics and Calculus.</p></div><a class="btn primary" href="#applets">Open the applet collection →</a></div>
  <section class="atlas-continue" aria-label="Continue a course on this device">
   <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
   <div class="continue-options">
@@ -1094,7 +1095,7 @@ function showcase(){
  <section class="showcase-step"><span class="step-no">01</span><h2>Choose a text</h2><p>Browse by grade and a curated catalog reference. Concept links are intentionally marked illustrative until a publisher-approved crosswalk exists.</p><a href="#book/physical-science">Explore a science book pathway →</a></section>
  <section class="showcase-step"><span class="step-no">02</span><h2>See the idea</h2><p>One striking visual and an intentionally brief explanation, with The Idea, Example, Think and Try it available underneath.</p><a href="#lesson/motion-graphs">See a Physics demonstration →</a></section>
  <section class="showcase-step"><span class="step-no">03</span><h2>Reason through it</h2><p>New worked-solution steps remain visible as a student advances. A separate page offers three levels of independent guided practice.</p><a href="#guided/graph-slope-physics">Explore graduated problems →</a></section>
- <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#equations">Open the equation reference →</a></section></div>
+ <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#applets">Explore the interactive models →</a></section></div>
  <section class="publisher-note"><div class="eyebrow">Discussion points</div><h2>What would need publisher approval?</h2>
  <p>Textbook editions and page-by-page mapping, protected diagrams or passages, brand and logo permissions, teacher-only materials, editorial review, commercial hosting, accessibility requirements, support ownership and educational claims.</p>
  <p><strong>Current boundary:</strong> independently written original lessons and illustrations; no copied textbook content, no student accounts, no student-data collection, and no claim of official Memoria Press sponsorship.</p>
