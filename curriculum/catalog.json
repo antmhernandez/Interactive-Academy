@@ -1071,7 +1071,7 @@
             },
             {
               "id": "one-sided-limits",
-              "title": "One-Sided Limits",
+              "title": "Two Sides of a Limit",
               "status": "available",
               "owns": "calc.limit.one-sided",
               "goal": "Compare approaches from left and right.",
