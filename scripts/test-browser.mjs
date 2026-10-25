@@ -29,6 +29,15 @@ try{
  for(const width of [320,375,768,1024,1440]){
   const page=await browser.newPage({viewport:{width,height:900}});
   page.on("pageerror",err=>errors.push(width+": "+err.message));
+  await route(page,"#applets");
+  assert.equal(await page.locator(".applet-tile").count(),10);
+  await page.locator('[data-applet-filter="calculus"]').click();
+  assert.equal(await page.locator(".applet-tile:visible").count(),3);
+  await page.locator('[data-applet-filter="physics"]').click();
+  assert.equal(await page.locator(".applet-tile:visible").count(),7);
+  await page.locator('[data-applet-filter="all"]').click();
+  assert.equal(await page.locator(".applet-tile:visible").count(),10);
+  assert.ok(!(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)),"Applet gallery overflow");
   await route(page,"#home");
   await page.locator(".atlas-hero-figure svg").waitFor();
   await page.locator(".method-grid .method-item").first().waitFor();
