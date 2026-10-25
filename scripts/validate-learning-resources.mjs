@@ -7,7 +7,7 @@ const guided=read("content/guided-practice.json");
 const eq=read("content/equations-physics.json");
 const map=read("curriculum/catalog.json");
 const book=map.textbook;
-assert.equal(lessons.length,24);
+assert.equal(lessons.length,26);
 assert.equal(guided.length,lessons.length,"Every complete lesson needs guided practice");
 const defined=new Map(lessons.map(x=>[x.id,x])),guidedIds=new Set();
 let problems=0;
@@ -27,7 +27,7 @@ for(const set of guided){
   assert.ok(p.steps.every(s=>s.trim().length>=7),"Missing or empty reasoning step "+set.owner);
  }
 }
-assert.equal(problems,72,"Unexpected practice count");
+assert.equal(problems,78,"Unexpected practice count");
 for(const lesson of lessons){
  assert.ok(lesson.definition?.length>=70&&lesson.definition.length<=350,"Missing concise definition "+lesson.id);
  assert.ok(guidedIds.has(lesson.id),"No guided-practice set "+lesson.id);
