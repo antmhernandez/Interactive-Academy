@@ -1923,7 +1923,7 @@
       "id": "hole-versus-limit",
       "parent": "limits-near-a-point",
       "title": "A Hole Does Not Destroy a Limit",
-      "status": "planned",
+      "status": "available",
       "misconception": "A missing function value does not prevent a limit.",
       "visual": "Change the assigned point value without moving the open circle",
       "estimatedMinutes": 4,
