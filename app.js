@@ -51,7 +51,8 @@ const visualKeys={
  "circular-motion":[["teal","Tangent velocity"],["amber","Inward acceleration"]],
  "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]],
  "friction-threshold":[["amber","Applied pull"],["teal","Friction"],["green","Normal"],["navy","Weight"]],
- "incline-friction":[["amber","Downhill gravity"],["teal","Uphill friction"],["green","Normal"],["navy","Weight"]]
+ "incline-friction":[["amber","Downhill gravity"],["teal","Uphill friction"],["green","Normal"],["navy","Weight"]],
+ "energy-ramp":[["teal","Kinetic"],["navy","Gravitational potential"],["amber","Thermal transfer"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -156,7 +157,7 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
- <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">Optional later-chapter exploration · This does not advance the regular chapter sequence.</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
@@ -268,6 +269,7 @@ function lesson(l){
  if(l.visual==="river-crossing")riverCrossing(el);
  if(l.visual==="friction-threshold")frictionThreshold(el);
  if(l.visual==="incline-friction")inclineFriction(el);
+ if(l.visual==="energy-ramp")energyRamp(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -855,7 +857,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -1001,6 +1003,7 @@ function bookTile(book,grade=null){
 }
 function appletsHome(){
  const entries=[
+ ["energy-conservation","◒","physics","Energy · Chapters 10–11 preview","Watch height and motion become thermal energy without changing the total."],
  ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
  ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
  ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
