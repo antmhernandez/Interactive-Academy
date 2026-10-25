@@ -483,7 +483,7 @@ function measurementRuler(el){
  const value=el.querySelector("#ruler-pos"),res=el.querySelector("#ruler-resolution"),graph=el.querySelector("#ruler-plot"),px=n=>68+5*n;
  function draw(){
   const pos=+value.value,r=+res.value,reading=Math.round(pos/r)*r,uncertainty=r/2,decimals=r===1?1:2;
-  const ticks=Array.from({length:17},(_,i)=>{const m=i*5,x=px(m);return `<path d="M${x} 114V${m%10===0?151:135}" stroke="#7a9c91" stroke-width="${m%10===0?2:1}"/><text x="${x}" y="169" font-size="11" text-anchor="middle" fill="#526b64">${m}</text>`}).join("");
+  const ticks=Array.from({length:Math.round(80/r)+1},(_,i)=>{const m=i*r,x=px(m),major=m%10===0,mid=m%5===0;return `<path d="M${x} 114V${major?151:mid?137:122}" stroke="#7a9c91" stroke-width="${major?1.8:.7}"/>${major?`<text x="${x}" y="169" font-size="11" text-anchor="middle" fill="#526b64">${m}</text>`:""}`}).join("");
   graph.innerHTML=`<rect x="52" y="110" width="430" height="65" rx="7" fill="#e5f0eb" stroke="#8aaea0"/>${ticks}<path d="M${px(pos)} 54V195" stroke="#c08039" stroke-width="3.5"/><path d="M${px(reading-uncertainty)} 203H${px(reading+uncertainty)}" stroke="#14727a" stroke-width="6" stroke-linecap="round"/><text x="68" y="31" font-size="14" fill="#45645e">Length on ruler (mm)</text><text x="68" y="244" font-size="12" fill="#496c65">Teal segment: reading ± uncertainty</text>`;
   el.querySelector("#measure-pos").textContent=f(pos)+" mm";
   el.querySelector("#measure-reading").textContent=reading.toFixed(decimals)+" mm";
