@@ -112,3 +112,11 @@ The classroom presentation button opens a local visual-focused overlay with the 
 
 New CI Chromium smoke checks cover 320/375/768/1024/1440px, grade-to-book-to-lesson traversal, keyboard tabs and Escape, and cumulative steps. These are valuable automated safeguards, **not** a substitute for physical mobile device, projector, screen-reader or editorial acceptance testing. The publisher would still need to approve exact textbook editions, mapping, IP, commercial branding and learning claims.
 
+
+## Editorial and content pilot, October 25 continuation
+
+The new homepage and book library emphasize classical editorial rhythm, an original educational figure, discreet gold rules, meaningful whitespace, clearly numbered pedagogy, a local-only progress desk, and immediate catalog search. The design is a unique independent proof of concept and **not** a reproduction of any publisher's visual brand.
+
+After these feature improvements, two independently authored Chapter 6 Physics demonstrations were added to the site's **separate Glencoe-indexed learning pathway**, covering vector velocity components and level-to-level ideal projectile motion. These use calculated graphs, no third-party art or authorized textbook exercise numbers, and retain The Idea/Example/Think/Try it, cumulative steps and three graduated guided problems each. The models explicitly assume classical Newtonian mechanics with uniform gravity and no air drag. Editorial/math-review notes and numerical checks are in `docs/16_EDITORIAL_INTERFACE_AND_CHAPTER_06.md`.
+
+These original concepts could conceivably be discussed with a publisher, but the current Memoria Press/Novare listing still contains **no authorized chapter mapping**. No new official textbook claims have been made. Human classroom, accessibility, edition and rights reviews remain necessary.
