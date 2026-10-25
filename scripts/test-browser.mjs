@@ -154,6 +154,8 @@ try{
  await route(page,"#lesson/potential-energy");
  assert.equal(await page.locator("#en-u").innerText(),"98 J");
  await route(page,"#lesson/energy-conservation");
+ assert.equal(await page.locator(".energy-study-path a").count(),4);
+ assert.equal(await page.locator('.energy-study-path a[aria-current="page"]').count(),1);
  assert.equal(await page.locator("#en-total").innerText(),"98 J");
  assert.equal(await page.locator("#en-thermal").innerText(),"0 J");
  await page.locator("#en-progress").evaluate(el=>{el.value="100";el.dispatchEvent(new Event("input",{bubbles:true}));});
