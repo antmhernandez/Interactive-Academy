@@ -376,8 +376,8 @@
             },
             {
               "id": "universal-gravitation",
-              "title": "Universal Gravitation",
-              "status": "planned",
+              "title": "Gravity Weakens with Distance",
+              "status": "available",
               "owns": "phys.gravity.inverse-square",
               "goal": "Describe the inverse-square gravitational model.",
               "prerequisites": [
@@ -386,8 +386,8 @@
             },
             {
               "id": "orbital-motion",
-              "title": "Orbits",
-              "status": "planned",
+              "title": "Falling Around a Planet",
+              "status": "available",
               "owns": "phys.gravity.orbits",
               "goal": "Connect centripetal acceleration to orbital speed.",
               "prerequisites": [
@@ -406,8 +406,8 @@
             },
             {
               "id": "weightlessness",
-              "title": "Weightlessness in Orbit",
-              "status": "planned",
+              "title": "Why Orbit Feels Weightless",
+              "status": "available",
               "owns": "phys.gravity.weightlessness",
               "goal": "Explain apparent weightlessness as shared free fall.",
               "prerequisites": [
