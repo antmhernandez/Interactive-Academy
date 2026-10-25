@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "project": "Interactive Academy",
   "scope": "Curriculum planning registry; not a transcript or copyrighted textbook contents",
   "publicStatus": "available means implemented in the website, not publisher clearance",
@@ -8,6 +8,74 @@
       "id": "physics",
       "title": "Physics",
       "units": [
+        {
+          "id": "phy-atomic-introduction",
+          "title": "Atoms, Light, and Models",
+          "topics": [
+            {
+              "id": "atomic-models",
+              "title": "How Atomic Models Changed",
+              "status": "planned",
+              "owns": "phys.atomic.evidence-history",
+              "goal": "Connect observations with successive models of atomic structure.",
+              "prerequisites": []
+            },
+            {
+              "id": "atom-spectra",
+              "title": "The Colors of Atoms",
+              "status": "available",
+              "owns": "phys.atomic.spectral-lines",
+              "goal": "Interpret discrete spectral lines using allowed atomic energy changes.",
+              "prerequisites": []
+            },
+            {
+              "id": "photon-energy",
+              "title": "Photons and Energy",
+              "status": "planned",
+              "owns": "phys.atomic.photon-energy",
+              "goal": "Relate photon energy to frequency and wavelength.",
+              "prerequisites": [
+                "atom-spectra"
+              ]
+            },
+            {
+              "id": "bohr-energy-levels",
+              "title": "Quantized Energy Levels",
+              "status": "planned",
+              "owns": "phys.atomic.bohr-levels",
+              "goal": "Explain allowed hydrogen energy levels and emission transitions.",
+              "prerequisites": [
+                "atom-spectra"
+              ]
+            },
+            {
+              "id": "matter-waves",
+              "title": "Matter Waves and the Quantum Model",
+              "status": "planned",
+              "owns": "phys.atomic.matter-waves",
+              "goal": "Connect the de Broglie wavelength idea with quantum states.",
+              "prerequisites": [
+                "bohr-energy-levels"
+              ]
+            },
+            {
+              "id": "lasers",
+              "title": "How Lasers Produce Light",
+              "status": "planned",
+              "owns": "phys.atomic.lasers",
+              "goal": "Explain stimulated emission and coherence at an introductory level.",
+              "prerequisites": [
+                "bohr-energy-levels"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "00",
+            "scope": "school-year-core",
+            "description": "Atomic models, spectra, quantum theory"
+          }
+        },
         {
           "id": "phy-foundations",
           "title": "Measurement and Scientific Models",
@@ -39,8 +107,74 @@
               "prerequisites": [
                 "scientific-measurement"
               ]
+            },
+            {
+              "id": "scientific-notation",
+              "title": "Scientific Notation and Metric Prefixes",
+              "status": "planned",
+              "owns": "phys.tools.scientific-notation",
+              "goal": "Express large and small measured quantities with powers of ten.",
+              "prerequisites": [
+                "si-units"
+              ]
+            },
+            {
+              "id": "dimensional-analysis",
+              "title": "Dimensional Analysis",
+              "status": "planned",
+              "owns": "phys.tools.dimensions",
+              "goal": "Check equations and convert units by dimension.",
+              "prerequisites": [
+                "si-units"
+              ]
+            },
+            {
+              "id": "significant-figures",
+              "title": "Significant Figures",
+              "status": "planned",
+              "owns": "phys.tools.sigfigs",
+              "goal": "Report measured quantities with appropriate significant digits.",
+              "prerequisites": [
+                "scientific-measurement"
+              ]
+            },
+            {
+              "id": "parallax",
+              "title": "Parallax and Measurement Resolution",
+              "status": "planned",
+              "owns": "phys.tools.parallax",
+              "goal": "Predict and explain systematic reading differences.",
+              "prerequisites": [
+                "scientific-measurement"
+              ]
+            },
+            {
+              "id": "graph-slope-physics",
+              "title": "Physical Meaning of Graph Slope",
+              "status": "planned",
+              "owns": "phys.tools.graph-slope",
+              "goal": "Interpret rise over run, axes and units on measured graphs.",
+              "prerequisites": [
+                "scientific-measurement"
+              ]
+            },
+            {
+              "id": "regression-models",
+              "title": "Regression and Physical Models",
+              "status": "planned",
+              "owns": "phys.tools.regression",
+              "goal": "Compare model fits and recognize their physical assumptions.",
+              "prerequisites": [
+                "graph-slope-physics"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "01",
+            "scope": "school-year-core",
+            "description": "SI measurements, graphing, uncertainties and regression"
+          }
         },
         {
           "id": "phy-motion",
@@ -105,51 +239,27 @@
               ]
             },
             {
-              "id": "two-dimensional-motion",
-              "title": "Motion in Two Dimensions",
+              "id": "constant-acceleration-models",
+              "title": "Choosing Motion Equations",
               "status": "planned",
-              "owns": "phys.motion.two-dimensional",
-              "goal": "Resolve velocity into two axes.",
+              "owns": "phys.motion.constant-acceleration-choice",
+              "goal": "Select valid constant-acceleration equations with correct signs.",
               "prerequisites": [
                 "motion-graphs"
               ]
-            },
-            {
-              "id": "projectile-motion",
-              "title": "Projectiles",
-              "status": "planned",
-              "owns": "phys.motion.projectiles",
-              "goal": "Analyze horizontal and vertical projectile motion.",
-              "prerequisites": [
-                "two-dimensional-motion"
-              ]
-            },
-            {
-              "id": "kinematics-model-choice",
-              "title": "Choose a Motion Model",
-              "status": "planned",
-              "owns": "phys.motion.model-choice",
-              "goal": "Select justified motion equations and test assumptions.",
-              "prerequisites": [
-                "projectile-motion"
-              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "02–03",
+            "scope": "school-year-core",
+            "description": "Position, velocity, acceleration and free fall"
+          }
         },
         {
           "id": "phy-forces",
           "title": "Forces and Newton's Laws",
           "topics": [
-            {
-              "id": "force-components",
-              "title": "A Force in Two Directions",
-              "status": "available",
-              "owns": "phys.force.components",
-              "goal": "Resolve a force vector into horizontal and vertical components.",
-              "prerequisites": [
-                "motion-graphs"
-              ]
-            },
             {
               "id": "free-body-diagram",
               "title": "Draw the Forces",
@@ -157,7 +267,7 @@
               "owns": "phys.force.diagram",
               "goal": "Identify and draw external forces acting on one object.",
               "prerequisites": [
-                "force-components"
+                "motion-graphs"
               ]
             },
             {
@@ -168,6 +278,16 @@
               "goal": "Use the net force and mass to predict acceleration.",
               "prerequisites": [
                 "free-body-diagram"
+              ]
+            },
+            {
+              "id": "force-components",
+              "title": "A Force in Two Directions",
+              "status": "available",
+              "owns": "phys.force.components",
+              "goal": "Resolve a force vector into horizontal and vertical components.",
+              "prerequisites": [
+                "newtons-second-law"
               ]
             },
             {
@@ -199,8 +319,64 @@
               "prerequisites": [
                 "inclined-planes"
               ]
+            },
+            {
+              "id": "newtons-first-law",
+              "title": "Inertia and Newton's First Law",
+              "status": "planned",
+              "owns": "phys.force.first-law",
+              "goal": "Explain unchanged velocity under zero net force.",
+              "prerequisites": [
+                "free-body-diagram"
+              ]
+            },
+            {
+              "id": "mass-vs-weight",
+              "title": "Mass, Weight, and Apparent Weight",
+              "status": "planned",
+              "owns": "phys.force.mass-weight",
+              "goal": "Distinguish inertia, gravitational force and scale reading.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "newtons-third-law",
+              "title": "Newton's Third Law Force Pairs",
+              "status": "planned",
+              "owns": "phys.force.third-law",
+              "goal": "Identify equal opposite interaction forces acting on different bodies.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "tension-systems",
+              "title": "Tension and Connected Objects",
+              "status": "planned",
+              "owns": "phys.force.tension",
+              "goal": "Apply consistent force conventions to rope-and-pulley systems.",
+              "prerequisites": [
+                "newtons-third-law"
+              ]
+            },
+            {
+              "id": "equilibrant-vectors",
+              "title": "Resultant and Equilibrant Forces",
+              "status": "planned",
+              "owns": "phys.force.equilibrant",
+              "goal": "Add vector forces and identify an equilibrant.",
+              "prerequisites": [
+                "force-components"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "04–05",
+            "scope": "school-year-core",
+            "description": "Newton's laws, vectors, contact forces and inclines"
+          }
         },
         {
           "id": "phy-energy",
@@ -255,50 +431,70 @@
               "prerequisites": [
                 "energy-conservation"
               ]
-            }
-          ]
-        },
-        {
-          "id": "phy-momentum",
-          "title": "Momentum and Collisions",
-          "topics": [
+            },
             {
-              "id": "impulse",
-              "title": "Impulse and Momentum",
+              "id": "work-angle",
+              "title": "Work and Force Angle",
               "status": "planned",
-              "owns": "phys.momentum.impulse",
-              "goal": "Connect impulse to change in momentum.",
+              "owns": "phys.energy.work-angle",
+              "goal": "Distinguish a force's parallel component from perpendicular force.",
               "prerequisites": [
-                "newtons-second-law"
+                "work-energy",
+                "force-components"
               ]
             },
             {
-              "id": "momentum-conservation",
-              "title": "Conservation of Momentum",
+              "id": "mechanical-advantage",
+              "title": "Mechanical Advantage",
               "status": "planned",
-              "owns": "phys.momentum.conservation",
-              "goal": "Analyze momentum transfer in an isolated system.",
+              "owns": "phys.energy.machines",
+              "goal": "Relate input force, output force, and ideal machine efficiency.",
               "prerequisites": [
-                "impulse"
+                "work-energy"
               ]
             },
             {
-              "id": "collisions",
-              "title": "Collisions",
+              "id": "energy-flow-diagrams",
+              "title": "Energy Transfers in Systems",
               "status": "planned",
-              "owns": "phys.momentum.collisions",
-              "goal": "Contrast elastic and inelastic collisions.",
+              "owns": "phys.energy.system",
+              "goal": "Choose a system and identify internal and external energy transfers.",
               "prerequisites": [
-                "momentum-conservation",
                 "energy-conservation"
               ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "10–11",
+            "scope": "school-year-core",
+            "description": "Work, machines, energy and conservation"
+          }
         },
         {
-          "id": "phy-gravity",
-          "title": "Circular Motion and Gravitation",
+          "id": "phy-two-dimensional-motion",
+          "title": "Motion in Two Dimensions",
           "topics": [
+            {
+              "id": "two-dimensional-motion",
+              "title": "Motion in Two Dimensions",
+              "status": "planned",
+              "owns": "phys.motion.two-dimensional",
+              "goal": "Resolve velocity into two axes.",
+              "prerequisites": [
+                "force-components"
+              ]
+            },
+            {
+              "id": "projectile-motion",
+              "title": "Projectiles",
+              "status": "planned",
+              "owns": "phys.motion.projectiles",
+              "goal": "Analyze horizontal and vertical projectile motion.",
+              "prerequisites": [
+                "two-dimensional-motion"
+              ]
+            },
             {
               "id": "circular-motion",
               "title": "Circular Motion",
@@ -310,13 +506,43 @@
               ]
             },
             {
+              "id": "relative-velocity",
+              "title": "Relative Velocity",
+              "status": "planned",
+              "owns": "phys.motion.relative-velocity",
+              "goal": "Add relative velocities using consistent reference frames.",
+              "prerequisites": [
+                "two-dimensional-motion"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "06",
+            "scope": "school-year-core",
+            "description": "Projectiles, circular motion, relative velocity"
+          }
+        },
+        {
+          "id": "phy-gravity",
+          "title": "Circular Motion and Gravitation",
+          "topics": [
+            {
+              "id": "history-planetary-models",
+              "title": "Planetary Models and Evidence",
+              "status": "planned",
+              "owns": "phys.gravity.planetary-models",
+              "goal": "Compare historical models using observed planetary motions.",
+              "prerequisites": []
+            },
+            {
               "id": "universal-gravitation",
               "title": "Universal Gravitation",
               "status": "planned",
               "owns": "phys.gravity.inverse-square",
               "goal": "Describe the inverse-square gravitational model.",
               "prerequisites": [
-                "circular-motion"
+                "newtons-second-law"
               ]
             },
             {
@@ -328,8 +554,44 @@
               "prerequisites": [
                 "universal-gravitation"
               ]
+            },
+            {
+              "id": "keplers-laws",
+              "title": "Kepler's Planetary Laws",
+              "status": "planned",
+              "owns": "phys.gravity.kepler",
+              "goal": "Relate orbital shape, swept area, and period-distance scaling.",
+              "prerequisites": [
+                "history-planetary-models"
+              ]
+            },
+            {
+              "id": "weightlessness",
+              "title": "Weightlessness in Orbit",
+              "status": "planned",
+              "owns": "phys.gravity.weightlessness",
+              "goal": "Explain apparent weightlessness as shared free fall.",
+              "prerequisites": [
+                "orbital-motion"
+              ]
+            },
+            {
+              "id": "cosmic-models",
+              "title": "Gravity, Light, and the Cosmos",
+              "status": "planned",
+              "owns": "phys.modern.cosmos",
+              "goal": "Connect astronomical evidence with changing cosmological models.",
+              "prerequisites": [
+                "history-planetary-models"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "07",
+            "scope": "school-year-core",
+            "description": "Cosmology, gravitation and satellites"
+          }
         },
         {
           "id": "phy-waves",
@@ -374,8 +636,97 @@
               "prerequisites": [
                 "superposition"
               ]
+            },
+            {
+              "id": "wave-doppler",
+              "title": "Doppler Shift",
+              "status": "planned",
+              "owns": "phys.waves.doppler",
+              "goal": "Relate apparent sound frequency to relative source-observer motion.",
+              "prerequisites": [
+                "sound"
+              ]
+            },
+            {
+              "id": "standing-waves",
+              "title": "Standing Waves and Music",
+              "status": "planned",
+              "owns": "phys.waves.standing",
+              "goal": "Describe resonance in vibrating strings and air columns.",
+              "prerequisites": [
+                "sound"
+              ]
+            },
+            {
+              "id": "wave-boundaries",
+              "title": "Reflection, Transmission, and Boundaries",
+              "status": "planned",
+              "owns": "phys.waves.boundary",
+              "goal": "Predict wave pulse behavior at a boundary.",
+              "prerequisites": [
+                "superposition"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "14–15",
+            "scope": "school-year-core",
+            "description": "Vibrations, waves and sound"
+          }
+        },
+        {
+          "id": "phy-momentum",
+          "title": "Momentum and Collisions",
+          "topics": [
+            {
+              "id": "impulse",
+              "title": "Impulse and Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.impulse",
+              "goal": "Connect impulse to change in momentum.",
+              "prerequisites": [
+                "newtons-second-law"
+              ]
+            },
+            {
+              "id": "momentum-conservation",
+              "title": "Conservation of Momentum",
+              "status": "planned",
+              "owns": "phys.momentum.conservation",
+              "goal": "Analyze momentum transfer in an isolated system.",
+              "prerequisites": [
+                "impulse"
+              ]
+            },
+            {
+              "id": "collisions",
+              "title": "Collisions",
+              "status": "planned",
+              "owns": "phys.momentum.collisions",
+              "goal": "Contrast elastic and inelastic collisions.",
+              "prerequisites": [
+                "momentum-conservation",
+                "energy-conservation"
+              ]
+            },
+            {
+              "id": "momentum-vectors",
+              "title": "Momentum as a Vector",
+              "status": "planned",
+              "owns": "phys.momentum.vector",
+              "goal": "Track signed momentum through one-dimensional interactions.",
+              "prerequisites": [
+                "impulse"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "09",
+            "scope": "school-year-core",
+            "description": "Impulse and momentum conservation"
+          }
         },
         {
           "id": "phy-optics",
@@ -410,8 +761,54 @@
               "prerequisites": [
                 "refraction"
               ]
+            },
+            {
+              "id": "ray-diagrams",
+              "title": "Ray Diagrams and Images",
+              "status": "planned",
+              "owns": "phys.optics.ray-images",
+              "goal": "Identify object, image and focal positions using principal rays.",
+              "prerequisites": [
+                "reflection"
+              ]
+            },
+            {
+              "id": "mirror-equation",
+              "title": "Mirror Equation and Magnification",
+              "status": "planned",
+              "owns": "phys.optics.mirror-equation",
+              "goal": "Connect object and image distances with focal length.",
+              "prerequisites": [
+                "ray-diagrams"
+              ]
+            },
+            {
+              "id": "lens-equation",
+              "title": "Thin Lens Equation and Magnification",
+              "status": "planned",
+              "owns": "phys.optics.lens-equation",
+              "goal": "Connect focal length to object and image locations.",
+              "prerequisites": [
+                "lenses"
+              ]
+            },
+            {
+              "id": "critical-angle",
+              "title": "Total Internal Reflection",
+              "status": "planned",
+              "owns": "phys.optics.total-internal-reflection",
+              "goal": "Identify when light cannot refract into a lower-index medium.",
+              "prerequisites": [
+                "refraction"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "16–18",
+            "scope": "school-year-core",
+            "description": "Light, mirrors and lenses"
+          }
         },
         {
           "id": "phy-electricity",
@@ -466,8 +863,64 @@
               "prerequisites": [
                 "circuits"
               ]
+            },
+            {
+              "id": "coulombs-law",
+              "title": "Coulomb's Law",
+              "status": "planned",
+              "owns": "phys.electricity.coulomb",
+              "goal": "Model inverse-square electric force with charges and separation.",
+              "prerequisites": [
+                "electric-charge"
+              ]
+            },
+            {
+              "id": "electric-potential",
+              "title": "Voltage and Electric Potential",
+              "status": "planned",
+              "owns": "phys.electricity.potential",
+              "goal": "Distinguish potential difference from the electric field.",
+              "prerequisites": [
+                "electric-fields"
+              ]
+            },
+            {
+              "id": "ohms-law",
+              "title": "Ohm's Law",
+              "status": "planned",
+              "owns": "phys.electricity.ohm",
+              "goal": "Relate voltage, current and resistance in ideal resistive circuits.",
+              "prerequisites": [
+                "circuits"
+              ]
+            },
+            {
+              "id": "kirchhoff-rules",
+              "title": "Kirchhoff's Circuit Rules",
+              "status": "planned",
+              "owns": "phys.electricity.kirchhoff",
+              "goal": "Apply conservation of charge and energy to a circuit network.",
+              "prerequisites": [
+                "circuit-networks"
+              ]
+            },
+            {
+              "id": "electric-power",
+              "title": "Electrical Power",
+              "status": "planned",
+              "owns": "phys.electricity.power",
+              "goal": "Analyze electrical energy and power transfer in circuits.",
+              "prerequisites": [
+                "circuits"
+              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": "20–23",
+            "scope": "school-year-core",
+            "description": "Charges, electric fields, current and circuits"
+          }
         },
         {
           "id": "phy-thermal",
@@ -503,22 +956,18 @@
                 "temperature"
               ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": null,
+            "scope": "enrichment",
+            "description": "Possible enrichment; not on the principal 2026–27 school calendar"
+          }
         },
         {
           "id": "phy-modern",
-          "title": "Astronomy and Modern Physics",
+          "title": "Additional Modern Physics",
           "topics": [
-            {
-              "id": "atomic-models",
-              "title": "Atoms and Spectra",
-              "status": "planned",
-              "owns": "phys.modern.atoms",
-              "goal": "Connect evidence to atomic models and spectra.",
-              "prerequisites": [
-                "wave-properties"
-              ]
-            },
             {
               "id": "nuclear-physics",
               "title": "Nuclei and Radioactivity",
@@ -528,19 +977,14 @@
               "prerequisites": [
                 "atomic-models"
               ]
-            },
-            {
-              "id": "cosmic-models",
-              "title": "Gravity, Light, and the Cosmos",
-              "status": "planned",
-              "owns": "phys.modern.cosmos",
-              "goal": "Connect astronomical observations to evolving physical models.",
-              "prerequisites": [
-                "universal-gravitation",
-                "atomic-models"
-              ]
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "General Physics 2026–27",
+            "chapter": null,
+            "scope": "enrichment",
+            "description": "Possible enrichment; not on the principal 2026–27 school calendar"
+          }
         }
       ]
     },
@@ -558,7 +1002,8 @@
               "status": "planned",
               "owns": "calc.functions.representation",
               "goal": "Connect formulas, tables and graphs.",
-              "prerequisites": []
+              "prerequisites": [],
+              "track": "shared-ab-bc"
             },
             {
               "id": "trig-reference",
@@ -568,7 +1013,8 @@
               "goal": "Relate the unit circle to sine and cosine graphs.",
               "prerequisites": [
                 "function-representations"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "exponential-logarithmic",
@@ -578,9 +1024,37 @@
               "goal": "Compare exponential growth and inverse logarithms.",
               "prerequisites": [
                 "function-representations"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "domain-range",
+              "title": "Domain and Range",
+              "status": "planned",
+              "owns": "calc.functions.domain",
+              "goal": "Reason about where an expression or model is defined.",
+              "prerequisites": [
+                "function-representations"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "inverse-functions",
+              "title": "Inverse Functions",
+              "status": "planned",
+              "owns": "calc.functions.inverse",
+              "goal": "Understand reversible relationships and inverse domains.",
+              "prerequisites": [
+                "function-representations"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-limits",
@@ -592,7 +1066,8 @@
               "status": "available",
               "owns": "calc.limit.near-point",
               "goal": "Distinguish the limit at a point from the function value there.",
-              "prerequisites": []
+              "prerequisites": [],
+              "track": "shared-ab-bc"
             },
             {
               "id": "one-sided-limits",
@@ -602,7 +1077,8 @@
               "goal": "Compare approaches from left and right.",
               "prerequisites": [
                 "limits-near-a-point"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "continuity",
@@ -612,7 +1088,8 @@
               "goal": "Test continuity using a function's limit and value.",
               "prerequisites": [
                 "one-sided-limits"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "limits-infinity",
@@ -622,9 +1099,48 @@
               "goal": "Describe end behavior and horizontal asymptotes.",
               "prerequisites": [
                 "one-sided-limits"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "squeeze-theorem",
+              "title": "The Squeeze Theorem",
+              "status": "planned",
+              "owns": "calc.limit.squeeze",
+              "goal": "Bound a function to justify a limit.",
+              "prerequisites": [
+                "one-sided-limits"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "indeterminate-forms",
+              "title": "Indeterminate Forms",
+              "status": "planned",
+              "owns": "calc.limit.indeterminate",
+              "goal": "Distinguish undefined expressions from limit outcomes.",
+              "prerequisites": [
+                "limits-near-a-point"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "intermediate-value-theorem",
+              "title": "Intermediate Value Theorem",
+              "status": "planned",
+              "owns": "calc.limit.ivt",
+              "goal": "Use continuity to justify a value attained on an interval.",
+              "prerequisites": [
+                "continuity"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-derivatives",
@@ -638,7 +1154,8 @@
               "goal": "Interpret derivative as instantaneous rate and tangent slope.",
               "prerequisites": [
                 "limits-near-a-point"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "power-rule",
@@ -648,7 +1165,8 @@
               "goal": "Differentiate basic power functions.",
               "prerequisites": [
                 "tangent-line"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "product-quotient",
@@ -658,7 +1176,8 @@
               "goal": "Differentiate products and quotients.",
               "prerequisites": [
                 "power-rule"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "chain-rule",
@@ -668,7 +1187,8 @@
               "goal": "Differentiate compositions.",
               "prerequisites": [
                 "product-quotient"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "implicit-differentiation",
@@ -678,7 +1198,8 @@
               "goal": "Differentiate relationships not solved for y.",
               "prerequisites": [
                 "chain-rule"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "related-rates",
@@ -688,9 +1209,51 @@
               "goal": "Model time-dependent related quantities.",
               "prerequisites": [
                 "implicit-differentiation"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "trig-derivatives",
+              "title": "Derivatives of Trigonometric Functions",
+              "status": "planned",
+              "owns": "calc.derivative.trig",
+              "goal": "Differentiate fundamental trigonometric functions.",
+              "prerequisites": [
+                "power-rule",
+                "trig-reference"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "exp-log-derivatives",
+              "title": "Derivatives of Exponential and Logarithmic Functions",
+              "status": "planned",
+              "owns": "calc.derivative.exp-log",
+              "goal": "Differentiate exponential and logarithmic expressions.",
+              "prerequisites": [
+                "chain-rule",
+                "exponential-logarithmic"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "inverse-trig-derivatives",
+              "title": "Inverse Trigonometric Derivatives",
+              "status": "planned",
+              "owns": "calc.derivative.inverse-trig",
+              "goal": "Apply derivatives of inverse trigonometric functions.",
+              "prerequisites": [
+                "chain-rule",
+                "trig-reference"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-applications",
@@ -704,7 +1267,8 @@
               "goal": "Analyze signs of a derivative.",
               "prerequisites": [
                 "power-rule"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "concavity",
@@ -714,7 +1278,8 @@
               "goal": "Interpret the second derivative.",
               "prerequisites": [
                 "critical-points"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "optimization",
@@ -724,7 +1289,8 @@
               "goal": "Build and solve constrained optimization models.",
               "prerequisites": [
                 "critical-points"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "motion-derivatives",
@@ -735,7 +1301,8 @@
               "prerequisites": [
                 "chain-rule",
                 "motion-graphs"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "linearization",
@@ -745,9 +1312,49 @@
               "goal": "Approximate a function with its tangent line.",
               "prerequisites": [
                 "tangent-line"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "mean-value-theorem",
+              "title": "Mean Value Theorem",
+              "status": "planned",
+              "owns": "calc.app.mvt",
+              "goal": "Connect average and instantaneous changes under theorem assumptions.",
+              "prerequisites": [
+                "critical-points"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "first-second-derivative-tests",
+              "title": "First and Second Derivative Tests",
+              "status": "planned",
+              "owns": "calc.app.derivative-tests",
+              "goal": "Classify extrema and intervals of concavity.",
+              "prerequisites": [
+                "concavity"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "lhopital",
+              "title": "L'Hôpital's Rule",
+              "status": "planned",
+              "owns": "calc.app.lhopital",
+              "goal": "Use indeterminate limits under conditions required for the rule.",
+              "prerequisites": [
+                "chain-rule",
+                "limits-near-a-point"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-integrals",
@@ -761,7 +1368,8 @@
               "goal": "Interpret a signed integral as accumulated change.",
               "prerequisites": [
                 "tangent-line"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "riemann-sums",
@@ -771,7 +1379,8 @@
               "goal": "Understand integrals as limits of sums.",
               "prerequisites": [
                 "velocity-accumulation"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "fundamental-theorem",
@@ -781,7 +1390,8 @@
               "goal": "Connect accumulation, derivatives and antiderivatives.",
               "prerequisites": [
                 "riemann-sums"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "substitution",
@@ -792,7 +1402,8 @@
               "prerequisites": [
                 "fundamental-theorem",
                 "chain-rule"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "area-between-curves",
@@ -802,7 +1413,8 @@
               "goal": "Interpret accumulated differences geometrically.",
               "prerequisites": [
                 "fundamental-theorem"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "average-value",
@@ -812,9 +1424,59 @@
               "goal": "Interpret average function value over an interval.",
               "prerequisites": [
                 "fundamental-theorem"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "net-change",
+              "title": "Net Change Theorem",
+              "status": "planned",
+              "owns": "calc.integral.net-change",
+              "goal": "Interpret signed accumulation in varied physical contexts.",
+              "prerequisites": [
+                "fundamental-theorem"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "accumulation-functions",
+              "title": "Accumulation Functions",
+              "status": "planned",
+              "owns": "calc.integral.accumulation-functions",
+              "goal": "Explore upper-limit variable integrals and their derivatives.",
+              "prerequisites": [
+                "fundamental-theorem"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "volumes-cross-sections",
+              "title": "Volumes with Cross Sections",
+              "status": "planned",
+              "owns": "calc.integral.volume-sections",
+              "goal": "Set up solids using known cross-sectional areas.",
+              "prerequisites": [
+                "fundamental-theorem"
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "disk-washer",
+              "title": "Disk and Washer Methods",
+              "status": "planned",
+              "owns": "calc.integral.volume-rotation",
+              "goal": "Use disk/washer cross sections for solids of revolution.",
+              "prerequisites": [
+                "volumes-cross-sections"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-differential",
@@ -828,7 +1490,8 @@
               "goal": "Read a family of solution curves from slopes.",
               "prerequisites": [
                 "tangent-line"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "separable-equations",
@@ -839,7 +1502,8 @@
               "prerequisites": [
                 "substitution",
                 "slope-fields"
-              ]
+              ],
+              "track": "shared-ab-bc"
             },
             {
               "id": "exponential-models",
@@ -850,9 +1514,48 @@
               "prerequisites": [
                 "separable-equations",
                 "exponential-logarithmic"
-              ]
+              ],
+              "track": "shared-ab-bc"
+            },
+            {
+              "id": "euler-method",
+              "title": "Euler's Method",
+              "status": "planned",
+              "owns": "calc.de.euler",
+              "goal": "Approximate an initial-value solution with tangent steps.",
+              "prerequisites": [
+                "slope-fields"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "logistic-models",
+              "title": "Logistic Differential Equations",
+              "status": "planned",
+              "owns": "calc.de.logistic",
+              "goal": "Interpret bounded population growth from differential models.",
+              "prerequisites": [
+                "separable-equations"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "verification-de",
+              "title": "Verify a Differential Equation Solution",
+              "status": "planned",
+              "owns": "calc.de.verify",
+              "goal": "Check a proposed function by differentiation and substitution.",
+              "prerequisites": [
+                "slope-fields"
+              ],
+              "track": "shared-ab-bc"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "shared-ab-bc",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         },
         {
           "id": "cal-bc",
@@ -866,7 +1569,8 @@
               "goal": "Differentiate and integrate parametric trajectories.",
               "prerequisites": [
                 "chain-rule"
-              ]
+              ],
+              "track": "bc-additional"
             },
             {
               "id": "polar-curves",
@@ -876,7 +1580,8 @@
               "goal": "Explore polar area and slope.",
               "prerequisites": [
                 "parametric-curves"
-              ]
+              ],
+              "track": "bc-additional"
             },
             {
               "id": "integration-by-parts",
@@ -887,7 +1592,8 @@
               "prerequisites": [
                 "product-quotient",
                 "fundamental-theorem"
-              ]
+              ],
+              "track": "bc-additional"
             },
             {
               "id": "improper-integrals",
@@ -898,7 +1604,8 @@
               "prerequisites": [
                 "limits-infinity",
                 "fundamental-theorem"
-              ]
+              ],
+              "track": "bc-additional"
             },
             {
               "id": "taylor-series",
@@ -909,9 +1616,149 @@
               "prerequisites": [
                 "power-rule",
                 "limits-near-a-point"
-              ]
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "polar-area",
+              "title": "Area in Polar Coordinates",
+              "status": "planned",
+              "owns": "calc.bc.polar-area",
+              "goal": "Relate polar area to an integral of radius squared.",
+              "prerequisites": [
+                "polar-curves",
+                "fundamental-theorem"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "polar-slope",
+              "title": "Polar Slopes and Tangents",
+              "status": "planned",
+              "owns": "calc.bc.polar-slopes",
+              "goal": "Analyze dy/dx from polar parametrizations.",
+              "prerequisites": [
+                "polar-curves"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "vector-motion",
+              "title": "Vector-Valued Motion",
+              "status": "planned",
+              "owns": "calc.bc.vector-motion",
+              "goal": "Differentiate position vectors to find velocity and acceleration.",
+              "prerequisites": [
+                "parametric-curves"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "partial-fractions",
+              "title": "Partial Fractions in Integration",
+              "status": "planned",
+              "owns": "calc.bc.partial-fractions",
+              "goal": "Decompose rational functions before antiderivatives.",
+              "prerequisites": [
+                "substitution"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "arc-length",
+              "title": "Arc Length of Curves",
+              "status": "planned",
+              "owns": "calc.bc.arc-length",
+              "goal": "Compute distance along smooth parametric or Cartesian curves.",
+              "prerequisites": [
+                "fundamental-theorem",
+                "parametric-curves"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "series-convergence",
+              "title": "Series and Convergence",
+              "status": "planned",
+              "owns": "calc.bc.series-convergence",
+              "goal": "Interpret partial sums and distinguish series from terms.",
+              "prerequisites": [
+                "taylor-series"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "geometric-series",
+              "title": "Geometric Series",
+              "status": "planned",
+              "owns": "calc.bc.geometric-series",
+              "goal": "Use a ratio to determine convergence and sum a geometric series.",
+              "prerequisites": [
+                "series-convergence"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "convergence-tests",
+              "title": "Integral and Comparison Tests",
+              "status": "planned",
+              "owns": "calc.bc.convergence-tests",
+              "goal": "Justify convergence or divergence using appropriate comparisons.",
+              "prerequisites": [
+                "series-convergence"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "alternating-series",
+              "title": "Alternating Series",
+              "status": "planned",
+              "owns": "calc.bc.alternating-series",
+              "goal": "Apply alternating-series convergence and error bounds.",
+              "prerequisites": [
+                "series-convergence"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "ratio-test",
+              "title": "Ratio Test",
+              "status": "planned",
+              "owns": "calc.bc.ratio-test",
+              "goal": "Apply the ratio test and recognize its inconclusive outcome.",
+              "prerequisites": [
+                "series-convergence"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "power-series",
+              "title": "Power Series and Intervals",
+              "status": "planned",
+              "owns": "calc.bc.power-series",
+              "goal": "Determine radius and endpoint convergence for power series.",
+              "prerequisites": [
+                "ratio-test"
+              ],
+              "track": "bc-additional"
+            },
+            {
+              "id": "taylor-error",
+              "title": "Taylor Remainder and Error",
+              "status": "planned",
+              "owns": "calc.bc.taylor-remainder",
+              "goal": "Estimate the error of a Taylor polynomial.",
+              "prerequisites": [
+                "taylor-series"
+              ],
+              "track": "bc-additional"
             }
-          ]
+          ],
+          "syllabus": {
+            "course": "AP Calculus AB / BC 2026–27",
+            "scope": "bc-additional",
+            "textbook": "Larson, Hostetler, Edwards, Calculus (8th ed.)"
+          }
         }
       ]
     }
@@ -1036,10 +1883,10 @@
     }
   ],
   "nextBuild": [
-    "friction",
-    "one-sided-limits",
-    "power-rule",
-    "work-energy"
+    "atomic-models",
+    "significant-figures",
+    "newtons-third-law",
+    "power-rule"
   ],
   "contentKinds": {
     "interactive-lesson": "One canonical concept, visual, explanatory tabs, worked example, practice and conceptual check. Only reviewed originals reach content/lessons.json.",
@@ -1048,5 +1895,388 @@
     "formative-quiz": "Short practice questions with full reasoning, concept ownership and verified solutions.",
     "summative-assessment": "Secure teacher-reviewed test; do not publish protected questions, answers or keys in GitHub Pages.",
     "teacher-edition": "Answer keys, teaching notes, licensing review; keep outside the public static deployment."
+  },
+  "submodules": [
+    {
+      "id": "signs-of-acceleration",
+      "parent": "acceleration",
+      "title": "When negative acceleration increases speed",
+      "status": "available",
+      "misconception": "Velocity and acceleration may have the same negative sign.",
+      "visual": "Sign-of-velocity and sign-of-acceleration comparison",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "slope-versus-height",
+      "parent": "average-velocity",
+      "title": "Slope Is Not Height",
+      "status": "available",
+      "misconception": "The y-value of a position graph is not velocity.",
+      "visual": "Compare graph height and secant slope",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "hole-versus-limit",
+      "parent": "limits-near-a-point",
+      "title": "A Hole Does Not Destroy a Limit",
+      "status": "planned",
+      "misconception": "A missing function value does not prevent a limit.",
+      "visual": "Change the assigned point value without moving the open circle",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "photon-energy-wavelength",
+      "parent": "atom-spectra",
+      "title": "Photon Energy and Wavelength",
+      "status": "planned",
+      "misconception": "Students reverse the frequency/wavelength-energy relationship.",
+      "visual": "Two hydrogen transitions with labels",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "significant-digits",
+      "parent": "significant-figures",
+      "title": "Precision Is Not Accuracy",
+      "status": "planned",
+      "misconception": "Many decimal places do not guarantee an accurate measurement.",
+      "visual": "Instrument-resolution reading challenge",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "parallax-reading",
+      "parent": "parallax",
+      "title": "Parallax and the Observer",
+      "status": "planned",
+      "misconception": "An off-axis eye shifts the apparent mark.",
+      "visual": "Ruler and movable viewpoint",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "graphs-from-tables",
+      "parent": "graph-slope-physics",
+      "title": "From Measurements to Slope",
+      "status": "planned",
+      "misconception": "The rise and run units are overlooked.",
+      "visual": "Student places two points and computes a slope",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "motion-graph-translation",
+      "parent": "motion-graphs",
+      "title": "Translate x–t, v–t, a–t",
+      "status": "planned",
+      "misconception": "Height, slope and area are often confused.",
+      "visual": "Three linked graphs with prediction",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "kinematics-signs",
+      "parent": "constant-acceleration-models",
+      "title": "Choosing Positive and Negative",
+      "status": "planned",
+      "misconception": "Signs are physical directions, not an automatic slowing label.",
+      "visual": "One-dimensional path with editable positive axis",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "third-law-pairs",
+      "parent": "newtons-third-law",
+      "title": "Equal Forces on Different Objects",
+      "status": "planned",
+      "misconception": "Action/reaction forces are mistakenly drawn on one body.",
+      "visual": "Two interacting blocks with paired arrows",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "apparent-weight",
+      "parent": "mass-vs-weight",
+      "title": "Why Does the Scale Reading Change?",
+      "status": "planned",
+      "misconception": "Normal force and weight are confused in accelerating frames.",
+      "visual": "Elevator scale readout",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "static-vs-kinetic",
+      "parent": "friction",
+      "title": "Friction Just Before Sliding",
+      "status": "planned",
+      "misconception": "Static friction is incorrectly assumed always to be μs N.",
+      "visual": "Applied force slider and limiting friction",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "incline-components",
+      "parent": "inclined-planes",
+      "title": "Weight on an Incline",
+      "status": "planned",
+      "misconception": "mg sinθ and mg cosθ are often interchanged.",
+      "visual": "Tilt the plane and resolve weight",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "projectile-horizontal",
+      "parent": "projectile-motion",
+      "title": "Dropped vs. Launched",
+      "status": "planned",
+      "misconception": "Horizontal launch changes horizontal motion, not vertical free-fall time.",
+      "visual": "Synchronize a dropped and projected ball",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "relative-frame",
+      "parent": "relative-velocity",
+      "title": "Which Observer Is Moving?",
+      "status": "planned",
+      "misconception": "Relative velocities are subtracted with inconsistent frames.",
+      "visual": "Boat-and-current motion arrows",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "centripetal-direction",
+      "parent": "circular-motion",
+      "title": "Velocity Tangent, Acceleration Inward",
+      "status": "planned",
+      "misconception": "Students assume that acceleration points with velocity.",
+      "visual": "Circle tangent and inward vector",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "gravity-mass-radius",
+      "parent": "universal-gravitation",
+      "title": "Inverse Square Does Not Mean Inverse",
+      "status": "planned",
+      "misconception": "Doubling distance divides force by four.",
+      "visual": "Distance comparison with force markers",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "momentum-sign",
+      "parent": "momentum-conservation",
+      "title": "Signed Momentum Before and After",
+      "status": "planned",
+      "misconception": "Sign direction is lost in collision equations.",
+      "visual": "Collision carts with velocity arrows",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "energy-system",
+      "parent": "energy-conservation",
+      "title": "Choose the System First",
+      "status": "planned",
+      "misconception": "Mechanical energy conservation applied despite external work.",
+      "visual": "Energy-transfer boundary sketch",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "waves-medium",
+      "parent": "wave-properties",
+      "title": "Wave Speed vs. Particle Motion",
+      "status": "planned",
+      "misconception": "The medium's particles are mistaken for the traveling wave.",
+      "visual": "Single highlighted particle on traveling wave",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "dopper-sign",
+      "parent": "wave-doppler",
+      "title": "Which Doppler Shift Is Higher?",
+      "status": "planned",
+      "misconception": "Frequency shift direction mixed up.",
+      "visual": "Approaching and receding source rings",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "image-virtual",
+      "parent": "ray-diagrams",
+      "title": "Real and Virtual Images",
+      "status": "planned",
+      "misconception": "A virtual image is confused with an actual ray intersection.",
+      "visual": "Ray-tracing toggle",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "circuit-current",
+      "parent": "circuit-networks",
+      "title": "Current Is Not Consumed",
+      "status": "planned",
+      "misconception": "Electric current is thought to decrease across each resistor.",
+      "visual": "Animated current continuity",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "one-sided-jumps",
+      "parent": "one-sided-limits",
+      "title": "When Sides Disagree",
+      "status": "planned",
+      "misconception": "A point value is incorrectly taken as a two-sided limit.",
+      "visual": "Two open/closed endpoint graph branches",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "chain-inside-out",
+      "parent": "chain-rule",
+      "title": "The Inside Function Changes",
+      "status": "planned",
+      "misconception": "The inner derivative is omitted.",
+      "visual": "Animated nested-function mapping",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "derivative-units",
+      "parent": "tangent-line",
+      "title": "Slope Carries Units",
+      "status": "planned",
+      "misconception": "Derivatives treated as dimensionless numbers.",
+      "visual": "Change axis units and read slope units",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "related-rates-diagram",
+      "parent": "related-rates",
+      "title": "Related Rates Begin with a Diagram",
+      "status": "planned",
+      "misconception": "Related quantities are substituted before differentiation.",
+      "visual": "Change geometry and watch coupled rates",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "optimization-domain",
+      "parent": "optimization",
+      "title": "The Feasible Domain Matters",
+      "status": "planned",
+      "misconception": "Candidates outside physical constraints are accepted.",
+      "visual": "Constrained box-volume explorer",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "ftc-two-meanings",
+      "parent": "fundamental-theorem",
+      "title": "Two Directions of the FTC",
+      "status": "planned",
+      "misconception": "Antiderivatives and accumulation are conflated.",
+      "visual": "Curve and running area link",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "riemann-signed",
+      "parent": "riemann-sums",
+      "title": "Signed Area Is Not Geometric Area",
+      "status": "planned",
+      "misconception": "Negative regions are mistakenly counted as positive.",
+      "visual": "Riemann rectangles above and below axis",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "euler-step-size",
+      "parent": "euler-method",
+      "title": "Euler Step Size and Error",
+      "status": "planned",
+      "misconception": "Approximation error and derivative direction are misunderstood.",
+      "visual": "Adjust Euler step size on slope field",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "polar-negative-radius",
+      "parent": "polar-curves",
+      "title": "Negative Radius in Polar Coordinates",
+      "status": "planned",
+      "misconception": "Negative r incorrectly treated as impossible.",
+      "visual": "Polar point with sign flip",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "series-terms-sums",
+      "parent": "series-convergence",
+      "title": "Terms Versus Partial Sums",
+      "status": "planned",
+      "misconception": "Terms going to zero assumed sufficient for convergence.",
+      "visual": "Harmonic series running partial sums",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    },
+    {
+      "id": "taylor-center-error",
+      "parent": "taylor-series",
+      "title": "Taylor Center and Error",
+      "status": "planned",
+      "misconception": "Students confuse local accuracy with global equality.",
+      "visual": "Taylor polynomial with adjustable center/order",
+      "estimatedMinutes": 4,
+      "kind": "visual-challenge",
+      "standalone": false
+    }
+  ],
+  "sourceAlignment": {
+    "authority": "Classroom subject syllabus/course schedule establishes school pacing; AP course framework provides supplemental topic coverage. This public registry stores only original topic summaries, not syllabus text or school assessments.",
+    "physicsCourse": "HLS General Physics 2026–27 / Glencoe Physics: Principles and Problems; Ch. 00, 01, 02–07, 09–11, 14–18, 20–23",
+    "calculusCourse": "HLS AP Calculus AB and BC 2026–27 / Larson, Hostetler and Edwards Calculus, 8th edition",
+    "apFrameworkUrl": "https://apcentral.collegeboard.org/courses/ap-calculus-bc",
+    "teacherReviewRequired": true
   }
 }
