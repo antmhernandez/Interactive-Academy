@@ -1072,7 +1072,7 @@
             {
               "id": "one-sided-limits",
               "title": "One-Sided Limits",
-              "status": "planned",
+              "status": "available",
               "owns": "calc.limit.one-sided",
               "goal": "Compare approaches from left and right.",
               "prerequisites": [
@@ -2118,7 +2118,7 @@
       "standalone": false
     },
     {
-      "id": "dopper-sign",
+      "id": "doppler-sign",
       "parent": "wave-doppler",
       "title": "Which Doppler Shift Is Higher?",
       "status": "planned",
