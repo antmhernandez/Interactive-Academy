@@ -39,7 +39,7 @@ The progression is intentional: students first resolve a velocity vector, then s
 - Two new 3-problem guided sets; numerical expected component results, level-ground flight/range checks and slider redraws in `scripts/test-interactives.mjs`.
 - Chromium responsive smoke suite at **320, 375, 768, 1024, 1440 px**, covering illustrative book journey, classroom mode, all four tabs, accumulation, homepage layout, catalog filtering, new diagrams and next-lesson navigation.
 - Additional manual review needed: iOS Safari, Chrome for Android, keyboard-only, screen-reader semantics, large display/projector and real classroom comprehension.
-- This page records **intended** checks, not a claim of successful CI until the workflow passes. Report actual run and merge in the handoff once confirmed.
+- All listed automated checks passed in [GitHub Actions PR run #37](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40219643743) and the work was merged through [PR #10](https://github.com/antmhernandez/Interactive-Academy/pull/10). Human mobile, visual/physical projector and screen-reader audits remain pending.
 
 ## Publisher and source safeguards
 
