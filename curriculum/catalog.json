@@ -1910,7 +1910,7 @@
     {
       "id": "signs-of-acceleration",
       "parent": "acceleration",
-      "title": "When negative acceleration increases speed",
+      "title": "Can Negative Acceleration Speed You Up?",
       "status": "available",
       "misconception": "Velocity and acceleration may have the same negative sign.",
       "visual": "Sign-of-velocity and sign-of-acceleration comparison",
@@ -1932,7 +1932,7 @@
     {
       "id": "hole-versus-limit",
       "parent": "limits-near-a-point",
-      "title": "A Hole Does Not Destroy a Limit",
+      "title": "The Limit Is Not the Point",
       "status": "available",
       "misconception": "A missing function value does not prevent a limit.",
       "visual": "Change the assigned point value without moving the open circle",
