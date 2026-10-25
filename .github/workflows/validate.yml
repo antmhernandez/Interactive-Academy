@@ -20,6 +20,7 @@ jobs:
           node --check app.js
           node --check lab/motion.js
           node --check lab/regression.mjs
+          node --check scripts/test-browser.mjs
       - name: Validate lesson data, navigation and printables
         run: |
           node scripts/validate.mjs
@@ -28,3 +29,9 @@ jobs:
           node scripts/validate-learning-resources.mjs
           node scripts/test-interactives.mjs
           node scripts/validate-book-portal.mjs
+      - name: Install headless browser for responsive and keyboard tests
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Exercise publisher journey in Chromium
+        run: node scripts/test-browser.mjs
