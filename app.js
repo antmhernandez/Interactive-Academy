@@ -40,7 +40,9 @@ const visualKeys={
  "slope-height":[["teal","Position line"],["amber","Current point"]],
  "sign-speed":[["teal","Velocity"],["amber","Acceleration"]],
  "limit-value":[["teal","Nearby graph"],["amber","Defined point"]],
- "unit-conversion":[["teal","Meters"],["amber","Centimeters"]]
+ "unit-conversion":[["teal","Meters"],["amber","Centimeters"]],
+ "measurement-ruler":[["teal","Estimated interval"],["amber","Object edge"]],
+ "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -194,6 +196,8 @@ function lesson(l){
  if(l.visual==="hydrogen-spectrum")hydrogenSpectrum(el);
  if(l.visual==="one-sided-limit")oneSidedLimit(el);
  if(l.visual==="unit-conversion")unitConversion(el);
+ if(l.visual==="measurement-ruler")measurementRuler(el);
+ if(l.visual==="significant-digits")significantDigits(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -469,6 +473,30 @@ function unitConversion(el){
  el.querySelector("#unit-input-value").textContent=f(meters)+" m";el.querySelector("#unit-meters").textContent=f(meters)+" m";el.querySelector("#unit-centimeters").textContent=f(meters*100)+" cm";
  }
  slider.oninput=draw;draw();
+}
+function measurementRuler(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Read an analog ruler</strong><span class="pill">Measurement resolution</span></div><svg viewBox="0 0 540 260" role="img" aria-label="Millimeter ruler and movable object edge with measurement uncertainty"><rect width="540" height="260" rx="12" fill="#f8fbf9"/><g id="ruler-plot"></g></svg><div class="controls"><label>Object edge <strong id="measure-pos"></strong><input id="ruler-pos" type="range" min="2" max="78" step=".1" value="26.4"/></label><label>Smallest division <select id="ruler-resolution"><option value="1">1 mm</option><option value=".5">0.5 mm</option></select></label></div><div class="readout"><div class="metric"><small>Ruler reading</small><strong id="measure-reading"></strong></div><div class="metric"><small>Reading uncertainty</small><strong id="measure-uncertainty"></strong></div></div><p class="note">Illustrative ±half-division uncertainty. Calibration, alignment and reading method also matter.</p>`;
+ const value=el.querySelector("#ruler-pos"),res=el.querySelector("#ruler-resolution"),graph=el.querySelector("#ruler-plot"),px=n=>68+5*n;
+ function draw(){
+  const pos=+value.value,r=+res.value,reading=Math.round(pos/r)*r,uncertainty=r/2,decimals=r===1?1:2;
+  const ticks=Array.from({length:17},(_,i)=>{const m=i*5,x=px(m);return `<path d="M${x} 114V${m%10===0?151:135}" stroke="#7a9c91" stroke-width="${m%10===0?2:1}"/><text x="${x}" y="169" font-size="11" text-anchor="middle" fill="#526b64">${m}</text>`}).join("");
+  graph.innerHTML=`<rect x="52" y="110" width="430" height="65" rx="7" fill="#e5f0eb" stroke="#8aaea0"/>${ticks}<path d="M${px(pos)} 54V195" stroke="#c08039" stroke-width="3.5"/><path d="M${px(reading-uncertainty)} 203H${px(reading+uncertainty)}" stroke="#14727a" stroke-width="6" stroke-linecap="round"/><text x="68" y="31" font-size="14" fill="#45645e">Length on ruler (mm)</text><text x="68" y="244" font-size="12" fill="#496c65">Teal segment: reading ± uncertainty</text>`;
+  el.querySelector("#measure-pos").textContent=f(pos)+" mm";
+  el.querySelector("#measure-reading").textContent=reading.toFixed(decimals)+" mm";
+  el.querySelector("#measure-uncertainty").textContent="±"+uncertainty.toFixed(decimals)+" mm";
+ }value.oninput=res.onchange=draw;draw();
+}
+function significantDigits(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Keep only justified digits</strong><span class="pill">Multiplication rule</span></div><svg viewBox="0 0 540 226" role="img" aria-label="Measured factors and correctly rounded numerical product"><rect width="540" height="226" rx="12" fill="#f8fbf9"/><g id="sig-plot"></g></svg><div class="controls"><label>First measured factor <select id="sig-a"><option value="2.40">2.40 (3 digits)</option><option value="4.20">4.20 (3 digits)</option><option value="12.36">12.36 (4 digits)</option></select></label><label>Second measured factor <select id="sig-b"><option value="3.1">3.1 (2 digits)</option><option value="2.0">2.0 (2 digits)</option><option value="4.25">4.25 (3 digits)</option></select></label></div><div class="readout"><div class="metric"><small>Unrounded product</small><strong id="sig-raw"></strong></div><div class="metric"><small>Reported product</small><strong id="sig-rounded"></strong></div><div class="metric"><small>Significant digits</small><strong id="sig-count"></strong></div></div><p class="note">Multiplication/division: use the fewest significant digits. Addition/subtraction: round to the least precise decimal place.</p>`;
+ const A=el.querySelector("#sig-a"),B=el.querySelector("#sig-b"),G=el.querySelector("#sig-plot");
+ const digits=v=>v.replace(".","").replace(/^0+/,"").length;
+ function draw(){
+  const a=A.value,b=B.value,p=Number(a)*Number(b),n=Math.min(digits(a),digits(b));
+  G.innerHTML=`<rect x="27" y="44" width="145" height="88" rx="11" fill="#e0f1ed" stroke="#93c9bb"/><rect x="194" y="44" width="145" height="88" rx="11" fill="#fff0dc" stroke="#e1ba85"/><rect x="362" y="44" width="149" height="88" rx="11" fill="#e6eff9" stroke="#b7cbdc"/><text x="100" y="71" text-anchor="middle" font-size="12" fill="#4e7168">Factor A</text><text x="100" y="105" text-anchor="middle" font-size="25" fill="#14727a">${a}</text><text x="267" y="71" text-anchor="middle" font-size="12" fill="#a17035">Factor B</text><text x="267" y="105" text-anchor="middle" font-size="25" fill="#b87831">${b}</text><text x="436" y="71" text-anchor="middle" font-size="12" fill="#506f8c">Report</text><text x="436" y="105" text-anchor="middle" font-size="25" fill="#315c82">${p.toPrecision(n)}</text><text x="182" y="94" font-size="20" fill="#647e74">×</text><text x="346" y="94" font-size="20" fill="#647e74">→</text><text x="270" y="167" text-anchor="middle" font-size="15" fill="#3d6d65">The less precise factor limits the product.</text><text x="270" y="193" text-anchor="middle" font-size="13" fill="#66817a">Calculate first, then round once.</text>`;
+  el.querySelector("#sig-raw").textContent=String(Number(p.toFixed(8)));
+  el.querySelector("#sig-rounded").textContent=p.toPrecision(n);
+  el.querySelector("#sig-count").textContent=String(n);
+ }A.onchange=B.onchange=draw;draw();
 }
 function motion(el){
  el.innerHTML=`<div class="diagram-head"><strong>Equal time intervals</strong><span class="pill">Motion diagram</span></div><svg viewBox="0 0 520 260" role="img" aria-label="Seven dots indicating a cart's positions at equally spaced times"><rect width="520" height="260" rx="12" fill="#f8fbf9"/><path d="M26 194H492" stroke="#a7bdb6" stroke-width="2"/><g id="dots"></g><g id="cart"><rect x="-16" y="-12" width="32" height="20" rx="4" fill="#b6773e"/><circle cx="-9" cy="10" r="4" fill="#264e5a"/><circle cx="9" cy="10" r="4" fill="#264e5a"/></g><text x="25" y="230" fill="#56756f" font-size="13">Earlier</text><text x="429" y="230" fill="#56756f" font-size="13">Later →</text></svg><div class="controls"><label>How does the cart move?<select id="pattern"><option value="constant">Constant speed</option><option value="up">Speeding up</option><option value="down">Slowing down</option></select></label><button id="replay">Replay motion ↻</button></div><p class="note" id="motiondesc"></p>`;
