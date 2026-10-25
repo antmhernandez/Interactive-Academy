@@ -6,6 +6,7 @@ let curriculum=null;
 let submodules=[];
 let guidedSets=[];
 let physicsEquations=null;
+let bookPathways=null;
 const escapeHtml=(v)=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f=n=>String(Number(Number(n).toFixed(3)));
 const get=id=>lessons.find(l=>l.id===id);
@@ -53,20 +54,25 @@ function visualLegend(name){
 }
 function heroArt(){return `<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 320"><defs><pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#b5c8bd" stroke-width=".8" opacity=".5" fill="none"/></pattern></defs><rect width="500" height="320" fill="#edf3ee"/><rect width="500" height="320" fill="url(#hero-grid)"/><path d="M52 262H466M78 290V30" stroke="#97b6af" stroke-width="1.5"/><path d="M77 244 Q170 282 265 134 T443 45" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M130 239L367 78" stroke="#ca8a46" stroke-width="3.4"/><circle cx="258" cy="145" r="8" fill="#d89e53" stroke="white" stroke-width="4"/><path d="M258 145V262" stroke="#a2b9b2" stroke-width="1.5" stroke-dasharray="5 5"/><text x="349" y="117" fill="#16666d" font-size="22" font-family="Georgia" font-style="italic">f(x)</text><text x="294" y="202" fill="#ad733b" font-size="17" font-family="Georgia">tangent</text></svg></div>`;}
 function home(){
- const physics=lessons.filter(l=>l.subject==="physics"),calculus=lessons.filter(l=>l.subject==="calculus");
- main.innerHTML=`
- <div class="route-nav"><span class="route-current">The Learning Atlas</span><a href="#physics">Physics</a><a href="#calculus">Calculus</a></div>
- <section class="home-hero">
-   <div class="eyebrow">Physics &amp; Calculus, made visible</div>
-   <h1>See it. Understand it.</h1>
-   <p>One clear idea at a time. Explore a diagram, follow an example, then try it yourself.</p>
-   <div class="home-choices">
-     <a class="subject-tile" href="#physics"><span class="subject-glyph">↗</span><span><strong>Physics</strong><small>${physics.length} interactive topics</small></span><span aria-hidden="true">→</span></a>
-     <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} interactive topics</small></span><span aria-hidden="true">→</span></a>
-   </div>
+ const p=lessons.filter(l=>l.subject==="physics"),c=lessons.filter(l=>l.subject==="calculus");
+ main.innerHTML=`<div class="route-nav"><span class="route-current">Welcome to The Learning Atlas</span><a href="#books">Grade &amp; book library</a><a href="#showcase">Publisher demo</a></div>
+ <section class="home-hero publisher-hero">
+  <div class="eyebrow">A classical companion for the mathematical sciences</div>
+  <h1>See the idea.<br><em>Learn to reason.</em></h1>
+  <p>One concept at a time: observe it, understand it, then work through the mathematics with confidence.</p>
+  <div class="showcase-actions"><a class="btn primary" href="#books">Explore by grade or book →</a><a class="btn" href="#showcase">View the publisher demonstration</a></div>
+  <div class="home-proof">Original demonstrations <span aria-hidden="true">·</span> Step-by-step reasoning <span aria-hidden="true">·</span> Independent student practice</div>
  </section>
- <section class="home-feature"><div class="home-feature-art">${heroArt()}</div><div class="home-feature-copy"><div class="eyebrow">Start with a picture</div><h2>What does motion look like?</h2><p>Move the dots. See how speed changes.</p><a class="btn primary" href="#lesson/motion-diagrams">Explore motion →</a></div></section>
- <div class="lab-strip"><div><strong>Have experimental data?</strong><span>Graph motion and find a mathematical model.</span></div><a href="lab/motion.html">Open Motion Lab →</a></div>`;
+ <section class="home-feature"><div class="home-feature-art">${heroArt()}</div><div class="home-feature-copy"><div class="eyebrow">An example of the method</div>
+ <h2>From motion to meaning.</h2><p>See how position changes, examine the mathematical pattern, and try a problem yourself.</p>
+ <a class="btn primary" href="#lesson/motion-diagrams">Explore the motion demonstration →</a></div></section>
+ <div class="section-heading home-section-heading"><div><div class="eyebrow">Start with a subject</div><h2>The learning collection</h2></div></div>
+ <div class="home-choices subject-choices">
+  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${p.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${c.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
+ </div>
+ <div class="lab-strip"><div><strong>Work with measurements.</strong><span>Graph position–time data and fit a physical model.</span></div><a href="lab/motion.html">Motion Data Lab →</a></div>
+ <p class="independence-note">Independent concept prototype for discussion. Memoria Press titles appear as catalog references, not official integrations or endorsed supplements.</p>`;
 }
 function catalog(s){
  const items=courseList(s),completedTotal=completedCount(s);
@@ -85,6 +91,7 @@ function catalog(s){
  <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
+ <div class="outline-link"><a href="#books">Browse grade-level books and related concepts →</a></div>
  <div class="outline-link"><a href="#roadmap/${s}">View full course map <span>(${futureCount} planned topics)</span> →</a></div>
  ${s==="physics"?'<div class="outline-link"><a href="#equations">Chapter Equation Reference →</a></div><div class="optional-preview">Curious about atoms? <a href="#lesson/atom-spectra">Preview the colors of hydrogen</a>. Its quantitative model belongs in Chapter 28.</div>':""}
  <section class="resources"><details><summary>Guided notes &amp; experiments</summary><div class="resource-links">${printableLinks}</div></details></section>`;
@@ -723,14 +730,75 @@ function equationChapter(ch){
  ${supporting.length?`<section class="chapter-topic-links"><h2>Study these concepts</h2>${supporting.map(l=>`<a href="#study/${l.id}">${escapeHtml(l.title)} →</a>`).join("")}</section>`:""}
  <div class="lesson-end">${prev?`<a href="#equations/${prev.number}">← Chapter ${prev.number}</a>`:""}<a href="#equations">Full equation index</a>${next?`<a class="next-link" href="#equations/${next.number}">Chapter ${next.number} →</a>`:""}</div></article>`;
 }
+function bookTile(book){
+ const gradeText=book.gradeIds.map(n=>"Grade "+n).join(" · ");
+ const count=book.topicIds.length;
+ return `<a class="book-tile" href="#book/${book.id}">
+ <span class="book-spine" aria-hidden="true"><span>${book.subject==="calculus"?"∫":book.subject==="mathematics"?"x²":"Φ"}</span></span>
+ <span class="book-tile-body"><span class="eyebrow">${escapeHtml(gradeText)}</span><strong>${escapeHtml(book.title)}</strong>
+ <small>${escapeHtml(book.imprint)}</small><em>${count?count+" example concept "+(count===1?"link":"links"):"Navigation example · content pending"}</em></span><span aria-hidden="true" class="book-tile-arrow">→</span></a>`;
+}
+function booksHome(){
+ const catalog=bookPathways;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
+ <section class="books-intro"><div class="eyebrow">Curriculum Library · Prototype</div><h1>Begin with a book.</h1>
+ <p>Choose a grade or text, then explore original demonstrations that illuminate related ideas.</p>
+ <div class="books-note" role="note">${escapeHtml(catalog.notices.mappings)}</div></section>
+ <section class="grade-choices" aria-label="Choose a grade">${catalog.grades.map(g=>`<a href="#grade/${g.id}"><span>Grade</span><strong>${g.id}</strong></a>`).join("")}</section>
+ <div class="section-heading"><div><div class="eyebrow">Browse by text</div><h2>Curriculum pathways</h2></div><span class="section-support">Official catalog links are provided on each book page</span></div>
+ <div class="book-grid">${catalog.references.map(bookTile).join("")}</div>
+ <section class="publisher-note"><h2>About these connections</h2><p>${escapeHtml(catalog.notices.relationship)} ${escapeHtml(catalog.notices.sources)}</p>
+ <a href="#showcase">See the publisher demonstration overview →</a></section>`;
+}
+function gradeBooks(gradeId){
+ const grade=bookPathways.grades.find(g=>g.id===gradeId);if(!grade){booksHome();return;}
+ const selected=bookPathways.references.filter(b=>b.gradeIds.includes(gradeId));
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#books">← All books</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
+ <header class="books-intro"><div class="eyebrow">Curriculum Library · Grade pathway</div><h1>${escapeHtml(grade.label)}</h1><p>${escapeHtml(grade.description)}</p>
+ <div class="books-note">${escapeHtml(bookPathways.notices.mappings)}</div></header>
+ <nav class="grade-choices" aria-label="Switch grade">${bookPathways.grades.map(g=>`<a href="#grade/${g.id}" ${g.id===gradeId?'aria-current="page"':""}><span>Grade</span><strong>${g.id}</strong></a>`).join("")}</nav>
+ <div class="book-grid">${selected.map(bookTile).join("")}</div><div class="backline"><a href="#books">View every book pathway →</a></div>`;
+}
+function bookDetail(bookId){
+ const book=bookPathways.references.find(b=>b.id===bookId);if(!book){booksHome();return;}
+ const matched=book.topicIds.map(id=>lessons.find(l=>l.id===id)).filter(Boolean);
+ const official=book.publishedUrl?`<a class="btn external-catalog" href="${escapeHtml(book.publishedUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(book.publishedLinkLabel)} ↗</a>`:"";
+ const links=matched.length?matched.map(l=>`<article class="book-match"><span class="lesson-ordinal">Concept</span><div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.subtitle)}</p><div class="inline-learning-links"><a href="#lesson/${l.id}">Interactive idea →</a><a href="#study/${l.id}">Definition &amp; example →</a><a href="#guided/${l.id}">Guided practice →</a></div></div></article>`).join("")
+ :`<div class="empty-state"><strong>Example pathway only.</strong><p>There is not yet a published lesson connection for this book. A publisher-approved chapter crosswalk and new original lessons would come later.</p></div>`;
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#books">← All books</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
+ <section class="book-detail-head"><div class="eyebrow">Publisher discussion · Textbook pathway</div><h1>${escapeHtml(book.title)}</h1>
+ <p class="book-imprint">${escapeHtml(book.imprint)}</p><p>${escapeHtml(book.description)}</p>
+ <div class="book-cta">${book.gradeIds.map(g=>`<a href="#grade/${g}" class="grade-link">Grade ${g}</a>`).join("")}${official}</div></section>
+ <section class="mapping-explainer" role="note"><strong>Illustrative relationship, not a chapter match</strong>
+ <p>${escapeHtml(bookPathways.notices.mappings)} No protected text, book illustrations, exercise numbers or answer keys have been imported.</p></section>
+ <div class="section-heading"><div><div class="eyebrow">Explore original teaching examples</div><h2>Related interactive concepts</h2></div><span class="section-support">${matched.length} published examples</span></div>
+ <div class="book-match-list">${links}</div>
+ <div class="backline"><a href="#books">← All textbooks</a> <a href="#physics">View Physics lessons</a> <a href="#calculus">View Calculus lessons</a></div>`;
+}
+function showcase(){
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#books">Book library →</a></nav>
+ <header class="books-intro"><div class="eyebrow">For curriculum and publishing teams · Concept prototype</div>
+ <h1>From the printed page to understanding.</h1>
+ <p>An independent demonstration of how concise visual explanations, guided reasoning, and book-aware navigation could complement a carefully sequenced traditional curriculum.</p>
+ <div class="showcase-actions"><a class="btn primary" href="#books">Browse grade and book pathways →</a><a class="btn" href="#lesson/graph-slope-physics">See an interactive lesson →</a></div></header>
+ <div class="showcase-columns">
+ <section class="showcase-step"><span class="step-no">01</span><h2>Choose a text</h2><p>Browse by grade and a curated catalog reference. Concept links are intentionally marked illustrative until a publisher-approved crosswalk exists.</p><a href="#book/physical-science">Explore a science book pathway →</a></section>
+ <section class="showcase-step"><span class="step-no">02</span><h2>See the idea</h2><p>One striking visual and an intentionally brief explanation, with The Idea, Example, Think and Try it available underneath.</p><a href="#lesson/motion-graphs">See a Physics demonstration →</a></section>
+ <section class="showcase-step"><span class="step-no">03</span><h2>Reason through it</h2><p>New worked-solution steps remain visible as a student advances. A separate page offers three levels of independent guided practice.</p><a href="#guided/graph-slope-physics">Explore graduated problems →</a></section>
+ <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#equations">Open the equation reference →</a></section></div>
+ <section class="publisher-note"><div class="eyebrow">Discussion points</div><h2>What would need publisher approval?</h2>
+ <p>Textbook editions and page-by-page mapping, protected diagrams or passages, brand and logo permissions, teacher-only materials, editorial review, commercial hosting, accessibility requirements, support ownership and educational claims.</p>
+ <p><strong>Current boundary:</strong> independently written original lessons and illustrations; no copied textbook content, no student accounts, no student-data collection, and no claim of official Memoria Press sponsorship.</p>
+ <a href="#about">Read about the independent prototype →</a></section>`;
+}
 function route(){
  const hash=decodeURIComponent(location.hash.slice(1))||"home",parts=hash.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
 window.addEventListener("hashchange",route);
-Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json","content/guided-practice.json","content/equations-physics.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
- .then(([data,map,micro,practice,equations])=>{lessons=data;curriculum=map;submodules=micro;guidedSets=practice;physicsEquations=equations;route();})
+Promise.all(["content/lessons.json","curriculum/catalog.json","content/submodules.json","content/guided-practice.json","content/equations-physics.json","content/book-pathways.json"].map(path=>fetch(path).then(r=>{if(!r.ok)throw Error("Could not load "+path);return r.json();})))
+ .then(([data,map,micro,practice,equations,books])=>{lessons=data;curriculum=map;submodules=micro;guidedSets=practice;physicsEquations=equations;bookPathways=books;route();})
  .catch(e=>{main.innerHTML='<article class="plain-page"><h1>Unable to open lessons</h1><p>Use a local web server (for example, <code>python -m http.server 8000</code>) or GitHub Pages.</p></article>';console.error(e);});
