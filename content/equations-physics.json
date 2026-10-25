@@ -337,7 +337,7 @@
         {
           "name": "Density",
           "formula": "ρ = m / V",
-          "conditions": "Mass per unit volume."
+          "conditions": "Mass per unit volume of a material sample."
         }
       ]
     },
@@ -389,7 +389,7 @@
         {
           "name": "Light in vacuum",
           "formula": "c = fλ",
-          "conditions": "c ≈ 3.00 × 10⁸ m/s."
+          "conditions": "Electromagnetic waves in vacuum, with c ≈ 3.00 × 10⁸ m/s."
         },
         {
           "name": "Refractive index",
