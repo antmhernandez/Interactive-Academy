@@ -177,7 +177,11 @@
         "two-dimensional-motion",
         "projectile-motion",
         "circular-motion",
-        "relative-velocity"
+        "relative-velocity",
+        "work-energy",
+        "kinetic-energy",
+        "potential-energy",
+        "energy-conservation"
       ],
       "alignment": "independent-prototype",
       "review": "prototype-only"
