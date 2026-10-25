@@ -54,7 +54,9 @@ const visualKeys={
  "incline-friction":[["amber","Downhill gravity"],["teal","Uphill friction"],["green","Normal"],["navy","Weight"]],
  "energy-ramp":[["teal","Kinetic"],["navy","Gravitational potential"],["amber","Thermal transfer"]],
  "gravity-field":[["teal","Inward gravitational force"],["amber","Test mass"]],
- "circular-orbit":[["teal","Tangential velocity"],["amber","Inward gravitational acceleration"]]
+ "circular-orbit":[["teal","Tangential velocity"],["amber","Inward gravitational acceleration"]],
+ "torque-lever":[["amber","Applied force"],["teal","Perpendicular component"],["navy","Lever arm"]],
+ "rotation-dynamics":[["amber","Wheel marker"],["navy","Disk or hoop"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -164,6 +166,11 @@ function lesson(l){
  <nav class="energy-study-path" aria-label="Optional energy study sequence">
   <span class="eyebrow">Chapters 10–11 exploration · A guided sequence</span>
   ${["work-energy","kinetic-energy","potential-energy","energy-conservation"].map((id,i)=>`<a href="#lesson/${id}" ${l.id===id?'aria-current="page"':""}>${i+1}. ${escapeHtml(get(id).title)}</a>`).join("")}
+ </nav>`:""}
+ ${["torque-levers","rotational-inertia","rotational-dynamics"].includes(l.id)?`
+ <nav class="energy-study-path" aria-label="Optional Chapter 8 rotation study sequence">
+  <span class="eyebrow">Chapter 8 optional extension · A guided three-lesson sequence</span>
+  ${["torque-levers","rotational-inertia","rotational-dynamics"].map((id,i)=>`<a href="#lesson/${id}" ${l.id===id?'aria-current="page"':""}>${i+1}. ${escapeHtml(get(id).title)}</a>`).join("")}
  </nav>`:""}
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
@@ -279,6 +286,8 @@ function lesson(l){
  if(l.visual==="energy-ramp")energyRamp(el);
  if(l.visual==="gravity-field")gravityField(el);
  if(l.visual==="circular-orbit")orbitGravity(el);
+ if(l.visual==="torque-lever")torqueLever(el);
+ if(l.visual==="rotation-dynamics")rotationalSpin(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -866,7 +875,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"torque-levers":8,"rotational-inertia":8,"rotational-dynamics":8,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -1014,6 +1023,8 @@ function appletsHome(){
  const entries=[
  ["universal-gravitation","◎","physics","Gravity · Chapter 7","Measure the inverse-square force and acceleration as distance changes."],
  ["orbital-motion","◌","physics","Orbits · Chapter 7","Explore the inward pull and tangent velocity of a circular satellite."],
+ ["torque-levers","⤾","physics","Torque · Chapter 8 extension","Vary force angle and lever-arm length to discover signed turning effect."],
+ ["rotational-dynamics","◍","physics","Spin · Chapter 8 extension","Compare a disk and hoop under identical net torque."],
  ["energy-conservation","◒","physics","Energy · Chapters 10–11 preview","Watch height and motion become thermal energy without changing the total."],
  ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
  ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
