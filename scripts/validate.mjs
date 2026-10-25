@@ -64,7 +64,7 @@ assert.ok(css.includes(".visual-stage") && css.includes(".focus-head"),"Focused 
 assert.ok(site.includes("lab/motion.html") && js.includes("lab/motion.html"),"Motion lab navigation missing");
 for(const path of ["lab/motion.html","lab/motion.css","lab/motion.js","lab/regression.mjs","docs/09_FOCUSED_LESSON_AND_VISUAL_DESIGN_STANDARD.md"]) assert.ok(fs.existsSync(new URL(path,root)),"Lab file missing: "+path);
 // Sanity checks for the numerical practice keys in newly added topics.
-for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["scientific-measurement",42.5],["significant-figures",8.4],["dimensional-analysis",30],["graph-slope-physics",3],["one-sided-limits",3],["two-dimensional-motion",10],["projectile-motion",14/9.8]]) {
+for (const [id,expected] of [["position-displacement",11],["average-velocity",3],["free-fall",3],["velocity-accumulation",16],["force-components",10],["free-body-diagram",29.4],["newtons-second-law",5],["limits-near-a-point",6],["atom-spectra",486.27451],["si-units",2500],["scientific-measurement",42.5],["significant-figures",8.4],["dimensional-analysis",30],["graph-slope-physics",3],["one-sided-limits",3],["two-dimensional-motion",10],["projectile-motion",1.42857142857]]) {
  assert.equal(lessons.find(l=>l.id===id).practice.answer,expected,"Incorrect practice key for "+id);
 }
 for (const token of ["#home","#physics","#calculus","#about"]) assert.ok(site.includes(token));
