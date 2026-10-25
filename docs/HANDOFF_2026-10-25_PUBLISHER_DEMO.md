@@ -190,7 +190,7 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 
 ## October 25 continuation — Contact-force concept laboratories
 
-**Feature branch:** `feature/friction-inclines-inquiry-2026-10-25`. **User goal:** proceed immediately with original interactive curriculum work, prioritizing authentic manipulable applets for difficult Physics concepts, then worked examples and practice.
+**Merged:** [PR #12](https://github.com/antmhernandez/Interactive-Academy/pull/12) into `main` October 25, 2026; squash commit `d4578df7b0dda89831eab9835aac8b8e1261af68`. **User goal:** continue delivering original manipulative applets and problem scaffolding; `main` is authoritative.
 
 ### Implementation
 - Two complete original student-facing Chapter 5 lessons:
@@ -206,3 +206,9 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - Verify numerical cases, browser accessibility/overflow, signed units, threshold controls and PR CI. Merge only after successful validation; record PR SHA, final main CI run and truthful untested areas.
 - Human teacher/student review of static friction (not always μsN), start-of-slip and ramp component intuition; manual touch, Safari and screen-reader testing.
 - Next high-value applet topics after a real classroom review: energy conservation and frictional loss; elastic/inelastic collisions; wave interference; graphical Calculus convergence.
+
+### Verification record for friction/incline PR #12
+- **PR validation successful:** [GitHub Actions run #50](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40229164106).
+- Passed: all original validators; 26 lessons / 78 guided problems / 84 existing equation entries / 148 canonical curriculum topics; two separate force-model numerical regression suites testing threshold, kinetic branch, ramp components, critical angle, mass cancellation, constrained coefficients and reset.
+- Headless Chromium passed at 320, 375, 768, 1024, and 1440px; covers the experiment-gallery count/filter, book navigation, lesson tabs, numeric sliders, both new onset-of-slip actions, progressive steps and presentation mode.
+- Publishing: PR #12 merged into `main`. Re-verify main-branch CI and public Pages propagation separately; do not substitute a Chromium viewport for actual iOS/Safari, screen-reader, physical projector or lesson-pedagogy testing.
