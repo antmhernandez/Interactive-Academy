@@ -82,6 +82,7 @@ function catalog(s){
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
  <div class="outline-link"><a href="#roadmap/${s}">View full course map <span>(${futureCount} planned topics)</span> →</a></div>
+ ${s==="physics"?'<div class="outline-link"><a href="#equations">Chapter Equation Reference →</a></div><div class="optional-preview">Curious about atoms? <a href="#lesson/atom-spectra">Preview the colors of hydrogen</a>. Its quantitative model belongs in Chapter 28.</div>':""}
  <section class="resources"><details><summary>Guided notes &amp; experiments</summary><div class="resource-links">${printableLinks}</div></details></section>`;
  document.querySelector("#search").addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase();
@@ -102,6 +103,7 @@ function roadmap(subjectId){
  }).join("");
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#${subjectId}">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${courseList(subjectId)[0].id}">First lesson →</a></nav>
  <header class="catalog-head"><div class="eyebrow">Curriculum roadmap · ${escapeHtml(info.title)}</div><h1>Course Map</h1><p>Explore the lessons available now. Future topics are organized here but cannot yet be opened.</p><div class="mini-progress">${available} available · ${topics.length-available} planned</div></header>
+ ${subjectId==="physics"?'<p><a href="#equations" class="btn">Physics equation reference →</a></p>':""}
  <div class="roadmap-units">${sections}</div>
  <p class="map-footnote">This outline is a development plan, not a promise of course completion or a textbook reproduction. Some topics may be revised as we test the teaching sequence.</p>`;
 }
@@ -127,16 +129,17 @@ function lesson(l){
  <button id="tab-concept-check" role="tab" type="button" data-view="concept-check" aria-controls="concept-check">Think</button>
  <button id="tab-practice" role="tab" type="button" data-view="practice" aria-controls="practice">Try it</button>
  </div>
- <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text">${escapeHtml(l.idea)}</p></section>
+ <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text definition-first">${escapeHtml(l.definition)}</p><p class="concept-context">${escapeHtml(l.idea)}</p><p class="topic-readmore"><a href="#study/${l.id}">Read definition &amp; try an example →</a></p></section>
  <section class="lesson-panel" role="tabpanel" id="example" aria-labelledby="tab-example">
  <div class="eyebrow">Worked example</div><h2>Follow the steps</h2><p>${escapeHtml(l.example.question)}</p>
- <div class="example"><div class="step-counter" id="stepcount"></div><div class="step" id="steptext"></div><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Next step →</button><button id="restart" type="button">Start over</button></div></div></section>
+ <div class="example"><div class="step-counter" id="stepcount"></div><ol class="worked-steps" id="steptext" aria-label="Cumulative worked solution" aria-live="polite" aria-relevant="additions"></ol><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Reveal next step ↓</button><button id="restart" type="button">Start over</button></div></div></section>
  <section class="lesson-panel" role="tabpanel" id="practice" aria-labelledby="tab-practice">
  <div class="eyebrow">Independent practice</div><h2>Your turn</h2><p>${escapeHtml(l.practice.prompt)}</p>
  <form id="answerform"><label for="answer">Answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required inputmode="decimal" placeholder="Enter your answer"><button class="primary" type="submit">Check</button></div></form><p id="feedback" class="feedback" role="status" aria-live="polite"></p>
  <button class="hint-button" id="hintbtn" type="button">Need a hint?</button><p id="hinttext" class="hint" hidden></p></section>
  </section>
  ${submodulesFor(l.id)}
+ <nav class="companion-links" aria-label="More ways to learn this concept"><a href="#study/${l.id}"><strong>Definition &amp; Example</strong><small>One solved problem, then your turn</small></a><a href="#guided/${l.id}"><strong>Guided Practice</strong><small>Three increasing levels with optional steps</small></a>${l.subject==="physics"?`<a href="#equations/${lessonChapter(l)}"><strong>Chapter ${lessonChapter(l)} Equations</strong><small>Formulas, meaning, and assumptions</small></a>`:""}</nav>
  <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${next?"Next concept →":"All "+subject(l.subject)+" lessons →"}</a></div>
  </article>`;
  // Add the check panel before tab handling. The visual remains visible throughout.
@@ -158,9 +161,10 @@ function lesson(l){
  }
  showTab("understand");
  const st=l.example.steps;let step=0;
- function paintStep(){document.querySelector("#stepcount").textContent=`Step ${step+1} of ${st.length}`;document.querySelector("#steptext").textContent=st[step];document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
+ const stepList=document.querySelector("#steptext");
+ function paintStep(){stepList.replaceChildren();for(const sentence of st.slice(0,step+1)){const li=document.createElement("li");li.className="worked-step";li.textContent=sentence;stepList.append(li);}document.querySelector("#stepcount").textContent=`Showing ${step+1} of ${st.length} steps`;document.querySelector("#prev").disabled=step===0;document.querySelector("#next").disabled=step===st.length-1;}
  document.querySelector("#prev").onclick=()=>{step=Math.max(0,step-1);paintStep();};
- document.querySelector("#next").onclick=()=>{step=Math.min(st.length-1,step+1);paintStep();};
+ document.querySelector("#next").onclick=()=>{if(step>=st.length-1)return;step++;renderAccumulativeStep(stepList,st[step]);document.querySelector("#stepcount").textContent=`Showing ${step+1} of ${st.length} steps`;document.querySelector("#prev").disabled=false;document.querySelector("#next").disabled=step===st.length-1;};
  document.querySelector("#restart").onclick=()=>{step=0;paintStep();};paintStep();
  document.querySelector("#answerform").onsubmit=e=>{
   e.preventDefault();const input=document.querySelector("#answer").value, value=Number(input);
