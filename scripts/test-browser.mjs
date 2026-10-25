@@ -31,6 +31,10 @@ try{
   page.on("pageerror",err=>errors.push(width+": "+err.message));
   await route(page,"#books");
   const hasOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
+  if(hasOverflow){
+   const culprits=await page.evaluate(()=>[...document.querySelectorAll("body *")].filter(el=>{const r=el.getBoundingClientRect();return r.right>innerWidth+2&&r.width>0;}).slice(0,12).map(el=>el.tagName.toLowerCase()+"."+el.className+" right="+Math.round(el.getBoundingClientRect().right)));
+   console.error("Overflow candidates at "+width+"px:",culprits);
+  }
   assert.ok(!hasOverflow,"Book library has horizontal overflow at "+width+"px");
   await page.locator('.grade-choices a[href="#grade/8"]').click();
   await page.locator('main h1').filter({hasText:"Grade 8"}).waitFor();
