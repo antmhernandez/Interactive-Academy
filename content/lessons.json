@@ -1,5 +1,53 @@
 [
   {
+    "id": "atom-spectra",
+    "subject": "physics",
+    "unitId": "phy-atomic-introduction",
+    "unit": "Atoms, Light, and Models",
+    "title": "The Colors of Atoms",
+    "subtitle": "An atom's spectrum contains clues about its energy.",
+    "duration": "8 min",
+    "observe": "Why does a glowing gas produce distinct spectral lines instead of every color?",
+    "idea": "Atoms emit or absorb particular photon energies. In a simplified hydrogen energy-level model, the energy difference between two allowed levels sets the photon's frequency and wavelength: ΔE = hf = hc/λ. Real spectra offer observable evidence for discrete energy levels.",
+    "visualLead": "Change the hydrogen transition and inspect the photon it would emit.",
+    "visual": "hydrogen-spectrum",
+    "focus": "A larger energy drop produces a shorter wavelength. The Bohr levels are a model, not tiny planetary orbits.",
+    "example": {
+      "question": "In the simplified hydrogen model, a transition from n = 3 to n = 2 releases about 1.89 eV. Estimate the photon's wavelength.",
+      "steps": [
+        "Photon energy and wavelength satisfy E = hc/λ. For electronvolts and nanometers, hc ≈ 1240 eV·nm.",
+        "Rearrange: λ = hc/E = (1240 eV·nm)/(1.89 eV).",
+        "The result is approximately 656 nm, in the red portion of the visible spectrum."
+      ]
+    },
+    "practice": {
+      "prompt": "A photon has energy 2.55 eV. Using hc ≈ 1240 eV·nm, estimate its wavelength in nanometers.",
+      "answer": 486.27451,
+      "tolerance": 1,
+      "unit": "nm",
+      "hints": [
+        "Use λ = hc/E and express energy in electronvolts.",
+        "Divide 1240 by 2.55."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "In a hydrogen atom, an electron drops between two allowed energy levels. What determines the emitted light?",
+      "choices": [
+        "Only the size of the atom, regardless of the energy levels.",
+        "The energy difference between those allowed states.",
+        "A continuous range of arbitrary colors from every single transition."
+      ],
+      "correct": 1,
+      "feedback": [
+        "The observed spectral line is determined by the change in energy, not simply by the atom's diameter.",
+        "Correct. One transition emits a photon carrying the energy difference between the two states.",
+        "For an idealized transition, the energy difference is specific, not a continuum of arbitrary photon energies."
+      ],
+      "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
+    },
+    "next": "position-displacement"
+  },
+  {
     "id": "position-displacement",
     "subject": "physics",
     "unit": "Motion and Kinematics",
@@ -268,7 +316,7 @@
         "Compute 2(2) + ½(1)(2²)."
       ]
     },
-    "next": "force-components",
+    "next": "free-body-diagram",
     "checkpoint": {
       "prompt": "For motion with a constant nonzero acceleration, which pair of graph shapes is typical?",
       "choices": [
@@ -286,54 +334,6 @@
     },
     "focus": "The slope of position is velocity. The slope of velocity is acceleration.",
     "unitId": "phy-motion"
-  },
-  {
-    "id": "force-components",
-    "subject": "physics",
-    "unit": "Forces and Newton's Laws",
-    "title": "A Force in Two Directions",
-    "subtitle": "One diagonal force has horizontal and vertical parts.",
-    "duration": "8 min",
-    "observe": "How much of a diagonal push acts horizontally?",
-    "idea": "A force is a vector. For a force F at angle θ above the positive x-axis, its perpendicular components are Fₓ = F cos θ and Fᵧ = F sin θ. The components together produce the original force.",
-    "visualLead": "Change the force and its angle. Watch the colored components.",
-    "visual": "force-components",
-    "focus": "The amber arrow is the force. Teal shows Fₓ; green shows Fᵧ. Their tips meet at the force's tip.",
-    "example": {
-      "question": "A 12 N force points 60° above the horizontal. Find its horizontal component.",
-      "steps": [
-        "The horizontal component is adjacent to the angle, so use cosine: Fₓ = F cos θ.",
-        "Fₓ = (12 N) cos 60° = (12 N)(0.5).",
-        "Fₓ = 6 N to the right. The vertical component would be 12 sin 60° ≈ 10.39 N upward."
-      ]
-    },
-    "practice": {
-      "prompt": "A 20 N force acts 60° above the positive horizontal axis. What is the horizontal component (in newtons)?",
-      "answer": 10,
-      "tolerance": 0.02,
-      "unit": "N",
-      "hints": [
-        "The horizontal component uses cosine: Fₓ = F cos θ.",
-        "Compute 20 cos 60° = 20(0.5)."
-      ]
-    },
-    "checkpoint": {
-      "prompt": "A 10 N force points exactly upward. How much horizontal force does it produce?",
-      "choices": [
-        "10 N, because force magnitude is unchanged.",
-        "0 N, because the force is perpendicular to the horizontal axis.",
-        "5 N, because the force splits equally between axes."
-      ],
-      "correct": 1,
-      "feedback": [
-        "Magnitude is 10 N, but the horizontal component is only the horizontal part.",
-        "Correct. At 90°, cos 90° = 0, so Fₓ = 0.",
-        "Equal components occur at a 45° angle, not for a vertical force."
-      ],
-      "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
-    },
-    "next": "free-body-diagram",
-    "unitId": "phy-forces"
   },
   {
     "id": "free-body-diagram",
@@ -428,6 +428,54 @@
       ],
       "explanation": "The inverse proportionality between mass and acceleration applies when the net external force is held constant."
     },
+    "next": "force-components",
+    "unitId": "phy-forces"
+  },
+  {
+    "id": "force-components",
+    "subject": "physics",
+    "unit": "Forces and Newton's Laws",
+    "title": "A Force in Two Directions",
+    "subtitle": "One diagonal force has horizontal and vertical parts.",
+    "duration": "8 min",
+    "observe": "How much of a diagonal push acts horizontally?",
+    "idea": "A force is a vector. For a force F at angle θ above the positive x-axis, its perpendicular components are Fₓ = F cos θ and Fᵧ = F sin θ. The components together produce the original force.",
+    "visualLead": "Change the force and its angle. Watch the colored components.",
+    "visual": "force-components",
+    "focus": "The amber arrow is the force. Teal shows Fₓ; green shows Fᵧ. Their tips meet at the force's tip.",
+    "example": {
+      "question": "A 12 N force points 60° above the horizontal. Find its horizontal component.",
+      "steps": [
+        "The horizontal component is adjacent to the angle, so use cosine: Fₓ = F cos θ.",
+        "Fₓ = (12 N) cos 60° = (12 N)(0.5).",
+        "Fₓ = 6 N to the right. The vertical component would be 12 sin 60° ≈ 10.39 N upward."
+      ]
+    },
+    "practice": {
+      "prompt": "A 20 N force acts 60° above the positive horizontal axis. What is the horizontal component (in newtons)?",
+      "answer": 10,
+      "tolerance": 0.02,
+      "unit": "N",
+      "hints": [
+        "The horizontal component uses cosine: Fₓ = F cos θ.",
+        "Compute 20 cos 60° = 20(0.5)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A 10 N force points exactly upward. How much horizontal force does it produce?",
+      "choices": [
+        "10 N, because force magnitude is unchanged.",
+        "0 N, because the force is perpendicular to the horizontal axis.",
+        "5 N, because the force splits equally between axes."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Magnitude is 10 N, but the horizontal component is only the horizontal part.",
+        "Correct. At 90°, cos 90° = 0, so Fₓ = 0.",
+        "Equal components occur at a 45° angle, not for a vertical force."
+      ],
+      "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
+    },
     "next": null,
     "unitId": "phy-forces"
   },
@@ -476,8 +524,56 @@
       ],
       "explanation": "The two-sided limit exists when the function values approach the same number from the left and right, whether or not the function is defined at the target input."
     },
-    "next": "tangent-line",
+    "next": "one-sided-limits",
     "unitId": "cal-limits"
+  },
+  {
+    "id": "one-sided-limits",
+    "subject": "calculus",
+    "unitId": "cal-limits",
+    "unit": "Limits and Continuity",
+    "title": "Two Sides of a Limit",
+    "subtitle": "A limit exists only when both sides agree.",
+    "duration": "7 min",
+    "observe": "What happens when a function approaches two different heights at the same x-value?",
+    "idea": "The left-hand limit follows x toward a from values less than a; the right-hand limit uses values greater than a. A finite two-sided limit exists only when both one-sided limits exist and equal the same value.",
+    "visualLead": "Move toward x = 1 from the left or right and compare the heights.",
+    "visual": "one-sided-limit",
+    "focus": "The teal left branch approaches 3, but the amber right branch approaches 5. The two-sided limit does not exist.",
+    "example": {
+      "question": "Suppose f(x) = x + 2 when x < 1, and f(x) = x + 4 when x ≥ 1. Does lim as x approaches 1 exist?",
+      "steps": [
+        "Approach from the left using x + 2: the left-hand limit is 3.",
+        "Approach from the right using x + 4: the right-hand limit is 5.",
+        "Since 3 and 5 are different, the two-sided limit does not exist. The function value f(1) = 5 does not change that conclusion."
+      ]
+    },
+    "practice": {
+      "prompt": "For f(x) = x + 1 when x < 2 and f(x) = x + 3 when x ≥ 2, what is the left-hand limit as x approaches 2?",
+      "answer": 3,
+      "tolerance": 0.001,
+      "unit": "limit",
+      "hints": [
+        "Use only the expression for x < 2 when approaching from the left.",
+        "Evaluate x + 1 at values of x close to 2."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A function approaches 3 from the left and 5 from the right as x approaches 1. What can we conclude?",
+      "choices": [
+        "The two-sided limit is 4, the average of the two sides.",
+        "The two-sided limit does not exist because the one-sided limits differ.",
+        "The two-sided limit must equal f(1), whatever its value."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Taking the average of unequal one-sided limits does not create a two-sided limit.",
+        "Correct. Both one-sided limits must agree for the ordinary two-sided limit to exist.",
+        "A function's value at the point does not force unequal approaches to become equal."
+      ],
+      "explanation": "Existence of limₓ→a f(x) requires matching left-hand and right-hand limits, regardless of whether f(a) is defined."
+    },
+    "next": "tangent-line"
   },
   {
     "id": "tangent-line",
