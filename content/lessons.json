@@ -1010,6 +1010,226 @@
     }
   },
   {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
+    "visual": "energy-ramp",
+    "optionalPreview": true,
+    "next": null,
+    "id": "work-energy",
+    "title": "Work Transfers Energy",
+    "subtitle": "Force acting through displacement changes a system's energy.",
+    "duration": "9 min",
+    "observe": "When is a force doing work on a moving object?",
+    "idea": "Mechanical work occurs when a force has a component along the displacement: W = Fd cosθ. Work transfers energy into or out of a system; it is measured in joules (N·m). Gravity does positive work on a box descending a ramp. Friction does negative work on the block, moving energy into thermal forms.",
+    "visualLead": "Slide the block down the ramp. Notice how the energy transfers accumulate with distance.",
+    "focus": "As the block travels, gravity transfers energy from gravitational potential to motion and thermal energy.",
+    "definition": "Work is energy transferred by a force acting through displacement: W = Fd cosθ for a constant force F at angle θ to the displacement. One joule is one newton-meter.",
+    "example": {
+      "question": "A person pulls a sled 5 m horizontally with a 20 N force directed 60° above the horizontal. How much work does that force do?",
+      "steps": [
+        "Work depends on the force component parallel to displacement: F∥ = F cosθ.",
+        "W = Fd cosθ = (20 N)(5 m)(cos60°).",
+        "W = 100(0.5) = 50 J. Only the displacement-parallel component transfers work."
+      ]
+    },
+    "practice": {
+      "prompt": "A 30 N steady horizontal force pushes a crate 4 m to the right on level ground. How many joules of work does this force perform?",
+      "answer": 120,
+      "tolerance": 0.02,
+      "unit": "J",
+      "hints": [
+        "The force and displacement point in the same direction, so θ=0° and cosθ=1.",
+        "Use W = Fd = (30 N)(4 m); units N·m equal joules."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A person holds a heavy backpack motionless above the ground for several seconds. How much mechanical work does the upward holding force do on the stationary backpack?",
+      "choices": [
+        "Zero joules, because the backpack undergoes no displacement.",
+        "A positive amount of work proportional to the time spent holding it.",
+        "A negative amount, since the backpack's weight acts downward."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. The holding force acts, but displacement is zero, so W=0.",
+        "A person's muscles expend metabolic energy, but that is distinct from mechanical work on the stationary backpack.",
+        "No displacement occurs, so neither the upward holding force nor weight performs mechanical work on the stationary backpack."
+      ],
+      "explanation": "Mechanical work done by a constant force is Fd cosθ, so zero displacement means zero work on the object despite effort."
+    },
+    "investigation": {
+      "prediction": "When the block covers twice the distance along the ramp, does the total work done against kinetic friction double?",
+      "experiment": "Choose a mass and nonzero friction. Scrub the distance slider from one quarter to one half of the ramp, comparing thermal energy transferred.",
+      "connection": "For constant kinetic friction magnitude, Wf = −μₖmg cosθ × distance along the ramp, proportional to distance."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
+    "visual": "energy-ramp",
+    "optionalPreview": true,
+    "next": null,
+    "id": "kinetic-energy",
+    "title": "Energy of Motion",
+    "subtitle": "Speed matters quadratically, not linearly.",
+    "duration": "9 min",
+    "observe": "Does doubling a cart's speed double or quadruple its kinetic energy?",
+    "idea": "Kinetic energy is the energy associated with motion, K = ½mv². Speed is squared: for the same mass, doubling speed multiplies kinetic energy by four. When work increases the net energy of a body, the work–kinetic-energy theorem says Wnet = ΔK.",
+    "visualLead": "Adjust initial speed while the block is at the top. Compare energy of motion before releasing it.",
+    "focus": "The kinetic-energy bar responds to the square of speed; the height and mass control other energy stores.",
+    "definition": "Translational kinetic energy of a body of mass m moving at speed v is K = ½mv², measured in joules. The total net work on a body equals the change in its kinetic energy.",
+    "example": {
+      "question": "A 2 kg cart speeds up from 3 m/s to 6 m/s. How much does its kinetic energy increase?",
+      "steps": [
+        "Initial kinetic energy: Ki = ½(2 kg)(3 m/s)² = 9 J.",
+        "Final kinetic energy: Kf = ½(2 kg)(6 m/s)² = 36 J.",
+        "ΔK = 36 − 9 = 27 J. Doubling speed quadruples kinetic energy."
+      ]
+    },
+    "practice": {
+      "prompt": "A 4 kg cart travels at 5 m/s. What is its translational kinetic energy in joules?",
+      "answer": 50,
+      "tolerance": 0.02,
+      "unit": "J",
+      "hints": [
+        "Use K = ½mv²; speed must be squared before multiplying by mass.",
+        "Compute ½ × 4 × 5² = 2 × 25 joules."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Two otherwise identical carts have speeds of 2 m/s and 4 m/s. How does the faster cart's kinetic energy compare?",
+      "choices": [
+        "Twice as large, because the speed is twice as large.",
+        "Four times as large, because kinetic energy depends on speed squared.",
+        "Equal, because their masses are the same."
+      ],
+      "correct": 1,
+      "feedback": [
+        "That would be true if K were proportional to v, but K depends on v squared.",
+        "Correct. At constant mass, (2v)² = 4v².",
+        "Equal masses do not guarantee equal kinetic energies when speeds differ."
+      ],
+      "explanation": "K = ½mv²; doubling v makes K four times as great when mass stays fixed."
+    },
+    "investigation": {
+      "prediction": "If the initial speed changes from 2 m/s to 4 m/s while mass and height are fixed, how does the initial kinetic-energy readout change?",
+      "experiment": "Move the progress slider to the top, keep mass and height fixed, and compare initial speeds 2 and 4 m/s. Check the blue energy bar and numeric value.",
+      "connection": "At the same mass K₀=½mv₀², so twice the initial speed produces four times the initial kinetic energy."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
+    "visual": "energy-ramp",
+    "optionalPreview": true,
+    "next": null,
+    "id": "potential-energy",
+    "title": "Energy Stored by Height",
+    "subtitle": "Gravity gives an elevated body the capacity to gain speed.",
+    "duration": "9 min",
+    "observe": "Why can an object gain speed as it descends without any push?",
+    "idea": "Near Earth's surface, gravitational potential energy measured relative to a chosen zero height is U = mgh. Descending by height Δh lowers U by mgΔh. That reduction can become kinetic energy, thermal energy, or both. An object's absolute gravitational potential energy depends on the selected reference level; only differences matter for energy transfers.",
+    "visualLead": "Raise the ramp's starting height. Compare the total available gravitational energy at the top.",
+    "focus": "The potential-energy bar measures energy from height above the bottom; changing that reference would shift its numeric zero.",
+    "definition": "Near Earth's surface, gravitational potential energy relative to a chosen height zero is U = mgh. Only changes in gravitational potential energy are physically relevant to this energy balance.",
+    "example": {
+      "question": "A 3 kg box is raised from ground level to a shelf 4 m high. By how much does its gravitational potential energy increase?",
+      "steps": [
+        "Choose ground level as U = 0 and use U = mgh.",
+        "ΔU = (3 kg)(9.8 m/s²)(4 m).",
+        "ΔU = 117.6 J. Raising the box stores that much additional gravitational potential energy relative to the ground."
+      ]
+    },
+    "practice": {
+      "prompt": "A 2 kg stone is held 5 m above the chosen zero-height level. How much gravitational potential energy does it have relative to that level in joules?",
+      "answer": 98,
+      "tolerance": 0.02,
+      "unit": "J",
+      "hints": [
+        "Use U = mgh near Earth's surface, with g = 9.8 m/s².",
+        "Multiply the mass 2 kg, g 9.8 m/s² and height 5 m."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A block descends a ramp from height 5 m to 2 m. Which statement correctly describes the change in gravitational potential energy?",
+      "choices": [
+        "It decreases by mg times 3 m, independent of the particular zero level.",
+        "It increases because the block moves and may gain speed.",
+        "It always becomes zero at 2 m, regardless of the reference level."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. The change is mg(hf−hi)=−mg(3 m).",
+        "The block's gain in kinetic energy can come from a decrease, not increase, in gravitational potential energy.",
+        "The potential-energy zero is chosen for convenience; U is not necessarily zero at 2 m."
+      ],
+      "explanation": "ΔU = mgΔh. When height falls, U decreases; energy is transferred to other forms within the system."
+    },
+    "investigation": {
+      "prediction": "If the mass doubles while height and speed remain fixed, will gravitational potential energy double?",
+      "experiment": "At the top, hold starting height fixed and increase mass from 2 to 4 kg. Compare both the potential energy and total energy bars.",
+      "connection": "U=mgh is proportional to mass at a fixed height and gravitational field strength."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
+    "visual": "energy-ramp",
+    "optionalPreview": true,
+    "next": null,
+    "id": "energy-conservation",
+    "title": "Where Does the Energy Go?",
+    "subtitle": "Motion, height and thermal energy are part of one balance.",
+    "duration": "11 min",
+    "observe": "If friction lowers a sliding block's speed, does the system lose energy?",
+    "idea": "Energy is conserved when every transfer is included. For a block descending a uniform ramp, energy starts as gravitational potential and possibly kinetic energy. Some gravitational energy increases the block's kinetic energy, while friction transfers some into thermal energy of the block–ramp surroundings. In the ideal closed bookkeeping model, K + U + Ethermal remains equal to the initial K + U at every point.",
+    "visualLead": "Scrub down the ramp with friction off, then turn friction on. Compare the three energy bars and total.",
+    "focus": "The total-energy readout stays constant while kinetic, potential and thermal shares change along the slope.",
+    "definition": "Conservation of energy states that the total energy of an isolated system remains constant, though it may change form. With frictional transfer included, Ki + Ui = Kf + Uf + Ethermal in this ideal ramp model.",
+    "example": {
+      "question": "A 2 kg block starts from rest 5 m above the bottom of an ideal frictionless track. How fast is it moving at the bottom (g = 9.8 m/s²)?",
+      "steps": [
+        "Choose the bottom as U=0. The initial energy is gravitational: Ui=mgh. The block starts at rest, so Ki=0.",
+        "With no friction, Ui=Kf: mgh=½mv². Cancel the mass m and solve v=√(2gh).",
+        "v=√(2×9.8×5)=√98≈9.90 m/s. Energy changes from gravitational potential to kinetic."
+      ]
+    },
+    "practice": {
+      "prompt": "A 3 kg object starts from rest at height 4 m above a frictionless level reference and reaches the bottom. What is its speed in m/s (g = 9.8 m/s²)?",
+      "answer": 8.854377448471462,
+      "tolerance": 0.03,
+      "unit": "m/s",
+      "hints": [
+        "Start with mgh=½mv², because no mechanical energy is lost to thermal transfer.",
+        "Cancel m to obtain v=√(2gh). Substitute h=4 m and g=9.8 m/s²."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A block slides down a rough ramp. Its mechanical energy decreases. What is happening to the total energy when the block and ramp are treated as one system?",
+      "choices": [
+        "Total energy disappears because friction acts against motion.",
+        "Some mechanical energy becomes thermal energy; the total including thermal remains constant.",
+        "Gravitational potential energy remains constant because friction removes the extra motion."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Friction transfers energy into thermal forms; it does not destroy energy.",
+        "Correct. Mechanical energy can decrease while the sum of mechanical and thermal energy stays constant.",
+        "Gravitational potential energy decreases as the block descends, whether or not friction is present."
+      ],
+      "explanation": "The energy accounting must include thermal energy generated by friction to express conservation for the combined system."
+    },
+    "investigation": {
+      "prediction": "With and without friction, should the total energy change as you move from the top to the bottom?",
+      "experiment": "Scrub from top to bottom at μₖ=0. Repeat at μₖ=0.30 with the same starting height, mass and speed. Compare final speed, K, U, thermal transfer and their sum.",
+      "connection": "K + U + Ethermal = ½mv₀² + mgH in the modeled block–ramp–Earth energy account. Friction reduces K at the bottom but does not reduce total energy."
+    }
+  },
+  {
     "id": "atom-spectra",
     "subject": "physics",
     "unitId": "phy-atomic-introduction",
