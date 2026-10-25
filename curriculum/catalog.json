@@ -317,7 +317,7 @@
             {
               "id": "two-dimensional-motion",
               "title": "Motion in Two Dimensions",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.motion.two-dimensional",
               "goal": "Resolve velocity into two axes.",
               "prerequisites": [
@@ -327,7 +327,7 @@
             {
               "id": "projectile-motion",
               "title": "Projectiles",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.motion.projectiles",
               "goal": "Analyze horizontal and vertical projectile motion.",
               "prerequisites": [
