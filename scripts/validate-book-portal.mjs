@@ -65,6 +65,7 @@ assert.ok(mockMain.innerHTML.includes("not a chapter match"));
 assert.ok(mockMain.innerHTML.includes("#lesson/si-units?book=physical-science&amp;grade=8")||mockMain.innerHTML.includes("#lesson/si-units?book=physical-science&grade=8"),"Lesson must retain its illustrative book and grade context");
 assert.ok(mockMain.innerHTML.includes("www.memoriapress.com/8th-grade/"));
 assert.ok(mockMain.innerHTML.includes("← Grade 8"));
+context.location.hash="#lesson/si-units?book=physical-science&grade=8";
 const recognized=functions.lessonContext({id:"si-units"});
 assert.equal(recognized.book.id,"physical-science");
 assert.equal(recognized.grade,"8");
