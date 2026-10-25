@@ -31,7 +31,7 @@ A private learning desk computes a simple next-incomplete topic link from existi
 - **Guided progression:** duration → level-ground range → maximum height from vertical energy/kinematics.
 - **Misconception:** at the peak, vertical velocity equals zero but horizontal velocity persists and downward gravitational acceleration is still nonzero.
 
-The progression is intentional: students first resolve a velocity vector, then see why constant horizontal velocity and accelerating vertical velocity combine into a trajectory. Circular motion, relative velocity and other later lessons remain planned.
+The progression is intentional: students first resolve a velocity vector, then see why constant horizontal velocity and accelerating vertical velocity combine into a trajectory. Circular motion and relative velocity were subsequently implemented as complete interactive concepts (see [the next investigation pass](17_INTERACTIVE_INVESTIGATIONS_2026-10-25.md)); additional later units remain planned.
 
 ## Test matrix and acceptance boundary
 
