@@ -485,7 +485,7 @@
       ],
       "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
     },
-    "next": "atom-spectra",
+    "next": null,
     "unitId": "phy-forces",
     "definition": "A force component is a signed projection of a vector onto an axis. At an angle θ measured from +x, Fx = F cosθ and Fy = F sinθ."
   },
@@ -536,7 +536,8 @@
       "explanation": "Conservation of energy gives Eγ = Einitial − Efinal = hf. Different allowed transitions create different line wavelengths."
     },
     "next": null,
-    "definition": "An emission spectrum is a set of characteristic wavelengths of light from an excited substance. Hydrogen's spectral lines reflect discrete energy changes."
+    "definition": "An emission spectrum is a set of characteristic wavelengths of light from an excited substance. Hydrogen's spectral lines reflect discrete energy changes.",
+    "optionalPreview": true
   },
   {
     "id": "limits-near-a-point",
