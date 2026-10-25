@@ -105,3 +105,27 @@ No new subject lessons, licensed diagrams, Memoria Press logos/book covers, copi
 - [ ] Revisit user feedback on design and textbook navigation before broadening scope.
 - [ ] Update this handoff and the publisher proposal if substantial product decisions change.
 - [ ] Ask the employer for the specific approved textbook titles, editions and publisher brand kit only when ready for formal alignment.
+
+## Follow-up implementation: publisher journey and classroom mode (October 25, 2026)
+
+**Branch:** `feature/navigation-presentation-accessibility-2026-10-25` (merge this work by PR into `main`; `main` remains the source of truth). **Scope:** features and accessibility, not new curriculum. This supplements rather than supersedes the original handoff above.
+
+### What changed
+- **Shareable, non-authoritative context URLs:** A grade selection opens `#book/physical-science?grade=8`. The book's original concept links open `#lesson/si-units?book=physical-science&grade=8`; that origin is preserved in `#study/...` and `#guided/...` (and optional short challenges). Book Back returns to Grade 8; lesson Back returns to the actual book; Next advances through that book's *illustrative* concept shortlist, not an invented Novare chapter sequence. A visible breadcrumb says **Illustrative concept**.
+- **No forged association:** A `book` URL parameter is honored only when the matching topic ID actually occurs in that book's `content/book-pathways.json` examples. Invalid or missing book parameters fall back to the independent subject navigation. Direct `#lesson/id` links continue to function.
+- **Keep two chapter systems separate:** Physics chapter-equation links remain available in the independent Glencoe course and its `existing-glencoe` pathway; they are hidden when arriving from any other book example to avoid labeling Glencoe Chapter 1 as a Novare chapter.
+- **Teacher presentation view:** Every main lesson gains **Present lesson**; its reversible local focused overlay enlarges the original visual and its four tabs, retains sliders and vertically accumulating worked steps, allows exit by Escape or button, and removes background elements from keyboard navigation while active. It does not ask for true browser fullscreen or collect student data. An additional **Copy lesson link** shares the precise contextual URL in secure contexts and provides an address-bar fallback.
+- **Touch and keyboard:** Minimum-height route controls, wrap-safe navigation at phone sizes, visible breadcrumbs, main-region focus after hash navigation, Escape to close mobile menu and presentation, improved skip-link label, and presentation typography.
+- **Automated checks:** Extended `scripts/validate-book-portal.mjs` to test grade/book context integrity and invalid associations. Added `scripts/test-browser.mjs` and a GitHub Actions Chromium run covering 320, 375, 768, 1024, 1440px, classroom controls, route navigation, ARIA tab arrows, and cumulative worked solutions.
+
+### Validation requirements
+The JS edits were parser-checked while creating them. Run the existing Node validators and the new Chromium browser suite in `.github/workflows/validate.yml`. Do **not** claim actual mobile-device, screen-reader, Safari, physical projector or publisher QA solely from headless Chromium. Review the PR's CI result before merging.
+
+### Intended continued feature work
+1. Perform a genuine phone/tablet/classroom projector manual walkthrough, including iOS Safari and VoiceOver or NVDA; inspect text wrapping, scrollbar behavior and focus.
+2. Improve the browse-by-book experience after actual publisher feedback; seek approved editions/table-of-contents metadata *before* any official chapter mapping.
+3. Consider accessible diagram text alternatives and better math semantics (MathML) in a separate tested change.
+4. Keep presentation mode a local, no-login enhancement; a secure teacher lane or publisher-branded edition requires a separate authorized architecture.
+5. Maintain the original twenty lessons, four learning tabs and accumulative problem-reveal behavior without broad curriculum expansion.
+
+**Rights invariant:** The existing Glencoe thirty-chapter framework remains independent from Novare/Memoria Press. The contextual URL is an *illustrative topic discovery link*, not a claim about a publisher book's adopted edition or chapter. No protected content, institutional files or branded art have been added.
