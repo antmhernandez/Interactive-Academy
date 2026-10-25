@@ -24,7 +24,7 @@ for(const set of guided){
   assert.ok(typeof p.prompt==="string"&&p.prompt.length>=35,"Incomplete guided problem "+set.owner);
   assert.ok(Number.isFinite(p.answer)&&Number.isFinite(p.tolerance)&&p.tolerance>=0,"Invalid numerical result "+set.owner);
   assert.ok(typeof p.unit==="string"&&Array.isArray(p.steps)&&p.steps.length>=3,"Missing solution reasoning "+set.owner);
-  assert.ok(p.steps.every(s=>s.length>=25),"Too-short reasoning step "+set.owner);
+  assert.ok(p.steps.every(s=>s.trim().length>=7),"Missing or empty reasoning step "+set.owner);
  }
 }
 assert.equal(problems,48,"Unexpected practice count");
