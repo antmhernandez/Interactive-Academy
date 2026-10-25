@@ -326,7 +326,7 @@
             },
             {
               "id": "projectile-motion",
-              "title": "Projectiles",
+              "title": "The Path of a Projectile",
               "status": "available",
               "owns": "phys.motion.projectiles",
               "goal": "Analyze horizontal and vertical projectile motion.",
