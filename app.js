@@ -888,9 +888,18 @@ function booksHome(){
  <div class="books-note" role="note">${escapeHtml(catalog.notices.mappings)}</div></section>
  <section class="grade-choices" aria-label="Choose a grade">${catalog.grades.map(g=>`<a href="#grade/${g.id}"><span>Grade</span><strong>${g.id}</strong></a>`).join("")}</section>
  <div class="section-heading"><div><div class="eyebrow">Browse by text</div><h2>Curriculum pathways</h2></div><span class="section-support">Official catalog links are provided on each book page</span></div>
- <div class="book-grid">${catalog.references.map(bookTile).join("")}</div>
+ <div class="book-search-row"><label class="book-search" for="book-search"><span>Find a book or subject</span><input id="book-search" type="search" autocomplete="off" placeholder="Search this library…" aria-describedby="book-search-count"></label><span class="book-search-count" id="book-search-count" role="status">${catalog.references.length} pathways</span></div>
+  <div class="book-grid" id="book-results">${catalog.references.map(bookTile).join("")}</div><p id="book-search-empty" class="empty-state" hidden>No matching books. Try a different title or subject.</p>
  <section class="publisher-note"><h2>About these connections</h2><p>${escapeHtml(catalog.notices.relationship)} ${escapeHtml(catalog.notices.sources)}</p>
  <a href="#showcase">See the publisher demonstration overview →</a></section>`;
+ const input=main.querySelector("#book-search"),tiles=[...main.querySelectorAll("#book-results .book-tile")];
+ input.addEventListener("input",()=>{
+  const q=input.value.trim().toLowerCase();let count=0;
+  for(const tile of tiles){const match=tile.textContent.toLowerCase().includes(q);tile.hidden=!match;if(match)count++;}
+  main.querySelector("#book-search-count").textContent=count+" matching "+(count===1?"pathway":"pathways");
+  main.querySelector("#book-search-empty").hidden=count!==0;
+ });
+
 }
 function gradeBooks(gradeId){
  const grade=bookPathways.grades.find(g=>g.id===gradeId);if(!grade){booksHome();return;}
