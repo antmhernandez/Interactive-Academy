@@ -706,3 +706,20 @@ a,button{ -webkit-tap-highlight-color:transparent}
  padding:22px 27px;margin:18px 0 28px;border:1px solid #dcc9a9;border-left:4px solid #b28b53;
  background:linear-gradient(105deg,#fcf6e8,#fffdf6)}
 .applet-home-call h2{font-size:1.6rem;margin:7px 0}.applet-home-call p{font-size:.89rem;color:#6a6964;margin:0}
+
+/* Distinguish exploratory later-chapter labs without interrupting main progression. */
+.preview-context{display:inline-block;margin:14px 0 4px;padding:9px 13px;color:#74442d;background:#f7eede;border-left:3px solid #aa8150;font-size:.79rem;font-weight:750;line-height:1.5}
+.energy-bars{margin-top:17px;padding:12px 8px;background:#fffdf8;border:1px solid #dfd3c0;border-radius:5px}
+.energy-bars svg{display:block;width:100%;height:auto;overflow:visible;min-width:0}
+@media(max-width:390px){.energy-bars{padding:6px 2px}}
+
+/* Four-step optional advanced sequence stays separate from the main chapter chain. */
+.energy-study-path{margin:10px 0 22px;padding:16px 18px;border:1px solid #ddc7a2;
+ background:#f9f3e8;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.energy-study-path .eyebrow{flex-basis:100%;color:#74512d;margin-bottom:4px}
+.energy-study-path a{min-height:40px;display:inline-flex;align-items:center;padding:8px 12px;
+ border:1px solid #c9b696;color:#4b5670;background:#fffefa;text-decoration:none;
+ font-size:.79rem;line-height:1.4;font-weight:700}
+.energy-study-path a[aria-current="page"]{background:#713349;color:#fff;border-color:#713349}
+.energy-study-path a:hover:not([aria-current="page"]){border-color:#77516a;color:#713349}
+@media(max-width:390px){.energy-study-path{padding:12px 10px}.energy-study-path a{width:100%}}

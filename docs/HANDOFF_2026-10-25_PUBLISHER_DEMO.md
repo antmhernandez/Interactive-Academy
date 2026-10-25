@@ -212,3 +212,22 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - Passed: all original validators; 26 lessons / 78 guided problems / 84 existing equation entries / 148 canonical curriculum topics; two separate force-model numerical regression suites testing threshold, kinetic branch, ramp components, critical angle, mass cancellation, constrained coefficients and reset.
 - Headless Chromium passed at 320, 375, 768, 1024, and 1440px; covers the experiment-gallery count/filter, book navigation, lesson tabs, numeric sliders, both new onset-of-slip actions, progressive steps and presentation mode.
 - Publishing: PR #12 merged into `main`. Re-verify main-branch CI and public Pages propagation separately; do not substitute a Chromium viewport for actual iOS/Safari, screen-reader, physical projector or lesson-pedagogy testing.
+
+## October 25 continuation: original conservation-of-energy laboratory (PR in progress)
+
+**Source:** `feature/energy-conservation-experiment-2026-10-25`. **Use `main` after merge.** The user requested continued implementation following completed Chapter 5 force applets; conserve original textbook order while opening a useful preview of Chapters 10–11.
+
+### Features and lesson architecture
+- New original `applets/energy-ramp.js` module exports global `energyRampState` (pure physics calculation) and `energyRamp` (accessible controls, geometric illustration, energy bars, step, real-equation playback, compare frictionless, reset).
+- Ideal block/ramp/Earth thermal energy bookkeeping: ramp angle 35°; friction μk=0–0.4 (below tan35° so downslope motion exists from rest); mass 1–8kg, start height 2–12m, start speed 0–8m/s, position 0–100%. `K₀=mv₀²/2`, `U₀=mgH`, `Q=μₖmg cosθ × (pH/sinθ)`, `U=mgH(1−p)`, `K=K₀+mgHp−Q`; `K+U+Q=K₀+U₀`. Playback follows `s=v₀t+½at²` with `a=g(sinθ−μₖcosθ)` at slowed viewing speed; animation exits when lesson is detached.
+- New **four complete, optional Physics previews** `work-energy`, `kinetic-energy`, `potential-energy`, `energy-conservation` inside existing canonical `phy-energy` registry (chapter 10–11). Each includes short readable definition, independently-authored three-step worked example, student numerical response/hints, misconception check, Predict–Manipulate–Connect activity, and exactly three guided problems.
+- **Crucial sequencing policy:** all four energy lessons have `optionalPreview:true` and `next:null`. They are *not* the required next lesson after Chapter 6. A dedicated four-link lesson-local study path helps exploration in conceptual order, with an explicit optional banner. The Chapter 28 atomic preview remains optional. No invented Chapter 7/8/9 coverage.
+- Energy demo appears once in the Experiment Room (13 curated models total) and all four lesson pages reuse the same physically correct diagram. This is not an endorsement or precise textbook mapping for any Novare or Memoria Press volume.
+- Total after this pass: **30 lessons (25 Physics and 5 Calculus), 90 graded problems**, 148 registered topics with 30 available, 84 original equation index entries, 13 gallery models.
+- New tests `scripts/test-energy-ramp.mjs`: many mass/height/speed/friction/position combinations, total energy, endpoint, ideal no-friction limit, friction comparison and input/reset. Extended lesson, registry, main-path and five-width Chromium checks; CI syntax validation for energy module.
+- Full design and source/assumption review: [`docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md`](19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md).
+
+### Remaining acceptance and next development
+- Complete GitHub Actions on PR, fix test failures, merge after green and verify main deployment; amend this handoff with PR/run/SHA.
+- Physical Safari/Android, keyboard and screen reader, projector and teacher/student comprehension audits are **not** established by automated Chromium.
+- Future progression: first fill Chapters 7–9 sequentially (gravitation, rotation, momentum) when building the required course; or maintain other higher-chapter applets as *clearly optional previews*. Avoid silently skipping prerequisites.

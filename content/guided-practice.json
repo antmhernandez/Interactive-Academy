@@ -840,6 +840,174 @@
     ]
   },
   {
+    "owner": "work-energy",
+    "title": "Work Transfers Energy",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 30 N steady horizontal force pushes a crate 4 m to the right on level ground. How many joules of work does this force perform?",
+        "answer": 120,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "The force acts along the displacement, so θ=0°.",
+          "Use work W = Fd cosθ.",
+          "W=30×4×1=120 J."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A steady 40 N force acts 60° above the direction of a 3 m horizontal displacement. How much work does that applied force perform in joules?",
+        "answer": 60,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Only the component along displacement does work.",
+          "W=Fd cos60°; cos60°=0.5.",
+          "W=40×3×0.5=60 J."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A constant 12 N kinetic friction force points opposite a block's 5 m displacement. How much work in joules does friction do on the block? Use a signed answer.",
+        "answer": -60,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Friction acts 180° from the displacement, so cos180°=−1.",
+          "Wf=Fd cos180°=(12)(5)(−1).",
+          "Friction does −60 J on the block, transferring mechanical energy into thermal forms."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "kinetic-energy",
+    "title": "Energy of Motion",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 4 kg cart travels at 5 m/s. What is its translational kinetic energy in joules?",
+        "answer": 50,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Kinetic energy is K=½mv².",
+          "Square 5 m/s to get 25 m²/s².",
+          "K=½×4×25=50 J."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 3 kg cart is moving at 4 m/s. How much net work is required to raise its speed from 4 m/s to 6 m/s, in joules?",
+        "answer": 30,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Net work equals the change in kinetic energy.",
+          "ΔK=½m(vf²−vi²)=½×3×(36−16).",
+          "ΔK=30 J, so 30 J of net work is required."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 2 kg cart starts from rest and receives 144 J of net work. What is its resulting speed in m/s?",
+        "answer": 12,
+        "tolerance": 0.03,
+        "unit": "m/s",
+        "steps": [
+          "The work–energy theorem gives Wnet=½mvf² when initial speed is zero.",
+          "Solve vf=√(2Wnet/m).",
+          "vf=√(2×144/2)=12 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "potential-energy",
+    "title": "Energy Stored by Height",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 2 kg stone is held 5 m above the chosen zero-height level. How much gravitational potential energy does it have relative to that level in joules?",
+        "answer": 98,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Choose the specified zero-height reference.",
+          "U=mgh for uniform near-surface gravity.",
+          "U=2×9.8×5=98 J."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 5 kg object is raised vertically by 3 m near Earth's surface. What is the increase in gravitational potential energy in joules?",
+        "answer": 147,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Potential-energy change depends on the height difference, not the path taken.",
+          "ΔU=mgΔh.",
+          "ΔU=(5)(9.8)(3)=147 J."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 4 kg block moves from a height of 8 m to 3 m near Earth's surface. What is its signed change in gravitational potential energy in joules?",
+        "answer": -196,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Use the signed difference ΔU = mg(hf−hi).",
+          "hf−hi=3−8=−5 m.",
+          "ΔU=4×9.8×(−5)=−196 J. The block loses gravitational potential energy."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "energy-conservation",
+    "title": "Where Does the Energy Go?",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 3 kg object starts from rest at height 4 m above a frictionless level reference and reaches the bottom. What is its speed in m/s (g = 9.8 m/s²)?",
+        "answer": 8.854377448471462,
+        "tolerance": 0.03,
+        "unit": "m/s",
+        "steps": [
+          "With no friction and starting from rest, initial gravitational energy becomes final kinetic energy.",
+          "mgh=½mv²; the mass cancels.",
+          "v=√(2×9.8×4)=√78.4≈8.85 m/s."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 2 kg block starts from rest 5 m above the bottom of a ramp. Friction transfers 20 J to thermal energy on the way down. How much kinetic energy remains at the bottom in joules?",
+        "answer": 78,
+        "tolerance": 0.03,
+        "unit": "J",
+        "steps": [
+          "Initial gravitational energy: mgh=2×9.8×5=98 J.",
+          "Account for the 20 J transferred into thermal energy.",
+          "Kbottom=98−20=78 J; total energy is still 98 J including thermal."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 3 kg block starts from rest 6 m vertically above a base. Along a rough ramp, 36 J becomes thermal energy. What is its final speed at the base in m/s?",
+        "answer": 9.67470929795826,
+        "tolerance": 0.035,
+        "unit": "m/s",
+        "steps": [
+          "Initial gravitational energy is 3×9.8×6=176.4 J.",
+          "Final kinetic energy is 176.4−36=140.4 J.",
+          "Solve ½mv²=140.4: v=√(2×140.4/3)≈9.67 m/s."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "atom-spectra",
     "title": "The Colors of Atoms",
     "levels": [
