@@ -122,9 +122,16 @@ function about(){
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Explore Physics →</a></nav><section class="plain-page"><div class="eyebrow">About</div><h1>See the mathematics.</h1><p>Interactive Academy is a developing collection of original Physics and Calculus lessons. Each begins with a diagram or experiment, followed by a concise explanation and a chance to try the idea.</p><p>No accounts or AI calls are required. Completed-lesson marks stay in your browser. This preview is independent of HLS, Memoria Press, Novare, College Board and Texas Instruments.</p></section>`;
 }
 function lesson(l){
- const group=courseList(l.subject),idx=courseOrder(l),previous=lessons.find(x=>x.subject===l.subject&&x.next===l.id),next=get(l.next),end=next?`#lesson/${next.id}`:`#${l.subject}`,start=previous?`#lesson/${previous.id}`:`#${l.subject}`;
+ const group=courseList(l.subject),idx=courseOrder(l),ctx=lessonContext(l);
+ const related=ctx.book?ctx.book.topicIds.map(get).filter(Boolean):group;
+ const position=related.findIndex(item=>item.id===l.id);
+ const previous=ctx.book?related[position-1]:lessons.find(x=>x.subject===l.subject&&x.next===l.id);
+ const next=ctx.book?related[position+1]:get(l.next);
+ const start=ctx.book?bookLink(ctx.book,ctx.grade):(previous?"#lesson/"+previous.id:"#"+l.subject);
+ const end=ctx.book?(next?lessonLink("lesson",next,ctx):bookLink(ctx.book,ctx.grade)):(next?"#lesson/"+next.id:"#"+l.subject);
  main.innerHTML=`
- <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">← Back</a><a href="#home">⌂ Home</a><a href="${end}">Next →</a></nav>
+ <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
+ ${contextTrail(ctx)}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
  <article class="focus-lesson">
  <section class="visual-stage" aria-label="Interactive demonstration">
@@ -140,7 +147,7 @@ function lesson(l){
  <button id="tab-concept-check" role="tab" type="button" data-view="concept-check" aria-controls="concept-check">Think</button>
  <button id="tab-practice" role="tab" type="button" data-view="practice" aria-controls="practice">Try it</button>
  </div>
- <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text definition-first">${escapeHtml(l.definition)}</p><p class="concept-context">${escapeHtml(l.idea)}</p><p class="topic-readmore"><a href="#study/${l.id}">Read definition &amp; try an example →</a></p></section>
+ <section class="lesson-panel" role="tabpanel" id="understand" aria-labelledby="tab-understand"><h2>The idea</h2><p class="idea-text definition-first">${escapeHtml(l.definition)}</p><p class="concept-context">${escapeHtml(l.idea)}</p><p class="topic-readmore"><a href="${lessonLink("study",l,ctx)}">Read definition &amp; try an example →</a></p></section>
  <section class="lesson-panel" role="tabpanel" id="example" aria-labelledby="tab-example">
  <div class="eyebrow">Worked example</div><h2>Follow the steps</h2><p>${escapeHtml(l.example.question)}</p>
  <div class="example"><div class="step-counter" id="stepcount"></div><ol class="worked-steps" id="steptext" aria-label="Cumulative worked solution" aria-live="polite" aria-relevant="additions"></ol><div class="step-nav"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Reveal next step ↓</button><button id="restart" type="button">Start over</button></div></div></section>
@@ -149,9 +156,9 @@ function lesson(l){
  <form id="answerform"><label for="answer">Answer${l.practice.unit?" ("+escapeHtml(l.practice.unit)+")":""}</label><div class="answer-row"><input id="answer" type="number" step="any" required inputmode="decimal" placeholder="Enter your answer"><button class="primary" type="submit">Check</button></div></form><p id="feedback" class="feedback" role="status" aria-live="polite"></p>
  <button class="hint-button" id="hintbtn" type="button">Need a hint?</button><p id="hinttext" class="hint" hidden></p></section>
  </section>
- ${submodulesFor(l.id)}
- <nav class="companion-links" aria-label="More ways to learn this concept"><a href="#study/${l.id}"><strong>Definition &amp; Example</strong><small>One solved problem, then your turn</small></a><a href="#guided/${l.id}"><strong>Guided Practice</strong><small>Three increasing levels with optional steps</small></a>${l.subject==="physics"?`<a href="#equations/${lessonChapter(l)}"><strong>Chapter ${lessonChapter(l)} Equations</strong><small>Formulas, meaning, and assumptions</small></a>`:""}</nav>
- <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${next?"Next concept →":"All "+subject(l.subject)+" lessons →"}</a></div>
+ ${submodulesFor(l.id,ctx)}
+ <nav class="companion-links" aria-label="More ways to learn this concept"><a href="${lessonLink("study",l,ctx)}"><strong>Definition &amp; Example</strong><small>One solved problem, then your turn</small></a><a href="${lessonLink("guided",l,ctx)}"><strong>Guided Practice</strong><small>Three increasing levels with optional steps</small></a>${l.subject==="physics"&&allowChapterLink(ctx)?`<a href="#equations/${lessonChapter(l)}"><strong>Chapter ${lessonChapter(l)} Equations</strong><small>Formulas, meaning, and assumptions</small></a>`:""}</nav>
+ <div class="lesson-end"><button type="button" id="markdone" aria-pressed="${completed.has(l.id)?"true":"false"}">${completed.has(l.id)?"✓ Marked complete":"○ Mark complete"}</button>${l.subject==="physics"?'<a href="lab/motion.html">Motion Lab ↗</a>':""}<a class="next-link" href="${end}">${ctx.book?(next?"Next illustrative example →":"Back to book →"):(next?"Next concept →":"All "+subject(l.subject)+" lessons →")}</a></div>
  </article>`;
  // Add the check panel before tab handling. The visual remains visible throughout.
  renderConceptCheck(l);
@@ -730,10 +737,35 @@ function equationChapter(ch){
  ${supporting.length?`<section class="chapter-topic-links"><h2>Study these concepts</h2>${supporting.map(l=>`<a href="#study/${l.id}">${escapeHtml(l.title)} →</a>`).join("")}</section>`:""}
  <div class="lesson-end">${prev?`<a href="#equations/${prev.number}">← Chapter ${prev.number}</a>`:""}<a href="#equations">Full equation index</a>${next?`<a class="next-link" href="#equations/${next.number}">Chapter ${next.number} →</a>`:""}</div></article>`;
 }
-function bookTile(book){
+
+/* Shareable publisher-discussion context. A book association is always an
+   illustrative relationship, never an edition-specific chapter alignment. */
+function hashParams(){return new URLSearchParams(location.hash.split("?")[1]||"");}
+function bookLink(book,grade=null){
+ return "#book/"+encodeURIComponent(book.id)+(book.gradeIds.includes(grade)?"?grade="+encodeURIComponent(grade):"");
+}
+function lessonContext(l){
+ const params=hashParams(),id=params.get("book");
+ const book=bookPathways?.references.find(b=>b.id===id&&b.topicIds.includes(l.id))||null;
+ const grade=book&&book.gradeIds.includes(params.get("grade"))?params.get("grade"):null;
+ return {book,grade};
+}
+function lessonLink(view,l,ctx){
+ return "#"+view+"/"+encodeURIComponent(l.id)+(ctx.book?"?book="+encodeURIComponent(ctx.book.id)+(ctx.grade?"&grade="+encodeURIComponent(ctx.grade):""):"");
+}
+function contextTrail(ctx){
+ if(!ctx.book)return "";
+ return '<nav class="context-trail" aria-label="Breadcrumb"><a href="#books">Books</a>'+
+ (ctx.grade?'<span aria-hidden="true">›</span><a href="#grade/'+ctx.grade+'">Grade '+ctx.grade+'</a>':"")+
+ '<span aria-hidden="true">›</span><a href="'+bookLink(ctx.book,ctx.grade)+'">'+escapeHtml(ctx.book.title)+'</a>'+
+ '<span aria-hidden="true">›</span><span>Illustrative concept</span></nav>';
+}
+function allowChapterLink(ctx){return !ctx.book||ctx.book.id==="existing-glencoe";}
+
+function bookTile(book,grade=null){
  const gradeText=book.gradeIds.map(n=>"Grade "+n).join(" · ");
  const count=book.topicIds.length;
- return `<a class="book-tile" href="#book/${book.id}">
+ return `<a class="book-tile" href="${bookLink(book,grade)}">
  <span class="book-spine" aria-hidden="true"><span>${book.subject==="calculus"?"∫":book.subject==="mathematics"?"x²":"Φ"}</span></span>
  <span class="book-tile-body"><span class="eyebrow">${escapeHtml(gradeText)}</span><strong>${escapeHtml(book.title)}</strong>
  <small>${escapeHtml(book.imprint)}</small><em>${count?count+" example concept "+(count===1?"link":"links"):"Navigation example · content pending"}</em></span><span aria-hidden="true" class="book-tile-arrow">→</span></a>`;
@@ -757,15 +789,17 @@ function gradeBooks(gradeId){
  <header class="books-intro"><div class="eyebrow">Curriculum Library · Grade pathway</div><h1>${escapeHtml(grade.label)}</h1><p>${escapeHtml(grade.description)}</p>
  <div class="books-note">${escapeHtml(bookPathways.notices.mappings)}</div></header>
  <nav class="grade-choices" aria-label="Switch grade">${bookPathways.grades.map(g=>`<a href="#grade/${g.id}" ${g.id===gradeId?'aria-current="page"':""}><span>Grade</span><strong>${g.id}</strong></a>`).join("")}</nav>
- <div class="book-grid">${selected.map(bookTile).join("")}</div><div class="backline"><a href="#books">View every book pathway →</a></div>`;
+ <div class="book-grid">${selected.map(b=>bookTile(b,gradeId)).join("")}</div><div class="backline"><a href="#books">View every book pathway →</a></div>`;
 }
 function bookDetail(bookId){
  const book=bookPathways.references.find(b=>b.id===bookId);if(!book){booksHome();return;}
+ const grade=book.gradeIds.includes(hashParams().get("grade"))?hashParams().get("grade"):null;
+ const ctx={book,grade};
  const matched=book.topicIds.map(id=>lessons.find(l=>l.id===id)).filter(Boolean);
  const official=book.publishedUrl?`<a class="btn external-catalog" href="${escapeHtml(book.publishedUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(book.publishedLinkLabel)} ↗</a>`:"";
- const links=matched.length?matched.map(l=>`<article class="book-match"><span class="lesson-ordinal">Concept</span><div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.subtitle)}</p><div class="inline-learning-links"><a href="#lesson/${l.id}">Interactive idea →</a><a href="#study/${l.id}">Definition &amp; example →</a><a href="#guided/${l.id}">Guided practice →</a></div></div></article>`).join("")
+ const links=matched.length?matched.map(l=>`<article class="book-match"><span class="lesson-ordinal">Concept</span><div><h3>${escapeHtml(l.title)}</h3><p>${escapeHtml(l.subtitle)}</p><div class="inline-learning-links"><a href="${lessonLink("lesson",l,ctx)}">Interactive idea →</a><a href="${lessonLink("study",l,ctx)}">Definition &amp; example →</a><a href="${lessonLink("guided",l,ctx)}">Guided practice →</a></div></div></article>`).join("")
  :`<div class="empty-state"><strong>Example pathway only.</strong><p>There is not yet a published lesson connection for this book. A publisher-approved chapter crosswalk and new original lessons would come later.</p></div>`;
- main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#books">← All books</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="${grade?"#grade/"+grade:"#books"}">${grade?"← Grade "+grade:"← All books"}</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
  <section class="book-detail-head"><div class="eyebrow">Publisher discussion · Textbook pathway</div><h1>${escapeHtml(book.title)}</h1>
  <p class="book-imprint">${escapeHtml(book.imprint)}</p><p>${escapeHtml(book.description)}</p>
  <div class="book-cta">${book.gradeIds.map(g=>`<a href="#grade/${g}" class="grade-link">Grade ${g}</a>`).join("")}${official}</div></section>
