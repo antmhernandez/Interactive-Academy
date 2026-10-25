@@ -1,3 +1,5 @@
+> **Website course-order revision (Oct 24, 2026):** This document records how the syllabus was consulted; it does *not* govern the current public site's chapter sequence. The website now follows **the textbook's ordinary Chapters 1→30** and keeps quantitative Chapter 28 atomic models late, with an optional introductory teaser. The controlling design is [Document 13](13_TEXTBOOK_ORDER_STUDY_GUIDED_PRACTICE_AND_EQUATIONS.md). The teacher's local decision to introduce atoms early remains specific to classroom motivation, not the self-paced website. 
+
 # Syllabus Alignment and Targeted Challenge Modules
 
 **Reviewed October 24, 2026.** This is an independently written scope and instructional design reference, not a reproduction of school-owned syllabi or textbook pages.
