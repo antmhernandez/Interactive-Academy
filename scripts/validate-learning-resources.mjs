@@ -63,7 +63,7 @@ const chapter8=book.chapters[7];
 assert.equal(chapter8.number,8);
 assert.equal(chapter8.unitId,"phy-rotation");
 assert.equal(chapter8.scope,"optional-extension","Do not recast chapter 8 as a core syllabus chapter");
-const rotationTopics=catalog.subjects.find(s=>s.id==="physics").units.find(u=>u.id==="phy-rotation");
+const rotationTopics=map.subjects.find(s=>s.id==="physics").units.find(u=>u.id==="phy-rotation");
 assert.equal(rotationTopics.syllabus.scope,"enrichment","Chapter 8 must remain enrichment");
 assert.ok(physics.filter(l=>l.unitId==="phy-rotation").every(l=>l.optionalPreview&&l.next===null),"Rotation should not interrupt the main course");
 const main=physics.filter(l=>!l.optionalPreview);
