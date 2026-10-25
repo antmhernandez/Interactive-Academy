@@ -56,25 +56,42 @@ function visualLegend(name){
 }
 function heroArt(){return `<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 320"><defs><pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#b5c8bd" stroke-width=".8" opacity=".5" fill="none"/></pattern></defs><rect width="500" height="320" fill="#edf3ee"/><rect width="500" height="320" fill="url(#hero-grid)"/><path d="M52 262H466M78 290V30" stroke="#97b6af" stroke-width="1.5"/><path d="M77 244 Q170 282 265 134 T443 45" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M130 239L367 78" stroke="#ca8a46" stroke-width="3.4"/><circle cx="258" cy="145" r="8" fill="#d89e53" stroke="white" stroke-width="4"/><path d="M258 145V262" stroke="#a2b9b2" stroke-width="1.5" stroke-dasharray="5 5"/><text x="349" y="117" fill="#16666d" font-size="22" font-family="Georgia" font-style="italic">f(x)</text><text x="294" y="202" fill="#ad733b" font-size="17" font-family="Georgia">tangent</text></svg></div>`;}
 function home(){
- const p=lessons.filter(l=>l.subject==="physics"),c=lessons.filter(l=>l.subject==="calculus");
- main.innerHTML=`<div class="route-nav"><span class="route-current">Welcome to The Learning Atlas</span><a href="#books">Grade &amp; book library</a><a href="#showcase">Publisher demo</a></div>
- <section class="home-hero publisher-hero">
-  <div class="eyebrow">A classical companion for the mathematical sciences</div>
-  <h1>See the idea.<br><em>Learn to reason.</em></h1>
-  <p>One concept at a time: observe it, understand it, then work through the mathematics with confidence.</p>
-  <div class="showcase-actions"><a class="btn primary" href="#books">Explore by grade or book →</a><a class="btn" href="#showcase">View the publisher demonstration</a></div>
-  <div class="home-proof">Original demonstrations <span aria-hidden="true">·</span> Step-by-step reasoning <span aria-hidden="true">·</span> Independent student practice</div>
+ const physics=courseList("physics"),calculus=courseList("calculus");
+ const nextPhysics=physics.find(l=>!completed.has(l.id)&&!l.optionalPreview)||physics[0];
+ const nextCalculus=calculus.find(l=>!completed.has(l.id))||calculus[0];
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><span class="route-current">Welcome to The Learning Atlas</span><a href="#books">Books &amp; grades</a><a href="#showcase">Publisher overview</a></nav>
+ <section class="home-hero publisher-hero atlas-hero">
+  <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
+   <h1>See clearly.<br><em>Reason deeply.</em></h1>
+   <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
+   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#physics">Begin Physics</a></div>
+   <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
+  <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
+   ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
  </section>
- <section class="home-feature"><div class="home-feature-art">${heroArt()}</div><div class="home-feature-copy"><div class="eyebrow">An example of the method</div>
- <h2>From motion to meaning.</h2><p>See how position changes, examine the mathematical pattern, and try a problem yourself.</p>
- <a class="btn primary" href="#lesson/motion-diagrams">Explore the motion demonstration →</a></div></section>
- <div class="section-heading home-section-heading"><div><div class="eyebrow">Start with a subject</div><h2>The learning collection</h2></div></div>
+ <section class="atlas-method" aria-label="The learning method">
+  <div class="method-heading"><div class="eyebrow">A thoughtful sequence</div><h2>One idea. Four ways to understand it.</h2></div>
+  <div class="method-grid">
+   <div class="method-item"><span class="method-number">I</span><h3>The Idea</h3><p>A clear definition and a question worth asking.</p></div>
+   <div class="method-item"><span class="method-number">II</span><h3>Example</h3><p>Worked reasoning revealed one step at a time.</p></div>
+   <div class="method-item"><span class="method-number">III</span><h3>Think</h3><p>A brief check that uncovers misconceptions.</p></div>
+   <div class="method-item"><span class="method-number">IV</span><h3>Try it</h3><p>Make the mathematics your own with practice.</p></div>
+  </div>
+ </section>
+ <div class="section-heading home-section-heading"><div><div class="eyebrow">The original study collection</div><h2>Choose a course to begin.</h2></div><a class="section-link" href="#books">Or explore by textbook →</a></div>
  <div class="home-choices subject-choices">
-  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${p.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
-  <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${c.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
- <div class="lab-strip"><div><strong>Work with measurements.</strong><span>Graph position–time data and fit a physical model.</span></div><a href="lab/motion.html">Motion Data Lab →</a></div>
- <p class="independence-note">Independent concept prototype for discussion. Memoria Press titles appear as catalog references, not official integrations or endorsed supplements.</p>`;
+ <section class="atlas-continue" aria-label="Continue a course on this device">
+  <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
+  <div class="continue-options">
+   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${completedCount("physics")} / ${physics.length} complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
+   <a href="#lesson/${nextCalculus.id}"><span>Calculus · ${completedCount("calculus")} / ${calculus.length} complete</span><strong>${escapeHtml(nextCalculus.title)} →</strong></a>
+  </div>
+ </section>
+ <div class="lab-strip"><div><strong>From observation to evidence.</strong><span>Enter measured data, graph it, and fit a physical model.</span></div><a href="lab/motion.html">Explore the Motion Data Lab →</a></div>
+ <p class="independence-note">Independent concept prototype for discussion. Published textbook references are illustrative only; they are not official Memoria Press integrations or approved chapter mappings.</p>`;
 }
 function catalog(s){
  const items=courseList(s),completedTotal=completedCount(s);
