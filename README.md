@@ -51,7 +51,7 @@ Both have original diagrams and numerical physical models, a Predict–Manipulat
 
 The site now has **12 curated Experiment Room applets, 26 complete lessons and 78 guided problems**. The new applet engines reside in the dedicated source file `applets/contact-forces.js`; the independent Physics sequence remains separate from publisher-specific Novare chapter claims. See [design/math audit](docs/18_CONTACT_FORCES_AND_INCLINES_2026-10-25.md).
 
-## Chapters 10–11 energy laboratory · Optional later-chapter exploration (October 25, 2026)
+## Chapters 10–11 energy laboratory · Optional later-chapter exploration (October 25, 2026 · [merged PR #13](https://github.com/antmhernandez/Interactive-Academy/pull/13))
 
 An original [conservation of energy experiment](https://antmhernandez.github.io/Interactive-Academy/#lesson/energy-conservation) demonstrates **kinetic + gravitational potential + transferred thermal energy = constant total** as a block travels down a ramp. Students change mass, release height, initial speed, kinetic friction, or progress; they may scrub, step, play/pause a physically derived descent, compare with friction removed, and reset. Responsive energy bars and numeric work/energy readouts communicate the results. The simulator lives in dedicated `applets/energy-ramp.js`, using an independently derived ideal 35° ramp model.
 
