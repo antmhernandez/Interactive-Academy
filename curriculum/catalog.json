@@ -433,6 +433,48 @@
           }
         },
         {
+          "id": "phy-rotation",
+          "title": "Rotational Motion",
+          "topics": [
+            {
+              "id": "torque-levers",
+              "title": "How a Force Turns a Lever",
+              "status": "available",
+              "owns": "phys.rotation.torque",
+              "goal": "Determine signed torque from force, distance, and force direction about a defined axis.",
+              "prerequisites": [
+                "force-components"
+              ]
+            },
+            {
+              "id": "rotational-inertia",
+              "title": "Why Some Wheels Resist Spinning",
+              "status": "available",
+              "owns": "phys.rotation.inertia",
+              "goal": "Calculate ideal rigid-body moments of inertia for different mass distributions.",
+              "prerequisites": [
+                "torque-levers"
+              ]
+            },
+            {
+              "id": "rotational-dynamics",
+              "title": "Torque Changes Rotation",
+              "status": "available",
+              "owns": "phys.rotation.dynamics",
+              "goal": "Apply the rotational equation of motion to fixed-axis acceleration and speed.",
+              "prerequisites": [
+                "rotational-inertia"
+              ]
+            }
+          ],
+          "syllabus": {
+            "course": "General Physics optional textbook extension",
+            "chapter": "8",
+            "scope": "enrichment",
+            "description": "Ideal torque, inertia and angular dynamics beyond current school-year core scope"
+          }
+        },
+        {
           "id": "phy-momentum",
           "title": "Momentum and Its Conservation",
           "topics": [
@@ -2400,9 +2442,9 @@
       {
         "number": 8,
         "title": "Rotational Motion",
-        "unitId": null,
+        "unitId": "phy-rotation",
         "scope": "optional-extension",
-        "status": "reference-planned"
+        "status": "extension-reference-preview"
       },
       {
         "number": 9,
