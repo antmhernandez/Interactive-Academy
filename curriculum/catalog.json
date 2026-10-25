@@ -491,8 +491,8 @@
           "topics": [
             {
               "id": "work-energy",
-              "title": "Work and Mechanical Energy",
-              "status": "planned",
+              "title": "Work Transfers Energy",
+              "status": "available",
               "owns": "phys.energy.work",
               "goal": "Calculate work as energy transferred by a force.",
               "prerequisites": [
@@ -501,8 +501,8 @@
             },
             {
               "id": "kinetic-energy",
-              "title": "Kinetic Energy",
-              "status": "planned",
+              "title": "Energy of Motion",
+              "status": "available",
               "owns": "phys.energy.kinetic",
               "goal": "Relate speed and mass to kinetic energy.",
               "prerequisites": [
@@ -511,8 +511,8 @@
             },
             {
               "id": "potential-energy",
-              "title": "Potential Energy",
-              "status": "planned",
+              "title": "Energy Stored by Height",
+              "status": "available",
               "owns": "phys.energy.potential",
               "goal": "Identify energy changes in gravitational and elastic systems.",
               "prerequisites": [
@@ -521,8 +521,8 @@
             },
             {
               "id": "energy-conservation",
-              "title": "Conservation of Energy",
-              "status": "planned",
+              "title": "Where Does the Energy Go?",
+              "status": "available",
               "owns": "phys.energy.conservation",
               "goal": "Use energy conservation within defined systems.",
               "prerequisites": [
