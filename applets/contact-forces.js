@@ -12,7 +12,7 @@ function frictionThreshold(el){
   <g id="fr-arrows"></g><text x="31" y="288" font-size="14" fill="#716a62">Force arrows are schematic, not to scale.</text>
  </svg>
  <div class="controls">
-  <label>Horizontal pull <output id="fr-pull-value"></output><input id="fr-pull" type="range" min="0" max="80" step="1" value="20"></label>
+  <label>Horizontal pull <output id="fr-pull-value"></output><input id="fr-pull" type="range" min="0" max="100" step="1" value="20"></label>
   <label>Crate mass <output id="fr-mass-value"></output><input id="fr-mass" type="range" min="1" max="10" step="1" value="5"></label>
   <label>Static coefficient μₛ <output id="fr-static-value"></output><input id="fr-static" type="range" min="0" max="0.9" step=".05" value=".5"></label>
   <label>Kinetic coefficient μₖ <output id="fr-kinetic-value"></output><input id="fr-kinetic" type="range" min="0" max=".7" step=".05" value=".3"></label>
@@ -48,7 +48,7 @@ function frictionThreshold(el){
  }
  for(const x of [pull,mass,s,k])x.oninput=paint;
  input("fr-reset").onclick=()=>{pull.value="20";mass.value="5";s.value=".5";k.value=".3";paint();};
- input("fr-threshold").onclick=()=>{pull.value=String(Math.min(80,Math.floor(Number(s.value)*Number(mass.value)*9.8)+1));paint();};
+ input("fr-threshold").onclick=()=>{pull.value=String(Math.min(100,Math.floor(Number(s.value)*Number(mass.value)*9.8)+1));paint();};
  paint();
 }
 function inclineFriction(el){
