@@ -66,7 +66,7 @@ function home(){
   <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
    <h1>See clearly.<br><em>Reason deeply.</em></h1>
    <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
-   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#physics">Begin Physics</a></div>
+   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#applets">Explore applets</a></div>
    <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
   <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
    ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
@@ -162,6 +162,10 @@ function lesson(l){
  ${visualLegend(l.visual)}
  <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
  </section>
+ ${l.investigation?`<details class="investigation-guide"><summary>Before you calculate · try an experiment</summary>
+ <ol><li><strong>Predict</strong><p>${escapeHtml(l.investigation.prediction)}</p></li>
+ <li><strong>Manipulate</strong><p>${escapeHtml(l.investigation.experiment)}</p></li>
+ <li><strong>Connect</strong><p>${escapeHtml(l.investigation.connection)}</p></li></ol></details>`:""}
  <section class="learn-area" aria-label="Learn and practice">
  <div class="lesson-tabs" role="tablist" aria-label="Learning activities">
  <button id="tab-understand" role="tab" type="button" data-view="understand" aria-controls="understand">The idea</button>
@@ -990,6 +994,47 @@ function bookTile(book,grade=null){
  <span class="book-tile-body"><span class="eyebrow">${escapeHtml(gradeText)}</span><strong>${escapeHtml(book.title)}</strong>
  <small>${escapeHtml(book.imprint)}</small><em>${count?count+" example concept "+(count===1?"link":"links"):"Navigation example · content pending"}</em></span><span aria-hidden="true" class="book-tile-arrow">→</span></a>`;
 }
+function appletsHome(){
+ const entries=[
+ ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
+ ["relative-velocity","⇢","physics","Reference frames","Steer against a river current and track your landing."],
+ ["projectile-motion","⌒","physics","Projectile motion","Change the launch angle to examine range and height."],
+ ["two-dimensional-motion","↗","physics","Vectors","Split an angled velocity into components."],
+ ["force-components","∠","physics","Forces","Rotate a force and observe its projections."],
+ ["free-body-diagram","⬡","physics","Force diagrams","Change a push and study the force arrows."],
+ ["motion-graphs","∿","physics","Graphs","Connect position, velocity and acceleration."],
+ ["limits-near-a-point","→","calculus","Limits","Approach a point and distinguish limit from value."],
+ ["tangent-line","∂","calculus","Derivatives","Watch a secant approach the tangent."],
+ ["riemann-sums","∫","calculus","Integration","Use rectangles to approximate accumulated area."]
+ ];
+ const cards=entries.map(([id,glyph,kind,tag,teaser])=>{
+  const l=get(id);if(!l)return "";
+  return `<a class="applet-tile" data-subject="${kind}" href="#lesson/${encodeURIComponent(id)}">
+   <span class="applet-tile-mark" aria-hidden="true">${escapeHtml(glyph)}</span>
+   <span class="applet-tile-info"><span class="eyebrow">${escapeHtml(tag)} · ${subject(kind)}</span>
+   <strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(teaser)}</small>
+   <span class="applet-tile-action">Explore model →</span></span></a>`;
+ }).join("");
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#physics">Physics lessons →</a></nav>
+ <header class="applet-library-head"><div class="eyebrow">Original interactive investigations</div><h1>The Experiment Room</h1>
+ <p>Predict what happens. Change a variable. Study the pattern. Then use the equation to explain what you see.</p>
+ <div class="applet-library-principles"><span>01 · Predict</span><span>02 · Manipulate</span><span>03 · Explain</span><span>04 · Calculate</span></div></header>
+ <div class="applet-filters" role="group" aria-label="Filter experiment models">
+ <button type="button" data-applet-filter="all" aria-pressed="true">All</button><button type="button" data-applet-filter="physics" aria-pressed="false">Physics</button>
+ <button type="button" data-applet-filter="calculus" aria-pressed="false">Calculus</button>
+ <span id="applet-count" role="status" aria-live="polite">${entries.length} models</span></div>
+ <div class="applet-gallery">${cards}</div>
+ <aside class="applet-data-lab"><div><h2>Work with measured motion</h2><p>Collect position and time data, graph it, and fit a model.</p></div>
+ <a class="btn primary" href="lab/motion.html">Motion Data Lab →</a></aside>
+ <p class="independence-note">Original browser-based educational models—not embedded PhET resources. The approximations and assumptions are stated on each lesson. Textbook links remain illustrative.</p>`;
+ const filters=[...main.querySelectorAll("[data-applet-filter]")],tiles=[...main.querySelectorAll(".applet-tile")];
+ for(const button of filters)button.onclick=()=>{
+  const selected=button.dataset.appletFilter;let count=0;
+  for(const b of filters)b.setAttribute("aria-pressed",String(b===button));
+  for(const card of tiles){const shown=selected==="all"||selected===card.dataset.subject;card.hidden=!shown;if(shown)count++;}
+  main.querySelector("#applet-count").textContent=count+" "+(count===1?"model":"models");
+ };
+}
 function booksHome(){
  const catalog=bookPathways;
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#showcase">Demo overview →</a></nav>
@@ -1059,7 +1104,7 @@ function route(){
  closePresentation();
  const hash=location.hash.slice(1).split("?")[0]||"home";let decoded="home";try{decoded=decodeURIComponent(hash);}catch{/* malformed hash goes home */}const parts=decoded.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="applets")appletsHome();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);main.focus({preventScroll:true});
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});
