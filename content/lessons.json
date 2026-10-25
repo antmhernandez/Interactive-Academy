@@ -1002,11 +1002,173 @@
       ],
       "explanation": "Velocities must be identified with their reference frames before they can be combined. The shore sees both northward crossing and eastward drift."
     },
-    "next": null,
+    "next": "universal-gravitation",
     "investigation": {
       "prediction": "Will pointing straight across a river always make the boat land directly opposite its starting point?",
       "experiment": "With a nonzero current, compare the straight-across heading with 'Aim upstream to cancel drift.' Watch the landing displacement.",
       "connection": "Ground velocity equals boat-through-water velocity plus current velocity. Time depends on the northward component; drift depends on the eastward component."
+    }
+  },
+  {
+    "id": "universal-gravitation",
+    "subject": "physics",
+    "unitId": "phy-gravity",
+    "unit": "Gravitation",
+    "title": "Gravity Weakens with Distance",
+    "subtitle": "A universal attraction that follows an inverse-square law.",
+    "duration": "10 min",
+    "observe": "If the distance from a planet's center doubles, how does gravity change?",
+    "idea": "Newton's law of universal gravitation gives the magnitude of attraction between two masses: F = Gm₁m₂/r². Distance r is measured between their centers, not from the surface. A test body's gravitational acceleration is g = GM/r², independent of its own mass; doubling distance divides both g and force on the same test body by four.",
+    "visualLead": "Change the planet's mass, the test mass, and the center-to-center separation; find the inverse-square pattern.",
+    "visual": "gravity-field",
+    "focus": "The inward arrow indicates gravitational attraction; the readouts show that doubling center distance quarters g.",
+    "definition": "Universal gravitation is the mutual attractive force between two masses, F = Gm₁m₂/r², where r is their center-to-center separation and G = 6.67430 × 10⁻¹¹ N·m²/kg².",
+    "example": {
+      "question": "At a distance of two Earth radii from Earth's center, how large is the gravitational acceleration compared with its value at the surface?",
+      "steps": [
+        "At any radius r outside a spherically symmetric planet, g(r)=GM/r². At Earth's surface, g(R)=GM/R².",
+        "At r=2R, g(2R)=GM/(2R)²=GM/(4R²)=g(R)/4.",
+        "Using 9.8 m/s² near Earth's surface, the acceleration is approximately 2.45 m/s² toward Earth's center."
+      ]
+    },
+    "practice": {
+      "prompt": "A spacecraft is 3 Earth radii from Earth's center. If surface g is 9.8 m/s², what is its gravitational acceleration in m/s²?",
+      "answer": 1.088888888888889,
+      "tolerance": 0.02,
+      "unit": "m/s²",
+      "hints": [
+        "The acceleration scales as 1/r² when planetary mass is fixed.",
+        "Use g(3R) = g(R)/(3²) = 9.8/9."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A 1 kg test object and a 4 kg test object are at the same distance from a planet's center. Ignoring interactions with each other, what can be said about their gravitational acceleration?",
+      "choices": [
+        "The 4 kg object accelerates four times faster because it feels more gravity.",
+        "Both objects accelerate equally; the heavier object experiences four times as much gravitational force.",
+        "The lighter object accelerates four times faster because it is easier to move."
+      ],
+      "correct": 1,
+      "feedback": [
+        "The heavier body does feel four times the force, but also has four times the inertia.",
+        "Correct. From F=mg, the test mass cancels; g=GM/r² for each.",
+        "The lighter body's force is proportionally smaller, producing the same acceleration."
+      ],
+      "explanation": "Gravity's force on the test mass is proportional to mass, but gravitational acceleration is not: F/m = GM/r²."
+    },
+    "next": "orbital-motion",
+    "investigation": {
+      "prediction": "What happens to gravitational acceleration when the center-to-center radius doubles? Does doubling the test mass alter that acceleration?",
+      "experiment": "Fix planet mass at 1 Earth mass and compare separation at 1 and 2 Earth radii. Then increase test mass from 2 to 8 kg. Watch force and acceleration separately.",
+      "connection": "F=GMm/r² and a=F/m=GM/r²: doubling r gives one quarter the acceleration, while changing test mass changes force only."
+    }
+  },
+  {
+    "id": "orbital-motion",
+    "subject": "physics",
+    "unitId": "phy-gravity",
+    "unit": "Gravitation",
+    "title": "Falling Around a Planet",
+    "subtitle": "Why gravity can produce a circular orbit instead of a collision.",
+    "duration": "11 min",
+    "observe": "How can a satellite keep falling toward Earth without reaching the ground?",
+    "idea": "A satellite in a circular orbit has velocity tangent to its path and gravitational acceleration toward the center. For an ideal circular orbit, the needed centripetal force mv²/r is exactly gravity GMm/r². Thus the circular speed v = √(GM/r) and period T = 2π√(r³/GM). The satellite continuously changes direction while gravity supplies the inward force.",
+    "visualLead": "Change orbital radius and central mass; compare the tangential arrow and inward gravitational acceleration.",
+    "visual": "circular-orbit",
+    "focus": "The velocity arrow is tangent, but gravity points inward at every position. A larger circular orbit is slower and takes longer.",
+    "definition": "A circular gravitational orbit is motion around a spherical central mass in which gravity supplies exactly the centripetal force: GMm/r²=mv²/r, giving v=√(GM/r) and T=2π√(r³/GM).",
+    "example": {
+      "question": "A satellite circles an Earth-mass planet at a distance of four Earth radii from its center. How does its orbital speed compare with one orbiting at two Earth radii?",
+      "steps": [
+        "For ideal circular orbits around the same central mass, v=√(GM/r).",
+        "The orbital-speed ratio is v(4R)/v(2R)=√((2R)/(4R))=√(1/2).",
+        "The more distant satellite moves at about 0.707 times the nearer satellite's speed, but has a longer orbital period."
+      ]
+    },
+    "practice": {
+      "prompt": "A satellite's ideal circular orbit radius increases from 1 Earth radius to 4 Earth radii around the same planet. If the first orbital speed is 8 km/s, what is the second speed in km/s?",
+      "answer": 4,
+      "tolerance": 0.02,
+      "unit": "km/s",
+      "hints": [
+        "Circular orbital speed scales with the inverse square root of orbital radius, not as 1/r².",
+        "v₂/v₁=√(r₁/r₂)=√(1/4)=1/2; apply to 8 km/s."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "An ideal satellite moves in a steady circular orbit. What causes its velocity to keep changing direction?",
+      "choices": [
+        "A continuous outward force balances the satellite's inward gravitational force.",
+        "Planetary gravity supplies inward acceleration while the satellite's velocity remains tangent to its orbit.",
+        "Gravity vanishes at orbital altitude, so the satellite moves without acceleration."
+      ],
+      "correct": 1,
+      "feedback": [
+        "No extra outward force is required in an inertial reference frame; gravity alone supplies the inward net force.",
+        "Correct. Gravity changes velocity's direction even if its magnitude is steady.",
+        "Gravity remains significant in orbit, as the gravitational-force applet shows."
+      ],
+      "explanation": "The satellite is in continuous inward acceleration due to gravity, while its tangential velocity carries it along a curved path."
+    },
+    "next": "weightlessness",
+    "investigation": {
+      "prediction": "If a circular orbit is moved farther out, does orbital speed rise or fall? What happens to its period?",
+      "experiment": "Hold planet mass fixed. Compare circular orbits at 2 and 4 Earth radii and read velocity, inward gravity, and period. Step through the orbit to inspect arrow directions.",
+      "connection": "v=√(GM/r) decreases with radius, while T=2π√(r³/GM) increases as r^(3/2)."
+    }
+  },
+  {
+    "id": "weightlessness",
+    "subject": "physics",
+    "unitId": "phy-gravity",
+    "unit": "Gravitation",
+    "title": "Why Orbit Feels Weightless",
+    "subtitle": "Free fall is not the absence of gravity.",
+    "duration": "9 min",
+    "observe": "Why do astronauts float when Earth's gravity still pulls on their spacecraft?",
+    "idea": "In an ideal orbit, the astronaut and the spacecraft accelerate together under gravity. Because the floor need not push upward on the freely falling astronaut, a scale would read essentially zero normal force: this is apparent weightlessness. The gravitational force mg remains nonzero. Free fall describes motion under gravity alone, not the absence of gravitational attraction.",
+    "visualLead": "Compare gravitational force with the apparent scale reading while an orbiting spacecraft travels.",
+    "visual": "circular-orbit",
+    "focus": "The satellite and passenger continually fall together. Their scale reading can be zero even when gravity is strong.",
+    "definition": "Apparent weight is the support (normal) force that a scale exerts on an object. In ideal shared free fall under gravity alone, the normal force can be zero even when gravitational force and acceleration are nonzero.",
+    "example": {
+      "question": "A 70 kg astronaut orbits at a distance of two Earth radii from Earth's center. Estimate the gravitational force and the ideal scale reading (surface g≈9.8 m/s²).",
+      "steps": [
+        "At two Earth radii, g≈9.8/4=2.45 m/s², so the astronaut still experiences substantial gravity.",
+        "Gravitational force is Fg=mg=(70 kg)(2.45 m/s²)=171.5 N toward Earth's center.",
+        "Because astronaut and spacecraft are freely falling together, an ideal onboard scale exerts nearly no normal force: apparent weight≈0 N."
+      ]
+    },
+    "practice": {
+      "prompt": "A 60 kg astronaut is in ideal free fall where gravitational acceleration is 4 m/s². What is the magnitude of the gravitational force on the astronaut in newtons?",
+      "answer": 240,
+      "tolerance": 0.02,
+      "unit": "N",
+      "hints": [
+        "Feeling weightless does not mean the force of gravity is zero.",
+        "Calculate Fg=mg=(60 kg)(4 m/s²)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "An astronaut floats inside a spacecraft in an ideal circular orbit. Which explanation best describes the astronaut's apparent weightlessness?",
+      "choices": [
+        "Earth's gravity no longer reaches the spacecraft at that altitude.",
+        "The astronaut and spacecraft share free fall, so almost no support force is needed even while gravity pulls both inward.",
+        "The astronaut's gravitational mass becomes zero whenever orbital speed is constant."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Gravity extends to orbital distances and supplies the necessary inward acceleration.",
+        "Correct. Apparent weight measures support force, not gravitational attraction.",
+        "Mass is unchanged, and an ideal circular orbit has changing velocity direction."
+      ],
+      "explanation": "Free fall under gravity alone can make the normal force zero while gravity still supplies centripetal acceleration."
+    },
+    "next": null,
+    "investigation": {
+      "prediction": "Could the ideal onboard scale read zero at an orbital radius where gravity still pulls with several newtons of force?",
+      "experiment": "Use the orbit model with a test mass of 5 kg. Compare inward gravitational force with the 'ideal support force' readout at different orbital radii.",
+      "connection": "Fg=GMm/r² remains positive in orbit. Ideal free fall gives N≈0 while gravitational acceleration is nonzero."
     }
   },
   {

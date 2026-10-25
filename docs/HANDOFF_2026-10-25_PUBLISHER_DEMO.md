@@ -236,3 +236,19 @@ Keep expanding conceptual simulations selectively: friction/inclines, energy con
 - PR #13 merged after successful full [GitHub Actions run 40232066089](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40232066089), covering model numerics, school-year textbook sequencing and headless Chromium viewport journeys.
 - Four energy lessons are explicitly `optionalPreview:true` and do not modify the regular Chapter 1–6 next chain; see source audit `docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md`.
 - Manual Safari/iOS/Android, VoiceOver/NVDA and large-display classroom comprehension reviews are still unperformed. Do not imply otherwise.
+
+## October 25 continuation — Chapter 7 gravitation investigations (PR in progress)
+
+**Working branch:** `feature/chapter-07-gravitation-investigations-2026-10-25` based on successful main release `df93e9219c06a1184358065c73cc70043c299d0e`. User explicitly requested continued implementation after the energy applet release. The correct next primary unit is Glencoe-indexed Chapter 7, not Chapter 10–11, which remains an optional preview.
+
+### Contents of this release
+- Two original simulations in standalone `applets/gravitation.js`. First: `gravityField` with Earth-mass multiple 1–10, small test mass 1–10kg, center radius 1–8 Earth radii, Newtonian force and free-fall acceleration; explicit inverse-square numerics. Second: `orbitGravity` with central mass, satellite/test mass, radius 1.5–8 Earth radii, 360° orbit phase, manually stepped/visually slowed play, inward force, speed, period, gravitational acceleration and zero ideal normal-force readout. Central radius is fixed to Earth's even when mass varies, and the drawing is schematic.
+- Three complete original `phy-gravity` student lessons, `universal-gravitation`, `orbital-motion`, `weightlessness`, connected into main required sequence immediately after `relative-velocity`, and each with 3 scaffolded problems, unique worked example, 3-choice misconception check, and inquiry prompt.
+- Updated canonical topic statuses/official original lesson titles; no changes to textbook chapter indices or any Novare/Memoria Press volume listings. Separate independent Glencoe-based reference entry updated only.
+- Existing optional preview `work-energy`, `kinetic-energy`, `potential-energy`, `energy-conservation` (Ch. 10–11) and `atom-spectra` (Ch. 28) stay optional with no false shortcut. Kepler/historical planetary model and remaining Chap. 7 topics remain `planned`.
+- Totals become 33 complete lessons (28 Physics/5 Calculus), 99 guided problems, 15 gallery applets, original 84 equation entries, 148 registered canonical Physics/Calculus concepts.
+- `scripts/test-gravitation.mjs` covers force vs test mass, inverse-square falloff, orbital speed, period/radius scaling, force/centripetal-acceleration agreement, ideal normal force, input changes and reset; headless Chromium expanded at five screen widths.
+- [Mathematical model and teaching audit](20_GRAVITATION_CHAPTER_07_2026-10-25.md).
+
+### Required handoff checks
+PR CI, merge SHA, main push CI, Pages publishing workflow must all be independently verified and recorded before claiming success. Human iOS/Android, NVDA/VoiceOver, physical projector and pupil comprehension remain unverified; do not suggest this is a completed accessible commercial product. Chapter 8 Rotation and Chapter 9 Momentum are logical later primary expansions, but accuracy and design refinement should precede content acceleration.

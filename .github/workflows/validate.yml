@@ -20,6 +20,8 @@ jobs:
           node --check app.js
           node --check applets/contact-forces.js
           node --check applets/energy-ramp.js
+          node --check applets/gravitation.js
+          node --check scripts/test-gravitation.mjs
           node --check scripts/test-energy-ramp.mjs
           node --check scripts/test-contact-forces.mjs
           node --check lab/motion.js
@@ -34,6 +36,7 @@ jobs:
           node scripts/test-interactives.mjs
           node scripts/test-contact-forces.mjs
           node scripts/test-energy-ramp.mjs
+          node scripts/test-gravitation.mjs
           node scripts/validate-book-portal.mjs
       - name: Install headless browser for responsive and keyboard tests
         run: |
