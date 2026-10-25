@@ -1853,6 +1853,16 @@
       "review": "teacher-review-required",
       "label": "Limits guided notes",
       "kind": "student-notes"
+    },
+    {
+      "id": "atomic-spectra-notes",
+      "label": "Atomic spectra guided notes",
+      "path": "materials/atomic-spectra-guided-notes.html",
+      "owner": "atom-spectra",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "kind": "student-notes"
     }
   ],
   "connections": [
