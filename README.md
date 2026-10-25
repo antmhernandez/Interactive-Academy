@@ -59,7 +59,7 @@ A short optional **four-lesson pathway** keeps necessary concepts in order: [Wor
 
 **Sequencing boundary:** Because this is an optional preview of **Glencoe-indexed Chapters 10–11**, the main textbook-first lesson chain still ends at Chapter 6; energy has a separate contextual sequence, not a premature Next Lesson link. The independent prototype does *not* claim Novare/Memoria Press edition alignment. Site inventory after this pass: **30 lessons (25 Physics, 5 Calculus), 90 guided problems, 13 featured applets**, with the existing 84-equation index unchanged. See [the energy model and pedagogy audit](docs/19_CONSERVATION_OF_ENERGY_LAB_2026-10-25.md).
 
-## Chapter 7 Gravitation — New required Physics sequence (October 25, 2026)
+## Chapter 7 Gravitation — New required Physics sequence (October 25, 2026 · [merged PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14))
 
 The required course now continues beyond Chapter 6 into three original **Chapter 7: Gravitation** lessons:
 
