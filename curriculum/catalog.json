@@ -1907,6 +1907,16 @@
       "origin": "new-original",
       "review": "teacher-review-required",
       "kind": "student-notes"
+    },
+    {
+      "id": "physics-toolkit-notes",
+      "label": "Chapter 1 Physics Toolkit guided notes",
+      "path": "materials/physics-toolkit-chapter1-notes.html",
+      "owner": "scientific-measurement",
+      "visibility": "public-student",
+      "origin": "new-original",
+      "review": "teacher-review-required",
+      "kind": "student-notes"
     }
   ],
   "connections": [
