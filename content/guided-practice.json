@@ -588,6 +588,90 @@
     ]
   },
   {
+    "owner": "two-dimensional-motion",
+    "title": "Motion in Two Dimensions",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A ball moves at 20 m/s at 30° above the horizontal. What is its vertical velocity component in m/s?",
+        "answer": 10,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "The angle is measured from +x, so the vertical projection is vᵧ = v sin θ.",
+          "Substitute v = 20 m/s and θ = 30°, with sin 30° = 0.5.",
+          "vᵧ = 20(0.5) = 10 m/s upward."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A glider moves at 18 m/s at 60° above +x. Determine its horizontal velocity component in m/s.",
+        "answer": 9,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Horizontal projection uses cosine when θ is measured from +x.",
+          "vₓ = (18 m/s) cos 60°, and cos 60° = 0.5.",
+          "vₓ = 9 m/s to the right."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A boat has velocity components +12 m/s east and +5 m/s north. What is the magnitude of its velocity, in m/s?",
+        "answer": 13,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "The perpendicular components form the legs of a right triangle.",
+          "Magnitude follows the Pythagorean theorem: |v| = √(vₓ² + vᵧ²).",
+          "|v| = √(12² + 5²) = √169 = 13 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "projectile-motion",
+    "title": "The Path of a Projectile",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A ball launches at 14 m/s, 30° above level ground, and lands at the same height. Ignoring air resistance, what is its total flight time in seconds (g = 9.8 m/s²)?",
+        "answer": 1.42857142857,
+        "tolerance": 0.02,
+        "unit": "s",
+        "steps": [
+          "Resolve the initial vertical velocity: v₀ᵧ = 14 sin30° = 7 m/s.",
+          "At equal heights, total flight time is T = 2v₀ᵧ/g.",
+          "T = (2 × 7)/9.8 ≈ 1.43 s."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A projectile launches at 20 m/s and 45° from level ground, landing at the launch height. Find horizontal range in meters (g = 9.8 m/s²).",
+        "answer": 40.816326530612244,
+        "tolerance": 0.05,
+        "unit": "m",
+        "steps": [
+          "Use the ideal level-ground range formula R = (v₀² sin 2θ)/g.",
+          "At 45°, sin 90° = 1, so R = 20²/9.8.",
+          "R ≈ 40.82 m; the horizontal speed persists while vertical velocity changes."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A ball launches at 25 m/s and 30° above the horizon. Find the maximum height above launch in meters, with no air resistance (g = 9.8 m/s²).",
+        "answer": 7.971938775510203,
+        "tolerance": 0.03,
+        "unit": "m",
+        "steps": [
+          "Resolve the launch speed vertically: v₀ᵧ = 25 sin30° = 12.5 m/s.",
+          "At the top vᵧ = 0, so 0 = v₀ᵧ² − 2gH, or H = v₀ᵧ²/(2g).",
+          "H = 12.5²/(2 × 9.8) ≈ 7.97 m."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "atom-spectra",
     "title": "The Colors of Atoms",
     "levels": [

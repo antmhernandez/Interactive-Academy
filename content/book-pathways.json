@@ -171,7 +171,9 @@
         "si-units",
         "position-displacement",
         "motion-graphs",
-        "newtons-second-law"
+        "newtons-second-law",
+        "two-dimensional-motion",
+        "projectile-motion"
       ],
       "alignment": "independent-prototype",
       "review": "prototype-only"

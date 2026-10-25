@@ -140,4 +140,24 @@ function createElement(initial){
  assert.equal(get("#slope-rise").textContent,"16 m");
  assert.equal(get("#slope-value").textContent,"4 m/s");
 }
-console.log("PASS: original physics, calculus and short-challenge visual readouts");
+
+{
+ const {el,get}=createElement({"#velocity-speed":"20","#velocity-angle":"30"});
+ renderer("velocityComponents")(el);
+ assert.equal(get("#velocity-x").textContent,"17.321 m/s");
+ assert.equal(get("#velocity-y").textContent,"10 m/s");
+ get("#velocity-angle").value="90";get("#velocity-angle").oninput();
+ assert.equal(get("#velocity-x").textContent,"0 m/s");
+ assert.equal(get("#velocity-y").textContent,"20 m/s");
+ assert.ok(get("#velocity-vectors").innerHTML.includes("path"));
+}
+{
+ const {el,get}=createElement({"#projectile-speed":"20","#projectile-angle":"45"});
+ renderer("projectileMotion")(el);
+ assert.ok(Math.abs(Number.parseFloat(get("#projectile-range").textContent)-400/9.8)<.002);
+ assert.ok(Math.abs(Number.parseFloat(get("#projectile-flight").textContent)-2*20*Math.sin(Math.PI/4)/9.8)<.002);
+ get("#projectile-angle").value="30";get("#projectile-angle").oninput();
+ assert.ok(Math.abs(Number.parseFloat(get("#projectile-range").textContent)-400*Math.sin(Math.PI/3)/9.8)<.002);
+ assert.ok(get("#projectile-trace").innerHTML.includes("path"));
+}
+console.log("PASS: original physics, calculus, Chapter 6 and short-challenge visual readouts");

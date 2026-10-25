@@ -681,9 +681,107 @@
       ],
       "explanation": "A component measures projection onto an axis. A vertical force has zero horizontal projection."
     },
-    "next": null,
+    "next": "two-dimensional-motion",
     "unitId": "phy-forces",
     "definition": "A force component is a signed projection of a vector onto an axis. At an angle θ measured from +x, Fx = F cosθ and Fy = F sinθ."
+  },
+  {
+    "id": "two-dimensional-motion",
+    "subject": "physics",
+    "unit": "Motion in Two Dimensions",
+    "unitId": "phy-two-dimensional-motion",
+    "title": "Motion in Two Dimensions",
+    "subtitle": "One velocity, two independent directions.",
+    "duration": "8 min",
+    "observe": "How can an angled velocity be described with horizontal and vertical numbers?",
+    "idea": "A two-dimensional velocity can be resolved into perpendicular components. When the angle θ is measured above the positive horizontal, vₓ = v cos θ and vᵧ = v sin θ. The ordered pair (vₓ, vᵧ) describes the same motion as the original velocity arrow.",
+    "visualLead": "Adjust the speed and launch angle. Watch each component change without changing the vector rule.",
+    "visual": "velocity-components",
+    "focus": "The teal arrow shows horizontal velocity; green shows vertical velocity. Together they reach the amber vector tip.",
+    "definition": "A velocity component is a signed projection of the velocity vector onto an axis. For direction θ measured counterclockwise from +x, vₓ = v cos θ and vᵧ = v sin θ; the vector is (vₓ, vᵧ).",
+    "example": {
+      "question": "A ball moves at 12 m/s, 30° above the horizontal. What are its horizontal and vertical velocity components?",
+      "steps": [
+        "Choose +x to the right and +y upward. The angle is measured from +x, so cosine gives the horizontal part.",
+        "vₓ = (12 m/s) cos 30° ≈ 10.39 m/s, while vᵧ = (12 m/s) sin 30° = 6.00 m/s.",
+        "The original velocity is approximately (10.39, 6.00) m/s. Both components describe one motion, not two different velocities."
+      ]
+    },
+    "practice": {
+      "prompt": "A ball moves at 20 m/s at 30° above the horizontal. What is its vertical velocity component in m/s?",
+      "answer": 10,
+      "tolerance": 0.02,
+      "unit": "m/s",
+      "hints": [
+        "For an angle from the horizontal, the vertical component uses sine.",
+        "Use vᵧ = (20 m/s) sin 30°, and sin 30° = 1/2."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A student doubles the speed but keeps the direction angle unchanged. What happens to the horizontal and vertical components?",
+      "choices": [
+        "Only the horizontal component doubles, because speed is measured on the x-axis.",
+        "Both components double, because sine and cosine of the unchanged angle are constant.",
+        "Neither component changes, because the direction angle stays the same."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Both projections scale with the original speed, not just the horizontal one.",
+        "Correct. Both components are proportional to the original speed at a fixed angle.",
+        "The angle fixes the proportions, but the increased magnitude increases each component."
+      ],
+      "explanation": "Components are products of the speed and a fixed trigonometric ratio, so changing the magnitude scales both projections."
+    },
+    "next": "projectile-motion"
+  },
+  {
+    "id": "projectile-motion",
+    "subject": "physics",
+    "unit": "Motion in Two Dimensions",
+    "unitId": "phy-two-dimensional-motion",
+    "title": "The Path of a Projectile",
+    "subtitle": "Steady horizontal motion meets downward acceleration.",
+    "duration": "10 min",
+    "observe": "Why does a launched ball follow a curved path when gravity pulls only downward?",
+    "idea": "Without air resistance, gravity changes vertical velocity but not horizontal velocity. A projectile launched at speed v₀ and angle θ has v₀ₓ = v₀ cos θ and v₀ᵧ = v₀ sin θ. Relative to the launch point, x(t) = v₀ₓt and y(t) = v₀ᵧt − ½gt², using g = 9.8 m/s² downward.",
+    "visualLead": "Change launch speed and angle. Compare the curved path, peak height, flight time, and range.",
+    "visual": "projectile-motion",
+    "focus": "Teal traces the path while amber marks the highest point. The model assumes level ground and no air resistance.",
+    "definition": "Projectile motion is two-dimensional motion under gravitational acceleration alone (ignoring air resistance): horizontal velocity remains constant while vertical acceleration is −g, with x = v₀ cos(θ)t and y = v₀ sin(θ)t − ½gt² relative to launch.",
+    "example": {
+      "question": "A ball launches from level ground at 20 m/s and 30° above horizontal. Ignoring air resistance, how long does it stay aloft before returning to launch height?",
+      "steps": [
+        "Resolve the initial vertical velocity: v₀ᵧ = (20 m/s) sin 30° = 10 m/s.",
+        "Returning to launch height means y(t) = 0, so 0 = 10t − 4.9t² = t(10 − 4.9t).",
+        "Discard the launch instant t = 0. Flight time is t = 10/4.9 ≈ 2.04 s. Horizontal range would then be (20 cos 30°)(2.04) ≈ 35.35 m."
+      ]
+    },
+    "practice": {
+      "prompt": "A ball launches at 14 m/s, 30° above level ground, and lands at the same height. Ignoring air resistance, what is its total flight time in seconds (g = 9.8 m/s²)?",
+      "answer": 1.42857142857,
+      "tolerance": 0.02,
+      "unit": "s",
+      "hints": [
+        "First find vertical launch speed: v₀ᵧ = v₀ sin θ.",
+        "At equal launch and landing heights, flight time T = 2v₀ᵧ/g."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "At the very highest point of an ideal projectile's flight, which statement about its motion is correct?",
+      "choices": [
+        "The horizontal velocity is still nonzero, while the instantaneous vertical velocity is zero.",
+        "The ball has zero total velocity and zero acceleration at the highest point.",
+        "Gravity stops acting for an instant while the ball changes from rising to falling."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. Only the vertical velocity vanishes at the apex; gravity still accelerates the ball downward.",
+        "Horizontal motion continues, and gravitational acceleration remains 9.8 m/s² downward.",
+        "The downward gravitational acceleration acts throughout the flight, including at the peak."
+      ],
+      "explanation": "The apex is a vertical turning point, not a moment without force. Horizontal velocity remains constant in this ideal model."
+    },
+    "next": null
   },
   {
     "id": "atom-spectra",

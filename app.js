@@ -45,7 +45,9 @@ const visualKeys={
  "measurement-ruler":[["teal","Estimated interval"],["amber","Object edge"]],
  "significant-digits":[["teal","First factor"],["amber","Second factor"],["navy","Rounded result"]],
  "units-cancel":[["teal","Unit relationship"],["amber","Calculated result"]],
- "slope-graph":[["teal","Position curve"],["amber","Secant slope"]]
+ "slope-graph":[["teal","Position curve"],["amber","Secant slope"]],
+ "velocity-components":[["amber","Velocity vector"],["teal","Horizontal"],["green","Vertical"]],
+ "projectile-motion":[["teal","Flight path"],["amber","Highest point"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -54,25 +56,42 @@ function visualLegend(name){
 }
 function heroArt(){return `<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 320"><defs><pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#b5c8bd" stroke-width=".8" opacity=".5" fill="none"/></pattern></defs><rect width="500" height="320" fill="#edf3ee"/><rect width="500" height="320" fill="url(#hero-grid)"/><path d="M52 262H466M78 290V30" stroke="#97b6af" stroke-width="1.5"/><path d="M77 244 Q170 282 265 134 T443 45" stroke="#14727a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M130 239L367 78" stroke="#ca8a46" stroke-width="3.4"/><circle cx="258" cy="145" r="8" fill="#d89e53" stroke="white" stroke-width="4"/><path d="M258 145V262" stroke="#a2b9b2" stroke-width="1.5" stroke-dasharray="5 5"/><text x="349" y="117" fill="#16666d" font-size="22" font-family="Georgia" font-style="italic">f(x)</text><text x="294" y="202" fill="#ad733b" font-size="17" font-family="Georgia">tangent</text></svg></div>`;}
 function home(){
- const p=lessons.filter(l=>l.subject==="physics"),c=lessons.filter(l=>l.subject==="calculus");
- main.innerHTML=`<div class="route-nav"><span class="route-current">Welcome to The Learning Atlas</span><a href="#books">Grade &amp; book library</a><a href="#showcase">Publisher demo</a></div>
- <section class="home-hero publisher-hero">
-  <div class="eyebrow">A classical companion for the mathematical sciences</div>
-  <h1>See the idea.<br><em>Learn to reason.</em></h1>
-  <p>One concept at a time: observe it, understand it, then work through the mathematics with confidence.</p>
-  <div class="showcase-actions"><a class="btn primary" href="#books">Explore by grade or book →</a><a class="btn" href="#showcase">View the publisher demonstration</a></div>
-  <div class="home-proof">Original demonstrations <span aria-hidden="true">·</span> Step-by-step reasoning <span aria-hidden="true">·</span> Independent student practice</div>
+ const physics=courseList("physics"),calculus=courseList("calculus");
+ const nextPhysics=physics.find(l=>!completed.has(l.id)&&!l.optionalPreview)||physics[0];
+ const nextCalculus=calculus.find(l=>!completed.has(l.id))||calculus[0];
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><span class="route-current">Welcome to The Learning Atlas</span><a href="#books">Books &amp; grades</a><a href="#showcase">Publisher overview</a></nav>
+ <section class="home-hero publisher-hero atlas-hero">
+  <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
+   <h1>See clearly.<br><em>Reason deeply.</em></h1>
+   <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
+   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#physics">Begin Physics</a></div>
+   <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
+  <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
+   ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
  </section>
- <section class="home-feature"><div class="home-feature-art">${heroArt()}</div><div class="home-feature-copy"><div class="eyebrow">An example of the method</div>
- <h2>From motion to meaning.</h2><p>See how position changes, examine the mathematical pattern, and try a problem yourself.</p>
- <a class="btn primary" href="#lesson/motion-diagrams">Explore the motion demonstration →</a></div></section>
- <div class="section-heading home-section-heading"><div><div class="eyebrow">Start with a subject</div><h2>The learning collection</h2></div></div>
+ <section class="atlas-method" aria-label="The learning method">
+  <div class="method-heading"><div class="eyebrow">A thoughtful sequence</div><h2>One idea. Four ways to understand it.</h2></div>
+  <div class="method-grid">
+   <div class="method-item"><span class="method-number">I</span><h3>The Idea</h3><p>A clear definition and a question worth asking.</p></div>
+   <div class="method-item"><span class="method-number">II</span><h3>Example</h3><p>Worked reasoning revealed one step at a time.</p></div>
+   <div class="method-item"><span class="method-number">III</span><h3>Think</h3><p>A brief check that uncovers misconceptions.</p></div>
+   <div class="method-item"><span class="method-number">IV</span><h3>Try it</h3><p>Make the mathematics your own with practice.</p></div>
+  </div>
+ </section>
+ <div class="section-heading home-section-heading"><div><div class="eyebrow">The original study collection</div><h2>Choose a course to begin.</h2></div><a class="section-link" href="#books">Or explore by textbook →</a></div>
  <div class="home-choices subject-choices">
-  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${p.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
-  <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${c.length} original interactive topics</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
- <div class="lab-strip"><div><strong>Work with measurements.</strong><span>Graph position–time data and fit a physical model.</span></div><a href="lab/motion.html">Motion Data Lab →</a></div>
- <p class="independence-note">Independent concept prototype for discussion. Memoria Press titles appear as catalog references, not official integrations or endorsed supplements.</p>`;
+ <section class="atlas-continue" aria-label="Continue a course on this device">
+  <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
+  <div class="continue-options">
+   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${completedCount("physics")} / ${physics.length} complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
+   <a href="#lesson/${nextCalculus.id}"><span>Calculus · ${completedCount("calculus")} / ${calculus.length} complete</span><strong>${escapeHtml(nextCalculus.title)} →</strong></a>
+  </div>
+ </section>
+ <div class="lab-strip"><div><strong>From observation to evidence.</strong><span>Enter measured data, graph it, and fit a physical model.</span></div><a href="lab/motion.html">Explore the Motion Data Lab →</a></div>
+ <p class="independence-note">Independent concept prototype for discussion. Published textbook references are illustrative only; they are not official Memoria Press integrations or approved chapter mappings.</p>`;
 }
 function catalog(s){
  const items=courseList(s),completedTotal=completedCount(s);
@@ -88,7 +107,7 @@ function catalog(s){
  }).join("");
  main.innerHTML=`
  <nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${items[0].id}">First lesson →</a></nav>
- <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
+ <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div><div class="course-progress-track" role="progressbar" aria-label="Lessons completed" aria-valuemin="0" aria-valuemax="${items.length}" aria-valuenow="${completedTotal}"><span style="width:${100*completedTotal/items.length}%"></span></div></header>
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
  <div class="outline-link"><a href="#books">Browse grade-level books and related concepts →</a></div>
@@ -132,7 +151,7 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
- <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
@@ -234,6 +253,8 @@ function lesson(l){
  if(l.visual==="significant-digits")significantDigits(el);
  if(l.visual==="units-cancel")unitCancellation(el);
  if(l.visual==="slope-graph")slopeToolkit(el);
+ if(l.visual==="velocity-components")velocityComponents(el);
+ if(l.visual==="projectile-motion")projectileMotion(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -616,6 +637,71 @@ function riemann(el){
  el.innerHTML=`<div class="diagram-head"><strong>Right-endpoint rectangles</strong><span class="pill calculus">Integral</span></div><svg viewBox="0 0 520 309" role="img" aria-label="Rectangles approximating the area under y equals x"><rect width="520" height="309" rx="12" fill="#f8fbf9"/><g id="rgraph"></g></svg><div class="controls"><label>Number of rectangles: <strong id="nv"></strong><input id="nslider" type="range" min="2" max="30" step="1" value="4"></label></div><div class="readout"><div class="metric"><small>Right sum</small><strong id="sum"></strong></div><div class="metric"><small>Exact area</small><strong>8</strong></div></div><p class="note">For an increasing function, these right-endpoint rectangles overestimate the area. More, thinner rectangles reduce the error.</p>`;
  const slider=el.querySelector("#nslider");function paint(){let n=+slider.value,dx=4/n,xp=x=>55+102*x,yp=y=>262-51*y;const rectangles=Array.from({length:n},(_,i)=>{let right=(i+1)*dx;return `<rect x="${xp(i*dx)}" y="${yp(right)}" width="${102*dx}" height="${51*right}" fill="#a8d4c9" fill-opacity=".53" stroke="#14727a" stroke-width=".8"/>`}).join("");el.querySelector("#rgraph").innerHTML=`<path d="M55 15V262H490" fill="none" stroke="#93b2a8" stroke-width="1.6"/>${rectangles}<path d="M55 262L463 58" stroke="#c08039" stroke-width="3" fill="none"/><text x="455" y="282" font-size="14" fill="#50756e">4</text>`;el.querySelector("#nv").textContent=n;el.querySelector("#sum").textContent=f(8+8/n);}slider.oninput=paint;paint();
 }
+
+function velocityComponents(el){
+ el.innerHTML=`<div class="diagram-head"><strong>Velocity as a vector</strong><span class="pill">Two components</span></div>
+ <svg viewBox="0 0 560 330" role="img" aria-label="Angled velocity, horizontal and vertical arrows; exact values shown below">
+ <defs><marker id="velocity-tip" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#ba8240"/></marker></defs>
+ <path d="M55 271H526M81 301V25" fill="none" stroke="#8fa69d" stroke-width="1.7"/>
+ <path d="M81 241H525M81 211H525M81 181H525M81 151H525M81 121H525M81 91H525" stroke="#dfe9e1" stroke-width="1" stroke-dasharray="3 7"/>
+ <text x="510" y="295" fill="#455d63" font-size="15">+x</text><text x="48" y="25" fill="#455d63" font-size="15">+y</text>
+ <g id="velocity-vectors"></g><circle cx="81" cy="271" r="5" fill="#253c56"/></svg>
+ <div class="controls">
+ <label>Speed <output id="velocity-speed-value">20 m/s</output><input id="velocity-speed" type="range" min="4" max="30" step="1" value="20"></label>
+ <label>Angle above +x <output id="velocity-angle-value">30°</output><input id="velocity-angle" type="range" min="0" max="90" step="5" value="30"></label></div>
+ <div class="readout"><div class="metric"><small>Horizontal vₓ</small><strong id="velocity-x"></strong></div><div class="metric"><small>Vertical vᵧ</small><strong id="velocity-y"></strong></div></div>
+ <p class="note">Components describe one velocity, not two separate motions. Angles are measured from +x.</p>`;
+ const speed=el.querySelector("#velocity-speed"),angle=el.querySelector("#velocity-angle");
+ function paint(){
+  const v=Number(speed.value),theta=Number(angle.value)*Math.PI/180;
+  const vx=v*Math.cos(theta),vy=v*Math.sin(theta),x=81+vx*8,y=271-vy*8;
+  el.querySelector("#velocity-vectors").innerHTML=`
+   <path d="M81 271H${x}V${y}" fill="none" stroke="#9aafa6" stroke-width="1.3" stroke-dasharray="5 5"/>
+   <path d="M81 271L${x} 271" stroke="#14727a" stroke-width="5" stroke-linecap="round"/>
+   <path d="M${x} 271V${y}" stroke="#32986f" stroke-width="5" stroke-linecap="round"/>
+   <path d="M81 271L${x} ${y}" stroke="#ba8240" stroke-width="5" stroke-linecap="round" marker-end="url(#velocity-tip)"/>
+   <circle cx="${x}" cy="${y}" r="5" fill="#ba8240" stroke="#fff" stroke-width="2"/>
+   <text x="${(81+x)/2}" y="291" fill="#136670" font-size="17" text-anchor="middle">vₓ</text>
+   <text x="${x+10}" y="${(y+271)/2}" fill="#237650" font-size="17">vᵧ</text>`;
+  el.querySelector("#velocity-speed-value").textContent=v+" m/s";
+  el.querySelector("#velocity-angle-value").textContent=angle.value+"°";
+  el.querySelector("#velocity-x").textContent=f(vx)+" m/s";
+  el.querySelector("#velocity-y").textContent=f(vy)+" m/s";
+ }
+ speed.oninput=paint;angle.oninput=paint;paint();
+}
+function projectileMotion(el){
+ el.innerHTML=`<div class="diagram-head"><strong>An ideal projectile</strong><span class="pill">g = 9.8 m/s²</span></div>
+ <svg viewBox="0 0 560 335" role="img" aria-label="Flight trajectory from launch to equal-height landing; numerical values shown below">
+ <path d="M53 268H524M74 294V24" fill="none" stroke="#8fa69d" stroke-width="1.7"/>
+ <path d="M74 215H524M74 162H524M74 109H524M74 56H524" fill="none" stroke="#e1e9e2" stroke-width="1" stroke-dasharray="4 6"/>
+ <text x="506" y="294" fill="#435d63" font-size="15">x (m)</text><text x="35" y="26" fill="#435d63" font-size="15">y</text>
+ <g id="projectile-trace"></g><circle cx="74" cy="268" r="5" fill="#263c56"/></svg>
+ <div class="controls"><label>Launch speed <output id="projectile-speed-value">20 m/s</output><input id="projectile-speed" type="range" min="12" max="30" step="1" value="20"></label>
+ <label>Angle above ground <output id="projectile-angle-value">40°</output><input id="projectile-angle" type="range" min="20" max="70" step="5" value="40"></label></div>
+ <div class="readout"><div class="metric"><small>Flight time</small><strong id="projectile-flight"></strong></div><div class="metric"><small>Horizontal range</small><strong id="projectile-range"></strong></div><div class="metric"><small>Peak height</small><strong id="projectile-height"></strong></div></div>
+ <p class="note">Ideal model: no air resistance; launch and landing at the same height. A fixed scale makes changing range and height visible.</p>`;
+ const speed=el.querySelector("#projectile-speed"),angle=el.querySelector("#projectile-angle"),g=9.8;
+ function paint(){
+  const v=Number(speed.value),theta=Number(angle.value)*Math.PI/180,vx=v*Math.cos(theta),vy=v*Math.sin(theta);
+  const T=2*vy/g,R=vx*T,H=vy*vy/(2*g),sx=t=>74+4*vx*t,sy=t=>268-4*(vy*t-.5*g*t*t);
+  const path=Array.from({length:49},(_,i)=>{const t=T*i/48;return (i?"L":"M")+f(sx(t))+" "+f(sy(t));}).join(" ");
+  const peakX=sx(T/2),peakY=sy(T/2);
+  el.querySelector("#projectile-trace").innerHTML=`
+  <path d="${path}" stroke="#14727a" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <path d="M${f(peakX)} ${f(peakY)}V268" stroke="#be9257" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <circle cx="${f(peakX)}" cy="${f(peakY)}" r="7" fill="#ba8240" stroke="white" stroke-width="2"/>
+  <circle cx="${f(sx(T))}" cy="268" r="5" fill="#14727a"/>
+  <text x="${f(Math.max(110,Math.min(peakX,450)))}" y="${f(Math.max(22,peakY-13))}" text-anchor="middle" fill="#946736" font-size="15">peak</text>`;
+  el.querySelector("#projectile-speed-value").textContent=v+" m/s";
+  el.querySelector("#projectile-angle-value").textContent=angle.value+"°";
+  el.querySelector("#projectile-flight").textContent=f(T)+" s";
+  el.querySelector("#projectile-range").textContent=f(R)+" m";
+  el.querySelector("#projectile-height").textContent=f(H)+" m";
+ }
+ speed.oninput=paint;angle.oninput=paint;paint();
+}
+
 function submodulesFor(parentId,ctx={book:null,grade:null}){
  const related=submodules.filter(m=>m.parent===parentId);
  if(!related.length)return "";
@@ -650,7 +736,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -802,9 +888,18 @@ function booksHome(){
  <div class="books-note" role="note">${escapeHtml(catalog.notices.mappings)}</div></section>
  <section class="grade-choices" aria-label="Choose a grade">${catalog.grades.map(g=>`<a href="#grade/${g.id}"><span>Grade</span><strong>${g.id}</strong></a>`).join("")}</section>
  <div class="section-heading"><div><div class="eyebrow">Browse by text</div><h2>Curriculum pathways</h2></div><span class="section-support">Official catalog links are provided on each book page</span></div>
- <div class="book-grid">${catalog.references.map(bookTile).join("")}</div>
+ <div class="book-search-row"><label class="book-search" for="book-search"><span>Find a book or subject</span><input id="book-search" type="search" autocomplete="off" placeholder="Search this library…" aria-describedby="book-search-count"></label><span class="book-search-count" id="book-search-count" role="status">${catalog.references.length} pathways</span></div>
+  <div class="book-grid" id="book-results">${catalog.references.map(bookTile).join("")}</div><p id="book-search-empty" class="empty-state" hidden>No matching books. Try a different title or subject.</p>
  <section class="publisher-note"><h2>About these connections</h2><p>${escapeHtml(catalog.notices.relationship)} ${escapeHtml(catalog.notices.sources)}</p>
  <a href="#showcase">See the publisher demonstration overview →</a></section>`;
+ const input=main.querySelector("#book-search"),tiles=[...main.querySelectorAll("#book-results .book-tile")];
+ input.addEventListener("input",()=>{
+  const q=input.value.trim().toLowerCase();let count=0;
+  for(const tile of tiles){const match=tile.textContent.toLowerCase().includes(q);tile.hidden=!match;if(match)count++;}
+  main.querySelector("#book-search-count").textContent=count+" matching "+(count===1?"pathway":"pathways");
+  main.querySelector("#book-search-empty").hidden=count!==0;
+ });
+
 }
 function gradeBooks(gradeId){
  const grade=bookPathways.grades.find(g=>g.id===gradeId);if(!grade){booksHome();return;}
@@ -827,7 +922,8 @@ function bookDetail(bookId){
  <section class="book-detail-head"><div class="eyebrow">Publisher discussion · Textbook pathway</div><h1>${escapeHtml(book.title)}</h1>
  <p class="book-imprint">${escapeHtml(book.imprint)}</p><p>${escapeHtml(book.description)}</p>
  <div class="book-cta">${book.gradeIds.map(g=>`<a href="#grade/${g}" class="grade-link">Grade ${g}</a>`).join("")}${official}</div></section>
- <section class="mapping-explainer" role="note"><strong>Illustrative relationship, not a chapter match</strong>
+ ${matched.length?`<div class="book-start"><div><div class="eyebrow">An illustrative starting point</div><strong>${escapeHtml(matched[0].title)}</strong><span>Original visual lesson · not the textbook's chapter order</span></div><a class="btn primary" href="${lessonLink("lesson",matched[0],ctx)}">Explore this idea →</a></div>`:""}
+  <section class="mapping-explainer" role="note"><strong>Illustrative relationship, not a chapter match</strong>
  <p>${escapeHtml(bookPathways.notices.mappings)} No protected text, book illustrations, exercise numbers or answer keys have been imported.</p></section>
  <div class="section-heading"><div><div class="eyebrow">Explore original teaching examples</div><h2>Related interactive concepts</h2></div><span class="section-support">${matched.length} published examples</span></div>
  <div class="book-match-list">${links}</div>

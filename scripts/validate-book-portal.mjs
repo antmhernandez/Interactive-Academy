@@ -48,7 +48,8 @@ for(const fragment of [".book-grid",".book-tile",".book-detail-head",".grade-cho
 }
 const start=js.indexOf("function hashParams("),end=js.indexOf("\nfunction route(){",start);
 assert.ok(start>=0&&end>start);
-const mockMain={innerHTML:""};
+// This unit renders HTML without a browser. Browser CI exercises live search events.
+const mockMain={innerHTML:"",querySelector(){return {addEventListener(){}};},querySelectorAll(){return []}};
 const safe=x=>String(x).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
 const context={bookPathways:books,lessons,main:mockMain,escapeHtml:safe,location:{hash:"#book/physical-science?grade=8"},URLSearchParams};
 const functions=vm.runInNewContext(js.slice(start,end)+"\n({bookTile,booksHome,gradeBooks,bookDetail,showcase,lessonContext,lessonLink,contextTrail,allowChapterLink})",context);
