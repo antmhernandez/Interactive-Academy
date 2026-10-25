@@ -25,4 +25,5 @@ jobs:
           node scripts/validate.mjs
           node scripts/test-regression.mjs
           node scripts/validate-curriculum.mjs
+          node scripts/validate-learning-resources.mjs
           node scripts/test-interactives.mjs
