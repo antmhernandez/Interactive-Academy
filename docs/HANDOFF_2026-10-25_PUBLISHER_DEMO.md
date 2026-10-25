@@ -140,7 +140,7 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 
 ## October 25 continuation: visual refinement, library features and carefully scoped content
 
-**Working branch for this iteration:** `feature/editorial-polish-chapter6-interactives-2026-10-25` (once merged, use `main` as authoritative). **Requested change:** user now explicitly authorizes adding content *after* beautification and functional improvement.
+**Merged:** [PR #10](https://github.com/antmhernandez/Interactive-Academy/pull/10), squash commit `82b84a0fee9f78e333341f6e3deea580e96d92be`, October 25, 2026. **Requested change:** user explicitly authorized adding content after beautification and feature work. `main` is authoritative.
 
 ### Committed enhancements
 - Original editorial two-column homepage with engraved-feeling mathematical illustration; responsive one-column arrangement on smaller devices; clearer four-part **The Idea / Example / Think / Try it** teaching method; contrast-minded navy/burgundy/gold/cream styles.
@@ -160,3 +160,9 @@ The JS edits were parser-checked while creating them. Run the existing Node vali
 - Review the expanded Chapter 6 pedagogy with a Physics editor and student users, paying attention to no-air-resistance assumptions and the distinction between range, displacement and total path length.
 - Improve diagram text alternatives and printing, run a publisher review meeting, and request approved edition-specific TOCs/branding only once permissions exist.
 - Maintain original content ownership. No ISBN/chapter/page assertions about Novare have been inferred.
+
+### Validation record for PR #10
+- [GitHub Actions run #37](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40219643743): **successful** on the feature PR before merge.
+- Passed: 22 lesson records, 66 guided problems, 148 canonical curriculum topics (17 live Physics, 5 live Calculus), 84 equations, independent publisher-reference integrity, mathematical regression checks and both new visual simulator unit tests.
+- Chromium: successful at 320, 375, 768, 1024 and 1440 px with homepage/editorial overflow checks, catalog search with empty state, grade/book/context route, 4-tab keyboard accessibility, cumulative steps, projector overlay/exit and Chapter 6 original simulator navigation.
+- GitHub branch merge confirmed. As with earlier runs, the browser suite is not a substitute for real-device or screen-reader testing, nor a formal publisher permissions review.
