@@ -29,6 +29,12 @@ try{
  for(const width of [320,375,768,1024,1440]){
   const page=await browser.newPage({viewport:{width,height:900}});
   page.on("pageerror",err=>errors.push(width+": "+err.message));
+  await route(page,"#home");
+  await page.locator(".atlas-hero-figure svg").waitFor();
+  await page.locator(".method-grid .method-item").first().waitFor();
+  assert.equal(await page.locator(".method-grid .method-item").count(),4);
+  const homeOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
+  assert.ok(!homeOverflow,"Editorial homepage overflow at "+width+"px");
   await route(page,"#books");
   const hasOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
   if(hasOverflow){
@@ -87,6 +93,14 @@ try{
  assert.equal(await page.locator(".context-trail").count(),0,"Reject fake textbook associations");
  await route(page,"#lesson/si-units");
  assert.ok(await page.locator(".companion-links").innerText().then(x=>x.includes("Chapter 1")),"Uncontextualized Glencoe reference survives");
+ await route(page,"#lesson/two-dimensional-motion");
+ assert.equal(await page.locator("#velocity-vectors path").count()>0,true);
+ await page.locator("#velocity-angle").fill("90");
+ await page.locator("#velocity-angle").dispatchEvent("input");
+ assert.equal(await page.locator("#velocity-x").innerText(),"0 m/s");
+ await page.locator('.route-nav a').last().click();
+ await page.locator("#projectile-trace path").first().waitFor();
+ assert.ok((await page.locator("#projectile-range").innerText()).endsWith(" m"));
  await route(page,"#book/pre-algebra");
  assert.match(await page.locator(".empty-state").innerText(),/not yet a published lesson connection/);
  await page.close();
