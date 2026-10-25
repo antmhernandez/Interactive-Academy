@@ -107,7 +107,7 @@ function catalog(s){
  }).join("");
  main.innerHTML=`
  <nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#lesson/${items[0].id}">First lesson →</a></nav>
- <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div></header>
+ <header class="catalog-head"><div class="eyebrow">Explore a subject</div><h1>${subject(s)}</h1><p>${s==="physics"?"See the phenomena. Discover what the mathematics means.":"Understand change, slope, and accumulation—visually."}</p><div class="mini-progress">${completedTotal} of ${items.length} lessons completed on this device</div><div class="course-progress-track" role="progressbar" aria-label="Lessons completed" aria-valuemin="0" aria-valuemax="${items.length}" aria-valuenow="${completedTotal}"><span style="width:${100*completedTotal/items.length}%"></span></div></header>
  <div class="catalog-tools"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" autocomplete="off" placeholder="Find a concept…" aria-label="Search ${subject(s)} lessons"></label><a class="btn primary" href="#lesson/${items[0].id}">Start learning →</a></div>
  <div id="topic-groups">${render(items)}</div>
  <div class="outline-link"><a href="#books">Browse grade-level books and related concepts →</a></div>
@@ -151,7 +151,7 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
- <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p></header>
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
@@ -913,7 +913,8 @@ function bookDetail(bookId){
  <section class="book-detail-head"><div class="eyebrow">Publisher discussion · Textbook pathway</div><h1>${escapeHtml(book.title)}</h1>
  <p class="book-imprint">${escapeHtml(book.imprint)}</p><p>${escapeHtml(book.description)}</p>
  <div class="book-cta">${book.gradeIds.map(g=>`<a href="#grade/${g}" class="grade-link">Grade ${g}</a>`).join("")}${official}</div></section>
- <section class="mapping-explainer" role="note"><strong>Illustrative relationship, not a chapter match</strong>
+ ${matched.length?`<div class="book-start"><div><div class="eyebrow">An illustrative starting point</div><strong>${escapeHtml(matched[0].title)}</strong><span>Original visual lesson · not the textbook's chapter order</span></div><a class="btn primary" href="${lessonLink("lesson",matched[0],ctx)}">Explore this idea →</a></div>`:""}
+  <section class="mapping-explainer" role="note"><strong>Illustrative relationship, not a chapter match</strong>
  <p>${escapeHtml(bookPathways.notices.mappings)} No protected text, book illustrations, exercise numbers or answer keys have been imported.</p></section>
  <div class="section-heading"><div><div class="eyebrow">Explore original teaching examples</div><h2>Related interactive concepts</h2></div><span class="section-support">${matched.length} published examples</span></div>
  <div class="book-match-list">${links}</div>
