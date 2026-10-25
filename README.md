@@ -17,6 +17,10 @@ A mobile-friendly, concept-first resource bringing together short explanations, 
 
 The user-facing design takes inspiration from a classical publishing aesthetic (navy, burgundy, parchment, restrained gold and serif headings). **No Memoria Press logo, proprietary artwork, covers, passages, or branded fonts were copied**, and the publisher has not authorized this project. Our existing Glencoe-based 30-chapter Physics sequence is *separate* from the Novare textbook references in the discovery portal.
 
+## Navigation and classroom display (follow-up)
+
+Book-origin lesson routes retain a clearly labeled **illustrative** context through the concept, definition and guided practice, with Back-to-Book controls. For instance, `#lesson/si-units?book=physical-science&grade=8` links an original demonstration to an example Grade 8 discovery path; it **does not** claim Novare chapter or edition alignment. Teachers may use a local **Present lesson** overlay (Escape exits) and copy a direct lesson link. New headless Chromium smoke tests cover several viewport sizes and keyboard journeys; manual real-device and assistive-technology review remains necessary.
+
 ## Current teaching preview
 Twenty original demonstration lessons (fifteen Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Twenty misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
