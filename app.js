@@ -49,7 +49,9 @@ const visualKeys={
  "velocity-components":[["amber","Velocity vector"],["teal","Horizontal"],["green","Vertical"]],
  "projectile-motion":[["teal","Flight path"],["amber","Highest point"]],
  "circular-motion":[["teal","Tangent velocity"],["amber","Inward acceleration"]],
- "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]]
+ "river-crossing":[["teal","Ground path"],["green","Boat through water"],["amber","Current"]],
+ "friction-threshold":[["amber","Applied pull"],["teal","Friction"],["green","Normal"],["navy","Weight"]],
+ "incline-friction":[["amber","Downhill gravity"],["teal","Uphill friction"],["green","Normal"],["navy","Weight"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -264,6 +266,8 @@ function lesson(l){
  if(l.visual==="projectile-motion")projectileMotion(el);
  if(l.visual==="circular-motion")circularMotion(el);
  if(l.visual==="river-crossing")riverCrossing(el);
+ if(l.visual==="friction-threshold")frictionThreshold(el);
+ if(l.visual==="incline-friction")inclineFriction(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -851,7 +855,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -997,6 +1001,8 @@ function bookTile(book,grade=null){
 }
 function appletsHome(){
  const entries=[
+ ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
+ ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
  ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
  ["relative-velocity","⇢","physics","Reference frames","Steer against a river current and track your landing."],
  ["projectile-motion","⌒","physics","Projectile motion","Change the launch angle to examine range and height."],

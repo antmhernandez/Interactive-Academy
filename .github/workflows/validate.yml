@@ -18,6 +18,8 @@ jobs:
       - name: Validate JavaScript syntax
         run: |
           node --check app.js
+          node --check applets/contact-forces.js
+          node --check scripts/test-contact-forces.mjs
           node --check lab/motion.js
           node --check lab/regression.mjs
           node --check scripts/test-browser.mjs
@@ -28,6 +30,7 @@ jobs:
           node scripts/validate-curriculum.mjs
           node scripts/validate-learning-resources.mjs
           node scripts/test-interactives.mjs
+          node scripts/test-contact-forces.mjs
           node scripts/validate-book-portal.mjs
       - name: Install headless browser for responsive and keyboard tests
         run: |

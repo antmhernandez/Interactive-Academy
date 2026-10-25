@@ -588,6 +588,90 @@
     ]
   },
   {
+    "owner": "friction",
+    "title": "When Does Friction Give Way?",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 4 kg crate rests on level ground with μₛ = 0.50 and μₖ = 0.30. A steady horizontal pull of 30 N starts it sliding. What is its acceleration in m/s² during the pull?",
+        "answer": 4.56,
+        "tolerance": 0.02,
+        "unit": "m/s²",
+        "steps": [
+          "The normal force is N = mg = 4 × 9.8 = 39.2 N.",
+          "Check onset: μₛN = 0.50 × 39.2 = 19.6 N, so a 30 N pull makes the block slide.",
+          "Sliding friction is μₖN = 0.30 × 39.2 = 11.76 N. Acceleration = (30 − 11.76)/4 = 4.56 m/s²."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 6 kg box rests on a horizontal floor with maximum static-friction coefficient 0.40. What is the largest horizontal pull in newtons it can resist without sliding (g = 9.8 m/s²)?",
+        "answer": 23.52,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "On a level floor with a purely horizontal pull, normal force equals weight: N = mg.",
+          "The largest possible static friction is μₛN, not the static-friction force at every smaller pull.",
+          "μₛN = 0.40 × 6 × 9.8 = 23.52 N. At the threshold, impending motion is possible."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 3 kg block is already sliding rightward on a horizontal surface. The coefficient of kinetic friction is 0.25, and a 20 N horizontal force pulls right. What is its rightward acceleration in m/s²?",
+        "answer": 4.216666666666666,
+        "tolerance": 0.03,
+        "unit": "m/s²",
+        "steps": [
+          "Because it is already sliding right, friction points left with fₖ = μₖmg.",
+          "fₖ = 0.25 × 3 × 9.8 = 7.35 N; Fnet = 20 − 7.35 = 12.65 N right.",
+          "Newton's second law gives a = Fnet/m = 12.65/3 ≈ 4.22 m/s² right."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "inclined-planes",
+    "title": "Forces on an Inclined Plane",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A block starts sliding down a 30° incline with kinetic friction coefficient μₖ = 0.20. Ignoring air resistance, what is its downslope acceleration in m/s² (g = 9.8 m/s²)?",
+        "answer": 3.2025902085825004,
+        "tolerance": 0.03,
+        "unit": "m/s²",
+        "steps": [
+          "Resolve gravity along the slope: mg sin30° downhill. The normal force is mg cos30°.",
+          "Kinetic friction acts uphill with magnitude μₖmg cos30°, while the block slides down.",
+          "a = g(sin30° − μₖcos30°) = 9.8(0.5 − 0.2 × 0.866) ≈ 3.20 m/s² downhill."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 5 kg block rests on a frictionless incline angled 30° above horizontal. What is the normal force on the block in newtons (g = 9.8 m/s²)?",
+        "answer": 42.43524478543749,
+        "tolerance": 0.03,
+        "unit": "N",
+        "steps": [
+          "Normal force is perpendicular to the slope and cancels the perpendicular part of weight.",
+          "For an angle from horizontal, N = mg cosθ, not mg.",
+          "N = (5)(9.8)cos30° ≈ 42.44 N."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "For a block resting on a ramp, the maximum static friction coefficient is 0.60. What is the critical ramp angle in degrees at which sliding begins, to two decimals?",
+        "answer": 30.96375653207352,
+        "tolerance": 0.04,
+        "unit": "degrees",
+        "steps": [
+          "At impending slip, gravity parallel to the slope matches maximum static friction: mg sinθ = μₛmg cosθ.",
+          "Cancel mg and divide by cosθ (for θ between 0° and 90°): tanθ = μₛ.",
+          "θ = arctan(0.60) ≈ 30.96°. Sliding starts when the slope is steeper."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "two-dimensional-motion",
     "title": "Motion in Two Dimensions",
     "levels": [

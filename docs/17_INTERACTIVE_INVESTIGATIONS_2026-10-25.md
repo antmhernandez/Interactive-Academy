@@ -51,3 +51,6 @@ Use original source equations and diagrams and design concept cards only when ea
 ## Verified implementation record
 
 The changes were merged through [PR #11](https://github.com/antmhernandez/Interactive-Academy/pull/11), commit `f60ee820161ab3562e8ccca89f4cc29842067a53`. Before merge, [GitHub Actions run #44](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40221549917) passed all Node curriculum and numerical tests and five-width Chromium navigation/interaction journeys. Follow-up physical phone, screen-reader and classroom teaching reviews remain needed.
+
+## Follow-up: contact mechanics laboratories (October 25, 2026)
+Chapter 5 `friction` and `inclined-planes` were developed as original standalone applets with explicit experimental controls, numerical static/kinetic switching and model limitations. This moves the original Glencoe-sequenced course from 24 to 26 lessons, and the Experiment Room from 10 to 12 curated applets. [Physics and design audit](18_CONTACT_FORCES_AND_INCLINES_2026-10-25.md). The approved textbook mapping boundary is unchanged.
