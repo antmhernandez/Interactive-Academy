@@ -486,3 +486,143 @@ body.presentation-mode{overflow:hidden}
  .brand-mark{flex:none}
  .menu-btn{flex:none;min-width:44px;min-height:44px;padding:6px 9px}
 }
+
+
+/* Editorial atlas — original independent design, October 2026 */
+:root{--atlas-navy:#203653;--atlas-burgundy:#762e43;--atlas-gold:#b28b53;--atlas-paper:#fffdf7}
+html{scroll-padding-top:18px}
+a,button{ -webkit-tap-highlight-color:transparent}
+#main:focus{outline:none}
+#main:focus-visible{outline:3px solid #c29451;outline-offset:6px;border-radius:2px}
+.topbar{box-shadow:0 3px 12px #28374c08}
+.topbar .nav a{position:relative}
+.topbar .nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;height:2px;bottom:-11px;background:var(--atlas-gold)}
+.footer{margin-top:70px}
+.footer a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* A physical-looking editorial plate is visually independent of a publisher book cover. */
+.home-hero.publisher-hero.atlas-hero{
+ display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;
+ gap:clamp(24px,4vw,64px);text-align:left;
+ padding:clamp(27px,5vw,67px);
+ background:
+  radial-gradient(circle at 9% 10%,#ffffffb3 0,transparent 45%),
+  linear-gradient(135deg,#fcf8ed,#f2e7d4);
+ border:1px solid #ded0b9;border-top:4px solid #ac8550;
+ box-shadow:0 24px 52px #26395310;
+ overflow:hidden;
+}
+.atlas-hero-copy{min-width:0}
+.atlas-hero-copy .eyebrow{font-size:.7rem;letter-spacing:.14em}
+.atlas-hero .atlas-hero-copy h1{font-size:clamp(2.55rem,5.4vw,5rem);line-height:1.02;
+ margin:21px 0 19px;max-width:680px;letter-spacing:-.048em}
+.atlas-hero .atlas-hero-copy>p{font-size:clamp(1.03rem,1.6vw,1.23rem);line-height:1.7;
+ color:#5b5a57;max-width:570px;margin-bottom:26px}
+.atlas-hero .showcase-actions{justify-content:flex-start}
+.atlas-hero .btn{min-height:48px;box-shadow:0 5px 16px #2639530a}
+.atlas-proof{display:flex;gap:10px 17px;flex-wrap:wrap;margin-top:35px;border-top:1px solid #d7c7ad;
+ padding-top:22px;font-size:.65rem;font-weight:760;letter-spacing:.105em;color:#765f51}
+.atlas-proof span:not(:first-child)::before{content:"◇";color:var(--atlas-gold);margin-right:16px}
+.atlas-hero-figure{background:#fffdf8;min-width:0;box-shadow:0 14px 33px #25395521;border:1px solid #dacdb7;
+ padding:15px;transform:rotate(1deg)}
+.atlas-figure-top{display:flex;justify-content:space-between;align-items:center;
+ border-bottom:1px solid #d8cbb4;color:#805f4b;font-size:.68rem;font-weight:790;letter-spacing:.12em;padding:3px 0 11px}
+.atlas-figure-symbol{font:italic 1.75rem Georgia,serif;color:#8d6b42;line-height:1}
+.atlas-hero-figure .hero-art{background:#f4f3ec;border:1px solid #e5ddcf;margin:14px 0}
+.atlas-hero-figure .hero-art svg{width:100%;display:block;max-height:340px}
+.atlas-figure-caption{display:grid;gap:5px;color:#615950;font-size:.82rem;line-height:1.45;padding:5px 4px 3px}
+.atlas-figure-caption strong{font:700 1.08rem Georgia,serif;color:#233c5b}
+.atlas-figure-caption a{font-weight:750;text-decoration:none;margin-top:9px}
+.atlas-figure-caption a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Four numbered cards make the pedagogical sequence visible before opening a lesson. */
+.atlas-method{margin:46px 0 49px;padding:0}
+.method-heading{text-align:center;margin:0 0 24px}
+.method-heading h2{font-size:clamp(1.8rem,3vw,2.55rem);margin-top:7px}
+.method-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.method-item{background:#fffdfa;padding:23px clamp(16px,2vw,28px);min-width:0;
+ border:1px solid #e0d5c3;border-top:3px solid #b28b53;box-shadow:0 7px 18px #2036530a}
+.method-number{display:block;font:italic 1.6rem Georgia,serif;color:#9a7a4b;margin-bottom:12px}
+.method-item h3{font-size:1.17rem;margin-bottom:10px;color:#203653}
+.method-item p{font-size:.84rem;line-height:1.62;color:#67635d;margin:0}
+.section-link{font-weight:760;font-size:.84rem;white-space:nowrap}
+.atlas-continue{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:25px;align-items:center;
+ background:linear-gradient(110deg,#213755,#304a69);color:#fdf6e9;
+ padding:clamp(20px,3vw,35px);margin:16px 0 28px;position:relative;border-top:3px solid #bf9b65}
+.atlas-continue .eyebrow{color:#d9bc89}
+.atlas-continue h2{color:#fffdf7;font-size:clamp(1.5rem,2.5vw,2.05rem);margin:8px 0}
+.atlas-continue p{font-size:.85rem;color:#e3e3df;line-height:1.6;margin:0}
+.continue-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.continue-options a{display:flex;flex-direction:column;justify-content:space-between;gap:13px;min-width:0;
+ border:1px solid #a7b4c1;background:#fffcf5;padding:18px;text-decoration:none;color:#203653;
+ transition:transform .18s ease,background .18s ease}
+.continue-options a:hover{background:#f7edda;transform:translateY(-2px)}
+.continue-options span{color:#745947;font-size:.73rem;font-weight:780}
+.continue-options strong{font:700 1.03rem/1.35 Georgia,serif;color:#772a41;overflow-wrap:anywhere}
+.subject-choices .subject-tile{position:relative;min-height:130px;transition:transform .18s ease,box-shadow .18s ease}
+.subject-choices .subject-tile:hover{transform:translateY(-3px);box-shadow:0 15px 26px #223a5318}
+.subject-choices .subject-tile strong{font-size:1.52rem}
+.subject-choices .subject-tile small{max-width:270px;line-height:1.45}
+
+/* Lesson comprehension and course position are prominent and scan-friendly. */
+.focus-head{max-width:960px}
+.focus-head h1{margin-top:12px}
+.focus-question{display:flex;align-items:baseline;justify-content:center;gap:13px;
+ margin:22px auto 0;max-width:800px;padding:14px 24px;
+ background:#f4ebde;border-left:3px solid #ae8550;text-align:left}
+.focus-question span{flex:none;text-transform:uppercase;letter-spacing:.1em;color:#864457;font-size:.68rem;font-weight:800}
+.focus-question strong{font:normal 1rem/1.55 Georgia,serif;color:#314663}
+.course-progress-track{width:min(420px,100%);height:9px;margin:13px 0 0;border-radius:12px;
+ background:#e8ddcd;overflow:hidden;border:1px solid #d7c8b2}
+.course-progress-track span{display:block;height:100%;background:linear-gradient(90deg,#a87945,#782d42);
+ border-radius:12px}
+.visual-stage{position:relative}
+.lesson-panel h2{letter-spacing:-.023em}
+.worked-step{background:#fffdf9;border-left:3px solid #b79b72;padding:12px 15px;margin:0 0 9px;
+ line-height:1.6;box-shadow:0 2px 6px #273b5207}
+.lesson-tabs button{letter-spacing:.01em}
+.lesson-tabs button[aria-selected="true"]{font-weight:830}
+
+/* Book pathway: establish the difference between printed reference and original study example. */
+.book-start{display:flex;align-items:center;justify-content:space-between;gap:20px;
+ background:linear-gradient(90deg,#f5efe3,#fffaf1);border:1px solid #d8c3a2;
+ border-left:4px solid #9a784a;padding:20px 22px;margin:17px 0 23px}
+.book-start>div{display:grid;gap:7px}
+.book-start strong{font:700 1.32rem Georgia,serif;color:#253b59}
+.book-start span{font-size:.82rem;color:#6c675f}
+.book-start a{white-space:nowrap}
+.book-match,.book-tile{transition:background .16s ease,transform .16s ease,border-color .16s ease}
+.book-match:hover{border-color:#bca077;background:#fffaf0}
+.book-tile-body strong{font-size:1.2rem}
+
+@media(max-width:960px){
+ .home-hero.publisher-hero.atlas-hero{grid-template-columns:1fr;max-width:none}
+ .atlas-hero-figure{width:min(100%,640px);margin:auto;transform:none}
+ .method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .home-hero.publisher-hero.atlas-hero{padding:24px 19px;margin-top:14px}
+ .atlas-hero .atlas-hero-copy h1{font-size:clamp(2.55rem,10vw,4rem)}
+ .atlas-proof span:not(:first-child)::before{margin-right:7px}
+ .atlas-hero-figure{padding:11px}
+ .atlas-continue{grid-template-columns:1fr}
+ .continue-options{grid-template-columns:1fr}
+ .book-start{align-items:stretch;flex-direction:column}
+ .book-start a{white-space:normal}
+ .focus-question{flex-direction:column;gap:7px;padding:13px 16px}
+ .method-item{padding:19px}
+ .section-link{white-space:normal}
+}
+@media(max-width:390px){
+ .method-grid{grid-template-columns:1fr 1fr;gap:8px}
+ .method-item{padding:14px}
+ .method-item p{font-size:.78rem}
+ .method-item h3{font-size:1rem}
+ .atlas-proof{font-size:.58rem}
+ .atlas-hero-figure .hero-art svg{max-height:240px}
+}
+@media(prefers-reduced-motion:reduce){.continue-options a:hover,.subject-choices .subject-tile:hover{transform:none}}
+@media print{
+ .atlas-continue,.atlas-method,.atlas-hero-figure,.focus-question{break-inside:avoid}
+ .book-start{display:none}
+}
