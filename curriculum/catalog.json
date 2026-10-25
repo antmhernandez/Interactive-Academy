@@ -225,7 +225,7 @@
             {
               "id": "friction",
               "title": "Friction and Contact Forces",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.force.friction",
               "goal": "Distinguish static and kinetic friction.",
               "prerequisites": [
@@ -235,7 +235,7 @@
             {
               "id": "inclined-planes",
               "title": "Forces on Inclines",
-              "status": "planned",
+              "status": "available",
               "owns": "phys.force.inclines",
               "goal": "Resolve forces parallel and perpendicular to a slope.",
               "prerequisites": [
