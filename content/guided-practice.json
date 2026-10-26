@@ -1732,9 +1732,9 @@
         "tolerance": 0.001,
         "unit": "m",
         "steps": [
-          "Find the area under a line with initial height 2 and final height 6.",
-          "Compute ∫₀⁴(2+t)dt = [2t + t²/2]₀⁴.",
-          "The correct result is 16 m. Explain why the chosen equation applies."
+          "Since v(t)=2+t is positive throughout [0,4], its signed area also equals distance traveled.",
+          "From t=0 to t=4, v grows from 2 to 6 m/s. The trapezoid area is ½(2+6)×4=16 m.",
+          "Check ∫₀⁴(2+t)dt=[2t+t²/2]₀⁴=8+8=16 m. Metres per second times seconds yield metres."
         ]
       },
       {
@@ -1744,9 +1744,9 @@
         "tolerance": 0.015,
         "unit": "m",
         "steps": [
-          "Constant velocity creates a rectangular area under v–t graph.",
-          "Displacement = velocity × time.",
-          "Δx=4×3=12 m."
+          "A horizontal velocity line at +4 m/s remains above the time axis during 3 seconds.",
+          "Its signed area is a rectangle: height 4 m/s times width 3 s.",
+          "Displacement=4×3=+12 m. Because velocity never becomes negative, distance is also 12 m."
         ]
       },
       {
@@ -1756,9 +1756,9 @@
         "tolerance": 0.015,
         "unit": "m",
         "steps": [
-          "Velocity changes sign; do not simply add absolute areas.",
-          "Integrate 6−2t: antiderivative is 6t−t².",
-          "[6(5)−5²]−0=30−25=+5 m."
+          "The reversing velocity v(t)=6−2t crosses zero at t=3 s. Area from t=3 to t=5 is negative.",
+          "Positive area from 0 to 3 is ½×3×6=+9 m. Negative area from 3 to 5 is −½×2×4=−4 m.",
+          "Net displacement =+9−4=+5 m. Equivalently [6t−t²]₀⁵=30−25=+5 m; total distance is 9+4=13 m."
         ]
       }
     ]
@@ -1774,9 +1774,9 @@
         "tolerance": 0.001,
         "unit": "square units",
         "steps": [
-          "For this straight line, the region is a triangle.",
-          "Use area = ½ × 6 × 6.",
-          "The correct result is 18 square units. Explain why the chosen equation applies."
+          "The increasing nonnegative graph y=x on [0,6] bounds a right triangle.",
+          "Its base is 6 x-units and its height is 6 y-units, so area=½×6×6.",
+          "Exact area is 18 square units; with ever finer right rectangles, the positive overestimate tends to zero."
         ]
       },
       {
@@ -1786,9 +1786,9 @@
         "tolerance": 0.015,
         "unit": "square units",
         "steps": [
-          "Width Δx=(2−0)/4=0.5.",
-          "Right endpoints: 0.5,1,1.5,2; add their heights.",
-          "Sum=0.5(0.5+1+1.5+2)=2.5."
+          "Four equal rectangles cover [0,2], giving Δx=2/4=0.5.",
+          "At right endpoints, heights are 0.5, 1, 1.5 and 2. The sum of these sample heights is 5.",
+          "R₄=Δx×Σheights=0.5×5=2.5 square units, exceeding the exact triangle area 2 by 0.5."
         ]
       },
       {
@@ -1798,9 +1798,9 @@
         "tolerance": 0.015,
         "unit": "square units",
         "steps": [
-          "Δx=(4−0)/8=0.5; list left endpoints, not right endpoints.",
-          "Left endpoints: 0,0.5,1,1.5,2,2.5,3,3.5. Their sum is 14.",
-          "Approximation =0.5×14=7 square units (below exact area 8)."
+          "Eight equal rectangles cover [0,4], so Δx=4/8=0.5.",
+          "Left endpoints are 0,0.5,1,1.5,2,2.5,3,3.5. Their heights add to 14.",
+          "L₈=0.5×14=7 square units, an underestimate of the exact triangle (8) by 1 square unit."
         ]
       }
     ]
