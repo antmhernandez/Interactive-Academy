@@ -53,3 +53,7 @@ The model deliberately omits rolling, off-axis rotation, gyroscopic precession, 
 - Content totals after this change: 36 lessons (31 Physics, five Calculus), 108 graduated guided problems, 17 curated applet entries, 151 registered curriculum topics, original 84-equation chapter reference preserved.
 - Rights: Original figures, script, exercises and explanations. No PhET assets or proprietary publisher problems are copied. This is an independent Glencoe-indexed classroom-idea demonstration, not an authorized Memoria Press or Novare book companion. Do not modify publisher title alignment without authorized edition references.
 - Human touch, Safari, screen reader, projector, pedagogical-comprehension and formal copyright review still require in-person completion. Automated tests do not certify accessibility or classroom outcomes.
+
+## Release evidence
+
+Merged by [PR #15](https://github.com/antmhernandez/Interactive-Academy/pull/15), squash commit `86777a7f991838a0ae0dc992b4015e36f71d0954`. [GitHub Actions run #65](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40247400161) passed content, canonical course scope, numerical model and headless Chromium validations at 320, 375, 768, 1024 and 1440 px. Classroom and manual accessibility review remain separate.
