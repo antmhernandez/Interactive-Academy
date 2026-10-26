@@ -2139,18 +2139,19 @@
     "subject": "calculus",
     "unit": "Integrals and Accumulation",
     "title": "Area Becomes Displacement",
-    "subtitle": "A graph can tell us how far an object moves.",
-    "duration": "9 min",
-    "observe": "If velocity changes every second, how can we find the change in position?",
-    "idea": "Displacement is accumulated velocity: Δx = ∫v(t) dt over a time interval. The signed area under a velocity–time graph gives net change in position. When velocity is always positive, that is also distance traveled.",
-    "visualLead": "Extend time and watch the shaded area grow.",
+    "subtitle": "A signed area records change in position, not just distance.",
+    "duration": "11 min",
+    "observe": "Can a cart keep traveling farther while returning toward its starting point?",
+    "idea": "The signed area under a velocity–time graph gives net displacement: Δx = ∫v(t)dt. Positive velocity adds displacement, while negative velocity subtracts. Total distance is ∫|v(t)|dt and counts both directions positively. In the reversing model v(t)=6−2t, the cart changes direction at t=3 s.",
+    "visualLead": "Compare forward and reversing motion; change time, rectangles and their sampling endpoints.",
     "visual": "velocity-area",
     "example": {
-      "question": "An object's velocity is v(t) = 3 + t meters per second. Find its displacement from t = 0 to t = 2 seconds.",
+      "question": "A cart has velocity v(t)=3+t m/s from 0 to 2 seconds. Find signed displacement and explain how a later reversal would affect distance.",
       "steps": [
-        "Displacement is the definite integral of velocity: Δx = ∫₀² (3+t) dt.",
-        "An antiderivative is 3t + ½t². Evaluate it from 0 to 2.",
-        "Δx = [6 + 2] − 0 = 8 m. The units are meters because (m/s)·s = m."
+        "Velocity stays positive on [0,2]. Initial velocity is 3 m/s, final velocity is 5 m/s, and elapsed time is 2 s.",
+        "Compute the trapezoid area: Δx = ½(3+5)×2 = 8 m. Because velocity stays positive, distance is also 8 m.",
+        "Check the integral: ∫₀²(3+t)dt = [3t+t²/2]₀² = 6+2 = 8 m. Multiplying m/s by s gives metres.",
+        "If the graph later crosses v=0, area below the time axis subtracts from displacement. Total distance adds its magnitude; split the interval at the reversal."
       ]
     },
     "practice": {
@@ -2179,27 +2180,33 @@
       ],
       "explanation": "The integral measures net change in position. Distance traveled would be 6 m, but the displacement is −6 m."
     },
-    "focus": "The teal area beneath velocity shows accumulated displacement; negative velocities would contribute negative signed area.",
+    "focus": "Positive and negative velocity areas add to net displacement; their absolute magnitudes add to distance.",
     "unitId": "cal-integrals",
-    "definition": "Accumulated signed area under a velocity–time graph over an interval equals displacement during that interval."
+    "definition": "The signed integral ∫v(t)dt gives net displacement, whereas ∫|v(t)|dt gives total distance. Velocity changing sign can reverse the cart without erasing past travel.",
+    "investigation": {
+      "prediction": "Can distance traveled increase while net displacement decreases? Predict before choosing the reversing motion model.",
+      "experiment": "Compare the positive v(t)=3+t model at t=2 with the reversing v(t)=6−2t model at t=5. Read positive area +9 m, negative area −4 m, signed displacement +5 m, distance 13 m. Change the endpoint rule and number of rectangles.",
+      "connection": "Velocity in m/s multiplied by a time width in seconds produces metres. The negative area past t=3 subtracts from displacement but adds to distance when its absolute size is counted."
+    }
   },
   {
     "id": "riemann-sums",
     "subject": "calculus",
     "unit": "Integrals and Accumulation",
     "title": "Discovering Area with Rectangles",
-    "subtitle": "A better approximation, one rectangle at a time.",
-    "duration": "8 min",
-    "observe": "How can rectangles measure the area under a sloping line?",
-    "idea": "A Riemann sum adds narrow rectangles to estimate area beneath a graph. As their widths approach zero, the sums can approach the exact definite integral.",
-    "visualLead": "Add rectangles and watch the overestimate shrink.",
+    "subtitle": "Choose three rectangle rules and investigate their errors.",
+    "duration": "10 min",
+    "observe": "How can two careful rectangle sums fall on opposite sides of the exact area?",
+    "idea": "A Riemann sum Σ f(sample xᵢ)Δx approximates a definite integral. For y=x on [0,4], each of n equal widths is 4/n; left endpoints give 8−8/n, right endpoints 8+8/n, and midpoints give exactly 8. Endpoint errors approach zero as n increases.",
+    "visualLead": "Switch between left, right and midpoint samples. Increase n and inspect the error.",
     "visual": "riemann",
     "example": {
-      "question": "Find the exact area under y = x from x = 0 to x = 4.",
+      "question": "For y=x on [0,4], compare four left- and right-endpoint rectangles with exact area and explain what happens as n grows.",
       "steps": [
-        "A right-endpoint sum with n rectangles has Δx = 4/n.",
-        "Its sum is (4/n)²(1 + 2 + … + n) = 8(n+1)/n.",
-        "As n increases without bound, the sum tends to 8 square units."
+        "Partition [0,4] into four equal intervals. Δx=1. The exact triangular area is ½×4×4=8 square units.",
+        "Left endpoint heights 0,1,2,3 give L₄=1(0+1+2+3)=6 square units, an underestimate of 2.",
+        "Right endpoint heights 1,2,3,4 give R₄=1(1+2+3+4)=10 square units, an overestimate of 2.",
+        "For n equal widths, Lₙ=8−8/n and Rₙ=8+8/n. As n increases, both approach 8; midpoint rectangles already total 8 because y=x is linear."
       ]
     },
     "practice": {
@@ -2228,8 +2235,13 @@
       ],
       "explanation": "Because f is increasing, each rectangle based on the right endpoint is above the graph across its subinterval. As Δx shrinks, the excess area tends to zero."
     },
-    "focus": "For an increasing function, right-endpoint rectangles overestimate area. Narrower rectangles reduce the error.",
+    "focus": "Left and right rectangles bracket the exact area of an increasing line; midpoint rectangles are exact here.",
     "unitId": "cal-integrals",
-    "definition": "A Riemann sum estimates signed area using rectangles. Refining the partition can make the sums approach a definite integral."
+    "definition": "A Riemann sum adds sample heights multiplied by subinterval widths. Left and right sums approach the exact integral as widths shrink; a midpoint rule can be exact on a linear graph without being exact for every function.",
+    "investigation": {
+      "prediction": "For increasing y=x, does sampling on the right overestimate and on the left underestimate the area? Predict how each error changes with finer rectangles.",
+      "experiment": "At n=4 compare left sum 6, right sum 10 and midpoint sum 8 with the exact triangle 8. Double n and watch the endpoint errors halve. Notice why midpoint rectangles are exactly correct for this straight line.",
+      "connection": "The exact triangle has area 8 square units. With width 4/n, left and right sums differ from 8 by −8/n and +8/n. Midpoint sampling is already exact for this linear model—not for every curve."
+    }
   }
 ]

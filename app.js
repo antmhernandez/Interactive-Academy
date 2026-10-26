@@ -687,19 +687,15 @@ function freeFall(el){
  el.querySelector("#fall-time").textContent=f(selected)+" s";el.querySelector("#fall-height").textContent=f(h(t))+" m";el.querySelector("#fall-v").textContent=f(-g*t)+" m/s";el.querySelector("#fall-impact").textContent=f(impact)+" s";el.querySelector("#fall-note").textContent=selected>impact?"Impact has occurred. The model is frozen at the instant before impact; it does not model the bounce or motion afterward.":"Released from 20 m, initially at rest, ignoring air resistance. Up is the positive direction.";}G.onchange=T.oninput=draw;draw();
 }
 function velocityArea(el){
- el.innerHTML=`<div class="diagram-head"><strong>Displacement from velocity</strong><span class="pill calculus">Accumulated change</span></div><svg viewBox="0 0 520 305" role="img" aria-label="Shaded area under a positive velocity-time graph with adjustable time"><rect width="520" height="305" rx="12" fill="#f8fbf9"/><g id="area-plot"></g></svg><div class="controls"><label>End time <strong id="area-time"></strong><input type="range" id="area-slider" min="0" max="4" step=".1" value="2"></label></div><div class="readout"><div class="metric"><small>Final velocity</small><strong id="area-vel"></strong></div><div class="metric"><small>Displacement</small><strong id="area-dis"></strong></div></div><p class="note">Because velocity is positive throughout this example, accumulated displacement also equals distance traveled. For negative velocity, signed area matters.</p>`;
- const T=el.querySelector("#area-slider"),xp=t=>80+95*t,yp=v=>262-31*v;function draw(){const t=+T.value,v=x=>2+x;
- el.querySelector("#area-plot").innerHTML=`<path d="M80 25V262H480" fill="none" stroke="#8ea9a0" stroke-width="1.5"/><path d="M${xp(0)} 262L${xp(0)} ${yp(2)}L${xp(t)} ${yp(v(t))}L${xp(t)} 262Z" fill="#a8d4c9" opacity=".75"/><path d="M${xp(0)} ${yp(2)}L${xp(4)} ${yp(6)}" stroke="#14727a" stroke-width="3.2"/><path d="M${xp(t)} 262V${yp(v(t))}" stroke="#b77739" stroke-width="2" stroke-dasharray="5 4"/><circle cx="${xp(t)}" cy="${yp(v(t))}" r="6" fill="#b77739"/><text x="18" y="22" font-size="13" fill="#50756e">v (m/s)</text><text x="436" y="286" font-size="13" fill="#50756e">t (s)</text>`;
- el.querySelector("#area-time").textContent=f(t)+" s";el.querySelector("#area-vel").textContent=f(v(t))+" m/s";el.querySelector("#area-dis").textContent=f(2*t+t*t/2)+" m";}
- T.oninput=draw;draw();
+ velocityAccumulationLab(el);
 }
+
 function tangent(el){
  tangentLab(el);
 }
 
 function riemann(el){
- el.innerHTML=`<div class="diagram-head"><strong>Right-endpoint rectangles</strong><span class="pill calculus">Integral</span></div><svg viewBox="0 0 520 309" role="img" aria-label="Rectangles approximating the area under y equals x"><rect width="520" height="309" rx="12" fill="#f8fbf9"/><g id="rgraph"></g></svg><div class="controls"><label>Number of rectangles: <strong id="nv"></strong><input id="nslider" type="range" min="2" max="30" step="1" value="4"></label></div><div class="readout"><div class="metric"><small>Right sum</small><strong id="sum"></strong></div><div class="metric"><small>Exact area</small><strong>8</strong></div></div><p class="note">For an increasing function, these right-endpoint rectangles overestimate the area. More, thinner rectangles reduce the error.</p>`;
- const slider=el.querySelector("#nslider");function paint(){let n=+slider.value,dx=4/n,xp=x=>55+102*x,yp=y=>262-51*y;const rectangles=Array.from({length:n},(_,i)=>{let right=(i+1)*dx;return `<rect x="${xp(i*dx)}" y="${yp(right)}" width="${102*dx}" height="${51*right}" fill="#a8d4c9" fill-opacity=".53" stroke="#14727a" stroke-width=".8"/>`}).join("");el.querySelector("#rgraph").innerHTML=`<path d="M55 15V262H490" fill="none" stroke="#93b2a8" stroke-width="1.6"/>${rectangles}<path d="M55 262L463 58" stroke="#c08039" stroke-width="3" fill="none"/><text x="455" y="282" font-size="14" fill="#50756e">4</text>`;el.querySelector("#nv").textContent=n;el.querySelector("#sum").textContent=f(8+8/n);}slider.oninput=paint;paint();
+ riemannRectangleLab(el);
 }
 
 function velocityComponents(el){

@@ -971,3 +971,46 @@ a,button{ -webkit-tap-highlight-color:transparent}
  .tan-plot-scroll svg{min-width:0}
  .tan-convergence{break-inside:avoid}
 }
+
+
+/* October 26: signed integration and three-sampler rectangle investigation. */
+.accumulation-lab{min-width:0;color:#2b3d4d}
+.accumulation-lab .diagram-head{flex-wrap:wrap}
+.accumulation-lab .diagram-head strong{font-size:clamp(1rem,1.45vw,1.2rem);color:#213a51}
+.accumulation-intro{max-width:78ch;color:#435b60;line-height:1.75;font-size:.96rem;margin:1px 0 15px}
+.accumulation-modes{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 16px}
+.accumulation-modes button{flex:1 1 150px;min-width:0;min-height:48px;padding:10px 14px;
+ border-radius:5px;border:1px solid #b6a894;background:#fffefa;color:#61424d;font-size:.86rem;font-weight:725;line-height:1.4}
+.accumulation-modes button[aria-pressed="true"]{background:#253b56;color:#fff;border-color:#253b56}
+.accumulation-modes button:focus-visible{outline:3px solid #be9557;outline-offset:2px}
+.accumulation-plot{max-width:100%;overflow-x:auto;background:#f8fbf9;border:1px solid #d6e1da;
+ border-radius:6px;scrollbar-gutter:stable;overscroll-behavior-x:contain}
+.accumulation-plot svg{display:block;width:100%;min-width:510px;max-height:none;height:auto}
+.accumulation-plot:focus-visible{outline:3px solid #b28d58;outline-offset:2px}
+.accumulation-legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin:14px 2px;color:#415b62;
+ font-size:.8rem;font-weight:715;line-height:1.5}
+.accumulation-legend span{display:inline-flex;align-items:center;gap:7px}
+.accumulation-key{display:inline-block;flex:none;width:25px;height:13px;border:1px solid #2f7c75;background:#a4cdc2}
+.accumulation-key.negative{background:#d6b4a7;border-color:#a06957}
+.accumulation-key.rectangles{background:repeating-linear-gradient(90deg,#d4e4df,#d4e4df 4px,#fff 4px,#fff 8px);border-color:#1c6473}
+.accumulation-readouts{grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:11px}
+.accumulation-readouts .metric{min-width:0;overflow-wrap:anywhere}
+.accumulation-readouts strong{font-size:clamp(.97rem,1.65vw,1.25rem);font-variant-numeric:tabular-nums}
+.accumulation-callout{border-left:4px solid #ab8354;background:#fbf3e5;
+ padding:12px 15px;line-height:1.75;color:#4f4c48;margin:17px 0 12px}
+.riemann-lab .tan-convergence{margin-top:24px}
+.riemann-lab .tan-table{min-width:430px}
+.riemann-lab .tan-table td{text-align:right}
+.presentation-mode .accumulation-intro,.presentation-mode .accumulation-callout{font-size:clamp(1.06rem,1.6vw,1.35rem)}
+@media(max-width:570px){
+ .accumulation-modes{display:grid;grid-template-columns:1fr;gap:7px}
+ .accumulation-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .accumulation-lab .controls{gap:14px}
+ .accumulation-readouts strong{font-size:clamp(.93rem,3.4vw,1.18rem)}
+}
+@media print{
+ .accumulation-modes,.riemann-lab .applet-actions{display:none!important}
+ .accumulation-plot{overflow:visible;break-inside:avoid}
+ .accumulation-plot svg{min-width:0}
+ .accumulation-readouts,.riemann-lab .tan-convergence{break-inside:avoid}
+}
