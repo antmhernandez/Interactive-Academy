@@ -277,7 +277,7 @@ try{
   assert.equal(await page.locator("#sum").innerText(),"9 square units");
   assert.equal(await page.locator("#rm-error").innerText(),"+1 square units");
   assert.equal(await page.locator("#rm-convergence tr").count(),5);
-  assert.match(await page.locator("#evidence-calculation").innerText(),/8 \\+ 8\\/n = 9/);
+  assert.ok((await page.locator("#evidence-calculation").innerText()).includes("8 + 8/n = 9"),"Right endpoint exact error arithmetic is readable");
   await page.locator('input[name="evidence-prediction"][value="0"]').check();
   await page.locator("#evidence-record").click();
   await page.locator("#nslider").focus();
