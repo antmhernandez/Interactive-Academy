@@ -20,11 +20,11 @@ function energyRamp(el){
  el.innerHTML=`<div class="diagram-head"><strong>Follow a block down a ramp</strong><span class="pill" id="en-mode">Energy accounting</span></div>
  <svg viewBox="0 0 620 370" role="img" aria-label="Schematic descending ramp showing the block at the chosen progress. Heights and energy quantities appear numerically below.">
  <path d="M38 325H575" stroke="#c3b196" stroke-width="2"/>
- <path d="M88 107L438 325H88Z" fill="#eee0c8" stroke="#b39870" stroke-width="2.5"/>
- <path d="M88 107L438 325" stroke="#8e775c" stroke-width="5"/>
- <text x="90" y="74" fill="#655747" font-size="17">Starting height H</text>
+ <path d="M88 80L438 325H88Z" fill="#eee0c8" stroke="#b39870" stroke-width="2.5"/>
+ <path d="M88 80L438 325" stroke="#8e775c" stroke-width="5"/>
+ <text x="90" y="50" fill="#655747" font-size="17">Starting height H</text>
  <text x="451" y="322" fill="#655747" font-size="16">bottom</text>
- <text x="89" y="348" fill="#716658" font-size="15">Fixed ramp geometry · 35° slope</text>
+ <text x="89" y="348" fill="#716658" font-size="15">Fixed drawing angle · 35° (height shown schematically)</text>
  <g id="en-block"></g></svg>
  <div class="controls">
  <label>Mass <output id="en-mass-value"></output><input id="en-mass" type="range" min="1" max="8" step="1" value="2"></label>
@@ -58,7 +58,7 @@ function energyRamp(el){
   frame=null;play.setAttribute("aria-pressed","false");play.textContent="Play descent";
  }
  function paint(){
-  const q=state(),pct=q.p,px=88+350*pct,py=107+218*pct;
+  const q=state(),pct=q.p,px=88+350*pct,py=80+245*pct;
   output("en-mass-value",m.value+" kg");
   output("en-height-value",H.value+" m");
   output("en-start-value",v0.value+" m/s");
@@ -69,7 +69,7 @@ function energyRamp(el){
   output("en-speed",f(q.speed)+" m/s");output("en-time",f(q.time)+" s");
   output("en-mode",Number(mu.value)===0?"No thermal transfer":"Friction transfers energy");
   input("en-block").innerHTML=`<rect x="${f(px-16)}" y="${f(py-37)}" width="34" height="30" rx="4"
-   transform="rotate(32 ${f(px)} ${f(py-21)})" fill="#365b7a" stroke="#f5f0e6" stroke-width="2"/>
+   transform="rotate(35 ${f(px)} ${f(py-21)})" fill="#365b7a" stroke="#f5f0e6" stroke-width="2"/>
    <path d="M${f(px)} ${f(py)}L${f(px)} 325" stroke="#a67b48" stroke-width="2" stroke-dasharray="4 5"/>
    <text x="${f(Math.min(px+24,485))}" y="${f(Math.min(py-44,305))}" fill="#294a65" font-size="17">moving block</text>`;
   const line=(y,label,value,color)=>{
