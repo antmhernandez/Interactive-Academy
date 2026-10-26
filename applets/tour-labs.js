@@ -49,13 +49,13 @@ function tourMiniLab(el,kind){
   control.addEventListener("input",()=>{draw();touch();});draw();return;
  }
  if(kind==="energy"){
-  el.innerHTML=`<svg viewBox="0 0 440 236" role="img" aria-label="A block progresses down an ideal thirty-five-degree ramp. Kinetic, gravitational, and thermal energy are quantified underneath.">
+  el.innerHTML=`<svg viewBox="0 0 440 270" role="img" aria-label="A block progresses down an ideal thirty-five-degree ramp. Kinetic, gravitational, and thermal energy are quantified underneath.">
    <rect width="440" height="236" rx="8" fill="#f8fbfa"/>
-   <path d="M53 191H408" stroke="#a18f77" stroke-width="3"/>
-   <path d="M58 35L345 191H58Z" fill="#eadcc6" stroke="#b39b7a" stroke-width="2"/>
-   <path d="M58 35L345 191" stroke="#8e7556" stroke-width="4"/>
+   <path d="M53 231H408" stroke="#a18f77" stroke-width="3"/>
+   <path d="M58 30L345 231H58Z" fill="#eadcc6" stroke="#b39b7a" stroke-width="2"/>
+   <path d="M58 30L345 231" stroke="#8e7556" stroke-width="4"/>
    <g id="demo-energy-block"></g>
-   <g fill="#596b72" font-size="13"><text x="55" y="24">H = 5 m (schematic)</text><text x="350" y="214">bottom</text></g></svg>
+   <g fill="#596b72" font-size="13"><text x="55" y="21">H = 5 m</text><text x="350" y="254">bottom</text></g></svg>
    <div class="demo-mini-controls"><label for="demo-energy-progress">Distance down ramp <output id="demo-energy-progress-value">0%</output></label><input id="demo-energy-progress" type="range" min="0" max="100" step="10" value="0"></div>
    <button class="demo-toggle" type="button" id="demo-energy-friction" aria-pressed="true">Friction on · compare without</button>
    <div class="demo-energy-bars" aria-hidden="true"><div><span>Motion</span><i class="demo-bar-track"><b id="demo-energy-bar-k"></b></i></div><div><span>Height</span><i class="demo-bar-track"><b id="demo-energy-bar-u"></b></i></div><div><span>Thermal</span><i class="demo-bar-track"><b id="demo-energy-bar-q"></b></i></div></div>
@@ -63,8 +63,8 @@ function tourMiniLab(el,kind){
    <p class="demo-model-note">Model: 2 kg, 5 m vertical drop, starting from rest, 35° ramp, μₖ = 0.20 when friction is on. Energy transferred to thermal surroundings is included in the total.</p>`;
   const slider=el.querySelector("#demo-energy-progress"),button=el.querySelector("#demo-energy-friction");
   let friction=true;
-  function draw(){const p=Number(slider.value)/100,q=energyRampState(2,5,0,friction?.2:0,p),x=58+287*p,y=35+156*p;
-   el.querySelector("#demo-energy-block").innerHTML=`<rect x="${x-13}" y="${y-25}" width="27" height="24" rx="3" transform="rotate(29 ${x} ${y-13})" fill="#345c78" stroke="#fff" stroke-width="2"/>`;
+  function draw(){const p=Number(slider.value)/100,q=energyRampState(2,5,0,friction?.2:0,p),x=58+287*p,y=30+201*p;
+   el.querySelector("#demo-energy-block").innerHTML=`<rect x="${x-13}" y="${y-25}" width="27" height="24" rx="3" transform="rotate(35 ${x} ${y-13})" fill="#345c78" stroke="#fff" stroke-width="2"/>`;
    set("demo-energy-progress-value",slider.value+"%");
    for(const [k,v] of [["k",q.kinetic],["u",q.potential],["q",q.thermal]]){
     set("demo-energy-"+k,fmt(v)+" J");
