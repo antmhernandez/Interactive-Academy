@@ -1,3 +1,48 @@
+# NEXT CHAT — Full-Lesson Pedagogy, Classroom Validation and Publisher Readiness
+**Prepared:** October 25, 2026  
+**Authoritative repository:** https://github.com/antmhernandez/Interactive-Academy (`main` only after verifying latest release).  
+**Most recent feature development:** [PR #20](https://github.com/antmhernandez/Interactive-Academy/pull/20), `feat/full-lesson-evidence-accessibility-20261025`. Do not assume merger or Pages deployment without independent checks.  
+**New primary audit:** [26 — Full-Lesson Mathematical Evidence, Accessibility and Publisher Walkthrough](26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md). Earlier [25 mini-labs](25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md), [24 editorial polish](24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md) and the [historical handoff](HANDOFF_2026-10-25_PUBLISHER_DEMO.md) provide context.
+
+## COPY-READY PROMPT FOR THE NEXT CONVERSATION
+
+> Continue **The Learning Atlas / Interactive Academy**, an independent original Physics and Calculus instructional site prepared as a potential **Memoria Press discussion prototype**, by implementing real GitHub code and teaching improvements. Use the current **`main` branch** as authoritative. Review [repository](https://github.com/antmhernandez/Interactive-Academy), all recent PRs, the complete validation suite and GitHub Pages deployment. Begin with `README.md`, `docs/26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md`, `docs/25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md`, `docs/24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md`, `docs/HANDOFF_2026-10-25_PUBLISHER_DEMO.md`, and this prompt. Recalculate inventory from source, not historical prose. Confirm the outcome of PR #20 before making further changes.
+>
+> **Audit the live experience** at [`#tour`](https://antmhernandez.github.io/Interactive-Academy/#tour), [`#showcase`](https://antmhernandez.github.io/Interactive-Academy/#showcase), [`#applets`](https://antmhernandez.github.io/Interactive-Academy/#applets), [`#home`](https://antmhernandez.github.io/Interactive-Academy/#home), and the featured full lessons [`#lesson/graph-slope-physics`](https://antmhernandez.github.io/Interactive-Academy/#lesson/graph-slope-physics), [`#lesson/friction`](https://antmhernandez.github.io/Interactive-Academy/#lesson/friction), [`#lesson/energy-conservation`](https://antmhernandez.github.io/Interactive-Academy/#lesson/energy-conservation), and [`#lesson/tangent-line`](https://antmhernandez.github.io/Interactive-Academy/#lesson/tangent-line). If web-based viewers cannot execute a live SPA, use the actual Playwright browser suite and report the limitation instead of claiming an independent visual walkthrough.
+>
+> **Current experience:** The tour's three quantitative mini-labs implement Predict → Manipulate → Connect, connecting to full practice-oriented lessons. PR #20 then deepens **three actual full lessons** with numeric evidence, screen-reader-readable descriptions associated with SVGs, unit-bearing slider values, a recorded student prediction and feedback after model manipulation. The full Physics slope graph `x(t)=1+t²` now shows Δx and Δt. An earlier distinct `averageVelocity` renderer uses `x(t)=1+2t+0.25t²`. The friction model preserves its initial-rest static/kinetic distinction, and the energy ramp now draws its 35° incline consistently with `energyRampState`. Preserve numeric coherence and never confuse these graph functions.
+>
+> **Instructional standard:** Give students a meaningful question before changing the model, then a legible, mathematically truthful diagram, units, accessible numerical evidence, guided interpretation, a concise definition, a cumulative worked example, a misconception-aware Think check, an independent answer and Begin/Extend/Challenge practice. Prioritize improving the *depth* and accessibility of 2–3 representative lessons before increasing lesson counts. Include assumptions, frame of reference, rounding, and distinction between schematic illustrations and scaled vector quantities.
+>
+> **Curriculum constraints:** Preserve `curriculum/catalog.json` as the canonical registry, with the independently indexed required Physics progression through Chapters 1–7, then 9, 10–11; optional Chapter 8 rotation, optional Chapter 28 spectroscopy curiosity, and optional post-energy collision review. Protect prerequisite edges, ownership, proper chapter paths and required-versus-optional semantics. Do not turn the independent Glencoe-indexed scope into an asserted Memoria Press/Novare edition-specific mapping.
+>
+> **Rights and publisher boundaries:** Memoria Press has not sponsored, commissioned, endorsed or authorized this site. No protected publisher passages, covers, logos, fonts, proprietary illustrations, exercises or unverified correlations. Publisher portal associations remain explicitly illustrative. Preserve the warm-paper/navy/burgundy/teal/muted-gold independent design, original SVGs, and straightforward privacy-preserving static architecture.
+>
+> **Next high-value engineering focus:** Run a deeper accessibility audit with keyboard and actual NVDA/VoiceOver/TalkBack when physical test access exists; fix any observed failure in the featured full lesson prediction/evidence workbench. Make responsive controls and math blocks comfortable at 320px phone through projected desktop. Review how students find the independent numerical practice and steps after viewing the diagram. Strengthen model-specific feedback and evidence interpretation without letting the app reveal or substitute students' thinking. Consider expanding the same accessibility method to the *Calculus tangent/secant* lesson after checking its exact mathematical model and prerequisites. Improve scientific fidelity where diagrams imply the wrong proportions. Do not copy assets from PhET or MP.
+>
+> **Publisher demonstration:** Use the 7-minute script and practical comprehension, projector, physical touch and assistive-technology checklists in `docs/26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md`. Distinguish completed automated Chromium tests from uncompleted hands-on trials. If possible, collect actual anonymous classroom observations without putting student-identifying data in the public repository.
+>
+> **GitHub workflow:** Start from most recent verified `main`, create a clean feature branch, implement substantive changes, extend model/math tests and Playwright browser regression at **320, 375, 768, 1024 and 1440 px**, exercise keyboard focus, mathematical readouts, model outcomes, navigation, unsupported preview routes, projector mode and overflow. CI must execute all syntax, catalog, curriculum, learning-resource, textbook-portal, energy, friction, momentum, gravity, rotation, interactive and numerical-regression suites, plus the new featured-evidence tests. Open a PR. **Never merge while checks are pending or failing.** Following green CI, merge and independently verify `main` validation and GitHub Pages deployment.
+>
+> **Handoff:** Update README, create the next numbered dated mathematical/pedagogical/visual audit, preserve older release and design decisions, and replace the portable prompt with a current copy-ready handoff. Report concrete code changes, PR number, actual SHA, CI run URLs and results, deployed route, uncompleted physical/AT/editorial/rights tasks and recommended next work. Do genuine original educational production, not merely plans.
+
+## Current implementation map (PR #20)
+
+- `applets/lesson-evidence.js`: pure `featuredEvidence()` mathematical narratives plus the full lesson prediction/evidence UI, keyed only to the three featured lesson IDs. SVG descriptions are visible readable DOM text.
+- `app.js`: attach workbench after rendering the actual diagram, annotate physical graph's rise/run and axes, preserve lesson tabs, context and publisher-tour navigation.
+- `applets/energy-ramp.js`: existing physics model remains authoritative; corrected schematic drawing angle.
+- `styles.css`: typographic evidence hierarchy, 44–48px targets, narrower screen stacking and projector numeric enlargement.
+- `scripts/test-lesson-evidence.mjs`: model arithmetic, friction boundary, energy identity and geometric slope validation.
+- `scripts/test-browser.mjs`: full lesson evidence, screen-reader description association, recorded prediction and keyboard across five widths.
+- `.github/workflows/validate.yml`: full combined CI.
+- `docs/26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md`: mathematics, presentation script, editor and classroom acceptance gates.
+
+**Human testing still unresolved:** iOS, Android, Safari, NVDA, VoiceOver, TalkBack, actual projector distance/lighting, pupil understanding, independent mathematical proofing, commercial ownership and publisher permissions.
+
+---
+
+## Historical previous continuation prompt — preserved for development context
+
 # NEXT CHAT — The Learning Atlas / Interactive Academy
 ## Repeatable Publisher Prototype Improvement Prompt
 **Prepared:** October 25, 2026
