@@ -161,7 +161,7 @@ try{
   await page.locator("#slope-t2").focus();
   await page.keyboard.press("ArrowRight");
   assert.match(await page.locator("#evidence-calculation").innerText(),/2.5 m\/s/);
-  assert.match(await page.locator("#tend").getAttribute("aria-valuetext"),/seconds/);
+  assert.match(await page.locator("#slope-t2").getAttribute("aria-valuetext"),/seconds/);
   assert.equal(await page.locator("#evidence-connect").isEnabled(),true);
   await page.locator("#evidence-connect").click();
   assert.match(await page.locator("#evidence-conclusion").innerText(),/Your prediction agrees/);
