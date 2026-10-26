@@ -866,3 +866,12 @@ a,button{ -webkit-tap-highlight-color:transparent}
  .demo-model-note{font-size:.75rem}
 }
 @media(prefers-reduced-motion:reduce){.demo-bar-track b{transition:none}.demo-notice:not([hidden]){animation:none}}
+
+.demo-feature-predict{padding-bottom:16px}
+.demo-feature-after{padding-top:16px}
+.demo-feature-predict .demo-question{margin-bottom:12px}
+.demo-feature-predict .demo-task{margin-bottom:0}
+.demo-sketch{gap:10px}
+.demo-live-label{display:block;width:100%;max-width:610px;color:#715038;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:850}
+.demo-hold{border-left:3px solid #b79a6d;padding:10px 12px;margin:0;background:#f9f1e3;color:#5a5050;font-size:.82rem;font-weight:700}
+.demo-feature-after>.btn{margin-top:13px}
