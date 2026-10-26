@@ -77,7 +77,7 @@ function home(){
   <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
    <h1>See clearly.<br><em>Reason deeply.</em></h1>
    <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
-   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#applets">Explore applets</a></div>
+   <div class="showcase-actions"><a class="btn primary" href="#tour">Take the guided publisher tour →</a><a class="btn" href="#books">Browse books &amp; grades</a></div>
    <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
   <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
    ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
@@ -93,14 +93,14 @@ function home(){
  </section>
  <div class="section-heading home-section-heading"><div><div class="eyebrow">The original study collection</div><h2>Choose a course to begin.</h2></div><a class="section-link" href="#books">Or explore by textbook →</a></div>
  <div class="home-choices subject-choices">
-  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.filter(l=>!l.optionalPreview).length} core lessons · from measurement through work and energy</small></span><span aria-hidden="true">→</span></a>
   <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
  <div class="applet-home-call"><div><div class="eyebrow">Learn by experimenting</div><h2>Discover the Experiment Room.</h2><p>Explore original interactive investigations in Physics and Calculus.</p></div><a class="btn primary" href="#applets">Open the applet collection →</a></div>
  <section class="atlas-continue" aria-label="Continue a course on this device">
   <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
   <div class="continue-options">
-   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${completedCount("physics")} / ${physics.length} complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
+   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${physics.filter(l=>!l.optionalPreview&&completed.has(l.id)).length} / ${physics.filter(l=>!l.optionalPreview).length} core lessons complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
    <a href="#lesson/${nextCalculus.id}"><span>Calculus · ${completedCount("calculus")} / ${calculus.length} complete</span><strong>${escapeHtml(nextCalculus.title)} →</strong></a>
   </div>
  </section>
@@ -165,6 +165,7 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
+ ${location.hash.includes("tour=1")?`<p class="tour-return">Publisher demonstration · <a href="#tour">← Return to the guided tour</a></p>`:""}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">${l.id==="collisions"?"Optional integrated review · Return to Chapter 9 after completing energy conservation; this does not advance the required lesson chain.":"Optional later-chapter exploration · This does not advance the regular chapter sequence."}</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
  ${["work-energy","work-angle","kinetic-energy","power-efficiency","mechanical-advantage","potential-energy","energy-conservation"].includes(l.id)?`
  <nav class="energy-study-path" aria-label="Required Chapters 10–11 energy lesson sequence">
@@ -181,7 +182,8 @@ function lesson(l){
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
- <div class="visual-intro"><span class="visual-label">EXPLORE</span><p>${escapeHtml(l.visualLead)}</p></div>
+ <div class="visual-intro"><span class="visual-label">EXPLORE THE MODEL</span><p>${escapeHtml(l.visualLead)}</p></div>
+ ${l.investigation?`<div class="lesson-prediction"><span class="prediction-mark" aria-hidden="true">?</span><div><strong>Before you move a control</strong><p>${escapeHtml(l.investigation.prediction)}</p></div></div>`:""}
  <div class="interactive" id="visual"></div>
  ${visualLegend(l.visual)}
  <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
@@ -255,7 +257,7 @@ function lesson(l){
   e.preventDefault();const input=document.querySelector("#answer").value, value=Number(input);
   const good=input.trim()!==""&&Number.isFinite(value)&&Math.abs(value-l.practice.answer)<=l.practice.tolerance;
   const out=document.querySelector("#feedback");out.className="feedback "+(good?"good":"try");
-  out.textContent=good?"Correct. Explain what the result means.":"Check the idea, the sign, and the units. Try a hint.";
+  out.textContent=good?"Correct — "+f(value)+(l.practice.unit?" "+l.practice.unit:"")+". Now explain what your result means in this setting.":"Not quite. Recheck the setup, direction, and units; use a hint if helpful.";
  };
  let hint=0;document.querySelector("#hintbtn").onclick=()=>{
    const h=l.practice.hints;const out=document.querySelector("#hinttext");out.hidden=false;out.textContent=h[Math.min(hint,h.length-1)];hint++;document.querySelector("#hintbtn").textContent=hint<h.length?"Another hint":"Review hint";
@@ -1039,7 +1041,7 @@ function appletsHome(){
  ["orbital-motion","◌","physics","Orbits · Chapter 7","Explore the inward pull and tangent velocity of a circular satellite."],
  ["torque-levers","⤾","physics","Torque · Chapter 8 extension","Vary force angle and lever-arm length to discover signed turning effect."],
  ["rotational-dynamics","◍","physics","Spin · Chapter 8 extension","Compare a disk and hoop under identical net torque."],
- ["energy-conservation","◒","physics","Energy · Chapters 10–11 preview","Watch height and motion become thermal energy without changing the total."],
+ ["energy-conservation","◒","physics","Energy · Chapters 10–11 core","Watch height and motion become thermal energy without changing the total."],
  ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
  ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
  ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
