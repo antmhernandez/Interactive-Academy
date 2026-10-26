@@ -148,6 +148,36 @@ try{
   }
   const overflowEnd=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
   assert.ok(!overflowEnd,"Guided practice has horizontal overflow at "+width+"px");
+  // Deep full-lesson tests at each real Chromium viewport, in addition to the publisher tour.
+  await route(page,"#lesson/graph-slope-physics");
+  assert.match(await page.locator("#evidence-calculation").innerText(),/Average velocity = 9 m ÷ 3 s = 3 m\/s/);
+  assert.match(await page.locator("#evidence-description").innerText(),/secant/);
+  assert.equal(await page.locator('#visual svg[role="img"]').getAttribute("aria-describedby"),"evidence-description");
+  assert.ok((await page.locator("#v-graph").innerHTML()).includes("Δx"),"Full graph labels the position change");
+  assert.ok((await page.locator("#v-graph").innerHTML()).includes("Δt"),"Full graph labels the time change");
+  assert.equal(await page.locator("#evidence-connect").isDisabled(),true);
+  await page.locator('input[name="evidence-prediction"][value="0"]').check();
+  await page.locator("#evidence-record").click();
+  await page.locator("#tend").focus();
+  await page.keyboard.press("ArrowRight");
+  assert.match(await page.locator("#evidence-calculation").innerText(),/3.06 m\/s/);
+  assert.match(await page.locator("#tend").getAttribute("aria-valuetext"),/seconds/);
+  assert.equal(await page.locator("#evidence-connect").isEnabled(),true);
+  await page.locator("#evidence-connect").click();
+  assert.match(await page.locator("#evidence-conclusion").innerText(),/Your prediction agrees/);
+  await route(page,"#lesson/friction");
+  assert.match(await page.locator("#evidence-calculation").innerText(),/24.5 N/);
+  assert.match(await page.locator("#evidence-description").innerText(),/at rest/);
+  await page.locator("#fr-pull").evaluate(el=>{el.value="25";el.dispatchEvent(new Event("input",{bubbles:true}));});
+  assert.match(await page.locator("#evidence-calculation").innerText(),/2.06 m\/s²/);
+  assert.match(await page.locator("#evidence-description").innerText(),/beginning to slide/);
+  await route(page,"#lesson/energy-conservation");
+  assert.match(await page.locator("#evidence-calculation").innerText(),/98 J/);
+  assert.ok((await page.locator('svg[aria-describedby="evidence-description"]').first().innerHTML()).includes("M88 80L438 325"));
+  await page.locator("#en-progress").evaluate(el=>{el.value="50";el.dispatchEvent(new Event("input",{bubbles:true}));});
+  assert.match(await page.locator("#evidence-description").innerText(),/49 joules of gravitational potential energy/);
+  assert.match(await page.locator("#evidence-calculation").innerText(),/At this same location without friction/);
+  assert.ok(!(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)),"Full evidence workbench overflow at "+width+"px");
   await page.close();
   console.log("PASS browser journey, keyboard, progressive steps and projector mode at "+width+"px");
  }
