@@ -95,13 +95,17 @@ function enhanceFeaturedLesson(el,kind){
  }[kind];
  const element=id=>el.querySelector("#"+id);
  let selected=null,changed=false,changedAfterPrediction=false;
- function refresh(){
+ function readValues(){
   const values={};
   for(const [key,id] of Object.entries(controls))values[key]=element(id).value;
   if(kind==="tangent-line"){
    values.gap=tangentMagnitudes[Number(values.gap)];
    values.side=element("tan-left").getAttribute("aria-pressed")==="true"?"left":"right";
   }
+  return values;
+ }
+ function refresh(){
+  const values=readValues();
   const q=featuredEvidence(kind,values);
   element("evidence-description").textContent=q.description;
   element("evidence-calculation").textContent=q.calculation;
@@ -123,7 +127,7 @@ function enhanceFeaturedLesson(el,kind){
  };
  element("evidence-connect").onclick=()=>{
   const verdict=selected===choice.correct?"Your prediction agrees with this model. ":"Compare your prediction with the model. ";
-  element("evidence-conclusion").textContent=verdict+choice.reason+" "+featuredEvidence(kind,Object.fromEntries(Object.entries(controls).map(([key,id])=>[key,element(id).value]))).interpretation;
+  element("evidence-conclusion").textContent=verdict+choice.reason+" "+featuredEvidence(kind,readValues()).interpretation;
   element("evidence-conclusion").hidden=false;
  };
  el.addEventListener("input",e=>{if(e.target.matches('input[type="range"]')){changed=true;if(selected!==null)changedAfterPrediction=true;element("evidence-conclusion").hidden=true;refresh();}});
