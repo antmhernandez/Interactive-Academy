@@ -56,7 +56,9 @@ const visualKeys={
  "gravity-field":[["teal","Inward gravitational force"],["amber","Test mass"]],
  "circular-orbit":[["teal","Tangential velocity"],["amber","Inward gravitational acceleration"]],
  "torque-lever":[["amber","Applied force"],["teal","Perpendicular component"],["navy","Lever arm"]],
- "rotation-dynamics":[["amber","Wheel marker"],["navy","Disk or hoop"]]
+ "rotation-dynamics":[["amber","Wheel marker"],["navy","Disk or hoop"]],
+ "momentum-impulse":[["teal","Positive impulse area"],["amber","Negative impulse area"]],
+ "momentum-collision":[["navy","Cart A"],["amber","Cart B"],["teal","Combined system"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -288,6 +290,8 @@ function lesson(l){
  if(l.visual==="circular-orbit")orbitGravity(el);
  if(l.visual==="torque-lever")torqueLever(el);
  if(l.visual==="rotation-dynamics")rotationalSpin(el);
+ if(l.visual==="momentum-impulse")impulsePulse(el);
+ if(l.visual==="momentum-collision")momentumCollision(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -875,7 +879,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"torque-levers":8,"rotational-inertia":8,"rotational-dynamics":8,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"torque-levers":8,"rotational-inertia":8,"rotational-dynamics":8,"impulse":9,"momentum-conservation":9,"momentum-vectors":9,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -1021,6 +1025,8 @@ function bookTile(book,grade=null){
 }
 function appletsHome(){
  const entries=[
+ ["impulse","▰","physics","Impulse · Chapter 9","Compare constant-force pulses with the same signed area and momentum change."],
+ ["momentum-conservation","⇆","physics","Collision · Chapter 9","Predict the outcome of two approaching carts, then reveal the conserved total."],
  ["universal-gravitation","◎","physics","Gravity · Chapter 7","Measure the inverse-square force and acceleration as distance changes."],
  ["orbital-motion","◌","physics","Orbits · Chapter 7","Explore the inward pull and tangent velocity of a circular satellite."],
  ["torque-levers","⤾","physics","Torque · Chapter 8 extension","Vary force angle and lever-arm length to discover signed turning effect."],
