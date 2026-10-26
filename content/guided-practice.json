@@ -1176,6 +1176,48 @@
     ]
   },
   {
+    "owner": "collisions",
+    "title": "When Momentum Meets Energy",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 2 kg cart at +4 m/s sticks to a 3 kg cart at −2 m/s. How many joules of initial translational kinetic energy are transferred to other forms?",
+        "answer": 21.6,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "The carts' conserved momentum gives common velocity (2×4+3×−2)/5=0.4 m/s.",
+          "K_before=½(2)(4²)+½(3)(2²)=22 J; K_after=½(5)(0.4²)=0.4 J.",
+          "Transferred translational kinetic energy=22−0.4=21.6 J."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 2 kg cart at +4 m/s strikes and sticks to a stationary 2 kg cart. How many joules of translational kinetic energy transfer to other forms?",
+        "answer": 8,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Conservation of momentum: vf=(2×4+2×0)/4=2 m/s.",
+          "Initial K=½×2×4²=16 J; final K=½×4×2²=8 J.",
+          "Difference=16−8=8 J becomes other forms."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 3 kg cart at +2 m/s collides elastically with a stationary 1 kg cart. What is the second cart's final velocity in m/s? Assume an ideal one-dimensional elastic collision.",
+        "answer": 3,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "For an ideal 1D elastic collision, v₂f=[2m₁/(m₁+m₂)]u₁+[(m₂−m₁)/(m₁+m₂)]u₂.",
+          "With m₁=3, m₂=1, u₁=2 and u₂=0, v₂f=(6/4)(2).",
+          "v₂f=+3 m/s. Check that total momentum and kinetic energy are both unchanged."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "momentum-vectors",
     "title": "Momentum Has a Direction",
     "levels": [
@@ -1260,6 +1302,48 @@
     ]
   },
   {
+    "owner": "work-angle",
+    "title": "Which Part of a Force Does Work?",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 20 N force acts 60° above a 4 m horizontal displacement. How many joules of work does it do?",
+        "answer": 40,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "Work along displacement is W=Fdcosφ.",
+          "With φ=60°, cos60°=0.5.",
+          "W=(20)(4)(0.5)=+40 J."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 25 N constant force acts exactly perpendicular to a 6 m displacement. How many joules of work does that force perform?",
+        "answer": 0,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "The angle between force and displacement is 90°.",
+          "Work W=Fd cos90°, and cos90°=0.",
+          "W=0 J despite nonzero force and displacement."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A constant 15 N force points 120° away from the direction of a 4 m displacement. What signed work in joules does that force perform?",
+        "answer": -30,
+        "tolerance": 0.02,
+        "unit": "J",
+        "steps": [
+          "A force more than 90° from displacement transfers negative work.",
+          "W=Fdcos120°; cos120°=−0.5.",
+          "W=(15)(4)(−0.5)=−30 J."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "kinetic-energy",
     "title": "Energy of Motion",
     "levels": [
@@ -1297,6 +1381,90 @@
           "The work–energy theorem gives Wnet=½mvf² when initial speed is zero.",
           "Solve vf=√(2Wnet/m).",
           "vf=√(2×144/2)=12 m/s."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "power-efficiency",
+    "title": "How Quickly Is Work Done?",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A machine performs 180 J of input work in 6 s. What is its average input power in watts?",
+        "answer": 30,
+        "tolerance": 0.02,
+        "unit": "W",
+        "steps": [
+          "Average power measures work per unit time.",
+          "Use P=W/t with W=180 J, t=6 s.",
+          "P=180/6=30 W."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A machine receives 300 J of input energy and produces 225 J of useful work. What is its efficiency as a percentage?",
+        "answer": 75,
+        "tolerance": 0.02,
+        "unit": "%",
+        "steps": [
+          "Efficiency compares useful output work to input work.",
+          "η=(225 J)/(300 J)×100%.",
+          "η=75%. The remaining energy transfers to other stores."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A device performs 360 J of input work in 3 s and has 80% useful-work efficiency. What is its useful output power in watts?",
+        "answer": 96,
+        "tolerance": 0.02,
+        "unit": "W",
+        "steps": [
+          "Find input power: Pin=360/3=120 W.",
+          "Useful output work is 0.80×360=288 J.",
+          "Pout=288/3=96 W."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "mechanical-advantage",
+    "title": "Why Simple Machines Help",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "An ideal machine receives a 30 N force acting through 4 m and moves a load through 1 m. What output force in newtons can it provide?",
+        "answer": 120,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "Ideal machine input work equals useful output work.",
+          "Fout dout=Fin din.",
+          "Fout=(30×4)/1=120 N."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "An ideal machine has input force 40 N and output force 160 N. What is its mechanical advantage?",
+        "answer": 4,
+        "tolerance": 0.02,
+        "unit": "times",
+        "steps": [
+          "Mechanical advantage is the ratio of output to input force.",
+          "MA=Fout/Fin.",
+          "MA=160/40=4."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "An 80%-efficient machine takes 60 N of input force over 3 m and moves a load through 0.5 m. What output force, in newtons, is delivered?",
+        "answer": 288,
+        "tolerance": 0.02,
+        "unit": "N",
+        "steps": [
+          "Input work=Fin din=(60)(3)=180 J.",
+          "Useful output work=0.80×180=144 J.",
+          "Fout=Wout/dout=144/0.5=288 N."
         ]
       }
     ]
