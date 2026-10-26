@@ -656,7 +656,18 @@ function averageVelocity(el){
  el.innerHTML=`<div class="diagram-head"><strong>Secant slope = average velocity</strong><span class="pill">Position–time graph</span></div><svg viewBox="0 0 520 310" role="img" aria-label="A curved position graph with two selected times and a secant line"><rect width="520" height="310" rx="12" fill="#f8fbf9"/><g id="v-graph"></g></svg><div class="controls"><label>Start time <strong id="tstart-read"></strong><input type="range" id="tstart" min="0" max="2" step=".25" value=".5"></label><label>End time <strong id="tend-read"></strong><input type="range" id="tend" min="2.5" max="4" step=".25" value="3.5"></label></div><div class="readout"><div class="metric"><small>Change in position</small><strong id="deltax"></strong></div><div class="metric"><small>Average velocity</small><strong id="vavg"></strong></div></div><p class="note">The position function is x(t) = 1 + 2t + 0.25t² meters. A secant slope measures the average velocity between the selected times.</p>`;
  const A=el.querySelector("#tstart"),B=el.querySelector("#tend"),x=t=>1+2*t+.25*t*t,xp=t=>70+98*t,yp=val=>276-16*val;
  function draw(){const a=+A.value,b=+B.value;let curve=Array.from({length:81},(_,i)=>{let t=i/20;return (i?"L":"M")+xp(t).toFixed(2)+" "+yp(x(t)).toFixed(2)}).join(" ");
- el.querySelector("#v-graph").innerHTML=`<path d="M70 27V276H480" stroke="#89a79d" stroke-width="1.5" fill="none"/><path d="${curve}" stroke="#14727a" stroke-width="3.4" fill="none"/><path d="M${xp(a)} ${yp(x(a))}L${xp(b)} ${yp(x(b))}" stroke="#b77739" stroke-width="3"/><circle cx="${xp(a)}" cy="${yp(x(a))}" r="6" fill="#b77739"/><circle cx="${xp(b)}" cy="${yp(x(b))}" r="6" fill="#b77739"/><text x="15" y="23" font-size="13" fill="#50756e">x (m)</text><text x="430" y="296" font-size="13" fill="#50756e">t (s)</text>`;
+ const gridX=[0,1,2,3,4].map(t=>'<path d="M'+xp(t)+' 276v6" stroke="#58716d"/><text x="'+xp(t)+'" y="298" font-size="14" text-anchor="middle" fill="#304e56">'+t+'</text>').join("");
+ const gridY=[0,5,10,15].map(h=>'<path d="M70 '+yp(h)+'H470" stroke="#e1eae4" stroke-width="1"/><text x="61" y="'+(yp(h)+4)+'" font-size="14" fill="#304e56" text-anchor="end">'+h+'</text>').join("");
+ const x1=xp(a),x2=xp(b),y1=yp(x(a)),y2=yp(x(b));
+ el.querySelector("#v-graph").innerHTML='<rect x="0" y="0" width="520" height="310" fill="#f8fbf9"/>'+gridY+gridX+
+  '<path d="M70 27V276H480" stroke="#536d68" stroke-width="2" fill="none"/>'+
+  '<path d="'+curve+'" stroke="#14727a" stroke-width="3.4" fill="none"/>'+
+  '<path d="M'+x1+' '+y1+'H'+x2+'V'+y2+'" stroke="#77506a" stroke-width="2" stroke-dasharray="6 5" fill="none"/>'+
+  '<path d="M'+x1+' '+y1+'L'+x2+' '+y2+'" stroke="#ae7035" stroke-width="3.5"/>'+
+  '<circle cx="'+x1+'" cy="'+y1+'" r="6" fill="#ad6a32"/><circle cx="'+x2+'" cy="'+y2+'" r="6" fill="#ad6a32"/>'+
+  '<text x="14" y="23" font-size="15" font-weight="700" fill="#304e56">x (m)</text><text x="391" y="20" font-size="15" font-weight="700" fill="#304e56">time t (s)</text>'+
+  '<text x="'+((x1+x2)/2)+'" y="'+Math.min(274,y1+19)+'" font-size="14" text-anchor="middle" fill="#653e57">Δt</text>'+
+  '<text x="'+(x2+7)+'" y="'+((y1+y2)/2)+'" font-size="14" fill="#653e57">Δx</text>';
  el.querySelector("#tstart-read").textContent=f(a)+" s";el.querySelector("#tend-read").textContent=f(b)+" s";el.querySelector("#deltax").textContent=f(x(b)-x(a))+" m";el.querySelector("#vavg").textContent=f((x(b)-x(a))/(b-a))+" m/s";}A.oninput=B.oninput=draw;draw();
 }
 function freeFall(el){
