@@ -77,7 +77,7 @@ function home(){
   <div class="atlas-hero-copy"><div class="eyebrow">The Learning Atlas · Independent study companion</div>
    <h1>See clearly.<br><em>Reason deeply.</em></h1>
    <p>A well-chosen illustration can open the door to understanding. Explore the idea, watch the mathematics unfold, then try it yourself.</p>
-   <div class="showcase-actions"><a class="btn primary" href="#books">Explore books &amp; grades →</a><a class="btn" href="#applets">Explore applets</a></div>
+   <div class="showcase-actions"><a class="btn primary" href="#tour">Take the guided publisher tour →</a><a class="btn" href="#books">Browse books &amp; grades</a></div>
    <div class="atlas-proof"><span>ORIGINAL DIAGRAMS</span><span>REASONING IN STEPS</span><span>DELIBERATE PRACTICE</span></div></div>
   <div class="atlas-hero-figure"><div class="atlas-figure-top"><span>FIG. 01 · MOTION AND CHANGE</span><span class="atlas-figure-symbol" aria-hidden="true">∴</span></div>
    ${heroArt()}<div class="atlas-figure-caption"><strong>From a curve to a conclusion.</strong><span>Explore how changing slope tells a physical story.</span><a href="#lesson/graph-slope-physics">Open the illustration →</a></div></div>
@@ -93,14 +93,14 @@ function home(){
  </section>
  <div class="section-heading home-section-heading"><div><div class="eyebrow">The original study collection</div><h2>Choose a course to begin.</h2></div><a class="section-link" href="#books">Or explore by textbook →</a></div>
  <div class="home-choices subject-choices">
-  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.length} lessons · from measurement through projectile motion</small></span><span aria-hidden="true">→</span></a>
+  <a class="subject-tile" href="#physics"><span class="subject-glyph">Φ</span><span><strong>Physics</strong><small>${physics.filter(l=>!l.optionalPreview).length} core lessons · from measurement through work and energy</small></span><span aria-hidden="true">→</span></a>
   <a class="subject-tile calculus" href="#calculus"><span class="subject-glyph">∫</span><span><strong>Calculus</strong><small>${calculus.length} lessons · limits, derivatives, and accumulation</small></span><span aria-hidden="true">→</span></a>
  </div>
  <div class="applet-home-call"><div><div class="eyebrow">Learn by experimenting</div><h2>Discover the Experiment Room.</h2><p>Explore original interactive investigations in Physics and Calculus.</p></div><a class="btn primary" href="#applets">Open the applet collection →</a></div>
  <section class="atlas-continue" aria-label="Continue a course on this device">
   <div><div class="eyebrow">Your private learning desk</div><h2>Pick up with your next idea.</h2><p>Progress is saved only in this browser. No account or student tracking is needed.</p></div>
   <div class="continue-options">
-   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${completedCount("physics")} / ${physics.length} complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
+   <a href="#lesson/${nextPhysics.id}"><span>Physics · ${physics.filter(l=>!l.optionalPreview&&completed.has(l.id)).length} / ${physics.filter(l=>!l.optionalPreview).length} core lessons complete</span><strong>${escapeHtml(nextPhysics.title)} →</strong></a>
    <a href="#lesson/${nextCalculus.id}"><span>Calculus · ${completedCount("calculus")} / ${calculus.length} complete</span><strong>${escapeHtml(nextCalculus.title)} →</strong></a>
   </div>
  </section>
@@ -165,6 +165,7 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
+ ${location.hash.includes("tour=1")?`<p class="tour-return">Publisher demonstration · <a href="#tour">← Return to the guided tour</a></p>`:""}
  <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">${l.id==="collisions"?"Optional integrated review · Return to Chapter 9 after completing energy conservation; this does not advance the required lesson chain.":"Optional later-chapter exploration · This does not advance the regular chapter sequence."}</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
  ${["work-energy","work-angle","kinetic-energy","power-efficiency","mechanical-advantage","potential-energy","energy-conservation"].includes(l.id)?`
  <nav class="energy-study-path" aria-label="Required Chapters 10–11 energy lesson sequence">
@@ -181,7 +182,8 @@ function lesson(l){
  <article class="focus-lesson">
  <div class="lesson-tools" aria-label="Lesson tools"><button type="button" id="copy-lesson-link">Copy lesson link</button><span id="copy-lesson-status" role="status" aria-live="polite"></span><button type="button" id="present-toggle" aria-pressed="false">Present lesson</button></div>
  <section class="visual-stage" aria-label="Interactive demonstration">
- <div class="visual-intro"><span class="visual-label">EXPLORE</span><p>${escapeHtml(l.visualLead)}</p></div>
+ <div class="visual-intro"><span class="visual-label">EXPLORE THE MODEL</span><p>${escapeHtml(l.visualLead)}</p></div>
+ ${l.investigation?`<div class="lesson-prediction"><span class="prediction-mark" aria-hidden="true">?</span><div><strong>Before you move a control</strong><p>${escapeHtml(l.investigation.prediction)}</p></div></div>`:""}
  <div class="interactive" id="visual"></div>
  ${visualLegend(l.visual)}
  <div class="notice-line"><span>Notice</span><p>${escapeHtml(l.focus||l.idea)}</p></div>
@@ -255,7 +257,7 @@ function lesson(l){
   e.preventDefault();const input=document.querySelector("#answer").value, value=Number(input);
   const good=input.trim()!==""&&Number.isFinite(value)&&Math.abs(value-l.practice.answer)<=l.practice.tolerance;
   const out=document.querySelector("#feedback");out.className="feedback "+(good?"good":"try");
-  out.textContent=good?"Correct. Explain what the result means.":"Check the idea, the sign, and the units. Try a hint.";
+  out.textContent=good?"Correct — "+f(value)+(l.practice.unit?" "+l.practice.unit:"")+". Now explain what your result means in this setting.":"Not quite. Recheck the setup, direction, and units; use a hint if helpful.";
  };
  let hint=0;document.querySelector("#hintbtn").onclick=()=>{
    const h=l.practice.hints;const out=document.querySelector("#hinttext");out.hidden=false;out.textContent=h[Math.min(hint,h.length-1)];hint++;document.querySelector("#hintbtn").textContent=hint<h.length?"Another hint":"Review hint";
@@ -1039,7 +1041,7 @@ function appletsHome(){
  ["orbital-motion","◌","physics","Orbits · Chapter 7","Explore the inward pull and tangent velocity of a circular satellite."],
  ["torque-levers","⤾","physics","Torque · Chapter 8 extension","Vary force angle and lever-arm length to discover signed turning effect."],
  ["rotational-dynamics","◍","physics","Spin · Chapter 8 extension","Compare a disk and hoop under identical net torque."],
- ["energy-conservation","◒","physics","Energy · Chapters 10–11 preview","Watch height and motion become thermal energy without changing the total."],
+ ["energy-conservation","◒","physics","Energy · Chapters 10–11 core","Watch height and motion become thermal energy without changing the total."],
  ["friction","▣","physics","Static and kinetic friction","Find the force at which a box begins sliding."],
  ["inclined-planes","◩","physics","Forces on ramps","Tilt a slope and find when friction can no longer hold."],
  ["circular-motion","◉","physics","Motion & forces","Turn the velocity arrow; observe inward acceleration."],
@@ -1131,26 +1133,79 @@ function bookDetail(bookId){
  <div class="backline"><a href="#books">← All textbooks</a> <a href="#physics">View Physics lessons</a> <a href="#calculus">View Calculus lessons</a></div>`;
 }
 function showcase(){
- main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#books">Book library →</a></nav>
- <header class="books-intro"><div class="eyebrow">For curriculum and publishing teams · Concept prototype</div>
- <h1>From the printed page to understanding.</h1>
- <p>An independent demonstration of how concise visual explanations, guided reasoning, and book-aware navigation could complement a carefully sequenced traditional curriculum.</p>
- <div class="showcase-actions"><a class="btn primary" href="#books">Browse grade and book pathways →</a><a class="btn" href="#lesson/graph-slope-physics">See an interactive lesson →</a></div></header>
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#home">← Back</a><a href="#home">⌂ Home</a><a href="#tour">Guided tour →</a></nav>
+ <header class="books-intro showcase-intro"><div class="eyebrow">Independent educational prototype · For curriculum and publishing teams</div>
+ <h1>The printed page, brought into focus.</h1>
+ <p>What if a carefully sequenced curriculum could offer a brief, original visual explanation at the moment a student needs it? The Learning Atlas explores that possibility without replacing the book, the teacher, or deliberate practice.</p>
+ <div class="showcase-actions"><a class="btn primary" href="#tour">Begin a five-minute guided tour →</a><a class="btn" href="#books">Browse sample textbook pathways</a></div>
+ <p class="showcase-disclosure">Independent concept demonstration. Not affiliated with, endorsed by, or approved by Memoria Press. A publisher-approved crosswalk has not been established. Textbook associations remain illustrative, not chapter, page, edition or assignment mappings.</p></header>
+ <section class="showcase-values" aria-label="Learning design principles">
+ <div><span class="showcase-value-n">01 / SEE</span><h2>Make the idea visible.</h2><p>One clear diagram. One question worth asking. A simple definition beneath the illustration.</p></div>
+ <div><span class="showcase-value-n">02 / REASON</span><h2>Change one thing.</h2><p>Predict, manipulate and explain. Numbers and arrows respond to meaningful student choices.</p></div>
+ <div><span class="showcase-value-n">03 / APPLY</span><h2>Practice deliberately.</h2><p>Cumulative worked reasoning leads to an independent example and three graduated problems.</p></div>
+ </section>
+ <section class="showcase-demo-band"><div><div class="eyebrow">A curated presentation</div><h2>Three examples, one coherent learning method.</h2><p>Move from reading a graph to identifying a contact-force threshold, then account for energy on a ramp. Each example includes a concrete action for the student and something to notice.</p></div><a class="btn primary" href="#tour">Open the guided tour →</a></section>
  <div class="showcase-columns">
- <section class="showcase-step"><span class="step-no">01</span><h2>Choose a text</h2><p>Browse by grade and a curated catalog reference. Concept links are intentionally marked illustrative until a publisher-approved crosswalk exists.</p><a href="#book/physical-science">Explore a science book pathway →</a></section>
- <section class="showcase-step"><span class="step-no">02</span><h2>See the idea</h2><p>One striking visual and an intentionally brief explanation, with The Idea, Example, Think and Try it available underneath.</p><a href="#lesson/motion-graphs">See a Physics demonstration →</a></section>
- <section class="showcase-step"><span class="step-no">03</span><h2>Reason through it</h2><p>New worked-solution steps remain visible as a student advances. A separate page offers three levels of independent guided practice.</p><a href="#guided/graph-slope-physics">Explore graduated problems →</a></section>
- <section class="showcase-step"><span class="step-no">04</span><h2>Apply and review</h2><p>Reference equations, original printables and the browser-based Motion Data Lab support practice without an account or paid AI processing.</p><a href="#applets">Explore the interactive models →</a></section></div>
- <section class="publisher-note"><div class="eyebrow">Discussion points</div><h2>What would need publisher approval?</h2>
- <p>Textbook editions and page-by-page mapping, protected diagrams or passages, brand and logo permissions, teacher-only materials, editorial review, commercial hosting, accessibility requirements, support ownership and educational claims.</p>
- <p><strong>Current boundary:</strong> independently written original lessons and illustrations; no copied textbook content, no student accounts, no student-data collection, and no claim of official Memoria Press sponsorship.</p>
- <a href="#about">Read about the independent prototype →</a></section>`;
+ <section class="showcase-step"><span class="step-no">01</span><h2>Begin with a text</h2><p>Browse official public catalog references, with concept links clearly identified as independent examples.</p><a href="#book/physical-science">Explore a sample science pathway →</a></section>
+ <section class="showcase-step"><span class="step-no">02</span><h2>Observe a phenomenon</h2><p>Manipulate original diagrams and see the mathematics change without surrendering the reasoning to an AI answer box.</p><a href="#lesson/friction">Try the friction threshold →</a></section>
+ <section class="showcase-step"><span class="step-no">03</span><h2>Work through a problem</h2><p>Reveal one solution step at a time. Earlier reasoning stays visible to help students follow the whole argument.</p><a href="#guided/energy-conservation">Examine graduated practice →</a></section>
+ <section class="showcase-step"><span class="step-no">04</span><h2>Extend without distractions</h2><p>Use chapter equation summaries, printables and the Motion Data Lab, with completion saved locally on a visitor's device.</p><a href="#applets">Browse the Experiment Room →</a></section></div>
+ <section class="publisher-note"><div class="eyebrow">Editorial and rights boundaries</div><h2>What still requires publisher approval?</h2><p>Edition-accurate textbook mapping, permissions and protected content, editorial and classroom review, accessibility, support ownership, and commercial hosting or student-data policies.</p><p><strong>Present scope:</strong> independently authored lessons and interactive models, illustrative catalog links, no student accounts, no student-data collection and no claim of official Memoria Press sponsorship.</p><a href="#about">Review the independent prototype →</a></section>`;
 }
+function demoTour(){
+ const stops=[
+ {number:"01",eyebrow:"FOUNDATIONS · GRAPH INTERPRETATION",title:"A slope tells a story",id:"graph-slope-physics",kind:"graph",
+ question:"Does a curved position graph have one average velocity, regardless of the interval?",
+ action:"Move the two time markers and compare the slope and its units.",notice:"Average velocity is the slope of position against time; its value depends on the chosen interval."},
+ {number:"02",eyebrow:"FORCES · CONCEPTUAL CHANGE",title:"When friction gives way",id:"friction",kind:"force",
+ question:"Does static friction always exert its maximum possible force?",
+ action:"Increase the pull from below the static threshold to just beyond it.",notice:"Static friction adjusts to match a small push until the threshold; kinetic friction acts once the box slides."},
+ {number:"03",eyebrow:"ENERGY · MATHEMATICAL ACCOUNTING",title:"Where does the energy go?",id:"energy-conservation",kind:"energy",
+ question:"If a block slows because of friction, has its energy been destroyed?",
+ action:"Move the block down the ramp; then compare the same path without friction.",notice:"Kinetic, potential, and thermal shares change, while the full energy account stays constant."}
+ ];
+ const pictures={
+ graph:`<svg viewBox="0 0 360 180" role="img" aria-label="A rising curve and an amber secant line"><path d="M34 18V151H333" fill="none" stroke="#9ea9a6" stroke-width="2"/><path d="M52 140Q138 155 200 82T309 37" fill="none" stroke="#14727a" stroke-width="4"/><path d="M94 143L275 53" stroke="#b3834b" stroke-width="3"/><circle cx="94" cy="143" r="5" fill="#b3834b"/><circle cx="275" cy="53" r="5" fill="#b3834b"/></svg>`,
+ force:`<svg viewBox="0 0 360 180" role="img" aria-label="A crate with force arrows on a horizontal surface"><path d="M25 150H340" stroke="#b6a998" stroke-width="3"/><rect x="132" y="86" width="84" height="63" rx="4" fill="#436783"/><path d="M174 84V27M218 116H308" stroke="#b3834b" stroke-width="4"/><path d="M166 39L174 24L182 39M293 108L312 116L293 124" fill="none" stroke="#b3834b" stroke-width="3"/></svg>`,
+ energy:`<svg viewBox="0 0 360 180" role="img" aria-label="A ramp beside three changing energy bars"><path d="M22 152L133 24L239 152Z" fill="#e9dcc5" stroke="#a98e69" stroke-width="2"/><path d="M22 152L133 24L239 152" fill="none" stroke="#927751" stroke-width="3"/><rect x="112" y="55" width="23" height="23" rx="3" transform="rotate(41 123 66)" fill="#426681"/><rect x="251" y="50" width="83" height="17" fill="#14727a"/><rect x="251" y="81" width="58" height="17" fill="#436783"/><rect x="251" y="112" width="25" height="17" fill="#b3834b"/></svg>`
+ };
+ main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#showcase">← Publisher overview</a><a href="#home">⌂ Home</a><a href="#books">Books &amp; grades →</a></nav>
+ <header class="demo-masthead"><div class="eyebrow">The Learning Atlas · Curated publisher demonstration</div>
+ <div class="demo-masthead-top"><div><h1>Three ideas.<br><em>One deliberate method.</em></h1>
+ <p>A short tour of original Physics examples that show visual understanding, student-directed experiments, and mathematical practice. Select a study below, then open the actual working lesson.</p></div>
+ <div class="demo-duration" aria-label="Five to eight minute guided review"><strong>5–8</strong><span>minute<br>guided review</span></div></div>
+ <div class="demo-masthead-foot"><span>Observe</span><span>Predict</span><span>Explain</span><span>Practice</span></div></header>
+ <div class="demo-gallery"><nav class="demo-picks" aria-label="Choose a demonstration">
+ ${stops.map((item,i)=>`<button type="button" class="demo-pick" data-demo-index="${i}" aria-pressed="${i===0}" aria-controls="demo-feature"><span>SAMPLE ${item.number}</span><strong>${item.title}</strong><small>${item.eyebrow}</small></button>`).join("")}
+ </nav><section class="demo-feature" id="demo-feature" aria-label="Selected demonstration" aria-live="polite"></section></div>
+ <div class="demo-controls"><button type="button" id="demo-back">← Previous</button><span id="demo-position" role="status">Example 1 of 3</span><button type="button" id="demo-next">Next example →</button></div>
+ <section class="demo-outro"><div><div class="eyebrow">Continue exploring</div><h2>See the complete learning cycle.</h2><p>Inspect three levels of practice, explore a Calculus sample, or begin from a grade-level textbook reference.</p></div><div class="demo-outro-links"><a href="#guided/energy-conservation">See graduated problems →</a><a href="#lesson/tangent-line?tour=1">Try the Calculus demonstration →</a><a href="#book/physical-science">Browse an illustrative book pathway →</a></div></section>
+ <p class="showcase-disclosure">Independent concept prototype; not an official Memoria Press product. Book associations are illustrative and not approved chapter, page, edition or assignment mappings.</p>`;
+ let current=0;
+ const buttons=[...main.querySelectorAll("[data-demo-index]")];
+ function render(){
+  const p=stops[current];
+  main.querySelector("#demo-feature").innerHTML=`<div class="demo-feature-head"><span class="eyebrow">${p.eyebrow}</span><span>${p.number} / 03</span></div>
+  <div class="demo-sketch">${pictures[p.kind]}</div><div class="demo-feature-body"><h2>${p.title}</h2><p class="demo-question">${p.question}</p>
+  <div class="demo-task"><strong>Ask the student to try</strong><p>${p.action}</p></div>
+  <div class="demo-notice"><strong>Notice the connection</strong><p>${p.notice}</p></div>
+  <a class="btn primary" href="#lesson/${p.id}?tour=1">Open the interactive lesson →</a></div>`;
+  for(let i=0;i<buttons.length;i++)buttons[i].setAttribute("aria-pressed",String(i===current));
+  main.querySelector("#demo-position").textContent="Example "+(current+1)+" of "+stops.length;
+  main.querySelector("#demo-back").disabled=current===0;
+  main.querySelector("#demo-next").disabled=current===stops.length-1;
+ }
+ for(const button of buttons)button.onclick=()=>{current=Number(button.dataset.demoIndex);render();};
+ main.querySelector("#demo-back").onclick=()=>{current=Math.max(0,current-1);render();};
+ main.querySelector("#demo-next").onclick=()=>{current=Math.min(stops.length-1,current+1);render();};
+ render();
+}
+
 function route(){
  closePresentation();
  const hash=location.hash.slice(1).split("?")[0]||"home";let decoded="home";try{decoded=decodeURIComponent(hash);}catch{/* malformed hash goes home */}const parts=decoded.split("/");const current=parts[0]==="lesson"?get(parts[1])?.subject:parts[0];
  document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current",a.hash==="#"+current?"page":"false"));
- if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="applets")appletsHome();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
+ if(parts[0]==="books")booksHome();else if(parts[0]==="grade")gradeBooks(parts[1]);else if(parts[0]==="book")bookDetail(parts[1]);else if(parts[0]==="showcase")showcase();else if(parts[0]==="tour")demoTour();else if(parts[0]==="applets")appletsHome();else if(parts[0]==="study"&&get(parts[1]))studySheet(get(parts[1]));else if(parts[0]==="guided"&&get(parts[1]))guidedPage(get(parts[1]));else if(parts[0]==="equations"&&parts[1]&&/^\d+$/.test(parts[1]))equationChapter(Number(parts[1]));else if(parts[0]==="equations")equationIndex();else if(parts[0]==="submodule"&&submodules.some(m=>m.id===parts[1]))microLesson(submodules.find(m=>m.id===parts[1]));else if(parts[0]==="lesson"&&get(parts[1]))lesson(get(parts[1]));else if(parts[0]==="roadmap"&&["physics","calculus"].includes(parts[1]))roadmap(parts[1]);else if(["physics","calculus"].includes(parts[0]))catalog(parts[0]);else if(parts[0]==="about")about();else home();
  nav.classList.remove("open");document.querySelector("#menu-btn").setAttribute("aria-expanded","false");window.scrollTo(0,0);main.focus({preventScroll:true});
 }
 document.querySelector("#menu-btn").addEventListener("click",()=>{let open=nav.classList.toggle("open");document.querySelector("#menu-btn").setAttribute("aria-expanded",String(open));});

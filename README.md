@@ -5,6 +5,14 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
+## Publisher presentation polish — Three-stop guided tour (October 25, 2026)
+
+**Begin with the [curated publisher demonstration](https://antmhernandez.github.io/Interactive-Academy/#tour)** or read the [publisher overview](https://antmhernandez.github.io/Interactive-Academy/#showcase). The new route is a deliberately short teaching exhibition, not another list of capabilities: **(1) a changing graph slope, (2) the static-to-kinetic friction transition, and (3) energy conservation on a ramp**. Each sample introduces a question, a student manipulation, a scientifically accurate conclusion, and a direct working lesson link, with an explicit return path to the tour.
+
+The lesson interface now foregrounds each topic's student prediction; explanations, cumulative worked steps, conceptual checks, and independent practice remain accessible underneath. Four representative lessons—graph slope, friction, energy conservation and a Calculus derivative—received a targeted language and mathematical-meaning proofread. A refreshed publisher overview, refined original editorial CSS, responsive specimen selection, accessible buttons, clearer answer feedback and corrected homepage/gallery labels aim to make the **independent** prototype more presentation-ready. It is **not** an authorized Memoria Press product, book companion or edition-specific map.
+
+This pass changes **no course content counts, numeric answers, canonical lesson IDs or learning-path prerequisites**: there are still 43 complete lessons, 129 guided problems, 21 original featured experiments, 151 registry topics, and 84 original physics equation-reference entries. See the [presentation polish and QA audit](docs/24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md) and the [portable next-conversation prompt](docs/NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-25.md).
+
 ## Current verified release — Chapters 10–11 integrated (October 25, 2026 · [merged PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17))
 
 This release carries the **required Physics sequence from Chapter 9 into seven sequenced Chapter 10–11 lessons**, while preserving Chapter 8 rotational motion as optional enrichment. The coherent student path is **Work Transfers Energy → Which Part of a Force Does Work? → Energy of Motion → How Quickly Is Work Done? → Why Simple Machines Help → Energy Stored by Height → Where Does the Energy Go?**. The existing original frictional-ramp energy lab now appears as part of the required course. New investigations examine signed work under a rotated force and the trade-off between input force, distance, useful output, efficiency and power.

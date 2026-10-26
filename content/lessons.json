@@ -198,20 +198,20 @@
   {
     "id": "graph-slope-physics",
     "title": "What a Graph's Slope Means",
-    "subtitle": "Read change from the shape—not just the height.",
+    "subtitle": "Two points on a graph reveal the average rate of change.",
     "duration": "8 min",
     "visual": "slope-graph",
-    "observe": "How can two time intervals have different average velocities on the same curve?",
-    "visualLead": "Move the endpoint times and watch the secant line.",
-    "focus": "The amber line's slope is Δposition/Δtime, and its units are meters per second.",
-    "definition": "The slope between two points on a physical graph is the vertical change divided by the horizontal change, including the resulting units.",
-    "idea": "On a position–time graph, secant slope is average velocity. For a curved graph, the slope depends on the interval. Always read both axis labels before interpreting height, slope, or area.",
+    "observe": "How can the same curved position graph give different average velocities?",
+    "visualLead": "Move the start and end times. Watch the secant line and its numerical slope.",
+    "focus": "On a position–time graph, the secant slope is average velocity in m/s—not the height of the graph.",
+    "definition": "The slope between two points is the change in the vertical quantity divided by the change in the horizontal quantity. On a position–time graph, this secant slope is average velocity.",
+    "idea": "A position–time graph describes where a cart is at different times. A line through two points measures average velocity over that interval: Δposition/Δtime. On a curved graph, a different interval can give a different slope. Always read the axes and units before interpreting the result.",
     "example": {
-      "question": "On a position–time graph, a cart is at 3 m at t = 1 s and 15 m at t = 5 s. Find the secant slope.",
+      "question": "A cart is at 3 m after 1 s and at 15 m after 5 s. What is its average velocity over that interval?",
       "steps": [
-        "Identify the vertical change: Δx = 15 − 3 = 12 m.",
-        "Identify the horizontal change: Δt = 5 − 1 = 4 s.",
-        "Calculate slope = Δx/Δt = 12 m/4 s = +3 m/s. It represents average velocity."
+        "Read the two positions and subtract: Δx=15−3=12 m.",
+        "Find the elapsed time, not the final clock reading: Δt=5−1=4 s.",
+        "Divide: Δx/Δt=12 m/4 s=+3 m/s. The positive sign means motion in the chosen positive direction on average."
       ]
     },
     "practice": {
@@ -691,13 +691,13 @@
     "unit": "Forces in One and Two Dimensions",
     "unitId": "phy-forces",
     "title": "When Does Friction Give Way?",
-    "subtitle": "Static friction adjusts; sliding friction follows a different rule.",
+    "subtitle": "Watch static friction adjust—then give way to sliding.",
     "duration": "10 min",
-    "observe": "Why can a box remain still under a push, yet move when the push grows slightly stronger?",
-    "idea": "Static friction matches an applied horizontal pull as needed, up to a maximum magnitude μₛN. Before slipping, its magnitude is not automatically μₛN. Once sliding begins in this idealized model, kinetic friction opposes motion with magnitude μₖN. On a level surface with no other vertical forces, N = mg. A sliding box under continued pulling force F has acceleration (F − μₖN)/m.",
-    "visualLead": "Increase the applied pull. Find the precise transition from rest to sliding.",
+    "observe": "Why can a box resist a small push, yet move when that push increases?",
+    "idea": "A stationary crate can oppose an applied horizontal pull with just enough static friction to remain still—up to the maximum μₛN. The actual static friction is not automatically that maximum. Once the crate slides, the model switches to kinetic friction μₖN, acting opposite the slide. On a level floor with no other vertical forces, N=mg; under a continuing pull, the sliding acceleration is (F−μₖN)/m.",
+    "visualLead": "Increase the pull gradually. Watch the exact point when the box begins to slide.",
     "visual": "friction-threshold",
-    "focus": "Friction balances a smaller pull at rest; after the maximum static threshold, the kinetic model opposes sliding.",
+    "focus": "While the box rests, friction matches the pull up to its limit. Once sliding begins, kinetic friction applies.",
     "definition": "Static friction is an adaptive contact force opposing impending slip, with 0 ≤ |fₛ| ≤ μₛN; kinetic friction during sliding has magnitude |fₖ| = μₖN and opposes the relative motion.",
     "example": {
       "question": "A 5 kg crate rests on level ground with μₛ = 0.50 and μₖ = 0.30. A person gradually increases a horizontal pull from 20 N to 40 N. Explain what happens and compute its acceleration under the 40 N pull.",
@@ -1885,13 +1885,13 @@
     "next": null,
     "id": "energy-conservation",
     "title": "Where Does the Energy Go?",
-    "subtitle": "Motion, height and thermal energy are part of one balance.",
+    "subtitle": "Follow energy as it moves among height, motion, and thermal stores.",
     "duration": "11 min",
-    "observe": "If friction lowers a sliding block's speed, does the system lose energy?",
-    "idea": "Energy is conserved when every transfer is included. For a block descending a uniform ramp, energy starts as gravitational potential and possibly kinetic energy. Some gravitational energy increases the block's kinetic energy, while friction transfers some into thermal energy of the block–ramp surroundings. In the ideal closed bookkeeping model, K + U + Ethermal remains equal to the initial K + U at every point.",
-    "visualLead": "Scrub down the ramp with friction off, then turn friction on. Compare the three energy bars and total.",
-    "focus": "The total-energy readout stays constant while kinetic, potential and thermal shares change along the slope.",
-    "definition": "Conservation of energy states that the total energy of an isolated system remains constant, though it may change form. With frictional transfer included, Ki + Ui = Kf + Uf + Ethermal in this ideal ramp model.",
+    "observe": "A rough ramp gives a lower final speed. Has any energy disappeared?",
+    "idea": "As the block moves downhill, its gravitational potential energy decreases. Some of that energy increases its speed, while friction transfers some into thermal stores. A rougher ramp therefore gives a smaller final speed than a frictionless ramp with the same starting conditions. Count the block, Earth, and thermal surroundings together: kinetic + potential + thermal energy stays constant.",
+    "visualLead": "Move down the ramp, then repeat without friction. Compare all three energy shares.",
+    "focus": "Potential energy falls as the block descends. Kinetic and thermal shares change, but their sum with potential stays constant.",
+    "definition": "In an isolated system, total energy remains constant even when it changes form. For this model, the initial kinetic and gravitational potential energies equal the final kinetic, potential, and thermal energies together.",
     "example": {
       "question": "A 2 kg block starts from rest 5 m above the bottom of an ideal frictionless track. How fast is it moving at the bottom (g = 9.8 m/s²)?",
       "steps": [
@@ -1911,19 +1911,19 @@
       ]
     },
     "checkpoint": {
-      "prompt": "A block slides down a rough ramp. Its mechanical energy decreases. What is happening to the total energy when the block and ramp are treated as one system?",
+      "prompt": "A block slides down a rough ramp. Its kinetic energy at the bottom is less than it would be without friction. What happened to the energy?",
       "choices": [
-        "Total energy disappears because friction acts against motion.",
-        "Some mechanical energy becomes thermal energy; the total including thermal remains constant.",
-        "Gravitational potential energy remains constant because friction removes the extra motion."
+        "Some energy vanished because friction opposed the movement.",
+        "Some energy was transferred into thermal stores; total energy is still conserved.",
+        "Gravitational potential energy increased to replace the lost speed."
       ],
       "correct": 1,
       "feedback": [
-        "Friction transfers energy into thermal forms; it does not destroy energy.",
-        "Correct. Mechanical energy can decrease while the sum of mechanical and thermal energy stays constant.",
-        "Gravitational potential energy decreases as the block descends, whether or not friction is present."
+        "Friction redistributes energy; it does not destroy energy.",
+        "Correct. The mechanical share changes, while the combined energy account remains constant.",
+        "Height decreases, so gravitational potential energy decreases rather than increases."
       ],
-      "explanation": "The energy accounting must include thermal energy generated by friction to express conservation for the combined system."
+      "explanation": "Energy conservation requires counting thermal transfer as well as kinetic and gravitational potential energy."
     },
     "investigation": {
       "prediction": "With and without friction, should the total energy change as you move from the top to the bottom?",
@@ -2084,18 +2084,18 @@
     "subject": "calculus",
     "unit": "Derivatives",
     "title": "The Tangent and the Derivative",
-    "subtitle": "See instantaneous change emerge from a secant.",
+    "subtitle": "Watch average slopes approach the slope at one point.",
     "duration": "8 min",
-    "observe": "How can we know the slope of a curve at just one point?",
-    "idea": "A derivative is the limit of nearby secant slopes. For f(x) = x², the slope between x = a and x = a + h is 2a + h. As h approaches 0, the slope approaches 2a.",
-    "visualLead": "Reduce h and watch the amber secant approach the green tangent.",
+    "observe": "How can a curve have a definite slope at a single point?",
+    "idea": "A secant line compares two nearby function values. For f(x)=x², the secant from a to a+h has slope [(a+h)²−a²]/h=2a+h for h≠0. As h approaches zero, the secant slope approaches 2a: the derivative at that point.",
+    "visualLead": "Reduce the spacing h. Watch the secant approach the tangent at the chosen point.",
     "visual": "tangent",
     "example": {
-      "question": "Find the slope of y = x² at x = 3 using the difference quotient.",
+      "question": "Find the tangent slope of f(x)=x² at x=3, starting with nearby secants.",
       "steps": [
-        "Start with [f(3+h) − f(3)] / h.",
-        "Expand: [(3+h)² − 9] / h = (6h + h²) / h.",
-        "For h ≠ 0 the expression is 6 + h. Its limit as h → 0 is 6."
+        "Write the difference quotient: [f(3+h)−f(3)]/h.",
+        "Expand for h≠0: [(3+h)²−9]/h=(6h+h²)/h=6+h.",
+        "Let h approach zero. The slopes approach 6, so f′(3)=6."
       ]
     },
     "practice": {
@@ -2124,9 +2124,9 @@
       ],
       "explanation": "The derivative is a limit of difference quotients as h approaches zero—not an assumption that the graph's height or slope vanishes."
     },
-    "focus": "As the two points meet, the amber secant approaches the green tangent. Its slope approaches the derivative.",
+    "focus": "As the two graph points approach one another, their secant slope approaches the derivative—when that limit exists.",
     "unitId": "cal-derivatives",
-    "definition": "The derivative f′(a) is the limit of nearby secant slopes at a, when that limit exists; geometrically it is tangent slope."
+    "definition": "The derivative f′(a) is the limit of the slopes of secant lines through a and a nearby point, if the limit exists. It describes the instantaneous rate of change and the tangent's slope."
   },
   {
     "id": "velocity-accumulation",
