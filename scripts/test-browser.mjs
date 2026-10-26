@@ -154,7 +154,7 @@ try{
   assert.match(await page.locator("#evidence-description").innerText(),/secant/);
   assert.equal(await page.locator('#visual svg[role="img"]').getAttribute("aria-describedby"),"evidence-description");
   assert.ok((await page.locator("#slope-plot").innerHTML()).includes("Δx"),"Full graph labels the position change");
-  assert.ok((await page.locator("#v-graph").innerHTML()).includes("Δt"),"Full graph labels the time change");
+  assert.ok((await page.locator("#slope-plot").innerHTML()).includes("Δt"),"Full graph labels the time change");
   assert.equal(await page.locator("#evidence-connect").isDisabled(),true);
   await page.locator('input[name="evidence-prediction"][value="0"]').check();
   await page.locator("#evidence-record").click();
