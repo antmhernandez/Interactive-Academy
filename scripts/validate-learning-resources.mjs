@@ -7,7 +7,7 @@ const guided=read("content/guided-practice.json");
 const eq=read("content/equations-physics.json");
 const map=read("curriculum/catalog.json");
 const book=map.textbook;
-assert.equal(lessons.length,39);
+assert.equal(lessons.length,43);
 assert.equal(guided.length,lessons.length,"Every complete lesson needs guided practice");
 const defined=new Map(lessons.map(x=>[x.id,x])),guidedIds=new Set();
 let problems=0;
@@ -27,7 +27,7 @@ for(const set of guided){
   assert.ok(p.steps.every(s=>s.trim().length>=7),"Missing or empty reasoning step "+set.owner);
  }
 }
-assert.equal(problems,117,"Unexpected practice count");
+assert.equal(problems,129,"Unexpected practice count");
 for(const lesson of lessons){
  assert.ok(lesson.definition?.length>=70&&lesson.definition.length<=350,"Missing concise definition "+lesson.id);
  assert.ok(guidedIds.has(lesson.id),"No guided-practice set "+lesson.id);
@@ -54,11 +54,11 @@ assert.equal(physics[0].id,"si-units","Learning path must begin with the mathema
 assert.equal(physics.at(-1).id,"atom-spectra","Atomic formula lesson must be at late book chapter 28");
 assert.equal(physics.at(-1).optionalPreview,true,"Chapter 28 preview must be optional");
 const previews=physics.filter(l=>l.optionalPreview);
-assert.deepEqual(previews.map(l=>l.id),["torque-levers","rotational-inertia","rotational-dynamics","work-energy","kinetic-energy","potential-energy","energy-conservation","atom-spectra"],
- "Chapter 8 rotation, Chapters 10–11 energy and Chapter 28 curiosity must stay optional and textbook ordered");
+assert.deepEqual(previews.map(l=>l.id),["torque-levers","rotational-inertia","rotational-dynamics","collisions","atom-spectra"],
+ "Only Chapter 8 rotation, the post-energy collision review and Chapter 28 atomic curiosity remain optional");
 assert.ok(previews.every(l=>l.next===null),"Optional later-chapter explorations must not point into main course");
-assert.equal(physics.filter(l=>!l.optionalPreview).at(-1).id,"momentum-vectors",
- "Required sequence must continue through Chapter 9 while omitting optional Chapter 8 and later preview chapters");
+assert.equal(physics.filter(l=>!l.optionalPreview).at(-1).id,"energy-conservation",
+ "Required sequence must continue from Chapter 9 through work, machines, potential and energy conservation");
 const chapter8=book.chapters[7];
 assert.equal(chapter8.number,8);
 assert.equal(chapter8.unitId,"phy-rotation");
@@ -69,7 +69,14 @@ assert.ok(physics.filter(l=>l.unitId==="phy-rotation").every(l=>l.optionalPrevie
 const mom=map.subjects.find(s=>s.id==="physics").units.find(u=>u.id==="phy-momentum");
 assert.equal(mom.syllabus.scope,"school-year-core","Momentum must remain in the required school course");
 assert.equal(book.chapters[8].scope,"classroom-core","Chapter 9 is not an optional extension");
-assert.equal(mom.topics.find(t=>t.id==="collisions").status,"planned","Dedicated energy-dependent collisions lesson must not be prematurely activated");
+assert.equal(mom.topics.find(t=>t.id==="collisions").status,"available","Energy-dependent collision comparison has been written");
+assert.equal(physics.find(l=>l.id==="collisions").optionalPreview,true,"Do not interrupt earlier Chapter 9 sequence with a later energy prerequisite");
+assert.equal(physics.find(l=>l.id==="collisions").next,null,"Post-energy collision review must remain outside required Next chain");
+const energy=map.subjects.find(s=>s.id==="physics").units.find(u=>u.id==="phy-energy");
+assert.equal(energy.syllabus.scope,"school-year-core");
+assert.deepEqual(energy.topics.filter(t=>t.status==="available").map(t=>t.id),["work-energy","work-angle","kinetic-energy","power-efficiency","mechanical-advantage","potential-energy","energy-conservation"]);
+assert.ok(physics.filter(l=>l.unitId==="phy-energy").every(l=>!l.optionalPreview),"Energy lessons must be truly required now");
+assert.equal(physics.find(l=>l.id==="momentum-vectors").next,"work-energy","Chapter 9 must advance into Chapter 10");
 assert.equal(physics.find(l=>l.id==="weightlessness").next,"impulse","Course must skip optional Chapter 8 into required Chapter 9");
 const main=physics.filter(l=>!l.optionalPreview);
 for(let i=0;i<main.length;i++)assert.equal(main[i].next,main[i+1]?.id??null,"Broken main textbook learning path");
