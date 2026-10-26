@@ -5,6 +5,14 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
+## Publisher demonstration iteration — live evidence in three original mini-labs (October 25, 2026)
+
+The [three-stop guided tour](https://antmhernandez.github.io/Interactive-Academy/#tour) now includes **live controls**, numerical evidence and explanatory connections for its existing graph-slope, friction and energy samples. Instead of seeing only a specimen illustration, the visitor answers a question, moves a control and sees the corresponding quantitative result; the conclusion is revealed after interaction. A link opens the full original lesson with cumulative worked steps, independent student work and three graduated practice questions. On returning to the tour, the last-selected stop is retained for the current page session.
+
+The compact investigations live in `applets/tour-labs.js` and reuse the full lesson's `energyRampState` for energy bookkeeping. The contact-force sample explicitly uses a **release-from-rest threshold**, and the graph plots the actual function `x(t)=1+t²`. The small ramp is drawn to match its specified 35-degree angle. Responsive editorial design, keyboard-operated controls and a reduced-motion path support classroom presentation, subject to real-device and assistive technology review.
+
+**Inventory remains unchanged:** 43 complete lessons, 129 graduated problems, 21 original Experiment Room investigations, 151 curriculum concepts across 22 units, and 84 original formula entries. Required chapter order, optional Chapter 8/Chapter 28 content and optional post-energy collision synthesis are unchanged. No publisher-owned materials, edition-specific mappings or endorsement are claimed. See [iteration #25 model and QA audit](docs/25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md) and [next-conversation handoff](docs/NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-25.md). Validate PR CI, `main` and Pages deployment before treating this release as published.
+
 ## Publisher presentation polish — Three-stop guided tour (October 25, 2026 · [merged PR #18](https://github.com/antmhernandez/Interactive-Academy/pull/18))
 
 **Begin with the [curated publisher demonstration](https://antmhernandez.github.io/Interactive-Academy/#tour)** or read the [publisher overview](https://antmhernandez.github.io/Interactive-Academy/#showcase). The new route is a deliberately short teaching exhibition, not another list of capabilities: **(1) a changing graph slope, (2) the static-to-kinetic friction transition, and (3) energy conservation on a ramp**. Each sample introduces a question, a student manipulation, a scientifically accurate conclusion, and a direct working lesson link, with an explicit return path to the tour.
