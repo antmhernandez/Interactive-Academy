@@ -82,4 +82,4 @@ An automated Chromium pass at five widths is **not** a physical assistive-techno
 3. Further refinement of Physics and Calculus after actual classroom feedback, rather than indiscriminate page expansion.
 4. Publisher counsel, subject editor and rights review. Memoria Press has **not** approved, commissioned or endorsed this independent concept; do not invent edition-specific Novare/MP mappings or copy protected content.
 
-Historical audits [#26](26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md), [#25](25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md) and [#24](24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md) remain intact. New full handoff goes in [NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-25.md](NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-25.md).
+Historical audits [#26](26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md), [#25](25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md) and [#24](24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md) remain intact. New full handoff goes in [NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-26.md](NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-26.md).
