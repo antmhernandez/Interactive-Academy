@@ -308,9 +308,9 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - [Completed green PR workflow run #70](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40252056939) includes exact impulse and multi-cart momentum/energy comparisons, 39 complete lessons/117 graduated exercises, 151 canonical topics/22 units, and Chrome-like Chromium at five viewport widths; independent publisher claims remain limited.
 - Last remaining release check: latest `main` push and GitHub Pages workflows after this documentation update. No manual physical Safari, screen-reader or classroom review was done.
 
-## October 25 continuation — Required Chapters 10–11 energy and integrated collision review
+## October 25 continuation — Required Chapters 10–11 energy and integrated collision review (merged PR #17)
 
-**Working branch during implementation:** `feature/chapters-10-11-energy-core-and-collision-review-2026-10-25` based on verified main SHA `bd0a2a50a836dba29912a352224c2ff00cf40e13`.
+**Merged into authoritative `main`:** [PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17), squash SHA `c0abb671f9b3202c645cdc87803cfdb13dfe9e9e`, after full [green PR validation run #75](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40253863493).
 
 ### Critical sequencing/curriculum decisions
 - The existing four energy lessons were mature enough for core promotion after auditing numerical model `energyRampState`, the three-step worked examples, misconception checks, and their three-level guided practice. Delete `optionalPreview:true` and update `next` for these four, while inserting three **new** required Chapter 10 concepts in the right order: `work-energy → work-angle → kinetic-energy → power-efficiency → mechanical-advantage → potential-energy → energy-conservation → null`.
@@ -328,6 +328,11 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - [Detailed mathematics, rights and acceptance review](23_ENERGY_CORE_AND_COLLISION_REVIEW_2026-10-25.md).
 
 ### Release completion and remaining work
-- PR CI must pass source syntax, 43 lesson and 129 guided practice checks, curriculum prerequisites and survey, work/machines regression and five-width Chromium navigation. After that, record PR number, squash SHA, latest main push and Pages deployment with exact run IDs.
+- **PR CI passed:** [Workflow run #75](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40253863493) validated source syntax, 43 lessons and 129 graduated practice tasks, registry prerequisites and course path, new work/machines and existing energy/momentum model regressions, publisher pathways, and five responsive Chromium browser journeys at 320, 375, 768, 1024 and 1440px. [PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17) squash merged. Check final `main` CI and Pages deployment for the final documentation SHA separately.
 - Actual iPhone Safari, Android, NVDA/VoiceOver, physical projector and real pupil interpretation are NOT verified by automation. Ask teacher/publisher reviewers to inspect content, schematic assumptions, rights disclosures and textbook edition crosswalk claims.
 - Next priority should be **quality, publisher presentation and student usability** (especially genuine real-device/projector comprehension), then complete remaining Chapter 10–11 planned `energy-flow-diagrams`, or add a new concept only when pedagogically necessary. Avoid falsely calling 43 sample lessons an entire course.
+
+### Verified Chapters 10–11 release
+- [PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17), merged as `c0abb671f9b3202c645cdc87803cfdb13dfe9e9e` after [Actions run #75](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40253863493) completed successfully.
+- Numerical tests covered seven textbook-ordered required energy lessons, 129 guided problems total, 151 canonical concepts, signed force angle at 0°/90°/180°, machine efficiency/work/time and force-distance response, and collision momentum/kinetic-energy comparisons; the prior ramp conservation tests stayed green.
+- Browser tests exercised the new 21-card experiment gallery, required Next navigation, seven-link energy study navigation, post-energy optional collisions link, force angle and ideal machine controls, keyboard and viewport layouts. Main-branch validation and GitHub Pages must be checked separately after these record updates.
