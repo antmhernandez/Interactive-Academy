@@ -1170,7 +1170,7 @@ function demoTour(){
  <div class="demo-masthead-top"><div><h1>Three ideas.<br><em>One deliberate method.</em></h1>
  <p>A short tour of original Physics examples that show visual understanding, student-directed experiments, and mathematical practice. Select a study below, then open the actual working lesson.</p></div>
  <div class="demo-duration" aria-label="Five to eight minute guided review"><strong>5–8</strong><span>minute<br>guided review</span></div></div>
- <div class="demo-masthead-foot"><span>Observe</span><span>Predict</span><span>Explain</span><span>Practice</span></div></header>
+ <div class="demo-masthead-foot"><span>Predict</span><span>Manipulate</span><span>Connect</span><span>Practice</span></div></header>
  <div class="demo-gallery"><nav class="demo-picks" aria-label="Choose a demonstration">
  ${stops.map((item,i)=>`<button type="button" class="demo-pick" data-demo-index="${i}" aria-pressed="${i===0}" aria-controls="demo-feature"><span>SAMPLE ${item.number}</span><strong>${item.title}</strong><small>${item.eyebrow}</small></button>`).join("")}
  </nav><section class="demo-feature" id="demo-feature" aria-label="Selected demonstration"></section></div>
@@ -1182,9 +1182,11 @@ function demoTour(){
  function render(){
   const p=stops[current];
   main.querySelector("#demo-feature").innerHTML=`<div class="demo-feature-head"><span class="eyebrow">${p.eyebrow}</span><span>${p.number} / 03</span></div>
-  <div class="demo-sketch"><div id="demo-lab" class="demo-mini-lab" aria-label="Live ${p.kind} model"></div></div><div class="demo-feature-body"><h2>${p.title}</h2><p class="demo-question">${p.question}</p>
-  <div class="demo-task"><strong>Ask the student to try</strong><p>${p.action}</p></div>
-  <div class="demo-notice" id="demo-connection" hidden><strong>Connect your observation</strong><p>${p.notice}</p></div>
+  <div class="demo-feature-body demo-feature-predict"><h2>${p.title}</h2><p class="demo-question">${p.question}</p>
+  <div class="demo-task"><strong>01 · Predict before manipulating</strong><p>${p.action}</p></div></div>
+  <div class="demo-sketch"><span class="demo-live-label">02 · Manipulate the model</span><div id="demo-lab" class="demo-mini-lab" aria-label="Live ${p.kind} model"></div></div>
+  <div class="demo-feature-body demo-feature-after"><p class="demo-hold" id="demo-hold">03 · Change a control to uncover the connection.</p>
+  <div class="demo-notice" id="demo-connection" hidden><strong>03 · Connect your observation</strong><p>${p.notice}</p></div>
   <a class="btn primary" href="#lesson/${p.id}?tour=1">Open the interactive lesson →</a></div>`;
   tourMiniLab(main.querySelector("#demo-lab"),p.kind);
   demoTourIndex=current;
