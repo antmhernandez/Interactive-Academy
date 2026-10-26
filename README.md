@@ -5,7 +5,7 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
-## Current verified content target — Chapters 10–11 integration (October 25, 2026)
+## Current verified release — Chapters 10–11 integrated (October 25, 2026 · [merged PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17))
 
 This release carries the **required Physics sequence from Chapter 9 into seven sequenced Chapter 10–11 lessons**, while preserving Chapter 8 rotational motion as optional enrichment. The coherent student path is **Work Transfers Energy → Which Part of a Force Does Work? → Energy of Motion → How Quickly Is Work Done? → Why Simple Machines Help → Energy Stored by Height → Where Does the Energy Go?**. The existing original frictional-ramp energy lab now appears as part of the required course. New investigations examine signed work under a rotated force and the trade-off between input force, distance, useful output, efficiency and power.
 
