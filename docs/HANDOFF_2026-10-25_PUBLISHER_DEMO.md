@@ -257,3 +257,24 @@ PR CI, merge SHA, main push CI, Pages publishing workflow must all be independen
 - [Full PR validation #60](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40241966619) passed lesson/data/curriculum/source validators, regression models, Chapters 5/6/7 physics model tests, 33 lessons/99 guided problems/84 equation entries, and all five Chromium widths (320/375/768/1024/1440px), including orbit phase/step/play, 0N ideal support, gravity ratio and lesson next navigation.
 - [PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14) successfully squash merged. Record final `main` CI and Pages workflow status after the last documentation push separately.
 - The new Chapter 7 physics applets are original, simplified Newtonian models; physical phone, projector, Safari, screen-reader and educational efficacy testing have not been performed.
+
+## October 25 continuation — Chapter 8 Rotational Motion optional extension
+
+**Working branch:** `feature/chapter-08-rotation-optional-extension-2026-10-25`. Continue from successful merged PR #14, source-of-truth `main`. User asked to continue implementation; prior recommendation was interactive torque, moment of inertia and angular acceleration.
+
+### Important syllabus discovery
+The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-extension` and the course schedule in `sourceAlignment.physicsCourse` explicitly lists Chapters 1–7 then 9, *not* Chapter 8. **Do not silently promote Chapter 8 to core.** The new `phy-rotation` registry unit has `syllabus.scope:"enrichment"`, and all three finished Chapter 8 lessons are `optionalPreview:true,next:null`. The primary Physics Next chain still ends at `weightlessness` (Chapter 7); Chapters 10–11 energy and Chapter 28 atomic content remain optional too. Chapter 8's own in-lesson links form a separately labeled three-topic study sequence.
+
+### Implementation
+- Three complete new original lessons: `torque-levers`, `rotational-inertia`, `rotational-dynamics`, with concise definitions, multi-step worked examples, conceptual distractors with feedback, Predict–Manipulate–Connect guidance, independently checked numeric practice and Begin/Extend/Challenge guided sets.
+- New original `applets/rotation.js`: signed torque `τ=rFsinφ` for a horizontal lever with a single applied force and fixed pivot (positive CCW, negative CW); interactive distance, force, angle, perpendicular/along arm buttons and reset.
+- Uniform solid disk/ideal thin hoop spin experiment: `I_disk=½mR²`, `I_hoop=mR²`, `α=τ/I`, from rest `ω=αt`, `θ=½αt²`, `K=½Iω²=τθ`. Adjust mass, outer radius, body shape, constant nonnegative net torque, elapsed time, play/pause at slowed visual speed, switch body, step +0.5s, reset. No rolling contact, friction, motor losses, changing torque or axis wobble.
+- Two new Experiment Room cards, linking only to original lesson IDs. Append Chapter 8 to existing independent Glencoe-index prototype pathway; do not change any publisher-specific catalog/book associations or invent Novare alignments.
+- Updated total: **36 complete lessons (31 Physics, 5 Calculus), 108 guided problems, 17 curated gallery models**, 151 canonical curriculum topics, existing 84 physics chapter equations.
+- Test `scripts/test-rotation.mjs`: exact signed torque, mass/radius distributions, wheel angular acceleration/time, torque-work energy equality, angle direction and reset. Expanded CI numeric/registry checks plus five-width Chromium journey; explicit assertions Chapter 8 remains an optional/enrichment unit.
+- Detailed mathematical/source/teacher audit: [`docs/21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md`](21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md).
+
+### Acceptance and continuing priorities
+- Run PR CI before merging; record workflow, merge SHA, main validation and Pages deployment when verified.
+- Human keyboard/VoiceOver/NVDA, mobile Safari, actual physical projector and student conceptual-comprehension checks remain outstanding.
+- The next **required** book unit is Chapter 9 Momentum, given the authoritative course schedule; Chapter 8 is an optional illustration for interested users. Prioritize polishing/proven comprehension over content quantity if it improves the publisher demo.
