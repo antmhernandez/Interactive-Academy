@@ -83,7 +83,7 @@ Two original interactive SVG models live in `applets/rotation.js`. The three lin
 
 After this addition the prototype contains **36 complete lessons (31 Physics, five Calculus), 108 guided problems, and 17 Experiment Room applets**. Textbook mappings remain independent prototype examples, *not* Memoria Press or Novare edition-approved chapter claims. See [rotational mechanics and teaching audit](docs/21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md).
 
-## Chapter 9 Momentum — Three required lessons and two interactive models (October 25, 2026)
+## Chapter 9 Momentum — Three required lessons and two interactive models (October 25, 2026 · [merged PR #16](https://github.com/antmhernandez/Interactive-Academy/pull/16))
 
 The school-year Physics sequence now continues from Chapter 7 into **Chapter 9: Momentum and Its Conservation**, correctly skipping optional Chapter 8 enrichment in the *required* Next links.
 
