@@ -71,7 +71,7 @@ Each has an original definition, three-step worked example, conceptual misconcep
 
 This adds **33 total lessons (28 Physics, 5 Calculus), 99 guided problems and 15 Experiment Room models**. The independent Glencoe-indexed prototype chapter ordering remains separate from *illustrative*, unauthorized Novare/Memoria Press book connections. Full mathematics and test limitations: [Chapter 7 design audit](docs/20_GRAVITATION_CHAPTER_07_2026-10-25.md).
 
-## Chapter 8 Rotational Motion — Optional textbook extension (October 25, 2026)
+## Chapter 8 Rotational Motion — Optional textbook extension (October 25, 2026 · [merged PR #15](https://github.com/antmhernandez/Interactive-Academy/pull/15))
 
 An original, deliberately **optional** [Chapter 8 rotational mechanics pathway](https://antmhernandez.github.io/Interactive-Academy/#lesson/torque-levers) introduces students to three new exploratory concepts without changing the present school-year syllabus or the regular Chapter 1–7 Next Lesson sequence:
 
