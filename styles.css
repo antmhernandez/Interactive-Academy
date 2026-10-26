@@ -919,3 +919,55 @@ a,button{ -webkit-tap-highlight-color:transparent}
  .evidence-workbench{break-inside:avoid;background:#fff}
  .evidence-numbers{background:#fff}
 }
+
+
+/* 2026-10-26 derivative laboratory: a truthful two-sided limit, not a decorative tangent.
+   The dense original SVG scrolls inside its panel on small phones; evidence remains readable. */
+.tangent-lab{min-width:0}
+.tangent-lab .diagram-head{flex-wrap:wrap}
+.tangent-lab .diagram-head strong{font-size:clamp(1rem,1.5vw,1.2rem);color:#213b56}
+.tan-intro{color:#475963;font-size:.96rem;line-height:1.65;max-width:75ch;margin:0 0 16px}
+.tan-directions{display:flex;flex-wrap:wrap;gap:9px;margin:10px 0 15px}
+.tan-directions button{flex:1;min-width:180px;min-height:48px;border:1px solid #b9ab97;
+ background:#fffcf6;color:#66434d;border-radius:7px;padding:10px 13px;font-size:.89rem}
+.tan-directions button[aria-pressed="true"]{background:#243b56;border-color:#243b56;color:#fff}
+.tan-plot-scroll{max-width:100%;overflow-x:auto;border:1px solid #d5dfda;background:#f8faf9;
+ border-radius:6px;scrollbar-gutter:stable;overscroll-behavior-x:contain}
+.tan-plot-scroll svg{display:block;width:100%;min-width:510px;max-width:none;height:auto;max-height:none;overflow:hidden}
+.tan-plot-scroll:focus-visible{outline:3px solid #b5844c;outline-offset:2px}
+.tan-line-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;
+ padding:14px 3px;color:#43545d;font-size:.8rem;font-weight:700}
+.tan-line-legend span{display:inline-flex;gap:8px;align-items:center}
+.tan-key{width:27px;height:0;border-top:4px solid #14727a}
+.tan-key.secant{border-color:#ae7434}
+.tan-key.tangent{border-color:#297458;border-top-style:dashed}
+.tan-readouts .metric{min-width:155px}
+.tan-readouts strong{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tan-convergence{margin-top:21px;border-top:3px solid #d4b886;padding:20px 0 0}
+.tan-convergence h3{color:#263b56;font-size:1.38rem}
+.tan-convergence>p{line-height:1.7;font-size:.9rem;color:#4d5e64;max-width:80ch;margin:8px 0 15px}
+.tan-table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.tan-table{width:100%;border-collapse:collapse;min-width:430px;background:#fffefa;
+ font-variant-numeric:tabular-nums;font-size:.9rem}
+.tan-table caption{text-align:left;font-size:.77rem;font-weight:700;color:#505963;padding-bottom:8px}
+.tan-table th,.tan-table td{padding:9px 13px;text-align:right;border-bottom:1px solid #dfded7}
+.tan-table th:first-child{text-align:left}
+.tan-table thead{background:#e8efe9;color:#234359}
+.tan-table tbody th{font-weight:650;color:#495b61}
+.tan-table tbody tr.tan-selected{background:#fbefd9;box-shadow:inset 4px 0 #86516b}
+.tan-convergence .tan-limit-note{background:#f8f0e3;border-left:4px solid #896d4d;
+ padding:13px 16px;color:#4d4a47;margin-top:16px;line-height:1.65}
+.presentation-mode .tan-intro,.presentation-mode .tan-convergence>p{font-size:clamp(1rem,1.6vw,1.25rem)}
+.presentation-mode .tan-plot-scroll svg{min-width:510px}
+@media(max-width:560px){
+ .tan-directions{display:grid;grid-template-columns:1fr;gap:8px}
+ .tan-directions button{min-width:0}
+ .tan-line-legend{gap:8px 13px}
+ .tan-readouts .metric{min-width:128px}
+}
+@media print{
+ .tan-directions,.tangent-lab .applet-actions{display:none!important}
+ .tan-plot-scroll{overflow:visible;break-inside:avoid}
+ .tan-plot-scroll svg{min-width:0}
+ .tan-convergence{break-inside:avoid}
+}

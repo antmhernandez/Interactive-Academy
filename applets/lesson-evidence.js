@@ -13,6 +13,16 @@ function featuredEvidence(kind, v) {
    interpretation:"The height of each point is a position in metres. The slope of their connecting secant is average velocity in metres per second. A higher graph point is not itself a faster speed."
   };
  }
+ if(kind==="tangent-line"){
+  const q=derivativeSecantState(Number(v.a),Number(v.gap),v.side);
+  const {a,h,x1,y0,y1,rise,secant,derivative,error}=q;
+  return {
+   values:q,
+   description:"A parabola f(x) = x squared with fixed point A at ("+number(a)+", "+number(y0)+") and moving point B at ("+number(x1)+", "+number(y1)+"). B approaches A from the "+q.side+". Their horizontal difference h is "+number(h)+" and vertical difference Δf is "+number(rise)+". The solid secant slope is "+number(secant)+", while the dashed limiting tangent slope is "+number(derivative)+".",
+   calculation:"a = "+number(a)+"; signed h = "+number(h)+" (nonzero). f(a+h) = "+number(y1)+", f(a) = "+number(y0)+". Δf = "+number(y1)+" − "+number(y0)+" = "+number(rise)+". Secant slope = Δf/h = "+number(rise)+" / ("+number(h)+") = "+number(secant)+". Expanding symbols for h ≠ 0 gives [(a+h)²−a²]/h = 2a+h = "+number(derivative)+" + ("+number(h)+") = "+number(secant)+". Difference from 2a = "+number(error)+". As h approaches zero from either side, the slopes approach 2a = "+number(derivative)+".",
+   interpretation:"The quotient is undefined at h = 0. The derivative is the finite limit reached as h approaches zero from both directions, not a claim that division by zero is allowed. A negative tangent slope at negative a describes a decreasing quadratic on that side, not a negative function value."
+  };
+ }
  if(kind==="friction"){
   const pull=Number(v.pull),m=Number(v.mass),mus=Number(v.static),muk=Math.min(Number(v.kinetic),mus);
   const normal=9.8*m,limit=mus*normal,sliding=pull>limit+1e-9;
@@ -43,6 +53,10 @@ function enhanceFeaturedLesson(el,kind){
    question:"With the starting time held at 0 s, if the later time moves from 2 s toward 4 s, average velocity will…",
    options:["Increase","Decrease","Stay unchanged"],correct:0,
    reason:"For this upward-curving position function, later secants have a greater rise per second."},
+  "tangent-line":{
+   question:"For f(x) = x² at any fixed a, what happens to secant slopes as h approaches zero from the left and the right?",
+   options:["Both approach 2a","Both approach zero, whatever a is","They approach different values"],correct:0,
+   reason:"The signed secant slope is 2a+h. With h positive or negative and approaching zero, both slopes tend to the same value 2a. The quotient itself is never evaluated at h=0."},
   "friction":{
    question:"For the initial 5 kg crate with μₛ = 0.50, does increasing the pull from 20 N to 25 N cause the crate to start sliding?",
    options:["Yes, it crosses the static limit","No, static friction always equals 24.5 N","No, friction is fixed at 14.7 N"],correct:0,
@@ -75,19 +89,28 @@ function enhanceFeaturedLesson(el,kind){
  if(svg)svg.setAttribute("aria-describedby","evidence-description");
  const controls={
   "graph-slope-physics":{start:"slope-t1",end:"slope-t2"},
+  "tangent-line":{a:"point",gap:"gap"},
   "friction":{pull:"fr-pull",mass:"fr-mass",static:"fr-static",kinetic:"fr-kinetic"},
   "energy-conservation":{mass:"en-mass",height:"en-height",start:"en-start",mu:"en-mu",progress:"en-progress"}
  }[kind];
  const element=id=>el.querySelector("#"+id);
  let selected=null,changed=false,changedAfterPrediction=false;
- function refresh(){
+ function readValues(){
   const values={};
   for(const [key,id] of Object.entries(controls))values[key]=element(id).value;
+  if(kind==="tangent-line"){
+   values.gap=tangentMagnitudes[Number(values.gap)];
+   values.side=element("tan-left").getAttribute("aria-pressed")==="true"?"left":"right";
+  }
+  return values;
+ }
+ function refresh(){
+  const values=readValues();
   const q=featuredEvidence(kind,values);
   element("evidence-description").textContent=q.description;
   element("evidence-calculation").textContent=q.calculation;
   for(const [key,id] of Object.entries(controls)){
-   const units=kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
+   const units=kind==="tangent-line"?(key==="a"?"fixed horizontal coordinate":"nonzero separation magnitude"):kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
    element(id).setAttribute("aria-valuetext",values[key]+" "+units);
   }
   element("evidence-connect").disabled=selected===null||!changedAfterPrediction;
@@ -104,7 +127,7 @@ function enhanceFeaturedLesson(el,kind){
  };
  element("evidence-connect").onclick=()=>{
   const verdict=selected===choice.correct?"Your prediction agrees with this model. ":"Compare your prediction with the model. ";
-  element("evidence-conclusion").textContent=verdict+choice.reason+" "+featuredEvidence(kind,Object.fromEntries(Object.entries(controls).map(([key,id])=>[key,element(id).value]))).interpretation;
+  element("evidence-conclusion").textContent=verdict+choice.reason+" "+featuredEvidence(kind,readValues()).interpretation;
   element("evidence-conclusion").hidden=false;
  };
  el.addEventListener("input",e=>{if(e.target.matches('input[type="range"]')){changed=true;if(selected!==null)changedAfterPrediction=true;element("evidence-conclusion").hidden=true;refresh();}});

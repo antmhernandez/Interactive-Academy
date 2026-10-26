@@ -2084,28 +2084,34 @@
     "subject": "calculus",
     "unit": "Derivatives",
     "title": "The Tangent and the Derivative",
-    "subtitle": "Watch average slopes approach the slope at one point.",
-    "duration": "8 min",
+    "subtitle": "Compare approaching secants from both sides of a single point.",
+    "duration": "10 min",
     "observe": "How can a curve have a definite slope at a single point?",
     "idea": "A secant line compares two nearby function values. For f(x)=x², the secant from a to a+h has slope [(a+h)²−a²]/h=2a+h for h≠0. As h approaches zero, the secant slope approaches 2a: the derivative at that point.",
-    "visualLead": "Reduce the spacing h. Watch the secant approach the tangent at the chosen point.",
+    "visualLead": "Predict the common slope, approach from either side, and compare the signed rise divided by signed run.",
     "visual": "tangent",
+    "investigation": {
+      "prediction": "If f(x) = x² and the fixed point is a = 1, will secant slopes approaching from the left and from the right tend toward the same value? Predict that value before changing the controls.",
+      "experiment": "Hold a fixed. Choose the left and right approaches in turn; move B closer to A and compare Δf/h with 2a. Then choose a negative a to see why a tangent can have a negative slope while f(a) remains nonnegative.",
+      "connection": "For every nonzero signed h, [(a+h)²−a²]/h = 2a+h. Both one-sided limits approach 2a as h tends to zero, even though the quotient is undefined at h=0."
+    },
     "example": {
-      "question": "Find the tangent slope of f(x)=x² at x=3, starting with nearby secants.",
+      "question": "Using secants on both sides, find the derivative of f(x) = x² at a = 3. Explain why we do not substitute h = 0 into the quotient.",
       "steps": [
-        "Write the difference quotient: [f(3+h)−f(3)]/h.",
-        "Expand for h≠0: [(3+h)²−9]/h=(6h+h²)/h=6+h.",
-        "Let h approach zero. The slopes approach 6, so f′(3)=6."
+        "Fix a = 3 and choose any nonzero signed h. The secant slope is [f(3+h) − f(3)]/h = [(3+h)² − 9]/h.",
+        "Expand the numerator: (3+h)² − 9 = 6h + h². For h ≠ 0, divide by h to obtain 6 + h.",
+        "Approach from the right: h = +0.5 gives 6.5; h = +0.1 gives 6.1. Approach from the left: h = −0.5 gives 5.5; h = −0.1 gives 5.9.",
+        "Both sequences of secant slopes approach 6 as h → 0. Therefore f′(3) = 6. The quotient at h = 0 is undefined; its limit is not."
       ]
     },
     "practice": {
-      "prompt": "For f(x) = x², what is the derivative at x = −2?",
+      "prompt": "For f(x) = x², find f′(−2), the limiting secant slope at x = −2. Enter the signed number.",
       "answer": -4,
       "tolerance": 0.001,
-      "unit": "slope",
+      "unit": "",
       "hints": [
-        "The derivative of x² at x is 2x.",
-        "Substitute x = −2 into 2x."
+        "Form the nonzero-h secant slope: [(-2+h)² − (-2)²]/h.",
+        "Simplify to −4 + h for h ≠ 0, then take the limit as h approaches zero from either side."
       ]
     },
     "next": "velocity-accumulation",
@@ -2124,9 +2130,9 @@
       ],
       "explanation": "The derivative is a limit of difference quotients as h approaches zero—not an assumption that the graph's height or slope vanishes."
     },
-    "focus": "As the two graph points approach one another, their secant slope approaches the derivative—when that limit exists.",
+    "focus": "For a smooth quadratic, both left and right secant slopes converge to the same value. A near-zero distance is not a zero denominator.",
     "unitId": "cal-derivatives",
-    "definition": "The derivative f′(a) is the limit of the slopes of secant lines through a and a nearby point, if the limit exists. It describes the instantaneous rate of change and the tangent's slope."
+    "definition": "The derivative f′(a) is the common finite limit, when it exists, of [f(a+h) − f(a)]/h as nonzero h approaches 0 from both sides. It is the slope of the tangent line and an instantaneous rate of change."
   },
   {
     "id": "velocity-accumulation",
