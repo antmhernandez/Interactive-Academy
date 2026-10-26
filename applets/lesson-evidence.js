@@ -23,6 +23,25 @@ function featuredEvidence(kind, v) {
    interpretation:"The quotient is undefined at h = 0. The derivative is the finite limit reached as h approaches zero from both directions, not a claim that division by zero is allowed. A negative tangent slope at negative a describes a decreasing quadratic on that side, not a negative function value."
   };
  }
+ if(kind==="velocity-accumulation"){
+  const q=velocityAccumulationState(v.scenario,Number(v.time),Number(v.n),v.endpoint);
+  const sign=q.scenario==="reverse"?"6 − 2t":"3 + t";
+  return {
+   values:q,
+   description:"Velocity v(t) = "+sign+" metres per second is drawn from t=0 to t="+number(q.T)+" seconds, with "+q.n+" equal "+q.endpoint+"-endpoint rectangles. The terminal velocity is "+number(q.vEnd)+" metres per second. Area above the zero velocity axis contributes "+number(q.positive)+" metres; area below the axis contributes "+number(q.negative)+" metres (signed). Their net is "+number(q.exact)+" metres, while the total distance is "+number(q.distance)+" metres.",
+   calculation:"Each rectangle has width Δt = "+number(q.T)+" s ÷ "+q.n+" = "+number(q.width)+" s; the "+q.endpoint+"-endpoint sum of sampled velocities times Δt = "+number(q.estimate)+" m. Exact signed displacement = ∫₀^"+number(q.T)+" ("+sign+") dt = "+(q.scenario==="reverse"?"[6t − t²]":"[3t + t²/2]")+"₀^"+number(q.T)+" = "+number(q.exact)+" m. Approximation error = "+number(q.estimate)+" − "+number(q.exact)+" = "+number(q.error)+" m. Positive area "+number(q.positive)+" m + negative signed area ("+number(q.negative)+" m) = "+number(q.exact)+" m; distance = "+number(q.positive)+" − ("+number(q.negative)+") = "+number(q.distance)+" m.",
+   interpretation:"Velocity is the graph's height in m/s; multiplying by a time width in seconds produces displacement in metres. Backward (negative) velocity contributes negative displacement but positive distance. Finer rectangles reduce the numerical discrepancy for these linear examples; exact integration accounts for every instant, not just sample points."
+  };
+ }
+ if(kind==="riemann-sums"){
+  const q=riemannLinearState(Number(v.n),v.method);
+  return {
+   values:q,
+   description:"An increasing line y equals x on the interval zero to four with "+q.n+" equal-width "+q.method+" sample rectangles. Each rectangle is "+number(q.width)+" x-units wide. The sum is "+number(q.sum)+" square units; the exact triangle is 8 square units. Signed error is "+number(q.error)+" square units.",
+   calculation:"Δx = (4 − 0)/"+q.n+" = "+number(q.width)+". For "+q.method+" samples the rectangle sum Σ f(sample xᵢ)Δx = "+number(q.sum)+" square units. For comparison, left sum = 8 − 8/n = "+number(q.left)+"; midpoint sum = 8; right sum = 8 + 8/n = "+number(q.right)+". The actual triangle has area (1/2) × 4 × 4 = 8 square units. Signed error = "+number(q.sum)+" − 8 = "+number(q.error)+" square units.",
+   interpretation:"Because y=x is increasing, the right-endpoint rectangles overestimate area and the left-endpoint rectangles underestimate it. Every equal-width midpoint sum happens to be exact for this straight line; curved functions do not generally share that property. Both endpoint errors approach zero as n grows."
+  };
+ }
  if(kind==="friction"){
   const pull=Number(v.pull),m=Number(v.mass),mus=Number(v.static),muk=Math.min(Number(v.kinetic),mus);
   const normal=9.8*m,limit=mus*normal,sliding=pull>limit+1e-9;
@@ -57,6 +76,14 @@ function enhanceFeaturedLesson(el,kind){
    question:"For f(x) = x² at any fixed a, what happens to secant slopes as h approaches zero from the left and the right?",
    options:["Both approach 2a","Both approach zero, whatever a is","They approach different values"],correct:0,
    reason:"The signed secant slope is 2a+h. With h positive or negative and approaching zero, both slopes tend to the same value 2a. The quotient itself is never evaluated at h=0."},
+  "velocity-accumulation":{
+   question:"When a moving cart reverses and its velocity becomes negative, does that interval subtract from net displacement while still adding to total distance?",
+   options:["Yes: displacement is signed; distance is not","No: negative motion erases earlier distance","No: the integral ignores intervals below zero"],correct:0,
+   reason:"The portion of velocity below the horizontal axis is negative signed area. Net displacement adds the signed contributions; total distance adds their absolute sizes."},
+  "riemann-sums":{
+   question:"For increasing y=x on [0,4], how do right- and left-endpoint rectangle sums compare with the exact area?",
+   options:["Right overestimates; left underestimates","Both always underestimate","Both are exactly 8 for every n"],correct:0,
+   reason:"Each right-endpoint rectangle sits above the rising line on its subinterval; each left-endpoint rectangle sits below it. Their errors are respectively +8/n and −8/n."},
   "friction":{
    question:"For the initial 5 kg crate with μₛ = 0.50, does increasing the pull from 20 N to 25 N cause the crate to start sliding?",
    options:["Yes, it crosses the static limit","No, static friction always equals 24.5 N","No, friction is fixed at 14.7 N"],correct:0,
@@ -90,6 +117,8 @@ function enhanceFeaturedLesson(el,kind){
  const controls={
   "graph-slope-physics":{start:"slope-t1",end:"slope-t2"},
   "tangent-line":{a:"point",gap:"gap"},
+  "velocity-accumulation":{time:"area-slider",n:"area-n"},
+  "riemann-sums":{n:"nslider"},
   "friction":{pull:"fr-pull",mass:"fr-mass",static:"fr-static",kinetic:"fr-kinetic"},
   "energy-conservation":{mass:"en-mass",height:"en-height",start:"en-start",mu:"en-mu",progress:"en-progress"}
  }[kind];
@@ -102,6 +131,13 @@ function enhanceFeaturedLesson(el,kind){
    values.gap=tangentMagnitudes[Number(values.gap)];
    values.side=element("tan-left").getAttribute("aria-pressed")==="true"?"left":"right";
   }
+  if(kind==="velocity-accumulation"){
+   values.scenario=element("area-reverse").getAttribute("aria-pressed")==="true"?"reverse":"forward";
+   values.endpoint=element("area-right").getAttribute("aria-pressed")==="true"?"right":"left";
+  }
+  if(kind==="riemann-sums"){
+   values.method=["left","midpoint","right"].find(x=>element("rm-"+x).getAttribute("aria-pressed")==="true")||"right";
+  }
   return values;
  }
  function refresh(){
@@ -110,7 +146,7 @@ function enhanceFeaturedLesson(el,kind){
   element("evidence-description").textContent=q.description;
   element("evidence-calculation").textContent=q.calculation;
   for(const [key,id] of Object.entries(controls)){
-   const units=kind==="tangent-line"?(key==="a"?"fixed horizontal coordinate":"nonzero separation magnitude"):kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
+   const units=kind==="velocity-accumulation"?(key==="time"?"seconds":"rectangles"):kind==="riemann-sums"?"rectangles":kind==="tangent-line"?(key==="a"?"fixed horizontal coordinate":"nonzero separation magnitude"):kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
    element(id).setAttribute("aria-valuetext",values[key]+" "+units);
   }
   element("evidence-connect").disabled=selected===null||!changedAfterPrediction;
