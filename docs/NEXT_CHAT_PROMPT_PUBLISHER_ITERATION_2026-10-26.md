@@ -1,0 +1,50 @@
+# NEXT CHAT — The Learning Atlas / Interactive Academy
+## Publisher-facing Physics & Calculus Iteration — October 26, 2026
+
+**Authoritative repository:** https://github.com/antmhernandez/Interactive-Academy  
+**Authoritative source:** `main` after the latest verified merge, not any historical feature branch.  
+**Latest feature:** [PR #21 — two-sided derivative laboratory](https://github.com/antmhernandez/Interactive-Academy/pull/21). Read its actual merged status and workflow results before assuming it is live.  
+**Updated mathematical/design audit:** [27_TWO_SIDED_DERIVATIVE_LAB_2026-10-26.md](27_TWO_SIDED_DERIVATIVE_LAB_2026-10-26.md)  
+**Previous audit:** [26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md](26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md)  
+**Historical publisher demo handoff:** [HANDOFF_2026-10-25_PUBLISHER_DEMO.md](HANDOFF_2026-10-25_PUBLISHER_DEMO.md)
+
+## Copy-ready prompt to continue directly
+
+> Please continue **The Learning Atlas / Interactive Academy**, my independently authored original Physics and Calculus instructional website, toward a mathematically rigorous, beautiful, accessible prototype for possible presentation to **Memoria Press**. **Make real working changes** rather than only proposing improvements.
+>
+> **Begin with GitHub** at https://github.com/antmhernandez/Interactive-Academy. Use current `main` as the single authoritative source. Read `README.md`, `docs/27_TWO_SIDED_DERIVATIVE_LAB_2026-10-26.md`, `docs/26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md`, `docs/25_PUBLISHER_LIVE_MINI_LABS_2026-10-25.md`, `docs/24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md`, and this handoff. Confirm the outcome and exact merge SHA of **PR #21**, and independently verify PR CI, post-merge `main` CI, and GitHub Pages deployment. Calculate current inventory from source instead of trusting old prose. Do not work from the old feature branch.
+>
+> **Browse the actual instructional routes:** https://antmhernandez.github.io/Interactive-Academy/#tour, `#showcase`, `#applets`, `#home`, `#lesson/graph-slope-physics`, `#lesson/friction`, `#lesson/energy-conservation` and `#lesson/tangent-line`. If a lightweight web viewer cannot execute the SPA, use GitHub Actions Playwright tests and clearly state that you have not visually inspected the live web page in a full browser. Do not claim independent real-device use.
+>
+> **Current working pedagogy:** The tour's three live quantitative mini-labs introduce **Predict → Manipulate → Connect**. The full Graph Slope, Friction and Conservation of Energy lessons have original numerical evidence workbenches, accessible SVG descriptions, recorded predictions, and connections unlocked after model manipulation. The full Calculus tangent lesson now has a **two-sided secant-to-tangent laboratory** for `f(x)=x²`, where `a` is fixed, a second point approaches from positive or negative signed nonzero `h`, and the slopes `2a+h` approach `2a` from both sides. It displays `Δf/h`, a signed error, original SVG with labeled points/rise/run, and a two-column numerical convergence table. The limit is not obtained by substituting `h=0` into an undefined quotient. The existing complete lesson includes a four-step cumulative example, conceptual check, independent practice and three proofread graduated problems.
+>
+> **Priority for next substantial production:** Refine **two or three existing representative experiences**, prioritizing actual observed teaching obstacles over inflating the lesson counts. Recommended: improve the Calculus `velocity-accumulation` / integral visual to show why signed Riemann rectangles approach the exact accumulated displacement, bridge derivative/accumulation without assuming unintroduced results; or deepen independently indexed Physics motion/forces lessons with quantitative worked evidence and clearly stated assumptions. Consider improving the **student answer-and-reasoning workflow** (where a numerical answer is correct but the sign/unit/interpretation reasoning is absent) and **teacher-side printable use** while preserving static no-account privacy. Refine mobile and projector ergonomics and provide robust keyboard, table and SVG descriptions.
+>
+> **Mathematical/design standard:** A student should predict before manipulating, identify meaning in the diagram, read actual calculated quantities and units, connect these to a clear equation, follow **cumulative** worked steps, answer a misconception-aware conceptual check, attempt independent numerical practice and work three carefully scaffolded Begin/Extend/Challenge items. All graphics must be original, legible, labeled, and accurately tied to the same numerical model used by the solution. Distinguish graph height from slope, true two-sided limits from mere near-coincident lines, and energy conserved in a complete system from changes in mechanical shares. Never imply unphysical results through inaccurate SVG proportions. Keep screen-reader mathematical evidence readable without excessive live-region announcements.
+>
+> **Curriculum:** Preserve the independent Physics chapter progression **required Chapters 1–7, then 9, then 10–11**, optional Chapter 8 rotation, optional Chapter 28 atomic curiosity, and optional post-energy collision synthesis. `curriculum/catalog.json` owns canonical IDs, prerequisites, ownership, unit sequencing and required/optional labels. Do not silently alter it. There are currently 43 complete lessons, 129 graduated numerical problems, 21 featured original investigations, 151 canonical concepts, 22 units and 84 physics formula references; **verify latest source counts**. Any new content must be complete, tested, optional/required correct, and prerequisite-respecting.
+>
+> **Publisher and intellectual property:** This is an independent prototype; **Memoria Press has not commissioned, endorsed or approved it.** Do not copy any protected MP/Novare textbook content, exercises, covers, illustrations, logos, fonts, or unverified edition-specific alignments. The independent existing Physics indexing is **not** an approved MP/Novare page or chapter crosswalk. Keep the distinctive restrained classical-inspired cream/parchment, navy, burgundy, muted gold and teal system, and use only independently authored diagrams and explanations.
+>
+> **Engineering workflow:** Read actual source `app.js`, `applets/` including `derivative-lab.js` and `lesson-evidence.js`, `content/lessons.json`, `content/guided-practice.json`, `curriculum/catalog.json`, `styles.css`, `index.html`, `scripts/test-derivative-lab.mjs`, `scripts/test-lesson-evidence.mjs`, `scripts/test-browser.mjs` and `.github/workflows/validate.yml`. Start a feature branch from current `main`, implement maintainable substantive changes, add pure numerical/model tests, extend Chromium UI regression at **320, 375, 768, 1024 and 1440 px**, verify keyboard, no overflow, proper semantics, real math outcomes and navigation. Open a PR. **Merge only after full PR CI succeeds**, then verify both post-merge `main` validation and **GitHub Pages** success at the new merge SHA. Never conflate simulation tests with in-person Safari/VoiceOver/NVDA/Android/projector/classroom evidence.
+>
+> **Publisher demonstration and human validation:** Use the original seven-minute publisher review script in audit #26 and the additional short Calculus teaching script in audit #27. The high-value next evaluation is a real classroom test in which students predict, manipulate, explain units and diagrams, and independently derive an analogous result. Test touch targets, chart internal scroll regions, responsive numerical text, actual projection from the back row and NVDA/VoiceOver/TalkBack when physical equipment is available. Do not place student-identifying information into the public GitHub repository.
+>
+> **Close this iteration** with a new dated mathematical and design audit, README release notes, updated portable prompt/handoff, actual PR number and squash merge SHA, numerical/browser/CI/Pages results and honest unresolved human tests. Protect prior design decisions and historical records. The goal is an original academically rigorous teaching website, not a mere conceptual proposal.
+
+## Current engineering and quality map
+
+- `app.js`: static SPA, canonical full lessons, quiz/checks, print/use context, demonstration and publisher-aware navigation. `tangent(el)` delegates to the original `tangentLab` model.
+- `applets/derivative-lab.js`: new **pure** `derivativeSecantState(a,magnitude,side)`, plus original responsive two-sided quadratic diagram, keyboard controls and five-row comparison table.
+- `applets/lesson-evidence.js`: shared evidence/prediction UI; four featured full lessons now provide numerical mathematical text derived from the model, with correct side normalization.
+- `applets/energy-ramp.js`, `applets/contact-forces.js`, `applets/tour-labs.js`: validated three physics publisher specimens and shared model computations.
+- `content/lessons.json` and `content/guided-practice.json`: complete derivative wording and cumulative worked proofs; existing IDs and answers preserved.
+- `styles.css`: no proprietary fonts/assets; tangent graph/table horizontally scroll inside their own frames at phone widths.
+- `scripts/test-derivative-lab.mjs`: 70 exact signed secant cases plus error/domain constraints; `scripts/test-lesson-evidence.mjs` checks Physics workbenches.
+- `scripts/test-browser.mjs`: five-width Playwright test walks publisher tour, lessons, book context, Calculus prediction, evidence, keyboard, signed slopes, near-limit cases, and cumulative steps.
+- `.github/workflows/validate.yml`: all source/physics/content/browser gates; independent post-merge Pages deployment must also be verified.
+
+## Unresolved independent acceptance
+
+Physical iOS/Android Safari and Chrome, actual device touch behavior, NVDA/VoiceOver/TalkBack, projector in classroom lighting and rear-row reading, student comprehension data, independent scientific editorial proofing, rights/legal review, publisher endorsement and authorized edition-specific crosswalk **remain unfinished** until directly observed and authorized.
+
