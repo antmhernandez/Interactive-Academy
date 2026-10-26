@@ -55,3 +55,7 @@ Always calculate `P₀=mAuA+mBuB`, `P₁=mAvA+mBvB` and enforce `P₁=P₀` alge
 - All content, diagrams and code are original; the `existing-glencoe` listing is an independent prototype chapter index. Do not claim a publisher-approved Memoria Press or Novare edition, chapter or page mapping. Real mobile Safari, VoiceOver/NVDA, in-person classroom understanding, physical projector and accessibility audits are **not** established by a headless Chromium pass.
 
 The next required book study is Chapters 10–11 energy, but promoting their current optional previews into the required course requires deliberate prerequisite, completeness, and syllabus review; do not silently flip their status or link Chapter 9 to them.
+
+## Merge and validation outcome
+
+Merged with [PR #16](https://github.com/antmhernandez/Interactive-Academy/pull/16), squash commit `a02af6187fe1848044a7a6569bee50270f1df454`. [Full GitHub Actions run #70](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40252056939) passed registry/lesson checks, 117 graduated problems across 39 lessons, numerical signed impulse and collision-conservation regression, existing simulators, and five Chromium widths. Final `main` push and Pages workflows must be verified independently; real-device and educational-use reviews remain open.
