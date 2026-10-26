@@ -1162,7 +1162,7 @@ function demoTour(){
  question:"Does static friction always exert its maximum possible force?",
  action:"Predict what friction will do as the pull passes 24.5 N. Slide from rest into motion; compare actual friction and acceleration.",notice:"Static friction adjusts to match a small push until the threshold; kinetic friction acts once the box slides."},
  {number:"03",eyebrow:"ENERGY · MATHEMATICAL ACCOUNTING",title:"Where does the energy go?",id:"energy-conservation",kind:"energy",
- question:"If a block slows because of friction, has its energy been destroyed?",
+ question:"If friction reduces a block's final speed, has some of its energy disappeared?",
  action:"Predict which energy share grows on descent. Scrub the ramp, then switch friction off without changing the position.",notice:"Kinetic, potential, and thermal shares change, while the full energy account stays constant."}
  ];
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#showcase">← Publisher overview</a><a href="#home">⌂ Home</a><a href="#books">Books &amp; grades →</a></nav>
