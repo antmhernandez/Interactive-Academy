@@ -147,7 +147,9 @@ function enhanceFeaturedLesson(el,kind){
   element("evidence-calculation").textContent=q.calculation;
   for(const [key,id] of Object.entries(controls)){
    const units=kind==="velocity-accumulation"?(key==="time"?"seconds":"rectangles"):kind==="riemann-sums"?"rectangles":kind==="tangent-line"?(key==="a"?"fixed horizontal coordinate":"nonzero separation magnitude"):kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
-   element(id).setAttribute("aria-valuetext",values[key]+" "+units);
+   // These two laboratories already expose richer value text (with time/partition semantics).
+   if(!["velocity-accumulation","riemann-sums"].includes(kind))
+    element(id).setAttribute("aria-valuetext",values[key]+" "+units);
   }
   element("evidence-connect").disabled=selected===null||!changedAfterPrediction;
  }
