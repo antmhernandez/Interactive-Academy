@@ -42,3 +42,9 @@ Automated `scripts/validate.mjs` checks demo routing, discoverability, original 
 ## Next iteration direction
 
 Prioritize depth over counts. Make the three specimen applets more visually self-explanatory where a classroom test shows a real problem; refine labels, diagrams, keyboard/accessibility, touch targets and worked-example pedagogy. Test one real adopted textbook edition before asserting any publisher mapping. Then expand content only when approved and conceptually appropriate. Follow the separate [portable next-chat prompt](NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-25.md).
+
+## Completed delivery record
+
+- [PR #18](https://github.com/antmhernandez/Interactive-Academy/pull/18) squash-merged to `main` as `f0668ea03f2bf2193f961a52a86970fed010a956` after the full green [validation run #82](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40256442547).
+- Validations: 43 lessons / 129 progressive problems / 151 canonical topics / 84 formula references, existing independent publisher pathways, all physics applet regressions, new curated three-stop tour and lesson-return journey, five Chromium widths (320, 375, 768, 1024, 1440px), keyboard tabs and projector mode.
+- Final deployed revision must be checked using the latest `main` validation and Pages workflow after documentation commits. Physical devices, actual in-class use and accessible screen reader testing remain open.
