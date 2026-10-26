@@ -500,8 +500,8 @@
             },
             {
               "id": "collisions",
-              "title": "Collisions",
-              "status": "planned",
+              "title": "When Momentum Meets Energy",
+              "status": "available",
               "owns": "phys.momentum.collisions",
               "goal": "Contrast elastic and inelastic collisions.",
               "prerequisites": [
@@ -542,12 +542,44 @@
               ]
             },
             {
+              "id": "work-angle",
+              "title": "Which Part of a Force Does Work?",
+              "status": "available",
+              "owns": "phys.energy.work-angle",
+              "goal": "Distinguish a force's parallel component from perpendicular force.",
+              "prerequisites": [
+                "work-energy",
+                "force-components"
+              ]
+            },
+            {
               "id": "kinetic-energy",
               "title": "Energy of Motion",
               "status": "available",
               "owns": "phys.energy.kinetic",
               "goal": "Relate speed and mass to kinetic energy.",
               "prerequisites": [
+                "work-energy"
+              ]
+            },
+            {
+              "id": "power-efficiency",
+              "title": "How Quickly Is Work Done?",
+              "status": "available",
+              "owns": "phys.energy.power",
+              "goal": "Connect work, time, energy transfer and efficiency.",
+              "prerequisites": [
+                "work-energy"
+              ]
+            },
+            {
+              "id": "mechanical-advantage",
+              "title": "Why Simple Machines Help",
+              "status": "available",
+              "owns": "phys.energy.machines",
+              "goal": "Relate input force, output force, and ideal machine efficiency.",
+              "prerequisites": [
+                "power-efficiency",
                 "work-energy"
               ]
             },
@@ -569,37 +601,6 @@
               "goal": "Use energy conservation within defined systems.",
               "prerequisites": [
                 "potential-energy"
-              ]
-            },
-            {
-              "id": "power-efficiency",
-              "title": "Power and Efficiency",
-              "status": "planned",
-              "owns": "phys.energy.power",
-              "goal": "Connect work, time, energy transfer and efficiency.",
-              "prerequisites": [
-                "energy-conservation"
-              ]
-            },
-            {
-              "id": "work-angle",
-              "title": "Work and Force Angle",
-              "status": "planned",
-              "owns": "phys.energy.work-angle",
-              "goal": "Distinguish a force's parallel component from perpendicular force.",
-              "prerequisites": [
-                "work-energy",
-                "force-components"
-              ]
-            },
-            {
-              "id": "mechanical-advantage",
-              "title": "Mechanical Advantage",
-              "status": "planned",
-              "owns": "phys.energy.machines",
-              "goal": "Relate input force, output force, and ideal machine efficiency.",
-              "prerequisites": [
-                "work-energy"
               ]
             },
             {
