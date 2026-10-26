@@ -1,3 +1,7 @@
+# ARCHIVED CONTINUATION PROMPT — October 25, 2026
+
+**Current portable next-conversation instructions:** [October 26, 2026 Calculus derivative-lab handoff](NEXT_CHAT_PROMPT_PUBLISHER_ITERATION_2026-10-26.md). The historical instructions below remain here to preserve the development record.
+
 # NEXT CHAT — Full-Lesson Pedagogy, Classroom Validation and Publisher Readiness
 **Prepared:** October 25, 2026  
 **Authoritative repository:** https://github.com/antmhernandez/Interactive-Academy (`main` only after verifying latest release).  
