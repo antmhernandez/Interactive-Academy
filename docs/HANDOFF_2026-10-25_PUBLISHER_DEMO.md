@@ -1,3 +1,5 @@
+> **Current-release note (October 25, 2026):** Read the latest Chapters 10–11 section near the end of this document first. Earlier dated sections retain historical counts at their respective releases and should not be read as the current state. The authoritative repository branch is `main` after passing merge validation.
+
 # Handoff — Publisher Demonstration and Classical-Style Feature Pass
 
 **Prepared:** October 25, 2026  
@@ -5,7 +7,7 @@
 **GitHub repository:** https://github.com/antmhernandez/Interactive-Academy  
 **Expected GitHub Pages site:** https://antmhernandez.github.io/Interactive-Academy/  
 **This handoff file:** https://github.com/antmhernandez/Interactive-Academy/blob/main/docs/HANDOFF_2026-10-25_PUBLISHER_DEMO.md  
-**Latest working branch of this pass:** `feature/publisher-demo-classical-design-book-portal-2026-10-25` (the merged `main` branch should be authoritative when this work is merged).
+**Authoritative repository branch:** `main`. The historical publisher-design feature branch named in earlier release notes has already been merged. Check the latest dated release section near the bottom for current counts and integration status.
 
 ## Primary user intent
 
@@ -305,3 +307,27 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - [PR #16](https://github.com/antmhernandez/Interactive-Academy/pull/16) merged with squash SHA `a02af6187fe1848044a7a6569bee50270f1df454`.
 - [Completed green PR workflow run #70](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40252056939) includes exact impulse and multi-cart momentum/energy comparisons, 39 complete lessons/117 graduated exercises, 151 canonical topics/22 units, and Chrome-like Chromium at five viewport widths; independent publisher claims remain limited.
 - Last remaining release check: latest `main` push and GitHub Pages workflows after this documentation update. No manual physical Safari, screen-reader or classroom review was done.
+
+## October 25 continuation — Required Chapters 10–11 energy and integrated collision review
+
+**Working branch during implementation:** `feature/chapters-10-11-energy-core-and-collision-review-2026-10-25` based on verified main SHA `bd0a2a50a836dba29912a352224c2ff00cf40e13`.
+
+### Critical sequencing/curriculum decisions
+- The existing four energy lessons were mature enough for core promotion after auditing numerical model `energyRampState`, the three-step worked examples, misconception checks, and their three-level guided practice. Delete `optionalPreview:true` and update `next` for these four, while inserting three **new** required Chapter 10 concepts in the right order: `work-energy → work-angle → kinetic-energy → power-efficiency → mechanical-advantage → potential-energy → energy-conservation → null`.
+- `momentum-vectors.next` now targets `work-energy`, following the actual **school-year core** sequence. Optional Chapter 8 rotation `torque-levers, rotational-inertia, rotational-dynamics` remains `optionalPreview:true,next:null` and the school syllabus still excludes it from required progression.
+- The canonical `phy-energy` unit's eight topic entries were reorganized into a pedagogically and chapter-consistent order matching lesson publication: seven `available` plus the planned `energy-flow-diagrams`. Correct `power-efficiency` prerequisite to `work-energy` rather than later energy conservation, and `mechanical-advantage` to `work-energy` + `power-efficiency`. The existing `kinetic-energy`, `potential-energy` and conservation prerequisites remain satisfied. Keep chapter 10 labels for work/angle/kinetic/power/machines; chapter 11 labels for gravitational potential and conservation.
+- A now-complete optional **post-energy** Chapter 9 integrated review, `collisions`, is marked `available` in its canonical Chapter 9 registry and placed before `momentum-vectors` in chapter-specific lesson display order, but maintains `optionalPreview:true,next:null`. It is **not** required immediately after momentum conservation, because its prerequisite `energy-conservation` must be studied later in Chapters 10–11. A prominent cross-link from the completed energy-conservation lesson lets students return *after* acquiring the necessary energy understanding. The main `momentum-conservation.next` continues to `momentum-vectors`.
+- All energy lesson pages now display a distinct **seven-link required Chapters 10–11 path**, replacing the outdated optional four-link preview. The collision review's context banner and crosslinks clearly mark it as a post-energy optional integration of the two conservation laws. Chapter 28 atomic curiosity remains optional.
+
+### Original models and content
+- `applets/work-machines.js`: signed `workAngleState(F,d,φ)` with force vector/projections, 0°/90°/180° examples and negative work; and a passive `simpleMachineState(Fin,din,dout,efficiency,time)` model of `Win=Fin din`, `Wout=ηWin=Fout dout`, average `Pin=Win/t` and `Pout=Wout/t`, force-distance trade-off, actual/ideal MA, useful/other energy bars and reset/comparison.
+- Three new full lessons `work-angle`, `power-efficiency`, `mechanical-advantage` and an optional completed `collisions` lesson with original definition, 3-step example, independent numeric response/hints, 3-answer misconception-check feedback, predict/manipulate/connect and exactly three Begin/Extend/Challenge guided tasks each. Collisions uses the already original `momentum-collision` predict/reveal applet, showing equal signed momentum in elastic/sticking events but different translational kinetic energy and transfers.
+- Existing `applets/energy-ramp.js` remains the energy demonstration with rigorously derived constant-slope acceleration, reference-height potential energy, kinetic and thermal transfers, conservation, stepped/playback interactions. Its restrictions on slope, kinetic friction and no rolling remain explicitly described, not generalized beyond the ideal model.
+- Two new featured Experiment Room tiles, for work angle and machines, grow gallery to **21 models** (18 Physics and 3 Calculus). Course totals become **43 lessons (38 Physics/5 Calculus), 129 graduated problems**, 151 canonical topics across 22 units, 84 original equation reference entries. The **independent** Glencoe-index prototype book pathway only was expanded; *no* publisher catalog or Novare chapter mappings changed.
+- Expanded lesson, registry, sequential Next, original formula/test expectations and headless Chromium at 320/375/768/1024/1440px. New model regression `scripts/test-work-machines.mjs` tests angle sign and zero, machine work balance and output-force distance, input/output power and control/reset.
+- [Detailed mathematics, rights and acceptance review](23_ENERGY_CORE_AND_COLLISION_REVIEW_2026-10-25.md).
+
+### Release completion and remaining work
+- PR CI must pass source syntax, 43 lesson and 129 guided practice checks, curriculum prerequisites and survey, work/machines regression and five-width Chromium navigation. After that, record PR number, squash SHA, latest main push and Pages deployment with exact run IDs.
+- Actual iPhone Safari, Android, NVDA/VoiceOver, physical projector and real pupil interpretation are NOT verified by automation. Ask teacher/publisher reviewers to inspect content, schematic assumptions, rights disclosures and textbook edition crosswalk claims.
+- Next priority should be **quality, publisher presentation and student usability** (especially genuine real-device/projector comprehension), then complete remaining Chapter 10–11 planned `energy-flow-diagrams`, or add a new concept only when pedagogically necessary. Avoid falsely calling 43 sample lessons an entire course.
