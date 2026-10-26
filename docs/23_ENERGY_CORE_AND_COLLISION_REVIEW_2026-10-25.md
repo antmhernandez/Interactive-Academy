@@ -71,3 +71,7 @@ Momentum in isolated 1D collisions: `P=m₁u₁+m₂u₂=m₁v₁+m₂v₂`. For
 - No copied branded imagery, proprietary copyrighted textbook text, teacher answer keys, publisher-approved chapter/page references or external PhET assets are introduced. Existing prototype remains a classroom/publisher discussion example rather than a complete graded course or endorsed commercial product.
 
 **Recommended next development after this merge:** verify new concepts with teachers/pupils and use that feedback to improve visual clarity and mobile/control ergonomics. Improve publisher demonstration/presentation experience, science unit pacing and textbook-specific edition review rather than expanding blindly into later chapters.
+
+## Release and test result
+
+Successfully squash merged [PR #17](https://github.com/antmhernandez/Interactive-Academy/pull/17), commit `c0abb671f9b3202c645cdc87803cfdb13dfe9e9e`. [Workflow run #75](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40253863493) completed successfully, including source/registry/course sequence, work-angle and machine regression grid, ramp and momentum model tests, publisher rights constraints, and Chromium journeys at 320/375/768/1024/1440px. Final main and Pages workflow statuses must be checked after documenting this release. No physical Safari, screen reader, projector or student-understanding audit has been done.
