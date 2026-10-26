@@ -616,8 +616,8 @@ function slopeToolkit(el){
   // Annotate actual coordinate intervals; unlike a decorative secant, these give its rise and run.
   const gridX=[0,1,2,3,4].map(t=>'<path d="M'+X(t)+' 280v5" stroke="#607770"/><text x="'+X(t)+'" y="319" font-size="13" fill="#344e54" text-anchor="middle">'+t+'</text>').join("");
   const gridY=[5,10,15].map(h=>'<path d="M77 '+Y(h)+'H505" stroke="#dce8e2" stroke-width="1"/><text x="66" y="'+(Y(h)+4)+'" font-size="13" fill="#344e54" text-anchor="end">'+h+'</text>').join("");
-  G.insertAdjacentHTML("afterbegin",gridY+gridX);
-  G.insertAdjacentHTML("beforeend",'<path d="M'+X(t1)+' '+Y(x1)+'H'+X(t2)+'V'+Y(x2)+'" stroke="#753d57" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>'+
+  G.innerHTML=gridY+gridX+G.innerHTML;
+  G.innerHTML+=('<path d="M'+X(t1)+' '+Y(x1)+'H'+X(t2)+'V'+Y(x2)+'" stroke="#753d57" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>'+
    '<text x="'+((X(t1)+X(t2))/2)+'" y="'+Math.min(276,Y(x1)+21)+'" font-size="14" font-weight="700" fill="#703c52" text-anchor="middle">Δt</text>'+
    '<text x="'+(X(t2)+8)+'" y="'+((Y(x1)+Y(x2))/2)+'" font-size="14" font-weight="700" fill="#703c52">Δx</text>');
   el.querySelector("#slope-t1-label").textContent=f(t1)+" s";el.querySelector("#slope-t2-label").textContent=f(t2)+" s";
