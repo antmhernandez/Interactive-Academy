@@ -8,13 +8,13 @@ const energyRampState=vm.runInNewContext(energySource+"\nenergyRampState;",{});
 const featuredEvidence=vm.runInNewContext(evidenceSource+"\nfeaturedEvidence;",{energyRampState});
 const near=(value,want)=>assert.ok(Math.abs(value-want)<1e-9,String(value)+" ≠ "+want);
 
-const slope=featuredEvidence("graph-slope-physics",{start:.5,end:3.5});
-near(slope.values.run,3);
-near(slope.values.rise,9);
-near(slope.values.slope,3);
+const slope=featuredEvidence("graph-slope-physics",{start:0,end:2});
+near(slope.values.run,2);
+near(slope.values.rise,4);
+near(slope.values.slope,2);
 assert.match(slope.calculation,/m\/s/);
 assert.match(slope.description,/secant/);
-near(featuredEvidence("graph-slope-physics",{start:.5,end:4}).values.slope,3.125);
+near(featuredEvidence("graph-slope-physics",{start:0,end:4}).values.slope,4);
 
 const atRest=featuredEvidence("friction",{pull:20,mass:5,static:.5,kinetic:.3});
 near(atRest.values.normal,49);
