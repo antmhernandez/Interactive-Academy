@@ -1164,11 +1164,173 @@
       ],
       "explanation": "Free fall under gravity alone can make the normal force zero while gravity still supplies centripetal acceleration."
     },
-    "next": null,
+    "next": "impulse",
     "investigation": {
       "prediction": "Could the ideal onboard scale read zero at an orbital radius where gravity still pulls with several newtons of force?",
       "experiment": "Use the orbit model with a test mass of 5 kg. Compare inward gravitational force with the 'ideal support force' readout at different orbital radii.",
       "connection": "Fg=GMm/r² remains positive in orbit. Ideal free fall gives N≈0 while gravitational acceleration is nonzero."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-momentum",
+    "unit": "Momentum and Its Conservation",
+    "id": "impulse",
+    "title": "A Force Acting over Time",
+    "subtitle": "A force changes momentum through the time it acts.",
+    "duration": "10 min",
+    "observe": "Can a smaller force produce the same change in motion if it acts for longer?",
+    "idea": "Momentum is p=mv, a vector in the direction of velocity. The impulse supplied by a net external force is J=Δp. For a constant net force acting for Δt, J=F_netΔt, measured in N·s or kg·m/s. A longer duration at smaller force can produce exactly the same impulse. Because Δv=J/m, the same impulse changes a lighter cart's velocity more than a heavier cart's.",
+    "visualLead": "Adjust a force pulse and its duration. Compare signed impulse and the resulting cart velocity.",
+    "visual": "momentum-impulse",
+    "focus": "The signed area beneath the force–time pulse is impulse, not the force value alone. Equal areas give equal momentum changes.",
+    "definition": "Linear momentum is p=mv. Impulse is the vector change in momentum: J=Δp. For a constant net force, J=F_netΔt; its units are N·s, equivalent to kg·m/s.",
+    "example": {
+      "question": "A 3 kg cart initially travels right at 1 m/s. A constant net force of 12 N pushes right for 2 s. Find its final velocity.",
+      "steps": [
+        "Take right as positive. Initial momentum is pi=(3 kg)(1 m/s)=3 kg·m/s.",
+        "The positive impulse is J=FΔt=(12 N)(2 s)=24 N·s, so pf=pi+J=27 kg·m/s.",
+        "vf=pf/m=27/3=+9 m/s (right). Force multiplied by time gives momentum change, not final momentum by itself."
+      ]
+    },
+    "practice": {
+      "prompt": "A constant net force of 8 N acts to the right for 3 seconds. What positive impulse does it deliver in N·s?",
+      "answer": 24,
+      "tolerance": 0.02,
+      "unit": "N·s",
+      "hints": [
+        "For a constant force, the signed impulse is the area of the force–time rectangle.",
+        "Calculate J=FΔt=(8 N)(3 s)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A 20 N push acts for 1 s on one cart, while a 10 N push acts for 2 s on another. Both forces are directed right. Which statement is true?",
+      "choices": [
+        "The 20 N push always produces twice as much momentum change because its force is twice as large.",
+        "Both pushes produce the same momentum change of +20 N·s.",
+        "Neither push changes momentum because both forces are constant."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Impulse also depends on duration; compare FΔt, not just force.",
+        "Correct. Both force pulses have equal area and therefore equal signed impulse.",
+        "A constant nonzero net force changes momentum during the interval."
+      ],
+      "explanation": "Impulse equals area under the net force–time curve. Equal force–time areas produce equal changes in momentum, independent of the cart's mass."
+    },
+    "next": "momentum-conservation",
+    "investigation": {
+      "prediction": "If you halve a constant net force but double how long it acts, will the cart's change in momentum be altered?",
+      "experiment": "Begin with 12 N for 2 s. Press 'Same impulse · half force' and compare the signed area, final momentum and final velocity.",
+      "connection": "J=FΔt=Δp. Halving F while doubling Δt keeps impulse and momentum change unchanged; the cart's mass fixes the resulting Δv."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-momentum",
+    "unit": "Momentum and Its Conservation",
+    "id": "momentum-conservation",
+    "title": "When Two Carts Interact",
+    "subtitle": "The system's total momentum survives an internal collision.",
+    "duration": "11 min",
+    "observe": "When two carts collide and stick together, where does the motion go?",
+    "idea": "If external impulse on a two-cart system is negligible during a short collision, total signed momentum stays constant: m₁u₁+m₂u₂=m₁v₁+m₂v₂. For a perfectly inelastic stick-together event, both carts share v=(m₁u₁+m₂u₂)/(m₁+m₂). A cart may rebound or stop, but the combined signed total does not change. The energy of motion may change; momentum conservation alone does not imply kinetic-energy conservation.",
+    "visualLead": "Change two approaching carts' masses and speeds. Predict the shared velocity, then reveal the outcome.",
+    "visual": "momentum-collision",
+    "focus": "Individual cart momenta change, but the total signed momentum of the isolated pair is equal before and after the event.",
+    "definition": "In an isolated system with negligible net external impulse, total linear momentum is constant: Σp_before=Σp_after. For carts that stick together, vf=(m₁u₁+m₂u₂)/(m₁+m₂).",
+    "example": {
+      "question": "A 2 kg cart moves right at 4 m/s and a 3 kg cart moves left at 2 m/s. They collide and stick. What is their common final velocity?",
+      "steps": [
+        "Choose right as positive. The initial total momentum is (2)(+4)+(3)(−2)=8−6=+2 kg·m/s.",
+        "Since the carts stick, the final system mass is 2+3=5 kg, all moving with common speed vf.",
+        "Conservation gives vf=(+2 kg·m/s)/(5 kg)=+0.4 m/s (right). The initial leftward momentum matters."
+      ]
+    },
+    "practice": {
+      "prompt": "A 2 kg cart at +4 m/s and a 3 kg cart at −2 m/s collide and stick. What signed common final velocity results in m/s (right positive)?",
+      "answer": 0.4,
+      "tolerance": 0.02,
+      "unit": "m/s",
+      "hints": [
+        "Use signed initial momentum. The second cart's velocity is −2 m/s.",
+        "Divide 2×4+3×(−2) by total mass 2+3 kg."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Two carts collide on a nearly frictionless track. During the short interaction, one cart loses momentum and the other gains momentum. What happens to their combined total momentum?",
+      "choices": [
+        "It necessarily decreases because a collision always removes momentum.",
+        "It remains the same if the combined carts experience negligible external impulse.",
+        "It must become zero because the carts apply opposite forces to one another."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Collisions can reduce kinetic energy without reducing total momentum of an isolated system.",
+        "Correct. Internal impulses are equal and opposite, so the pair's total momentum remains unchanged.",
+        "Equal and opposite internal forces cancel in the sum, but the original total need not be zero."
+      ],
+      "explanation": "A collision redistributes momentum internally; only net external impulse can change the system's total momentum."
+    },
+    "next": "momentum-vectors",
+    "investigation": {
+      "prediction": "If the two carts stick, does the heavier cart always determine the final direction, or does signed total momentum determine it?",
+      "experiment": "Choose the sticking mode. Change masses and initial directions, predict the final direction, then reveal the post-collision state and signed totals.",
+      "connection": "The direction of a stuck pair follows the sign of m₁u₁+m₂u₂; the total momentum is unchanged even when the final speed is small."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-momentum",
+    "unit": "Momentum and Its Conservation",
+    "id": "momentum-vectors",
+    "title": "Momentum Has a Direction",
+    "subtitle": "A negative velocity means negative momentum, not less momentum.",
+    "duration": "10 min",
+    "observe": "Can two moving carts have a combined momentum of zero even though neither cart is stationary?",
+    "idea": "Momentum is a vector. On a one-dimensional track, assigning right positive makes a right-moving cart's momentum positive and a left-moving cart's momentum negative. The combined momentum p_total=m₁v₁+m₂v₂ may be positive, negative or zero. During an isolated collision, the two carts exchange momentum without changing this signed sum. If total momentum is zero and they stick, their shared final velocity is zero, even though both moved beforehand.",
+    "visualLead": "Move the carts in opposite directions; compare each signed momentum with their sum before and after contact.",
+    "visual": "momentum-collision",
+    "focus": "Momentum direction comes from velocity direction. Opposing momenta can cancel, and their sum is conserved through the interaction.",
+    "definition": "Momentum p=mv is a vector. In one dimension, signed velocities give signed momenta: p_total=m₁v₁+m₂v₂. Equal and opposite momenta cancel to zero without requiring either speed to be zero.",
+    "example": {
+      "question": "A 2 kg cart moving right at 3 m/s approaches a 3 kg cart moving left at 2 m/s. What is their initial combined signed momentum?",
+      "steps": [
+        "Choose right as positive. Cart A has momentum (2 kg)(+3 m/s)=+6 kg·m/s.",
+        "Cart B has momentum (3 kg)(−2 m/s)=−6 kg·m/s.",
+        "The total is +6−6=0 kg·m/s. Both carts move, yet the system's vector momentum is zero."
+      ]
+    },
+    "practice": {
+      "prompt": "A 4 kg cart moves right at +3 m/s and a 2 kg cart moves left at −5 m/s. What is their signed combined momentum in kg·m/s?",
+      "answer": 2,
+      "tolerance": 0.02,
+      "unit": "kg·m/s",
+      "hints": [
+        "Multiply each cart's mass by its signed velocity.",
+        "Sum (+4×3)+(2×−5) to get net momentum, retaining its sign."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A 2 kg cart travels right with momentum +6 kg·m/s and a 3 kg cart travels left with momentum −6 kg·m/s. What is the total momentum?",
+      "choices": [
+        "12 kg·m/s, because momentum magnitudes must always be added.",
+        "Zero, because the equal momenta point in opposite directions.",
+        "6 kg·m/s, because only the heavier cart contributes to the system."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Total momentum is a vector sum; opposite directions must not be treated as both positive.",
+        "Correct. Equal magnitudes in opposing directions cancel in the signed sum.",
+        "Both carts contribute. Total momentum is the algebraic sum of their signed momenta."
+      ],
+      "explanation": "Signed one-dimensional momentum adds algebraically: +6+(−6)=0 even while both carts have nonzero speed."
+    },
+    "next": null,
+    "investigation": {
+      "prediction": "Could the carts collide, move in opposite directions, and yet have zero net momentum throughout the event?",
+      "experiment": "Set cart A to 2 kg at +3 m/s and cart B to 3 kg at −2 m/s. Compare the signed before totals; reveal a sticking collision and an elastic collision.",
+      "connection": "The combined signed momentum is zero in both ideal outcomes. Individual cart momenta change, but the vector sum remains zero."
     }
   },
   {
