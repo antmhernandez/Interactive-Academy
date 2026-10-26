@@ -5,7 +5,7 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
-## Publisher presentation polish — Three-stop guided tour (October 25, 2026)
+## Publisher presentation polish — Three-stop guided tour (October 25, 2026 · [merged PR #18](https://github.com/antmhernandez/Interactive-Academy/pull/18))
 
 **Begin with the [curated publisher demonstration](https://antmhernandez.github.io/Interactive-Academy/#tour)** or read the [publisher overview](https://antmhernandez.github.io/Interactive-Academy/#showcase). The new route is a deliberately short teaching exhibition, not another list of capabilities: **(1) a changing graph slope, (2) the static-to-kinetic friction transition, and (3) energy conservation on a ramp**. Each sample introduces a question, a student manipulation, a scientifically accurate conclusion, and a direct working lesson link, with an explicit return path to the tour.
 
