@@ -186,7 +186,7 @@ try{
   assert.equal(await page.locator("#sec").innerText(),"+3");
   assert.equal(await page.locator("#tan").innerText(),"+2");
   assert.equal(await page.locator("#tan-run").innerText(),"+1");
-  assert.match(await page.locator("#evidence-calculation").innerText(),/2a\\+h = 2 \\+ \\(1\\) = 3|2a\\+h = 2 \\+ \\(1\\) = 3/);
+  assert.ok((await page.locator("#evidence-calculation").innerText()).includes("2a+h = 2 + (1) = 3"),"Exact secant identity appears as readable text");
   assert.match(await page.locator("#evidence-description").innerText(),/approaches A from the right/);
   assert.equal(await page.locator("#evidence-connect").isDisabled(),true);
   await page.locator('input[name="evidence-prediction"][value="1"]').check();
