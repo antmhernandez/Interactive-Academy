@@ -284,9 +284,9 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - Mathematical regression verified `τ=rFsinφ` across directions, `I_disk=½mR²` and `I_hoop=mR²`, `Iα=τ`, `ω=αt`, `θ=½αt²` and `τθ=½Iω²` across a broad range of masses, radii, torque and elapsed time.
 - Completed `main` merger is [PR #15](https://github.com/antmhernandez/Interactive-Academy/pull/15), squash commit `86777a7f991838a0ae0dc992b4015e36f71d0954`. Physical iOS/Safari, assistive-technology and projector testing are still outstanding.
 
-## October 25 continuation — Chapter 9 Momentum, impulse, signed conservation (PR in progress)
+## October 25 continuation — Chapter 9 Momentum, impulse, signed conservation (merged PR #16)
 
-**Working branch:** `feature/chapter-09-impulse-momentum-labs-2026-10-25` from verified `main` release `ba6e53de8946851b83b567f45a6dad579525f54e`. User requested continuing the independently authored publisher-facing Physics applets, specifically Chapter 9 as recommended at the end of PR #15.
+**Merged into main:** [PR #16](https://github.com/antmhernandez/Interactive-Academy/pull/16) squash commit `a02af6187fe1848044a7a6569bee50270f1df454`. The authoritative branch is `main`. User requested continuing the independently authored publisher-facing Physics applets, specifically Chapter 9 as recommended at the end of PR #15.
 
 ### Implementation and curriculum integrity
 - Three original complete **required school-year** lessons in canonical `phy-momentum` existing unit: `impulse` → `momentum-conservation` → `momentum-vectors`. Change `weightlessness.next` to `impulse`, `momentum-vectors.next=null`. This preserves main required sequence Chapter 1–7 then Chapter 9 and excludes optional Chapter 8. Align both lesson JSON order and guided practice order to the **registry unit order**: `weightlessness`, optional `torque-levers`/`rotational-inertia`/`rotational-dynamics`, then Chapter 9 impulse/conservation/vectors, then optional energy and atom. Registry validation requires this exact order.
@@ -298,5 +298,10 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - Full model equations, caveats, acceptance cases and IP notes: [`docs/22_MOMENTUM_CHAPTER_09_2026-10-25.md`](22_MOMENTUM_CHAPTER_09_2026-10-25.md).
 
 ### Merge/quality gate and future direction
-- Run GitHub Actions PR validations and Chromium five-width tests before merge. After merge record PR number, squash SHA, latest main-branch CI and latest Pages workflow separately. Human iPhone Safari, Android, VoiceOver/NVDA, projector/student comprehension remain **not done**.
+- **PR test suite passed:** [GitHub Actions run #70](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40252056939) validated 39 lessons, 117 guided problems, all canonical concepts, impulse/momentum collision models, 84 equations, separate textbook/syllabus rights and Chromium at 320/375/768/1024/1440 px. PR #16 squash-merged. Check final main/Pages runs separately after this documentation commit. Human iPhone Safari, Android, VoiceOver/NVDA, projector/student comprehension remain **not done**.
 - Next curricular progression Chapters 10–11 energy already has **optional** prototype lessons, but moving those into required school-year core requires a deliberate prerequisite/content review, especially before activating the planned dedicated collision lesson.
+
+### Chapter 9 acceptance record
+- [PR #16](https://github.com/antmhernandez/Interactive-Academy/pull/16) merged with squash SHA `a02af6187fe1848044a7a6569bee50270f1df454`.
+- [Completed green PR workflow run #70](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40252056939) includes exact impulse and multi-cart momentum/energy comparisons, 39 complete lessons/117 graduated exercises, 151 canonical topics/22 units, and Chrome-like Chromium at five viewport widths; independent publisher claims remain limited.
+- Last remaining release check: latest `main` push and GitHub Pages workflows after this documentation update. No manual physical Safari, screen-reader or classroom review was done.
