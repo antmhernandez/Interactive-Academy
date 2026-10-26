@@ -5,6 +5,16 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
+## Current verified content target — Chapters 10–11 integration (October 25, 2026)
+
+This release carries the **required Physics sequence from Chapter 9 into seven sequenced Chapter 10–11 lessons**, while preserving Chapter 8 rotational motion as optional enrichment. The coherent student path is **Work Transfers Energy → Which Part of a Force Does Work? → Energy of Motion → How Quickly Is Work Done? → Why Simple Machines Help → Energy Stored by Height → Where Does the Energy Go?**. The existing original frictional-ramp energy lab now appears as part of the required course. New investigations examine signed work under a rotated force and the trade-off between input force, distance, useful output, efficiency and power.
+
+After energy, students may separately visit [When Momentum Meets Energy](https://antmhernandez.github.io/Interactive-Academy/#lesson/collisions), a clearly **optional integrated review** of Chapter 9 momentum and Chapters 10–11 energy. The review carefully distinguishes conserved total momentum and total energy from changing *translational kinetic energy* in a sticking collision. It does not create a compulsory backwards jump in the lesson sequence.
+
+**Current inventory: 43 complete lessons (38 Physics, five Calculus), 129 graduated problems, 21 original curated experiments, 151 curriculum concepts across 22 units, and 84 physics equation references covering 30 printed textbook chapters.** New source and teaching audit: [Chapter 10–11 energy integration](docs/23_ENERGY_CORE_AND_COLLISION_REVIEW_2026-10-25.md).
+
+Older numbered sections below record historical development milestones and their counts *at those releases*, not the current site inventory. The publisher remains unconnected to or unaffiliated with the original demonstration.
+
 ## Publisher discussion edition (October 25, 2026)
 
 **Development focus: elegant accessible interactions, coherent textbook discovery and deliberately limited original curriculum expansion.** This public prototype now has an independent classical-inspired visual identity and a *textbook-aware discovery experience*, without presenting itself as an authorized Memoria Press product.
@@ -96,15 +106,15 @@ All three original lessons include clear definitions, worked steps, misconceptio
 **Current inventory: 39 complete lessons (34 Physics, five Calculus), 117 guided problems, 19 original featured applets and 84 chapter-equation entries.** The publisher concept remains unaffiliated and original; the Glencoe-indexed prototype is not a Memoria Press or Novare chapter/page crosswalk. See [the Chapter 9 mathematical and teaching audit](docs/22_MOMENTUM_CHAPTER_09_2026-10-25.md).
 
 ## Current teaching preview
-Thirty-nine original demonstration lessons (thirty-four Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Thirty-nine misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Forty-three original demonstration lessons (thirty-eight Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Forty-three misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
-The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **151 canonical topic slots** across 22 units; 39 are implemented, 112 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
+The site offers a dedicated **Course Map** page for each subject, listing available lessons and planned topics separately. There are currently **151 canonical topic slots** across 22 units; 43 are implemented, 108 remain planned. Future topic slots are not published lesson links. Every public resource has one primary topic owner, and CI verifies the dependency graph.
 
 ## Textbook progression and learning companions
 
-Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–7 and required Chapter 9 (with Chapter 8 offered as an optional textbook extension), including original **two-dimensional velocity**, **projectile motion**, **circular motion**, and **river-crossing relative velocity** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
+Physics begins with **Chapter 1: A Physics Toolkit**, then proceeds through Chapters 2–7, required Chapter 9 and Chapters 10–11 (with Chapter 8 offered as an optional textbook extension), including original **two-dimensional velocity**, **projectile motion**, **circular motion**, and **river-crossing relative velocity** simulations in Chapter 6. Atomic spectroscopy remains an **optional Chapter 28 curiosity preview**, not the next main-course lesson. The complete textbook chapter index is arranged from 1 through 30, including those not yet developed as student lessons.
 
 Every completed topic now includes **Definition & Example** (`#study/{id}`) and **Guided Practice** (`#guided/{id}`) pages. The study page has the original definition, fully worked example, and a student problem directly below. The practice page moves through Begin, Extend, and Challenge problems, progressively revealing each reasoning step *beneath* earlier steps. A separate **Physics Equation Reference** (`#equations`) indexes the formula notes for all 30 chapters. See `docs/13_TEXTBOOK_ORDER_STUDY_GUIDED_PRACTICE_AND_EQUATIONS.md`.
 
