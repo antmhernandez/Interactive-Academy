@@ -48,7 +48,7 @@ function tangentLab(el){
   <tbody id="tan-table-body"></tbody></table></div>
   <p class="tan-limit-note">At <strong>h = 0</strong>, the difference quotient has denominator zero and is <strong>undefined</strong>. The derivative is the shared <em>limit</em> of these secant slopes, not the value of that quotient at h = 0.</p>
  </div>
- <p class="note">Exact quadratic model f(x) = x², with dimensionless x and f(x), so slopes have no physical units. The solid secant uses h ≠ 0. The dashed tangent shows the limiting slope at A. The graph is to scale in the plotted coordinate axes; zoomed or nearly coincident points can be read precisely from the numeric evidence. On narrow phones the graph scrolls within its own frame.</p>
+ <p class="note">Exact quadratic model f(x) = x², with dimensionless x and f(x), so slopes have no physical units. The solid secant uses h ≠ 0. The dashed tangent shows the limiting slope at A. The axes use distinct labeled scales, so line angles are not measured angles; read slope from the calculated rise and run. Nearly coincident points can be read from the numeric evidence. On narrow phones the graph scrolls within its own frame.</p>
  </div>`;
  const point=el.querySelector("#point"),gap=el.querySelector("#gap"),left=el.querySelector("#tan-left"),right=el.querySelector("#tan-right");
  let side="right";
@@ -82,9 +82,9 @@ function tangentLab(el){
   el.querySelector("#tan-table-body").innerHTML=tangentMagnitudes.map(m=>`<tr ${state.magnitude===m?'class="tan-selected" aria-current="true"':""}><th scope="row">${number(m)}</th><td>${signed(derivative-m)}</td><td>${signed(derivative+m)}</td></tr>`).join("");
  }
  point.oninput=gap.oninput=paint;
- const switchSide=(value)=>{side=value;paint();el.dispatchEvent(new Event("input",{bubbles:true}));};
+ const switchSide=(value)=>{side=value;paint();point.dispatchEvent(new Event("input",{bubbles:true}));};
  left.onclick=()=>switchSide("left");right.onclick=()=>switchSide("right");
- el.querySelector("#tan-step").onclick=()=>{gap.value=String(Math.min(tangentMagnitudes.length-1,Number(gap.value)+1));paint();el.dispatchEvent(new Event("input",{bubbles:true}));};
- el.querySelector("#tan-reset").onclick=()=>{point.value="1";gap.value="0";side="right";paint();el.dispatchEvent(new Event("input",{bubbles:true}));};
+ el.querySelector("#tan-step").onclick=()=>{gap.value=String(Math.min(tangentMagnitudes.length-1,Number(gap.value)+1));paint();point.dispatchEvent(new Event("input",{bubbles:true}));};
+ el.querySelector("#tan-reset").onclick=()=>{point.value="1";gap.value="0";side="right";paint();point.dispatchEvent(new Event("input",{bubbles:true}));};
  paint();
 }
