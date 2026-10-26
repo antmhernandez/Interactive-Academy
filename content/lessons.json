@@ -1173,6 +1173,171 @@
   },
   {
     "subject": "physics",
+    "unit": "Rotational Motion",
+    "unitId": "phy-rotation",
+    "optionalPreview": true,
+    "next": null,
+    "id": "torque-levers",
+    "title": "How a Force Turns a Lever",
+    "subtitle": "Distance and direction determine turning effect.",
+    "duration": "10 min",
+    "observe": "Why is pushing at the end of a wrench easier than pushing near the pivot?",
+    "idea": "Torque is the turning influence of a force about a pivot. For lever-arm length r and force F at signed angle φ to the rightward arm, τ=rF sinφ. An upward force gives positive counterclockwise torque, a downward force gives negative clockwise torque, and a force along the arm creates zero torque.",
+    "visualLead": "Move the force along the lever and tilt its direction. Compare signed torque.",
+    "visual": "torque-lever",
+    "focus": "A perpendicular push turns the lever most effectively; a force directed toward its pivot produces no torque.",
+    "definition": "Torque about an axis is the signed rotational influence of a force: τ=rF sinφ, where φ is the signed angle between the lever arm and the force. Its units are N·m.",
+    "example": {
+      "question": "A 30 N force acts vertically upward 0.40 m to the right of a hinge. Find its torque.",
+      "steps": [
+        "Choose counterclockwise positive. The force is perpendicular to the arm, so sin90°=1.",
+        "τ=rF sinφ=(0.40 m)(30 N)(1).",
+        "τ=+12 N·m (counterclockwise). Moving the force halfway to the hinge halves the torque."
+      ]
+    },
+    "practice": {
+      "prompt": "A 20 N force pushes perpendicularly upward 0.60 m right of a pivot. What signed torque acts about the pivot, in N·m?",
+      "answer": 12,
+      "tolerance": 0.02,
+      "unit": "N·m",
+      "hints": [
+        "The rightward position vector and upward force give positive torque.",
+        "With sin90°=1, multiply 20 N by 0.60 m."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A force points directly along a rigid lever toward its pivot. What turning effect does the force have about that pivot?",
+      "choices": [
+        "Zero torque, because its perpendicular component vanishes.",
+        "Maximum torque, because the force points toward the pivot.",
+        "The same torque as a perpendicular force of equal magnitude."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. Its line of action passes through the pivot, so torque vanishes.",
+        "Along-arm force can cause compression, but no turning about that pivot.",
+        "Torque depends on sinφ, which vanishes for parallel or antiparallel force."
+      ],
+      "explanation": "τ=rF sinφ is zero when the force's line of action passes through the pivot."
+    },
+    "investigation": {
+      "prediction": "Will doubling the distance to the pivot double torque? What if the force is rotated along the arm?",
+      "experiment": "Hold 20 N at 90° and change distance from 0.5 m to 1 m. Then compare 90°, 0°, and −90° at the same distance.",
+      "connection": "At fixed force and angle, τ is proportional to r; at fixed r and F, τ is proportional to sinφ and its sign indicates turning direction."
+    }
+  },
+  {
+    "subject": "physics",
+    "unit": "Rotational Motion",
+    "unitId": "phy-rotation",
+    "optionalPreview": true,
+    "next": null,
+    "id": "rotational-inertia",
+    "title": "Why Some Wheels Resist Spinning",
+    "subtitle": "Mass farther from an axis is harder to rotate.",
+    "duration": "10 min",
+    "observe": "Why does a hoop resist angular acceleration more than a solid disk of equal mass and radius?",
+    "idea": "Moment of inertia describes rotational inertia about a specified axis. For equal mass m and radius R, an ideal solid disk has I=½mR² and a thin hoop has I=mR². With the same applied net torque, the hoop accelerates at half the disk's angular acceleration because more of its mass lies farther from the axis.",
+    "visualLead": "Switch between hoop and disk, keeping mass, radius, and torque fixed.",
+    "visual": "rotation-dynamics",
+    "focus": "Mass concentrated farther from the central axle makes the hoop harder to accelerate than the same-mass disk.",
+    "definition": "Moment of inertia I measures a rigid body's resistance to angular acceleration about an axis. A uniform solid disk has I=½mR², while a thin hoop has I=mR² about the central axis.",
+    "example": {
+      "question": "A 4 kg solid disk and a 4 kg thin hoop each have radius 0.50 m. Compare their moments of inertia.",
+      "steps": [
+        "About the fixed central axle, I_disk=½mR² and I_hoop=mR².",
+        "I_disk=½(4)(0.50²)=0.50 kg·m², and I_hoop=(4)(0.50²)=1.00 kg·m².",
+        "I_hoop/I_disk=2, so the hoop has twice the rotational inertia."
+      ]
+    },
+    "practice": {
+      "prompt": "A 4 kg uniform solid disk has radius 0.50 m. What is its central-axis moment of inertia in kg·m²?",
+      "answer": 0.5,
+      "tolerance": 0.02,
+      "unit": "kg·m²",
+      "hints": [
+        "Use I=½mR² for a uniform disk about its symmetry axis.",
+        "(0.50)²=0.25; multiply by half of 4 kg."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A thin hoop and a uniform solid disk have equal mass and outer radius. Under the same net torque, which has greater angular acceleration?",
+      "choices": [
+        "The disk, since its moment of inertia is half the hoop's.",
+        "The hoop, since it carries more mass farther from the axle.",
+        "They accelerate equally because their total masses match."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. α=τ/I, and a disk's I is half a hoop's I for equal mass and radius.",
+        "Greater moment of inertia resists rotational acceleration; it does not increase it.",
+        "The distribution of mass matters in addition to the mass itself."
+      ],
+      "explanation": "For the same torque, angular acceleration is inversely proportional to the moment of inertia about the axis."
+    },
+    "investigation": {
+      "prediction": "At the same torque, will changing a disk into a hoop double or halve angular acceleration?",
+      "experiment": "Set mass to 4 kg, radius 1 m, and net torque 8 N·m. Compare the disk and hoop, then double the radius.",
+      "connection": "I_disk=½mR², I_hoop=mR², and α=τ/I. Inertia grows as the square of radius."
+    }
+  },
+  {
+    "subject": "physics",
+    "unit": "Rotational Motion",
+    "unitId": "phy-rotation",
+    "optionalPreview": true,
+    "next": null,
+    "id": "rotational-dynamics",
+    "title": "Torque Changes Rotation",
+    "subtitle": "Net torque gives a wheel angular acceleration.",
+    "duration": "11 min",
+    "observe": "What makes a wheel spin faster, and why does its shape matter?",
+    "idea": "About a fixed axis, a rigid body's net external torque and angular acceleration satisfy τ_net=Iα. With constant torque and I, α is constant. For rotation starting from rest, angular velocity is ω=αt and angular displacement is θ=½αt². The frictionless wheel model uses positive net torque and no outside resistance.",
+    "visualLead": "Adjust torque, mass, radius, shape and elapsed time to predict spin.",
+    "visual": "rotation-dynamics",
+    "focus": "More net torque increases angular acceleration; greater rotational inertia reduces it under otherwise identical conditions.",
+    "definition": "Rotational Newton's second law for a rigid body about a fixed axis is τ_net=Iα. Starting from rest under constant α, angular speed is ω=αt and displacement is θ=½αt² radians.",
+    "example": {
+      "question": "A wheel with I=2 kg·m² receives constant net torque 6 N·m from rest. Find α and its angular speed after 3 s.",
+      "steps": [
+        "Rotational Newton's law gives α=τ/I=6/2=3 rad/s².",
+        "From rest under constant angular acceleration, ω=αt.",
+        "After 3 s, ω=3×3=9 rad/s. Its displacement is ½(3)(3²)=13.5 rad."
+      ]
+    },
+    "practice": {
+      "prompt": "A wheel has moment of inertia 2 kg·m² and constant net torque 8 N·m. What is its angular acceleration in rad/s²?",
+      "answer": 4,
+      "tolerance": 0.02,
+      "unit": "rad/s²",
+      "hints": [
+        "Use the rotational counterpart to F=ma: τ_net=Iα.",
+        "Solve α=τ/I=8/2."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A wheel's moment of inertia doubles, but it experiences the same net torque about its fixed axis. What happens to its angular acceleration?",
+      "choices": [
+        "It doubles because the rotating wheel contains more inertia.",
+        "It halves because α=τ_net divided by moment of inertia.",
+        "It stays unchanged because all wheels respond identically to torque."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Increasing inertia makes a wheel harder, not easier, to accelerate.",
+        "Correct. At fixed τ_net, α=τ_net/I halves if I doubles.",
+        "Angular acceleration depends on both net torque and the distribution of rotating mass."
+      ],
+      "explanation": "Net torque divided by moment of inertia determines angular acceleration about a fixed axis."
+    },
+    "investigation": {
+      "prediction": "What happens to α and ω at 2 seconds when the net torque doubles on the same disk?",
+      "experiment": "Choose a 4 kg disk of radius 1 m. Compare 4 and 8 N·m at t=2 s; then change from disk to hoop.",
+      "connection": "α=τ/I and ω=αt from rest. Doubling torque doubles acceleration and angular velocity at the same time."
+    }
+  },
+  {
+    "subject": "physics",
     "unitId": "phy-energy",
     "unit": "Work, Energy, and Machines",
     "visual": "energy-ramp",

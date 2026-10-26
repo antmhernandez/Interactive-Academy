@@ -71,8 +71,20 @@ Each has an original definition, three-step worked example, conceptual misconcep
 
 This adds **33 total lessons (28 Physics, 5 Calculus), 99 guided problems and 15 Experiment Room models**. The independent Glencoe-indexed prototype chapter ordering remains separate from *illustrative*, unauthorized Novare/Memoria Press book connections. Full mathematics and test limitations: [Chapter 7 design audit](docs/20_GRAVITATION_CHAPTER_07_2026-10-25.md).
 
+## Chapter 8 Rotational Motion — Optional textbook extension (October 25, 2026)
+
+An original, deliberately **optional** [Chapter 8 rotational mechanics pathway](https://antmhernandez.github.io/Interactive-Academy/#lesson/torque-levers) introduces students to three new exploratory concepts without changing the present school-year syllabus or the regular Chapter 1–7 Next Lesson sequence:
+
+- [How a Force Turns a Lever](https://antmhernandez.github.io/Interactive-Academy/#lesson/torque-levers): change force magnitude, location, and signed direction to investigate torque `τ=rF sinφ`; discover why a force along the arm produces zero turning effect and a perpendicular force maximizes it.
+- [Why Some Wheels Resist Spinning](https://antmhernandez.github.io/Interactive-Academy/#lesson/rotational-inertia): compare ideal uniform solid disks `I=½mR²` and thin hoops `I=mR²` under identical applied net torque.
+- [Torque Changes Rotation](https://antmhernandez.github.io/Interactive-Academy/#lesson/rotational-dynamics): investigate `τ_net=Iα`, `ω=αt`, `θ=½αt²` and `½Iω²=τθ` from rest, with mass, radius, shape, torque and time controls.
+
+Two original interactive SVG models live in `applets/rotation.js`. The three linked lessons have independently authored definitions, graduated worked examples, misconception checks, optional inquiry and nine additional guided problems. Rotational Motion is registered as an `enrichment` unit and Chapter 8 retains `optional-extension` scope. The **required Physics course still concludes with Chapter 7 weightlessness**, while Chapters 10–11 energy and Chapter 28 atomic previews retain their status.
+
+After this addition the prototype contains **36 complete lessons (31 Physics, five Calculus), 108 guided problems, and 17 Experiment Room applets**. Textbook mappings remain independent prototype examples, *not* Memoria Press or Novare edition-approved chapter claims. See [rotational mechanics and teaching audit](docs/21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md).
+
 ## Current teaching preview
-Thirty-three original demonstration lessons (twenty-eight Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Thirty-three misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
+Thirty-six original demonstration lessons (thirty-one Physics, five Calculus) now use a **visual-first page** with Back / Home / Next controls in a consistent position. Each topic opens with a large interactive diagram, one short focus cue, and four optional learning tabs: The idea, Example, Think, Try it. Thirty-six misconception-aware checks, three focused mini-challenges and nine printable student resources are now available. Slider-driven diagrams and answer checking execute in the browser. Completion flags are saved locally in the visitor's device without an account. An independent Motion Data Laboratory now lets students enter observations, fit linear/quadratic models, inspect residuals, print and export a CSV without submitting data to a server. These are not yet an entire graded course.
 
 ## Course map and source boundaries
 
