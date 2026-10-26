@@ -5,6 +5,7 @@
 **Guided publisher tour:** https://antmhernandez.github.io/Interactive-Academy/#tour  
 **Publisher overview:** https://antmhernandez.github.io/Interactive-Academy/#showcase  
 **Authoritative branch:** `main`; never assume a historical feature branch is authoritative.  
+**Last merged implementation:** [PR #18](https://github.com/antmhernandez/Interactive-Academy/pull/18), squash commit `f0668ea03f2bf2193f961a52a86970fed010a956`, successful [PR CI](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40256442547).  
 **Latest dedicated audit:** `docs/24_PUBLISHER_SHOWCASE_POLISH_2026-10-25.md`.  
 **Earlier comprehensive archive:** `docs/HANDOFF_2026-10-25_PUBLISHER_DEMO.md`; it contains dated historical milestones and may be very long.
 
