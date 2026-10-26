@@ -20,6 +20,7 @@ jobs:
           node --check app.js
           node --check applets/contact-forces.js
           node --check applets/energy-ramp.js
+          node --check applets/tour-labs.js
           node --check applets/gravitation.js
           node --check applets/rotation.js
           node --check applets/momentum.js
