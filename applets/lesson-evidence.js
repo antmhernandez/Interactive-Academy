@@ -4,11 +4,11 @@
 function featuredEvidence(kind, v) {
  const number=n=>Number(n.toFixed(2)).toString();
  if(kind==="graph-slope-physics"){
-  const a=Number(v.start),b=Number(v.end),x=t=>1+2*t+.25*t*t;
+  const a=Number(v.start),b=Number(v.end),x=t=>1+t*t;
   const rise=x(b)-x(a),run=b-a,slope=rise/run;
   return {
    values:{rise,run,slope},
-   description:"Position against time for x(t) = 1 + 2t + 0.25t squared metres. The curve rises from "+number(x(a))+" metres at "+a+" seconds to "+number(x(b))+" metres at "+b+" seconds. The secant joins these points; its rise divided by its horizontal run is "+number(slope)+" metres per second.",
+   description:"Position against time for x(t) = 1 + t squared metres. The curve rises from "+number(x(a))+" metres at "+a+" seconds to "+number(x(b))+" metres at "+b+" seconds. The secant joins these points; its rise divided by its horizontal run is "+number(slope)+" metres per second.",
    calculation:"x("+a+") = "+number(x(a))+" m; x("+b+") = "+number(x(b))+" m. Change in position = "+number(x(b))+" − "+number(x(a))+" = "+number(rise)+" m. Change in time = "+b+" − "+a+" = "+number(run)+" s. Average velocity = "+number(rise)+" m ÷ "+number(run)+" s = "+number(slope)+" m/s.",
    interpretation:"The height of each point is a position in metres. The slope of their connecting secant is average velocity in metres per second. A higher graph point is not itself a faster speed."
   };
@@ -40,7 +40,7 @@ function featuredEvidence(kind, v) {
 function enhanceFeaturedLesson(el,kind){
  const settings={
   "graph-slope-physics":{
-   question:"With the starting time held at 0.5 s, if the later time moves from 3.5 s toward 4 s, average velocity will…",
+   question:"With the starting time held at 0 s, if the later time moves from 2 s toward 4 s, average velocity will…",
    options:["Increase","Decrease","Stay unchanged"],correct:0,
    reason:"For this upward-curving position function, later secants have a greater rise per second."},
   "friction":{
@@ -74,7 +74,7 @@ function enhanceFeaturedLesson(el,kind){
  const svg=el.querySelector('svg[role="img"]');
  if(svg)svg.setAttribute("aria-describedby","evidence-description");
  const controls={
-  "graph-slope-physics":{start:"tstart",end:"tend"},
+  "graph-slope-physics":{start:"slope-t1",end:"slope-t2"},
   "friction":{pull:"fr-pull",mass:"fr-mass",static:"fr-static",kinetic:"fr-kinetic"},
   "energy-conservation":{mass:"en-mass",height:"en-height",start:"en-start",mu:"en-mu",progress:"en-progress"}
  }[kind];
