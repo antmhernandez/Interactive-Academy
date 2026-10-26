@@ -300,6 +300,7 @@ function lesson(l){
  if(l.visual==="momentum-collision")momentumCollision(el);
  if(l.visual==="work-angle")workAngleLab(el);
  if(l.visual==="simple-machine")simpleMachineLab(el);
+ enhanceFeaturedLesson(el,l.id);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -612,6 +613,13 @@ function slopeToolkit(el){
  function draw(){const t1=+A.value,t2=+B.value,x1=1+t1*t1,x2=1+t2*t2;
   const curve=Array.from({length:41},(_,i)=>{const t=i/10;return `${i?"L":"M"}${X(t)} ${Y(1+t*t)}`}).join(" ");
   G.innerHTML=`<path d="M77 30V280H510" stroke="#93b5a8" stroke-width="1.5" fill="none"/><path d="${curve}" fill="none" stroke="#14727a" stroke-width="4"/><path d="M${X(t1)} ${Y(x1)}L${X(t2)} ${Y(x2)}" stroke="#c08039" stroke-width="4"/><circle cx="${X(t1)}" cy="${Y(x1)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><circle cx="${X(t2)}" cy="${Y(x2)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><path d="M${X(t1)} ${Y(x1)}V280M${X(t2)} ${Y(x2)}V280" stroke="#b7d3c7" stroke-dasharray="4 4"/><text x="25" y="29" font-size="13" fill="#4c7368">x (m)</text><text x="465" y="307" font-size="13" fill="#4c7368">t (s)</text><text x="${X(t1)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t1)}</text><text x="${X(t2)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t2)}</text>`;
+  // Annotate actual coordinate intervals; unlike a decorative secant, these give its rise and run.
+  const gridX=[0,1,2,3,4].map(t=>'<path d="M'+X(t)+' 280v5" stroke="#607770"/><text x="'+X(t)+'" y="319" font-size="13" fill="#344e54" text-anchor="middle">'+t+'</text>').join("");
+  const gridY=[5,10,15].map(h=>'<path d="M77 '+Y(h)+'H505" stroke="#dce8e2" stroke-width="1"/><text x="66" y="'+(Y(h)+4)+'" font-size="13" fill="#344e54" text-anchor="end">'+h+'</text>').join("");
+  G.innerHTML=gridY+gridX+G.innerHTML;
+  G.innerHTML+=('<path d="M'+X(t1)+' '+Y(x1)+'H'+X(t2)+'V'+Y(x2)+'" stroke="#753d57" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>'+
+   '<text x="'+((X(t1)+X(t2))/2)+'" y="'+Math.min(276,Y(x1)+21)+'" font-size="14" font-weight="700" fill="#703c52" text-anchor="middle">Δt</text>'+
+   '<text x="'+(X(t2)+8)+'" y="'+((Y(x1)+Y(x2))/2)+'" font-size="14" font-weight="700" fill="#703c52">Δx</text>');
   el.querySelector("#slope-t1-label").textContent=f(t1)+" s";el.querySelector("#slope-t2-label").textContent=f(t2)+" s";
   el.querySelector("#slope-rise").textContent=f(x2-x1)+" m";el.querySelector("#slope-run").textContent=f(t2-t1)+" s";el.querySelector("#slope-value").textContent=f((x2-x1)/(t2-t1))+" m/s";
  }A.oninput=B.oninput=draw;draw();
@@ -655,7 +663,18 @@ function averageVelocity(el){
  el.innerHTML=`<div class="diagram-head"><strong>Secant slope = average velocity</strong><span class="pill">Position–time graph</span></div><svg viewBox="0 0 520 310" role="img" aria-label="A curved position graph with two selected times and a secant line"><rect width="520" height="310" rx="12" fill="#f8fbf9"/><g id="v-graph"></g></svg><div class="controls"><label>Start time <strong id="tstart-read"></strong><input type="range" id="tstart" min="0" max="2" step=".25" value=".5"></label><label>End time <strong id="tend-read"></strong><input type="range" id="tend" min="2.5" max="4" step=".25" value="3.5"></label></div><div class="readout"><div class="metric"><small>Change in position</small><strong id="deltax"></strong></div><div class="metric"><small>Average velocity</small><strong id="vavg"></strong></div></div><p class="note">The position function is x(t) = 1 + 2t + 0.25t² meters. A secant slope measures the average velocity between the selected times.</p>`;
  const A=el.querySelector("#tstart"),B=el.querySelector("#tend"),x=t=>1+2*t+.25*t*t,xp=t=>70+98*t,yp=val=>276-16*val;
  function draw(){const a=+A.value,b=+B.value;let curve=Array.from({length:81},(_,i)=>{let t=i/20;return (i?"L":"M")+xp(t).toFixed(2)+" "+yp(x(t)).toFixed(2)}).join(" ");
- el.querySelector("#v-graph").innerHTML=`<path d="M70 27V276H480" stroke="#89a79d" stroke-width="1.5" fill="none"/><path d="${curve}" stroke="#14727a" stroke-width="3.4" fill="none"/><path d="M${xp(a)} ${yp(x(a))}L${xp(b)} ${yp(x(b))}" stroke="#b77739" stroke-width="3"/><circle cx="${xp(a)}" cy="${yp(x(a))}" r="6" fill="#b77739"/><circle cx="${xp(b)}" cy="${yp(x(b))}" r="6" fill="#b77739"/><text x="15" y="23" font-size="13" fill="#50756e">x (m)</text><text x="430" y="296" font-size="13" fill="#50756e">t (s)</text>`;
+ const gridX=[0,1,2,3,4].map(t=>'<path d="M'+xp(t)+' 276v6" stroke="#58716d"/><text x="'+xp(t)+'" y="298" font-size="14" text-anchor="middle" fill="#304e56">'+t+'</text>').join("");
+ const gridY=[0,5,10,15].map(h=>'<path d="M70 '+yp(h)+'H470" stroke="#e1eae4" stroke-width="1"/><text x="61" y="'+(yp(h)+4)+'" font-size="14" fill="#304e56" text-anchor="end">'+h+'</text>').join("");
+ const x1=xp(a),x2=xp(b),y1=yp(x(a)),y2=yp(x(b));
+ el.querySelector("#v-graph").innerHTML='<rect x="0" y="0" width="520" height="310" fill="#f8fbf9"/>'+gridY+gridX+
+  '<path d="M70 27V276H480" stroke="#536d68" stroke-width="2" fill="none"/>'+
+  '<path d="'+curve+'" stroke="#14727a" stroke-width="3.4" fill="none"/>'+
+  '<path d="M'+x1+' '+y1+'H'+x2+'V'+y2+'" stroke="#77506a" stroke-width="2" stroke-dasharray="6 5" fill="none"/>'+
+  '<path d="M'+x1+' '+y1+'L'+x2+' '+y2+'" stroke="#ae7035" stroke-width="3.5"/>'+
+  '<circle cx="'+x1+'" cy="'+y1+'" r="6" fill="#ad6a32"/><circle cx="'+x2+'" cy="'+y2+'" r="6" fill="#ad6a32"/>'+
+  '<text x="14" y="23" font-size="15" font-weight="700" fill="#304e56">x (m)</text><text x="391" y="20" font-size="15" font-weight="700" fill="#304e56">time t (s)</text>'+
+  '<text x="'+((x1+x2)/2)+'" y="'+Math.min(274,y1+19)+'" font-size="14" text-anchor="middle" fill="#653e57">Δt</text>'+
+  '<text x="'+(x2+7)+'" y="'+((y1+y2)/2)+'" font-size="14" fill="#653e57">Δx</text>';
  el.querySelector("#tstart-read").textContent=f(a)+" s";el.querySelector("#tend-read").textContent=f(b)+" s";el.querySelector("#deltax").textContent=f(x(b)-x(a))+" m";el.querySelector("#vavg").textContent=f((x(b)-x(a))/(b-a))+" m/s";}A.oninput=B.oninput=draw;draw();
 }
 function freeFall(el){
@@ -1175,7 +1194,7 @@ function demoTour(){
  ${stops.map((item,i)=>`<button type="button" class="demo-pick" data-demo-index="${i}" aria-pressed="${i===0}" aria-controls="demo-feature"><span>SAMPLE ${item.number}</span><strong>${item.title}</strong><small>${item.eyebrow}</small></button>`).join("")}
  </nav><section class="demo-feature" id="demo-feature" aria-label="Selected demonstration"></section></div>
  <div class="demo-controls"><button type="button" id="demo-back">← Previous</button><span id="demo-position" role="status">Example 1 of 3</span><button type="button" id="demo-next">Next example →</button></div>
- <section class="demo-outro"><div><div class="eyebrow">Continue exploring</div><h2>See the complete learning cycle.</h2><p>Inspect three levels of practice, explore a Calculus sample, or begin from a grade-level textbook reference.</p></div><div class="demo-outro-links"><a href="#guided/energy-conservation">See graduated problems →</a><a href="#lesson/tangent-line?tour=1">Try the Calculus demonstration →</a><a href="#book/physical-science">Browse an illustrative book pathway →</a></div></section>
+ <section class="demo-outro"><div><div class="eyebrow">Continue exploring</div><h2>See the complete learning cycle.</h2><p>Inspect three levels of practice, explore a Calculus sample, or begin from a grade-level textbook reference.</p></div><div class="demo-outro-links"><a href="#guided/energy-conservation">See graduated problems →</a><a href="#lesson/tangent-line?tour=1">Try the Calculus demonstration →</a><a href="#book/physical-science">Browse an illustrative book pathway →</a><a href="https://github.com/antmhernandez/Interactive-Academy/blob/main/docs/26_FULL_LESSON_EVIDENCE_ACCESSIBILITY_2026-10-25.md" target="_blank" rel="noopener noreferrer">Presenter script and classroom test checklist ↗</a></div></section>
  <p class="showcase-disclosure">Independent concept prototype; not an official Memoria Press product. Book associations are illustrative and not approved chapter, page, edition or assignment mappings.</p>`;
  let current=demoTourIndex;
  const buttons=[...main.querySelectorAll("[data-demo-index]")];

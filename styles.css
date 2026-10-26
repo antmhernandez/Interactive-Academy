@@ -875,3 +875,47 @@ a,button{ -webkit-tap-highlight-color:transparent}
 .demo-live-label{display:block;width:100%;max-width:610px;color:#715038;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:850}
 .demo-hold{border-left:3px solid #b79a6d;padding:10px 12px;margin:0;background:#f9f1e3;color:#5a5050;font-size:.82rem;font-weight:700}
 .demo-feature-after>.btn{margin-top:13px}
+
+
+/* 2026-10-25: full-lesson evidence is mathematical text, not a color-only diagram.
+   Generous control targets support touch and classroom projection. */
+.evidence-workbench{margin:21px 0 3px;padding:clamp(16px,2.7vw,29px);
+ border:1px solid #d5c3a8;border-top:4px solid #926b48;background:#fffcf4;color:#253b4a}
+.evidence-eyebrow{font-size:.72rem;letter-spacing:.12em;font-weight:850;color:#783f54}
+.evidence-workbench h3{color:#293d56;font-size:clamp(1.3rem,2vw,1.65rem);margin:8px 0}
+.evidence-lead{max-width:75ch;font-size:.95rem;line-height:1.7;color:#49585d}
+.evidence-numbers{margin:16px 0;padding:17px 19px;border:1px solid #d5e0dd;background:#f5f9f7}
+.evidence-numbers strong{display:block;color:#164c56;font-size:.83rem;letter-spacing:.015em}
+.evidence-numbers p{font-variant-numeric:tabular-nums;overflow-wrap:anywhere;
+ font-size:clamp(.95rem,1.2vw,1.08rem);line-height:1.85;margin:6px 0 16px;max-width:86ch}
+.evidence-numbers p:last-child{margin-bottom:0}
+.evidence-predict{border:1px solid #d8c6aa;padding:17px;margin:0;background:#fffefa;min-width:0}
+.evidence-predict legend{padding:0 6px;font-weight:760;font-size:.94rem;color:#643a4d;line-height:1.55}
+.evidence-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:7px 0 15px}
+.evidence-choices label{display:flex;align-items:center;gap:9px;min-height:48px;
+ border:1px solid #d9d5ca;background:#fff;padding:10px 13px;cursor:pointer;line-height:1.4;font-size:.89rem}
+.evidence-choices input{width:18px;height:18px;accent-color:#703c50;flex:none}
+.evidence-choices label:focus-within{outline:3px solid #b38d52;outline-offset:1px}
+.evidence-predict button,.evidence-connect button{min-height:48px}
+#evidence-prediction-status{margin:10px 0 0;color:#495b5c;font-size:.87rem;line-height:1.5}
+.evidence-connect{display:flex;align-items:flex-start;flex-direction:column;gap:11px;margin-top:14px}
+#evidence-conclusion{background:#eaf4f1;border-left:4px solid #1c6670;padding:13px 17px;
+ font-size:.98rem;line-height:1.7;max-width:82ch;margin:0}
+.evidence-help{font-size:.82rem;line-height:1.65;color:#566568;margin:13px 0 0}
+.interactive .controls input[type="range"],.demo-mini-controls input[type="range"]{min-height:44px}
+.interactive .applet-actions button{min-height:46px}
+@media(max-width:700px){
+ .evidence-choices{grid-template-columns:1fr}
+ .evidence-numbers{padding:13px}
+ .evidence-predict{padding:12px}
+ .evidence-workbench{padding:15px 12px}
+ .evidence-choices label{min-height:48px}
+}
+.presentation-mode .evidence-workbench{max-width:1440px}
+.presentation-mode .evidence-numbers p,.presentation-mode #evidence-conclusion{font-size:clamp(1.07rem,1.6vw,1.4rem)}
+.presentation-mode .interactive .metric strong{font-size:clamp(1.3rem,2vw,1.9rem)}
+@media print{
+ .evidence-predict,.evidence-connect button,.evidence-help{display:none!important}
+ .evidence-workbench{break-inside:avoid;background:#fff}
+ .evidence-numbers{background:#fff}
+}

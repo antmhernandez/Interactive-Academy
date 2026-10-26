@@ -21,6 +21,8 @@ jobs:
           node --check applets/contact-forces.js
           node --check applets/energy-ramp.js
           node --check applets/tour-labs.js
+          node --check applets/lesson-evidence.js
+          node --check scripts/test-lesson-evidence.mjs
           node --check applets/gravitation.js
           node --check applets/rotation.js
           node --check applets/momentum.js
@@ -41,6 +43,7 @@ jobs:
           node scripts/validate-curriculum.mjs
           node scripts/validate-learning-resources.mjs
           node scripts/test-interactives.mjs
+          node scripts/test-lesson-evidence.mjs
           node scripts/test-contact-forces.mjs
           node scripts/test-energy-ramp.mjs
           node scripts/test-gravitation.mjs
