@@ -22,6 +22,8 @@ jobs:
           node --check applets/energy-ramp.js
           node --check applets/gravitation.js
           node --check applets/rotation.js
+          node --check applets/momentum.js
+          node --check scripts/test-momentum.mjs
           node --check scripts/test-rotation.mjs
           node --check scripts/test-gravitation.mjs
           node --check scripts/test-energy-ramp.mjs
@@ -40,6 +42,7 @@ jobs:
           node scripts/test-energy-ramp.mjs
           node scripts/test-gravitation.mjs
           node scripts/test-rotation.mjs
+          node scripts/test-momentum.mjs
           node scripts/validate-book-portal.mjs
       - name: Install headless browser for responsive and keyboard tests
         run: |
