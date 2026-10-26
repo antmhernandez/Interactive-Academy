@@ -1152,23 +1152,19 @@ function showcase(){
  <section class="showcase-step"><span class="step-no">04</span><h2>Extend without distractions</h2><p>Use chapter equation summaries, printables and the Motion Data Lab, with completion saved locally on a visitor's device.</p><a href="#applets">Browse the Experiment Room →</a></section></div>
  <section class="publisher-note"><div class="eyebrow">Editorial and rights boundaries</div><h2>What still requires publisher approval?</h2><p>Edition-accurate textbook mapping, permissions and protected content, editorial and classroom review, accessibility, support ownership, and commercial hosting or student-data policies.</p><p><strong>Present scope:</strong> independently authored lessons and interactive models, illustrative catalog links, no student accounts, no student-data collection and no claim of official Memoria Press sponsorship.</p><a href="#about">Review the independent prototype →</a></section>`;
 }
+let demoTourIndex=0;
 function demoTour(){
  const stops=[
  {number:"01",eyebrow:"FOUNDATIONS · GRAPH INTERPRETATION",title:"A slope tells a story",id:"graph-slope-physics",kind:"graph",
  question:"Does a curved position graph have one average velocity, regardless of the interval?",
- action:"Move the two time markers and compare the slope and its units.",notice:"Average velocity is the slope of position against time; its value depends on the chosen interval."},
+ action:"Predict whether average velocity changes as the interval grows. Slide the second time marker; watch Δx, Δt, and their ratio.",notice:"Average velocity is the slope of position against time; its value depends on the chosen interval."},
  {number:"02",eyebrow:"FORCES · CONCEPTUAL CHANGE",title:"When friction gives way",id:"friction",kind:"force",
  question:"Does static friction always exert its maximum possible force?",
- action:"Increase the pull from below the static threshold to just beyond it.",notice:"Static friction adjusts to match a small push until the threshold; kinetic friction acts once the box slides."},
+ action:"Predict what friction will do as the pull passes 24.5 N. Slide from rest into motion; compare actual friction and acceleration.",notice:"Static friction adjusts to match a small push until the threshold; kinetic friction acts once the box slides."},
  {number:"03",eyebrow:"ENERGY · MATHEMATICAL ACCOUNTING",title:"Where does the energy go?",id:"energy-conservation",kind:"energy",
  question:"If a block slows because of friction, has its energy been destroyed?",
- action:"Move the block down the ramp; then compare the same path without friction.",notice:"Kinetic, potential, and thermal shares change, while the full energy account stays constant."}
+ action:"Predict which energy share grows on descent. Scrub the ramp, then switch friction off without changing the position.",notice:"Kinetic, potential, and thermal shares change, while the full energy account stays constant."}
  ];
- const pictures={
- graph:`<svg viewBox="0 0 360 180" role="img" aria-label="A rising curve and an amber secant line"><path d="M34 18V151H333" fill="none" stroke="#9ea9a6" stroke-width="2"/><path d="M52 140Q138 155 200 82T309 37" fill="none" stroke="#14727a" stroke-width="4"/><path d="M94 143L275 53" stroke="#b3834b" stroke-width="3"/><circle cx="94" cy="143" r="5" fill="#b3834b"/><circle cx="275" cy="53" r="5" fill="#b3834b"/></svg>`,
- force:`<svg viewBox="0 0 360 180" role="img" aria-label="A crate with force arrows on a horizontal surface"><path d="M25 150H340" stroke="#b6a998" stroke-width="3"/><rect x="132" y="86" width="84" height="63" rx="4" fill="#436783"/><path d="M174 84V27M218 116H308" stroke="#b3834b" stroke-width="4"/><path d="M166 39L174 24L182 39M293 108L312 116L293 124" fill="none" stroke="#b3834b" stroke-width="3"/></svg>`,
- energy:`<svg viewBox="0 0 360 180" role="img" aria-label="A ramp beside three changing energy bars"><path d="M22 152L133 24L239 152Z" fill="#e9dcc5" stroke="#a98e69" stroke-width="2"/><path d="M22 152L133 24L239 152" fill="none" stroke="#927751" stroke-width="3"/><rect x="112" y="55" width="23" height="23" rx="3" transform="rotate(41 123 66)" fill="#426681"/><rect x="251" y="50" width="83" height="17" fill="#14727a"/><rect x="251" y="81" width="58" height="17" fill="#436783"/><rect x="251" y="112" width="25" height="17" fill="#b3834b"/></svg>`
- };
  main.innerHTML=`<nav class="route-nav" aria-label="Page navigation"><a href="#showcase">← Publisher overview</a><a href="#home">⌂ Home</a><a href="#books">Books &amp; grades →</a></nav>
  <header class="demo-masthead"><div class="eyebrow">The Learning Atlas · Curated publisher demonstration</div>
  <div class="demo-masthead-top"><div><h1>Three ideas.<br><em>One deliberate method.</em></h1>
@@ -1177,19 +1173,21 @@ function demoTour(){
  <div class="demo-masthead-foot"><span>Observe</span><span>Predict</span><span>Explain</span><span>Practice</span></div></header>
  <div class="demo-gallery"><nav class="demo-picks" aria-label="Choose a demonstration">
  ${stops.map((item,i)=>`<button type="button" class="demo-pick" data-demo-index="${i}" aria-pressed="${i===0}" aria-controls="demo-feature"><span>SAMPLE ${item.number}</span><strong>${item.title}</strong><small>${item.eyebrow}</small></button>`).join("")}
- </nav><section class="demo-feature" id="demo-feature" aria-label="Selected demonstration" aria-live="polite"></section></div>
+ </nav><section class="demo-feature" id="demo-feature" aria-label="Selected demonstration"></section></div>
  <div class="demo-controls"><button type="button" id="demo-back">← Previous</button><span id="demo-position" role="status">Example 1 of 3</span><button type="button" id="demo-next">Next example →</button></div>
  <section class="demo-outro"><div><div class="eyebrow">Continue exploring</div><h2>See the complete learning cycle.</h2><p>Inspect three levels of practice, explore a Calculus sample, or begin from a grade-level textbook reference.</p></div><div class="demo-outro-links"><a href="#guided/energy-conservation">See graduated problems →</a><a href="#lesson/tangent-line?tour=1">Try the Calculus demonstration →</a><a href="#book/physical-science">Browse an illustrative book pathway →</a></div></section>
  <p class="showcase-disclosure">Independent concept prototype; not an official Memoria Press product. Book associations are illustrative and not approved chapter, page, edition or assignment mappings.</p>`;
- let current=0;
+ let current=demoTourIndex;
  const buttons=[...main.querySelectorAll("[data-demo-index]")];
  function render(){
   const p=stops[current];
   main.querySelector("#demo-feature").innerHTML=`<div class="demo-feature-head"><span class="eyebrow">${p.eyebrow}</span><span>${p.number} / 03</span></div>
-  <div class="demo-sketch">${pictures[p.kind]}</div><div class="demo-feature-body"><h2>${p.title}</h2><p class="demo-question">${p.question}</p>
+  <div class="demo-sketch"><div id="demo-lab" class="demo-mini-lab" aria-label="Live ${p.kind} model"></div></div><div class="demo-feature-body"><h2>${p.title}</h2><p class="demo-question">${p.question}</p>
   <div class="demo-task"><strong>Ask the student to try</strong><p>${p.action}</p></div>
-  <div class="demo-notice"><strong>Notice the connection</strong><p>${p.notice}</p></div>
+  <div class="demo-notice" id="demo-connection" hidden><strong>Connect your observation</strong><p>${p.notice}</p></div>
   <a class="btn primary" href="#lesson/${p.id}?tour=1">Open the interactive lesson →</a></div>`;
+  tourMiniLab(main.querySelector("#demo-lab"),p.kind);
+  demoTourIndex=current;
   for(let i=0;i<buttons.length;i++)buttons[i].setAttribute("aria-pressed",String(i===current));
   main.querySelector("#demo-position").textContent="Example "+(current+1)+" of "+stops.length;
   main.querySelector("#demo-back").disabled=current===0;
