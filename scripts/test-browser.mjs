@@ -150,17 +150,17 @@ try{
   assert.ok(!overflowEnd,"Guided practice has horizontal overflow at "+width+"px");
   // Deep full-lesson tests at each real Chromium viewport, in addition to the publisher tour.
   await route(page,"#lesson/graph-slope-physics");
-  assert.match(await page.locator("#evidence-calculation").innerText(),/Average velocity = 9 m ÷ 3 s = 3 m\/s/);
+  assert.match(await page.locator("#evidence-calculation").innerText(),/Average velocity = 4 m ÷ 2 s = 2 m\/s/);
   assert.match(await page.locator("#evidence-description").innerText(),/secant/);
   assert.equal(await page.locator('#visual svg[role="img"]').getAttribute("aria-describedby"),"evidence-description");
-  assert.ok((await page.locator("#v-graph").innerHTML()).includes("Δx"),"Full graph labels the position change");
+  assert.ok((await page.locator("#slope-plot").innerHTML()).includes("Δx"),"Full graph labels the position change");
   assert.ok((await page.locator("#v-graph").innerHTML()).includes("Δt"),"Full graph labels the time change");
   assert.equal(await page.locator("#evidence-connect").isDisabled(),true);
   await page.locator('input[name="evidence-prediction"][value="0"]').check();
   await page.locator("#evidence-record").click();
-  await page.locator("#tend").focus();
+  await page.locator("#slope-t2").focus();
   await page.keyboard.press("ArrowRight");
-  assert.match(await page.locator("#evidence-calculation").innerText(),/3.06 m\/s/);
+  assert.match(await page.locator("#evidence-calculation").innerText(),/2.5 m\/s/);
   assert.match(await page.locator("#tend").getAttribute("aria-valuetext"),/seconds/);
   assert.equal(await page.locator("#evidence-connect").isEnabled(),true);
   await page.locator("#evidence-connect").click();
