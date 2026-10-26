@@ -32,7 +32,7 @@ CI syntax-checks the new tour module, runs unchanged catalog/curriculum/lesson/e
 - An ideal next session should refine keyboard and spoken diagram equivalents on the **full** lesson pages, teach students to identify evidence before viewing the explanation, and conduct an editor-led check of numeric/scientific precision. Avoid bulk expansion until the representative experience passes human testing.
 
 ## Release verification (complete after CI and merge)
-- PR: to be recorded.
-- PR validation run: to be recorded.
+- [PR #19](https://github.com/antmhernandez/Interactive-Academy/pull/19) — live original 3-stop mini-labs, mathematical evidence, CSS and five-width tests.
+- [PR validation run 40258584921](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40258584921) — **successful** before release-note update: syntax, full catalog/curriculum/learning resources and interactive model validators, five-width Chromium (320, 375, 768, 1024, 1440 px), keyboard slope adjustment, friction slip, conservation and tour-return regression. The release-note-only follow-up revision must also pass CI before merge.
 - Merge commit: to be recorded.
 - Final `main` validation and GitHub Pages deployment: to be verified independently.
