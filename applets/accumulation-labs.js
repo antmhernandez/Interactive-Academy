@@ -170,7 +170,7 @@ function riemannRectangleLab(el){
    return `<tr ${q.n===count?'class="tan-selected" aria-current="true"':""}><th scope="row">${count}</th><td>${number(row.left)}</td><td>${number(row.midpoint)}</td><td>${number(row.right)}</td></tr>`;
   }).join("");
   get("rm-refine").disabled=q.n===32;
-  N.setAttribute("aria-valuetext",q.n+" rectangles; "+method+" endpoints"+(method==="midpoint"?" sampling":""));
+  N.setAttribute("aria-valuetext",q.n+" rectangles using "+(method==="midpoint"?"midpoint":"the "+method+" endpoint")+" sampling");
   for(const item of ["left","midpoint","right"])get("rm-"+item).setAttribute("aria-pressed",String(method===item));
  }
  for(const item of ["left","midpoint","right"]){get("rm-"+item).onclick=()=>{method=item;paint();N.dispatchEvent(new Event("input",{bubbles:true}));};}
