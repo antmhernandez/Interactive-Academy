@@ -258,9 +258,9 @@ PR CI, merge SHA, main push CI, Pages publishing workflow must all be independen
 - [PR #14](https://github.com/antmhernandez/Interactive-Academy/pull/14) successfully squash merged. Record final `main` CI and Pages workflow status after the last documentation push separately.
 - The new Chapter 7 physics applets are original, simplified Newtonian models; physical phone, projector, Safari, screen-reader and educational efficacy testing have not been performed.
 
-## October 25 continuation — Chapter 8 Rotational Motion optional extension
+## October 25 continuation — Chapter 8 Rotational Motion optional extension (merged PR #15)
 
-**Working branch:** `feature/chapter-08-rotation-optional-extension-2026-10-25`. Continue from successful merged PR #14, source-of-truth `main`. User asked to continue implementation; prior recommendation was interactive torque, moment of inertia and angular acceleration.
+**Merged:** [PR #15](https://github.com/antmhernandez/Interactive-Academy/pull/15) into `main`, squash SHA `86777a7f991838a0ae0dc992b4015e36f71d0954`. The authoritative branch is `main`. User asked to continue implementation; prior recommendation was interactive torque, moment of inertia and angular acceleration.
 
 ### Important syllabus discovery
 The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-extension` and the course schedule in `sourceAlignment.physicsCourse` explicitly lists Chapters 1–7 then 9, *not* Chapter 8. **Do not silently promote Chapter 8 to core.** The new `phy-rotation` registry unit has `syllabus.scope:"enrichment"`, and all three finished Chapter 8 lessons are `optionalPreview:true,next:null`. The primary Physics Next chain still ends at `weightlessness` (Chapter 7); Chapters 10–11 energy and Chapter 28 atomic content remain optional too. Chapter 8's own in-lesson links form a separately labeled three-topic study sequence.
@@ -275,6 +275,11 @@ The authoritative `curriculum/catalog.json` marks Chapter 8 `scope:optional-exte
 - Detailed mathematical/source/teacher audit: [`docs/21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md`](21_ROTATIONAL_MOTION_CHAPTER_08_2026-10-25.md).
 
 ### Acceptance and continuing priorities
-- Run PR CI before merging; record workflow, merge SHA, main validation and Pages deployment when verified.
+- **PR validation passed:** [GitHub Actions run #65](https://github.com/antmhernandez/Interactive-Academy/actions/runs/40247400161), covering 36 lesson records, 108 graduated exercises, 151 registered concepts, 84 physics equations, torque/inertia/kinematics regressions, chapter enrichment safeguards, publisher context and five Chromium viewports. PR #15 squash-merged successfully. Verify the latest main-branch CI and Pages workflows after final documentation commits.
 - Human keyboard/VoiceOver/NVDA, mobile Safari, actual physical projector and student conceptual-comprehension checks remain outstanding.
 - The next **required** book unit is Chapter 9 Momentum, given the authoritative course schedule; Chapter 8 is an optional illustration for interested users. Prioritize polishing/proven comprehension over content quantity if it improves the publisher demo.
+
+### Chapter 8 release: verified details
+- Headless Chromium test passed on the feature PR at 320, 375, 768, 1024 and 1440px, covering 17 experiment cards, independent Chapter 8 optional-study links, torque sign changes, disk/hoop inertia comparison, spin time stepping/play/pause and the existing site navigation.
+- Mathematical regression verified `τ=rFsinφ` across directions, `I_disk=½mR²` and `I_hoop=mR²`, `Iα=τ`, `ω=αt`, `θ=½αt²` and `τθ=½Iω²` across a broad range of masses, radii, torque and elapsed time.
+- Completed `main` merger is [PR #15](https://github.com/antmhernandez/Interactive-Academy/pull/15), squash commit `86777a7f991838a0ae0dc992b4015e36f71d0954`. Physical iOS/Safari, assistive-technology and projector testing are still outstanding.
