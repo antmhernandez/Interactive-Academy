@@ -5,7 +5,7 @@
 
 A mobile-friendly, concept-first resource bringing together short explanations, interactive mathematical and physical diagrams, step-by-step worked examples, guided practice and printable student notes and laboratories.
 
-## Publisher demonstration iteration — live evidence in three original mini-labs (October 25, 2026)
+## Publisher demonstration iteration — live evidence in three original mini-labs (October 25, 2026 · [PR #19](https://github.com/antmhernandez/Interactive-Academy/pull/19))
 
 The [three-stop guided tour](https://antmhernandez.github.io/Interactive-Academy/#tour) now includes **live controls**, numerical evidence and explanatory connections for its existing graph-slope, friction and energy samples. Instead of seeing only a specimen illustration, the visitor answers a question, moves a control and sees the corresponding quantitative result; the conclusion is revealed after interaction. A link opens the full original lesson with cumulative worked steps, independent student work and three graduated practice questions. On returning to the tour, the last-selected stop is retained for the current page session.
 
