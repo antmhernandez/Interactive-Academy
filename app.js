@@ -613,6 +613,13 @@ function slopeToolkit(el){
  function draw(){const t1=+A.value,t2=+B.value,x1=1+t1*t1,x2=1+t2*t2;
   const curve=Array.from({length:41},(_,i)=>{const t=i/10;return `${i?"L":"M"}${X(t)} ${Y(1+t*t)}`}).join(" ");
   G.innerHTML=`<path d="M77 30V280H510" stroke="#93b5a8" stroke-width="1.5" fill="none"/><path d="${curve}" fill="none" stroke="#14727a" stroke-width="4"/><path d="M${X(t1)} ${Y(x1)}L${X(t2)} ${Y(x2)}" stroke="#c08039" stroke-width="4"/><circle cx="${X(t1)}" cy="${Y(x1)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><circle cx="${X(t2)}" cy="${Y(x2)}" r="7" fill="#c08039" stroke="#fff" stroke-width="2"/><path d="M${X(t1)} ${Y(x1)}V280M${X(t2)} ${Y(x2)}V280" stroke="#b7d3c7" stroke-dasharray="4 4"/><text x="25" y="29" font-size="13" fill="#4c7368">x (m)</text><text x="465" y="307" font-size="13" fill="#4c7368">t (s)</text><text x="${X(t1)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t1)}</text><text x="${X(t2)}" y="298" font-size="12" text-anchor="middle" fill="#76664f">${f(t2)}</text>`;
+  // Annotate actual coordinate intervals; unlike a decorative secant, these give its rise and run.
+  const gridX=[0,1,2,3,4].map(t=>'<path d="M'+X(t)+' 280v5" stroke="#607770"/><text x="'+X(t)+'" y="319" font-size="13" fill="#344e54" text-anchor="middle">'+t+'</text>').join("");
+  const gridY=[5,10,15].map(h=>'<path d="M77 '+Y(h)+'H505" stroke="#dce8e2" stroke-width="1"/><text x="66" y="'+(Y(h)+4)+'" font-size="13" fill="#344e54" text-anchor="end">'+h+'</text>').join("");
+  G.insertAdjacentHTML("afterbegin",gridY+gridX);
+  G.insertAdjacentHTML("beforeend",'<path d="M'+X(t1)+' '+Y(x1)+'H'+X(t2)+'V'+Y(x2)+'" stroke="#753d57" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>'+
+   '<text x="'+((X(t1)+X(t2))/2)+'" y="'+Math.min(276,Y(x1)+21)+'" font-size="14" font-weight="700" fill="#703c52" text-anchor="middle">Δt</text>'+
+   '<text x="'+(X(t2)+8)+'" y="'+((Y(x1)+Y(x2))/2)+'" font-size="14" font-weight="700" fill="#703c52">Δx</text>');
   el.querySelector("#slope-t1-label").textContent=f(t1)+" s";el.querySelector("#slope-t2-label").textContent=f(t2)+" s";
   el.querySelector("#slope-rise").textContent=f(x2-x1)+" m";el.querySelector("#slope-run").textContent=f(t2-t1)+" s";el.querySelector("#slope-value").textContent=f((x2-x1)/(t2-t1))+" m/s";
  }A.oninput=B.oninput=draw;draw();
