@@ -101,7 +101,7 @@ function simpleMachineLab(el){
   get("ma-graph").innerHTML=`<text x="20" y="32" fill="currentColor" font-size="16">Input work</text>
   <rect x="166" y="10" width="385" height="29" rx="4" fill="#dfe9e4"/>
   <rect x="166" y="10" width="385" height="29" rx="4" fill="#365b7a"/>
-  <text x="559" y="31" fill="currentColor" font-size="14" text-anchor="end">${f(q.inputWork)} J</text>
+  <text x="559" y="31" fill="#f8f4ea" font-size="14" text-anchor="end">${f(q.inputWork)} J</text>
   <text x="20" y="98" fill="currentColor" font-size="16">Useful work</text>
   <rect x="166" y="76" width="385" height="29" rx="4" fill="#dfe9e4"/>
   <rect x="166" y="76" width="${f(q.outputWork*scaled)}" height="29" rx="4" fill="#14727a"/>
