@@ -300,6 +300,7 @@ function lesson(l){
  if(l.visual==="momentum-collision")momentumCollision(el);
  if(l.visual==="work-angle")workAngleLab(el);
  if(l.visual==="simple-machine")simpleMachineLab(el);
+ enhanceFeaturedLesson(el,l.id);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
