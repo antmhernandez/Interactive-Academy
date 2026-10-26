@@ -480,8 +480,8 @@
           "topics": [
             {
               "id": "impulse",
-              "title": "Impulse and Momentum",
-              "status": "planned",
+              "title": "A Force Acting over Time",
+              "status": "available",
               "owns": "phys.momentum.impulse",
               "goal": "Connect impulse to change in momentum.",
               "prerequisites": [
@@ -490,8 +490,8 @@
             },
             {
               "id": "momentum-conservation",
-              "title": "Conservation of Momentum",
-              "status": "planned",
+              "title": "When Two Carts Interact",
+              "status": "available",
               "owns": "phys.momentum.conservation",
               "goal": "Analyze momentum transfer in an isolated system.",
               "prerequisites": [
@@ -511,8 +511,8 @@
             },
             {
               "id": "momentum-vectors",
-              "title": "Momentum as a Vector",
-              "status": "planned",
+              "title": "Momentum Has a Direction",
+              "status": "available",
               "owns": "phys.momentum.vector",
               "goal": "Track signed momentum through one-dimensional interactions.",
               "prerequisites": [
