@@ -1092,6 +1092,132 @@
     ]
   },
   {
+    "owner": "impulse",
+    "title": "A Force Acting over Time",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A constant net force of 8 N acts to the right for 3 seconds. What positive impulse does it deliver in N·s?",
+        "answer": 24,
+        "tolerance": 0.02,
+        "unit": "N·s",
+        "steps": [
+          "Impulse for a constant net force is J=FΔt.",
+          "The force is +8 N and the duration is 3 seconds.",
+          "J=(+8)(3)=+24 N·s, equivalent to +24 kg·m/s."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A net force of −6 N acts on a cart for 2 seconds. What signed impulse does it deliver in N·s (right positive)?",
+        "answer": -12,
+        "tolerance": 0.02,
+        "unit": "N·s",
+        "steps": [
+          "A leftward force is negative under the chosen convention.",
+          "Multiply the signed force by the positive duration.",
+          "J=(−6 N)(2 s)=−12 N·s, a leftward momentum change."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 2 kg cart starts at +3 m/s. A constant −10 N net force acts for 1 s. What is the final signed velocity in m/s?",
+        "answer": -2,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Initial momentum is pi=(2)(+3)=+6 kg·m/s.",
+          "Impulse is J=FΔt=(−10)(1)=−10 kg·m/s. Final momentum=6−10=−4 kg·m/s.",
+          "Final velocity=−4/2=−2 m/s, so the cart has reversed direction."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "momentum-conservation",
+    "title": "When Two Carts Interact",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 2 kg cart at +4 m/s and a 3 kg cart at −2 m/s collide and stick. What signed common final velocity results in m/s (right positive)?",
+        "answer": 0.4,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Initial signed momentum: (2)(+4)+(3)(−2)=8−6=+2 kg·m/s.",
+          "The carts stick, so their combined mass is 5 kg.",
+          "vf=(+2)/5=+0.4 m/s, rightward."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 3 kg cart at +5 m/s strikes and sticks to a stationary 2 kg cart. What signed final velocity do they share in m/s?",
+        "answer": 3,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Take rightward positive. Initial momentum=(3)(5)+(2)(0)=15 kg·m/s.",
+          "The carts stick, so the total moving mass is 5 kg.",
+          "vf=15/5=+3 m/s."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 4 kg cart moves right at +3 m/s. A 2 kg cart moves left at −5 m/s. They collide and stick. What signed shared velocity do they have, in m/s?",
+        "answer": 0.3333333333333333,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Calculate signed initial momentum: 4×3+2×(−5)=12−10=+2 kg·m/s.",
+          "The final combined mass is 4+2=6 kg.",
+          "Shared velocity=2/6≈+0.333 m/s to the right."
+        ]
+      }
+    ]
+  },
+  {
+    "owner": "momentum-vectors",
+    "title": "Momentum Has a Direction",
+    "levels": [
+      {
+        "level": "Begin",
+        "prompt": "A 4 kg cart moves right at +3 m/s and a 2 kg cart moves left at −5 m/s. What is their signed combined momentum in kg·m/s?",
+        "answer": 2,
+        "tolerance": 0.02,
+        "unit": "kg·m/s",
+        "steps": [
+          "Cart A's momentum is 4×(+3)=+12 kg·m/s.",
+          "Cart B's momentum is 2×(−5)=−10 kg·m/s.",
+          "Total=+12−10=+2 kg·m/s rightward."
+        ]
+      },
+      {
+        "level": "Extend",
+        "prompt": "A 3 kg cart moves left at −4 m/s while a 5 kg cart moves right at +2 m/s. What is their signed combined momentum in kg·m/s?",
+        "answer": -2,
+        "tolerance": 0.02,
+        "unit": "kg·m/s",
+        "steps": [
+          "Cart A contributes 3×(−4)=−12 kg·m/s.",
+          "Cart B contributes 5×(+2)=+10 kg·m/s.",
+          "Sum −12+10=−2 kg·m/s (leftward)."
+        ]
+      },
+      {
+        "level": "Challenge",
+        "prompt": "A 2 kg cart moves right at +6 m/s. A 4 kg cart moving left has exactly enough momentum to make the two-cart total zero. What is the second cart's signed velocity in m/s?",
+        "answer": -3,
+        "tolerance": 0.02,
+        "unit": "m/s",
+        "steps": [
+          "Zero total requires 2×(+6)+4×v₂=0.",
+          "Thus 4v₂=−12 kg·m/s.",
+          "v₂=−3 m/s, leftward."
+        ]
+      }
+    ]
+  },
+  {
     "owner": "work-energy",
     "title": "Work Transfers Energy",
     "levels": [
