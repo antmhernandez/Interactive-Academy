@@ -61,12 +61,12 @@ function enhanceFeaturedLesson(el,kind){
  panel.innerHTML='<div class="evidence-eyebrow">READ THE EVIDENCE · FULL LESSON</div>'+
   '<h3 id="evidence-heading">From the diagram to the equation</h3>'+
   '<p class="evidence-lead">Read the quantities aloud, including units. The illustration is not a substitute for the calculations.</p>'+
-  '<div class="evidence-numbers"><strong>Current diagram, described in words</strong><p id="evidence-description"></p>'+
-  '<strong>Show the calculation</strong><p id="evidence-calculation"></p></div>'+
   '<fieldset class="evidence-predict"><legend>First predict: '+choice.question+'</legend>'+
    '<div class="evidence-choices">'+options+'</div>'+
    '<button type="button" id="evidence-record">Record my prediction</button>'+
    '<p id="evidence-prediction-status" role="status" aria-live="polite"></p></fieldset>'+
+  '<div class="evidence-numbers"><strong>Current diagram, described in words</strong><p id="evidence-description"></p>'+
+  '<strong>Show the calculation</strong><p id="evidence-calculation"></p></div>'+
   '<div class="evidence-connect"><button type="button" class="primary" id="evidence-connect" disabled>Connect my prediction to the evidence</button>'+
    '<p id="evidence-conclusion" hidden></p></div>'+
   '<p class="evidence-help">Use Tab to focus each control; arrow keys adjust sliders. Values and spoken diagram descriptions update without a continuous live announcement. After changing a quantity, return here to inspect the equation.</p>';
@@ -79,7 +79,7 @@ function enhanceFeaturedLesson(el,kind){
   "energy-conservation":{mass:"en-mass",height:"en-height",start:"en-start",mu:"en-mu",progress:"en-progress"}
  }[kind];
  const element=id=>el.querySelector("#"+id);
- let selected=null,changed=false;
+ let selected=null,changed=false,changedAfterPrediction=false;
  function refresh(){
   const values={};
   for(const [key,id] of Object.entries(controls))values[key]=element(id).value;
@@ -90,15 +90,16 @@ function enhanceFeaturedLesson(el,kind){
    const units=kind==="graph-slope-physics"?"seconds":kind==="friction"?(key==="pull"?"newtons":key==="mass"?"kilograms":"coefficient"):(key==="mass"?"kilograms":key==="height"?"metres":key==="start"?"metres per second":key==="progress"?"percent":"coefficient");
    element(id).setAttribute("aria-valuetext",values[key]+" "+units);
   }
-  element("evidence-connect").disabled=selected===null||!changed;
+  element("evidence-connect").disabled=selected===null||!changedAfterPrediction;
  }
  element("evidence-record").onclick=()=>{
   const checked=panel.querySelector('input[name="evidence-prediction"]:checked');
   if(!checked){element("evidence-prediction-status").textContent="Select one prediction first.";return;}
   selected=Number(checked.value);
+  changedAfterPrediction=false;
   panel.querySelector(".evidence-predict").disabled=true;
   element("evidence-record").textContent="Prediction recorded";
-  element("evidence-prediction-status").textContent=changed?"Prediction recorded after exploration.":"Prediction recorded. Now manipulate the model, then connect your reasoning.";
+  element("evidence-prediction-status").textContent=changed?"Prediction recorded after exploration. Change a control again to test it.":"Prediction recorded. Now manipulate the model, then connect your reasoning.";
   refresh();
  };
  element("evidence-connect").onclick=()=>{
@@ -106,7 +107,7 @@ function enhanceFeaturedLesson(el,kind){
   element("evidence-conclusion").textContent=verdict+choice.reason+" "+featuredEvidence(kind,Object.fromEntries(Object.entries(controls).map(([key,id])=>[key,element(id).value]))).interpretation;
   element("evidence-conclusion").hidden=false;
  };
- el.addEventListener("input",e=>{if(e.target.matches('input[type="range"]')){changed=true;refresh();}});
- el.addEventListener("click",e=>{if(e.target.closest(".applet-actions button")){changed=true;refresh();}});
+ el.addEventListener("input",e=>{if(e.target.matches('input[type="range"]')){changed=true;if(selected!==null)changedAfterPrediction=true;element("evidence-conclusion").hidden=true;refresh();}});
+ el.addEventListener("click",e=>{if(e.target.closest(".applet-actions button")){changed=true;if(selected!==null)changedAfterPrediction=true;element("evidence-conclusion").hidden=true;refresh();}});
  refresh();
 }
