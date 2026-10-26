@@ -1448,6 +1448,61 @@
     "subject": "physics",
     "unitId": "phy-momentum",
     "unit": "Momentum and Its Conservation",
+    "id": "collisions",
+    "title": "When Momentum Meets Energy",
+    "subtitle": "Why sticking and bouncing collisions conserve the same momentum but not the same kinetic energy.",
+    "duration": "12 min",
+    "optionalPreview": true,
+    "next": null,
+    "visual": "momentum-collision",
+    "observe": "When two carts stick, can momentum stay the same even though kinetic energy decreases?",
+    "idea": "During an ideal isolated collision, the pair's signed total momentum is conserved. But kinetic energy depends on velocity squared. Perfectly inelastic sticking loses some translational kinetic energy to deformation, sound and heating, while an ideal perfectly elastic collision also conserves translational kinetic energy. Neither event destroys total energy. The sticking final velocity follows from momentum alone; the elastic 1D final speeds require both conserved momentum and kinetic energy.",
+    "visualLead": "Predict how two approaching carts separate or stick, then reveal momentum and kinetic energy totals.",
+    "focus": "Compare the total signed momentum in both models, then inspect what happens to translational kinetic energy.",
+    "definition": "An isolated collision conserves total linear momentum. Perfectly elastic collisions also conserve translational kinetic energy; perfectly inelastic sticking collisions generally convert some of it into other forms.",
+    "example": {
+      "question": "A 2 kg cart moves right at 4 m/s; a 3 kg cart moves left at 2 m/s. They stick. Find their shared velocity and translational kinetic-energy change.",
+      "steps": [
+        "The initial signed total momentum is (2)(+4)+(3)(−2)=+2 kg·m/s. A stuck pair has mass 5 kg, so v_f=2/5=+0.4 m/s.",
+        "Initial kinetic energy is ½(2)(4²)+½(3)(2²)=16+6=22 J. Final translational K is ½(5)(0.4²)=0.4 J.",
+        "K decreases by 21.6 J, transferred into deformation, sound, heating, and other stores. Total signed momentum is still +2 kg·m/s."
+      ]
+    },
+    "practice": {
+      "prompt": "A 2 kg cart at +4 m/s sticks to a 3 kg cart at −2 m/s. How many joules of initial translational kinetic energy are transferred to other forms?",
+      "answer": 21.6,
+      "tolerance": 0.02,
+      "unit": "J",
+      "hints": [
+        "Find shared v from signed momentum conservation: (2×4+3×−2)/5=0.4 m/s.",
+        "Initial K=22 J; final K=½×5×(0.4)²=0.4 J; subtract."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "Two carts collide and stick on an isolated track. Which statement about momentum and energy is correct?",
+      "choices": [
+        "The carts lose total momentum in exactly the same proportion as their kinetic energy.",
+        "Their combined momentum remains constant, while some translational kinetic energy becomes other forms.",
+        "Both momentum and total energy vanish because the carts deform."
+      ],
+      "correct": 1,
+      "feedback": [
+        "Signed momentum is conserved for the isolated system even when translational kinetic energy decreases.",
+        "Correct. Momentum conservation and conservation of total energy are simultaneous; mechanical kinetic energy can change.",
+        "Deformation and heating store energy; neither total energy nor total momentum is destroyed."
+      ],
+      "explanation": "The system has negligible external impulse, so momentum is constant. In a sticking collision, translational kinetic energy often becomes internal or thermal energy."
+    },
+    "investigation": {
+      "prediction": "Does changing the collision setting from 'stick' to 'elastic' change the conserved signed total momentum or the energy transferred into other forms?",
+      "experiment": "Use carts of 2 kg at +4 m/s and 3 kg at −2 m/s; reveal sticking results. Switch to elastic and reveal again, checking momentum and kinetic-energy readouts.",
+      "connection": "Both ideal interactions keep m₁u₁+m₂u₂ unchanged. Only perfectly elastic collisions keep translational kinetic energy unchanged; sticking redistributes it."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-momentum",
+    "unit": "Momentum and Its Conservation",
     "id": "momentum-vectors",
     "title": "Momentum Has a Direction",
     "subtitle": "A negative velocity means negative momentum, not less momentum.",
@@ -1491,7 +1546,7 @@
       ],
       "explanation": "Signed one-dimensional momentum adds algebraically: +6+(−6)=0 even while both carts have nonzero speed."
     },
-    "next": null,
+    "next": "work-energy",
     "investigation": {
       "prediction": "Could the carts collide, move in opposite directions, and yet have zero net momentum throughout the event?",
       "experiment": "Set cart A to 2 kg at +3 m/s and cart B to 3 kg at −2 m/s. Compare the signed before totals; reveal a sticking collision and an elastic collision.",
@@ -1503,8 +1558,7 @@
     "unitId": "phy-energy",
     "unit": "Work, Energy, and Machines",
     "visual": "energy-ramp",
-    "optionalPreview": true,
-    "next": null,
+    "next": "work-angle",
     "id": "work-energy",
     "title": "Work Transfers Energy",
     "subtitle": "Force acting through displacement changes a system's energy.",
@@ -1557,9 +1611,62 @@
     "subject": "physics",
     "unitId": "phy-energy",
     "unit": "Work, Energy, and Machines",
+    "duration": "10 min",
+    "next": "kinetic-energy",
+    "id": "work-angle",
+    "title": "Which Part of a Force Does Work?",
+    "subtitle": "Only force along displacement transfers energy as work.",
+    "observe": "Does pushing harder always mean doing more mechanical work?",
+    "visual": "work-angle",
+    "idea": "The work done by a constant force is the force component parallel to displacement times the signed displacement: W=Fd cosφ. A force pointed along the motion does positive work, an upward force perpendicular to horizontal motion does zero work, and a force backward along the motion does negative work. Work is measured in joules; the perpendicular force component does not contribute to this displacement's work.",
+    "visualLead": "Tilt a constant force above or behind the motion and measure signed work.",
+    "focus": "At 90° a force can be substantial while doing zero work through horizontal displacement.",
+    "definition": "For constant force F and displacement d at angle φ, work by that force is W=Fd cosφ. Work is positive with the motion, negative against it, and zero when perpendicular.",
+    "example": {
+      "question": "A 40 N force acts 60° above the direction of a crate's 3 m horizontal displacement. Find the work done by this applied force.",
+      "steps": [
+        "Identify φ=60° between the force and horizontal displacement.",
+        "Only the parallel component acts through the displacement: F∥=Fcos60°=20 N.",
+        "W=F∥d=(20 N)(3 m)=+60 J. The upward part does no work for a purely horizontal displacement."
+      ]
+    },
+    "practice": {
+      "prompt": "A 20 N force acts 60° above a 4 m horizontal displacement. How many joules of work does it do?",
+      "answer": 40,
+      "tolerance": 0.02,
+      "unit": "J",
+      "hints": [
+        "Use W=Fd cosφ with φ measured between force and displacement.",
+        "cos60°=0.5, so calculate 20×4×0.5."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "An object moves horizontally while a constant force on it points straight upward. How much work does that upward force do through the horizontal displacement?",
+      "choices": [
+        "Positive work because the force is nonzero.",
+        "Zero work because the force is perpendicular to displacement.",
+        "Negative work because the force fights the horizontal motion."
+      ],
+      "correct": 1,
+      "feedback": [
+        "A nonzero force does not necessarily transfer work; the parallel part matters.",
+        "Correct. cos90°=0 so work by that force is zero.",
+        "A vertical force is neither forward nor backward along the horizontal displacement."
+      ],
+      "explanation": "Work depends on the displacement-parallel force component: W=Fdcos90°=0."
+    },
+    "investigation": {
+      "prediction": "What happens to the work when a 20 N force turns from 0° to 90°, and then to 180°?",
+      "experiment": "Hold F=20 N and d=4 m. Change the angle from 0° to 90° to 180° and compare the signed area of work shown in the readouts.",
+      "connection": "W=Fdcosφ changes from positive to zero to negative. Force perpendicular to displacement contributes no work."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
     "visual": "energy-ramp",
-    "optionalPreview": true,
-    "next": null,
+    "next": "power-efficiency",
     "id": "kinetic-energy",
     "title": "Energy of Motion",
     "subtitle": "Speed matters quadratically, not linearly.",
@@ -1612,9 +1719,116 @@
     "subject": "physics",
     "unitId": "phy-energy",
     "unit": "Work, Energy, and Machines",
+    "duration": "10 min",
+    "next": "mechanical-advantage",
+    "id": "power-efficiency",
+    "title": "How Quickly Is Work Done?",
+    "subtitle": "Power compares energy transfer with time; efficiency tracks useful output.",
+    "observe": "Can two machines do the same work but deliver different power?",
+    "visual": "simple-machine",
+    "idea": "Average power is transferred work or energy per time: P=W/Δt, in watts (J/s). A machine has useful output energy and input energy. Its efficiency is η=W_useful/W_input, or the corresponding ratio of powers when measured over the same interval. A shorter interval increases power for the same work; output work never exceeds input work in this idealized passive model.",
+    "visualLead": "Change how long a machine operates, then adjust efficiency while holding input work fixed.",
+    "focus": "For fixed input work, time changes power but not work; efficiency changes the useful output fraction.",
+    "definition": "Average power is P=W/Δt, with 1 watt = 1 J/s. Efficiency is η=W_useful/W_input ×100%; a passive machine's useful output cannot exceed its total input energy.",
+    "example": {
+      "question": "A machine takes 200 J of input work in 4 s and transfers 150 J as useful output. Find input power and efficiency.",
+      "steps": [
+        "Average input power is P=W_in/Δt=(200 J)/(4 s)=50 W.",
+        "Compute the fraction delivered usefully: η=W_out/W_in=150/200=0.75.",
+        "The machine is 75% efficient; useful output power is 150/4=37.5 W."
+      ]
+    },
+    "practice": {
+      "prompt": "A machine performs 180 J of input work in 6 s. What is its average input power in watts?",
+      "answer": 30,
+      "tolerance": 0.02,
+      "unit": "W",
+      "hints": [
+        "Power describes work per unit time, not just total energy.",
+        "Calculate P=W/Δt=(180 J)/(6 s)."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "A machine performs the same amount of work in half as much time. What happens to its average power?",
+      "choices": [
+        "Its average power doubles.",
+        "Its average power is halved.",
+        "Its average power stays equal because the work is equal."
+      ],
+      "correct": 0,
+      "feedback": [
+        "Correct. P=W/t, so reducing the time by half doubles the rate.",
+        "Less time for equal work means greater, not smaller, power.",
+        "Power depends on how quickly work is done, not just the total work."
+      ],
+      "explanation": "For the same transferred work, average power varies inversely with elapsed time."
+    },
+    "investigation": {
+      "prediction": "If a machine performs the same input work in half the time, do both its work and power double?",
+      "experiment": "Keep input force and distance fixed, change operating time from 4 s to 2 s, and compare input work and power. Then change efficiency alone.",
+      "connection": "W_in=F_in d_in stays constant, P_in=W_in/t doubles when t halves, and W_out=ηW_in sets useful work."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
+    "duration": "10 min",
+    "next": "potential-energy",
+    "id": "mechanical-advantage",
+    "title": "Why Simple Machines Help",
+    "subtitle": "A machine trades distance for force, not energy from nothing.",
+    "observe": "How can a machine produce more output force than the force supplied by your hand?",
+    "visual": "simple-machine",
+    "idea": "A simple machine transfers input work into useful output work. If the output moves a shorter distance than the input, the output force can be larger: W_in=F_in d_in and W_out=F_out d_out. In an ideal frictionless machine W_out=W_in, so F_out/F_in=d_in/d_out. For a real machine, efficiency lowers the useful output and F_out=ηF_in d_in/d_out. Mechanical advantage is the force ratio F_out/F_in, not a multiplication of energy.",
+    "visualLead": "Shorten the output travel while keeping input work fixed. Measure the force trade-off.",
+    "focus": "A machine can multiply force by moving its load a shorter distance; the useful output work never exceeds input work.",
+    "definition": "Actual mechanical advantage is MA=F_out/F_in. Ideal force–distance trade-off satisfies F_in d_in=F_out d_out. With efficiency η, F_out d_out=η F_in d_in.",
+    "example": {
+      "question": "An ideal machine receives 50 N of input force through 2 m and raises a load through 0.5 m. Find the output force.",
+      "steps": [
+        "Calculate input work: W_in=(50 N)(2 m)=100 J.",
+        "Ideal efficiency is 100%, so useful output work W_out=100 J.",
+        "F_out=W_out/d_out=(100 J)/(0.5 m)=200 N. Mechanical advantage is 200/50=4."
+      ]
+    },
+    "practice": {
+      "prompt": "An ideal machine receives a 30 N force acting through 4 m and moves a load through 1 m. What output force in newtons can it provide?",
+      "answer": 120,
+      "tolerance": 0.02,
+      "unit": "N",
+      "hints": [
+        "For an ideal machine the work in equals the useful work out.",
+        "Set F_in d_in=F_out d_out; solve (30×4)/1."
+      ]
+    },
+    "checkpoint": {
+      "prompt": "An ideal machine multiplies the applied force by four. What must happen to the output displacement relative to input displacement?",
+      "choices": [
+        "It becomes four times as long, so the machine creates energy.",
+        "It becomes one quarter as long for the same amount of input work.",
+        "It remains unchanged because forces and distances are independent."
+      ],
+      "correct": 1,
+      "feedback": [
+        "A passive ideal machine conserves work; it cannot quadruple force and distance.",
+        "Correct. Force times distance remains equal, so greater force needs smaller distance.",
+        "Work links the force and displacement; mechanical advantage involves a trade-off."
+      ],
+      "explanation": "For an ideal machine F_out/F_in=d_in/d_out. Force advantage is balanced by reduced output distance."
+    },
+    "investigation": {
+      "prediction": "If output travel is halved while input force and input distance stay the same, what happens to output force at fixed efficiency?",
+      "experiment": "Keep input force=50 N and input travel=2 m. Compare output travel 1 m and 0.5 m with 100% efficiency. Then lower efficiency to 75%.",
+      "connection": "W_out=ηF_in d_in=F_out d_out. The same useful work over half the distance requires twice the force."
+    }
+  },
+  {
+    "subject": "physics",
+    "unitId": "phy-energy",
+    "unit": "Work, Energy, and Machines",
     "visual": "energy-ramp",
-    "optionalPreview": true,
-    "next": null,
+    "next": "energy-conservation",
     "id": "potential-energy",
     "title": "Energy Stored by Height",
     "subtitle": "Gravity gives an elevated body the capacity to gain speed.",
@@ -1668,7 +1882,6 @@
     "unitId": "phy-energy",
     "unit": "Work, Energy, and Machines",
     "visual": "energy-ramp",
-    "optionalPreview": true,
     "next": null,
     "id": "energy-conservation",
     "title": "Where Does the Energy Go?",

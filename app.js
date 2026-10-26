@@ -58,7 +58,9 @@ const visualKeys={
  "torque-lever":[["amber","Applied force"],["teal","Perpendicular component"],["navy","Lever arm"]],
  "rotation-dynamics":[["amber","Wheel marker"],["navy","Disk or hoop"]],
  "momentum-impulse":[["teal","Positive impulse area"],["amber","Negative impulse area"]],
- "momentum-collision":[["navy","Cart A"],["amber","Cart B"],["teal","Combined system"]]
+ "momentum-collision":[["navy","Cart A"],["amber","Cart B"],["teal","Combined system"]],
+ "work-angle":[["amber","Applied force"],["teal","Displacement and parallel force"]],
+ "simple-machine":[["navy","Work input"],["teal","Useful output"],["amber","Other energy stores"]]
 };
 function visualLegend(name){
  const keys=visualKeys[name]||[];
@@ -163,12 +165,14 @@ function lesson(l){
  main.innerHTML=`
  <nav class="route-nav" aria-label="Lesson navigation"><a href="${start}">${ctx.book?"← Back to book":"← Back"}</a><a href="#home">⌂ Home</a><a href="${end}">${ctx.book?(next?"Next example →":"Book overview →"):"Next →"}</a></nav>
  ${contextTrail(ctx)}
- <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">Optional later-chapter exploration · This does not advance the regular chapter sequence.</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
- ${["work-energy","kinetic-energy","potential-energy","energy-conservation"].includes(l.id)?`
- <nav class="energy-study-path" aria-label="Optional energy study sequence">
-  <span class="eyebrow">Chapters 10–11 exploration · A guided sequence</span>
-  ${["work-energy","kinetic-energy","potential-energy","energy-conservation"].map((id,i)=>`<a href="#lesson/${id}" ${l.id===id?'aria-current="page"':""}>${i+1}. ${escapeHtml(get(id).title)}</a>`).join("")}
+ <header class="focus-head"><div class="eyebrow">${subject(l.subject)} <span aria-hidden="true">·</span> ${escapeHtml(l.unit)} <span aria-hidden="true">·</span> ${String(idx).padStart(2,"0")} / ${String(group.length).padStart(2,"0")}</div>${l.optionalPreview?`<p class="preview-context" role="note">${l.id==="collisions"?"Optional integrated review · Return to Chapter 9 after completing energy conservation; this does not advance the required lesson chain.":"Optional later-chapter exploration · This does not advance the regular chapter sequence."}</p>`:""}<h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle)}</p><div class="focus-question"><span>Essential question</span><strong>${escapeHtml(l.observe)}</strong></div></header>
+ ${["work-energy","work-angle","kinetic-energy","power-efficiency","mechanical-advantage","potential-energy","energy-conservation"].includes(l.id)?`
+ <nav class="energy-study-path" aria-label="Required Chapters 10–11 energy lesson sequence">
+  <span class="eyebrow">Chapters 10–11 · Required energy study path</span>
+  ${["work-energy","work-angle","kinetic-energy","power-efficiency","mechanical-advantage","potential-energy","energy-conservation"].map((id,i)=>`<a href="#lesson/${id}" ${l.id===id?'aria-current="page"':""}>${i+1}. ${escapeHtml(get(id).title)}</a>`).join("")}
  </nav>`:""}
+ ${l.id==="energy-conservation"?`<p class="preview-context" role="note">After mastering both momentum and energy, consider the optional <a href="#lesson/collisions">Chapter 9 collisions comparison</a>: the same momentum can accompany different kinetic-energy outcomes.</p>`:""}
+ ${l.id==="collisions"?`<nav class="energy-study-path" aria-label="Integrated collision review links"><span class="eyebrow">Integrate the two conservation laws</span><a href="#lesson/momentum-conservation">Review Chapter 9 · Momentum</a><a href="#lesson/energy-conservation">Review Chapter 11 · Energy</a></nav>`:""}
  ${["torque-levers","rotational-inertia","rotational-dynamics"].includes(l.id)?`
  <nav class="energy-study-path" aria-label="Optional Chapter 8 rotation study sequence">
   <span class="eyebrow">Chapter 8 optional extension · A guided three-lesson sequence</span>
@@ -292,6 +296,8 @@ function lesson(l){
  if(l.visual==="rotation-dynamics")rotationalSpin(el);
  if(l.visual==="momentum-impulse")impulsePulse(el);
  if(l.visual==="momentum-collision")momentumCollision(el);
+ if(l.visual==="work-angle")workAngleLab(el);
+ if(l.visual==="simple-machine")simpleMachineLab(el);
 }
 function renderConceptCheck(lesson) {
  const c=lesson.checkpoint;
@@ -879,7 +885,7 @@ function microLesson(m){
 function lessonChapter(l){return l.subject==="physics"?({
 "si-units":1,"position-displacement":2,"motion-diagrams":2,"average-velocity":2,
 "acceleration":3,"free-fall":3,"motion-graphs":3,"free-body-diagram":4,
-"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"torque-levers":8,"rotational-inertia":8,"rotational-dynamics":8,"impulse":9,"momentum-conservation":9,"momentum-vectors":9,"work-energy":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
+"newtons-second-law":4,"force-components":5,"friction":5,"inclined-planes":5,"two-dimensional-motion":6,"projectile-motion":6,"circular-motion":6,"relative-velocity":6,"universal-gravitation":7,"orbital-motion":7,"weightlessness":7,"torque-levers":8,"rotational-inertia":8,"rotational-dynamics":8,"impulse":9,"momentum-conservation":9,"momentum-vectors":9,"collisions":9,"work-energy":10,"work-angle":10,"power-efficiency":10,"mechanical-advantage":10,"kinetic-energy":10,"potential-energy":11,"energy-conservation":11,"atom-spectra":28
 })[l.id]??null:null;}
 function renderAccumulativeStep(container,step){
  const li=document.createElement("li");li.className="worked-step";li.tabIndex=-1;li.textContent=step;
@@ -1025,6 +1031,8 @@ function bookTile(book,grade=null){
 }
 function appletsHome(){
  const entries=[
+ ["work-angle","∠","physics","Work · Chapter 10","Rotate a force and see positive, zero or negative work."],
+ ["mechanical-advantage","⚖","physics","Machines · Chapter 10","Investigate force, distance, efficiency and power without creating energy."],
  ["impulse","▰","physics","Impulse · Chapter 9","Compare constant-force pulses with the same signed area and momentum change."],
  ["momentum-conservation","⇆","physics","Collision · Chapter 9","Predict the outcome of two approaching carts, then reveal the conserved total."],
  ["universal-gravitation","◎","physics","Gravity · Chapter 7","Measure the inverse-square force and acceleration as distance changes."],
