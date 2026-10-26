@@ -3,7 +3,7 @@
    energy uses the exact shared energyRampState engine. */
 function tourMiniLab(el,kind){
  const fmt=n=>Number(n).toFixed(1),set=(id,value)=>{const node=el.querySelector("#"+id);if(node)node.textContent=value;};
- const touch=()=>{const c=el.closest(".demo-feature").querySelector("#demo-connection");if(c)c.hidden=false;};
+ const touch=()=>{const c=el.closest(".demo-feature").querySelector("#demo-connection");if(c)c.hidden=false;const hold=el.closest(".demo-feature").querySelector("#demo-hold");if(hold)hold.hidden=true;};
  if(kind==="graph"){
   el.innerHTML=`<svg viewBox="0 0 440 258" role="img" aria-label="Position against time, showing a curved graph and the secant between zero seconds and an adjustable later time.">
    <rect x="0" y="0" width="440" height="258" rx="8" fill="#f8fbfa"/>
