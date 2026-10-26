@@ -23,6 +23,8 @@ jobs:
           node --check applets/tour-labs.js
           node --check applets/lesson-evidence.js
           node --check applets/derivative-lab.js
+          node --check applets/accumulation-labs.js
+          node --check scripts/test-accumulation-labs.mjs
           node --check scripts/test-derivative-lab.mjs
           node --check scripts/test-lesson-evidence.mjs
           node --check applets/gravitation.js
@@ -47,6 +49,7 @@ jobs:
           node scripts/test-interactives.mjs
           node scripts/test-lesson-evidence.mjs
           node scripts/test-derivative-lab.mjs
+          node scripts/test-accumulation-labs.mjs
           node scripts/test-contact-forces.mjs
           node scripts/test-energy-ramp.mjs
           node scripts/test-gravitation.mjs
